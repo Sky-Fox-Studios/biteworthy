@@ -17,13 +17,8 @@
         <td><%= menu_group.name %></td>
         <td><%= menu_group.description %></td>
         <td><%= link_to 'Show', menu_group %></td>
-        <td><%= link_to 'Edit', edit_menu_group_path(menu_group) %></td>
-        <td><%= link_to 'Destroy', menu_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Restaurant menu group', new_menu_group_path %>
