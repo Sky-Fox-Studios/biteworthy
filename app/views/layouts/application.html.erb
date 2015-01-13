@@ -13,7 +13,7 @@
 
    <body>
       <div class="row">
-         <div class="small-12">
+         <div class="small-12 columns">
             <%= render :partial => "/base/header" %>
             
             <p class="notice"><%= notice %></p>
@@ -21,6 +21,7 @@
             <%= yield %>
             <%= javascript_include_tag "application" %>
          </div>
+         <%= render :partial => "/base/footer" %>
       </div>
    </body>
 </html>
