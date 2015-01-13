@@ -1,0 +1,28 @@
+<%= simple_form_for(@restaurant) do |f| %>
+  <% if @restaurant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+      <% @restaurant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.input :name %>
+    <%= f.input :slogan %>
+  <div class="field">
+    <%= f.input :food_groups %>
+  </div>
+  <div class="field">
+    <%= f.input :latitude %>
+  </div>
+  <div class="field">
+    <%= f.input :longitude %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

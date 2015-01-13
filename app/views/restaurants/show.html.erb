@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'New Menu Group', new_menu_group_path(@restaurant) %> |
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Slogan:</strong>
+  <%= @restaurant.slogan %>
+</p>
+
+<p>
+  <strong>Food groups:</strong>
+  <%= @restaurant.food_groups %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @restaurant.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @restaurant.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>

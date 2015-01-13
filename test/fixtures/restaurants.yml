@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  slogan: MyString
+  food_groups: MyString
+  latitude: 
+  longitude: MyString
+
+two:
+  name: MyString
+  slogan: MyString
+  food_groups: MyString
+  latitude: 
+  longitude: MyString

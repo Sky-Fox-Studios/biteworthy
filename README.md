@@ -1,2 +1,0 @@
-# bwd
-Bite Worthy Durango
