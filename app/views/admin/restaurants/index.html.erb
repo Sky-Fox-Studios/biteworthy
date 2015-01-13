@@ -20,9 +20,9 @@
         <td><%= restaurant.food_groups %></td>
         <td><%= restaurant.latitude %></td>
         <td><%= restaurant.longitude %></td>
-        <td><%= link_to 'Show', admin_restaurant %></td>
+        <td><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
         <td><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', admin_restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
