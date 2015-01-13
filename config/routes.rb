@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
 
-   resources :restaurants
-   resources :menu_groups
-   resources :food_items
+   resources :restaurants, :menu_groups, :food_items, only: [:index, :show]
    
    #TODO sub resources
 #      resources :restaurants do
@@ -13,9 +11,9 @@ Rails.application.routes.draw do
 #      end
 
    #TODO admin name spacing
-#      namespace :admin do
-#         resources :restaurants, :menu_groups, :food_items
-#      end
+     namespace :admin do
+        resources :restaurants, :menu_groups, :food_items
+     end
 
    
    devise_for :users
