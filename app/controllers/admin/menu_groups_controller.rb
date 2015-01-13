@@ -1,4 +1,4 @@
-class MenuGroupsController < ApplicationController
+class Admin::MenuGroupsController < AdminController
   before_action :set_menu_group, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

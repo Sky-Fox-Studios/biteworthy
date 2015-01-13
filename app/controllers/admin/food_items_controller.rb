@@ -1,4 +1,4 @@
-class FoodItemsController < ApplicationController
+class Admin::FoodItemsController < AdminController
   before_action :set_food_item, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

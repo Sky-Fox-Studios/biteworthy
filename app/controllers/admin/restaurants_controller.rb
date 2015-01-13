@@ -1,4 +1,4 @@
-class RestaurantsController < ApplicationController
+class Admin::RestaurantsController < AdminController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
