@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 if !User.exists?(:email => "skylar.bolton@gmail.com") then
-   User.new(user_name: "Skylar", email: "skylar.bolton@gmail.com", password: "raistlin").save
+   User.new(user_name: "Skylar", email: "skylar.bolton@gmail.com", password: "raistlin", approved: true, is_admin: true).save
    puts "Users Seeded"
 end
 

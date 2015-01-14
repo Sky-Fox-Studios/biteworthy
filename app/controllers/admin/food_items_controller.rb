@@ -23,17 +23,17 @@ class Admin::FoodItemsController < AdminController
   def create
     @food_item = FoodItem.new(food_item_params)
     @food_item.save
-    respond_with(@food_item)
+    redirect_to admin_food_items_path
   end
 
   def update
     @food_item.update(food_item_params)
-    respond_with(@food_item)
+     redirect_to admin_food_items_path
   end
 
   def destroy
     @food_item.destroy
-    respond_with(@food_item)
+     redirect_to admin_food_items_path
   end
 
   private

@@ -1,1 +1,10 @@
-<h2><%= link_to "BWD", root_path %></h2>
+<% if current_user.is_admin || @user.is_admin%>
+<h2>
+   <%= link_to "BWD", root_path %>
+   <%= link_to "Admin", admin_home_path %>
+</h2>
+<% else %>
+<h2>
+   <%= link_to "BWD", root_path %>
+</h2>
+<% end %>

@@ -23,17 +23,17 @@ class Admin::MenuGroupsController < AdminController
   def create
     @menu_group = MenuGroup.new(menu_group_params)
     @menu_group.save
-    respond_with(@menu_group)
+    redirect_to admin_menu_groups_path
   end
 
   def update
     @menu_group.update(menu_group_params)
-    respond_with(@menu_group)
+    redirect_to admin_menu_groups_path
   end
 
   def destroy
     @menu_group.destroy
-    respond_with(@menu_group)
+    redirect_to admin_menu_groups_path
   end
 
   private

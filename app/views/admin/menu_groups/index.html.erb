@@ -13,7 +13,7 @@
   <tbody>
     <% @menu_groups.each do |menu_group| %>
       <tr>
-        <td><%= menu_group.restaurant_id %></td>
+         <td><%= menu_group.restaurant.name if !menu_group.restaurant.nil? %></td>
         <td><%= menu_group.name %></td>
         <td><%= menu_group.description %></td>
         <td><%= link_to 'Show', admin_menu_group_path(menu_group) %></td>
