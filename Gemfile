@@ -6,9 +6,6 @@ gem 'sqlite3'                                # Use sqlite3 as the database for A
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
 
-gem 'sass-rails', '~> 4.0.3'                 # Use SCSS for stylesheets
-gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
-gem 'coffee-rails', '~> 4.0.0'               # Use CoffeeScript for .js.coffee assets and views
 
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -17,13 +14,15 @@ gem 'sdoc', '~> 0.4.0',          group: :doc # bundle exec rake doc:rails genera
 gem 'spring',        group: :development     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'foundation-rails'
 gem 'aws-sdk'                                # Amazon Cloud Storage: S3
-gem 'simple_form'                            # Form handlers
+gem 'simple_form'     
+# Form handlers
 
-group :assets do
-  # Add Foundation Here
-  gem 'compass-rails' # you need this or you get an err
-  gem 'zurb-foundation', '~> 4.0.0'
-end
+gem 'foundation-icons-sass-rails'            # More Icons!
+gem 'compass-rails'                          # you need this or you get an err
+gem 'zurb-foundation', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.3'                 # Use SCSS for stylesheets
+gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
+gem 'coffee-rails', '~> 4.0.0'               # Use CoffeeScript for .js.coffee assets and views
 
 group :development, :test do
   gem 'rspec-rails', '>= 3.0.0.beta'

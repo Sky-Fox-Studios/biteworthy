@@ -9,6 +9,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+     @menu_groups = MenuGroup.includes(:food_items).where(restaurant_id: @restaurant.id).all
     respond_with(@restaurant)
   end
 

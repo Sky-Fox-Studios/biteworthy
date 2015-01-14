@@ -1,4 +1,4 @@
-<% if current_user.is_admin || @user.is_admin%>
+<% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
 <h2>
    <%= link_to "BWD", root_path %>
    <%= link_to "Admin", admin_home_path %>
@@ -8,3 +8,26 @@
    <%= link_to "BWD", root_path %>
 </h2>
 <% end %>
+
+<div class="icon-bar five-up">
+  <a class="item">
+    <i class="fi-home"></i>
+    <label>Home</label>
+  </a>
+  <a class="item">
+    <i class="fi-eye"></i>
+    <label>Search</label>
+  </a>
+  <a class="item">
+    <i class="fi-torso"></i>
+    <label>Account</label>
+  </a>
+  <a class="item">
+    <i class="fi-map"></i>
+    <label>Map</label>
+  </a>
+  <a class="item">
+    <i class="fi-key"></i>
+    <label>Admin</label>
+  </a>
+</div>
