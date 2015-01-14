@@ -1,11 +1,9 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.1.0'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sqlite3'                                # Use sqlite3 as the database for Active Record
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
-
 
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -19,7 +17,6 @@ gem 'simple_form'
 
 gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'compass-rails'                          # you need this or you get an err
-gem 'zurb-foundation', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'                 # Use SCSS for stylesheets
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0'               # Use CoffeeScript for .js.coffee assets and views

@@ -1,20 +1,11 @@
-<% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
-<h2>
-   <%= link_to "BWD", root_path %>
-   <%= link_to "Admin", admin_home_path %>
-</h2>
-<% else %>
-<h2>
-   <%= link_to "BWD", root_path %>
-</h2>
-<% end %>
+
 
 <div class="icon-bar five-up">
-  <a class="item">
-    <i class="fi-home"></i>
-    <label>Home</label>
-  </a>
-  <a class="item">
+      <a class="item">
+         <i class="fi-home"></i>
+         <label>Home</label>
+      </a>
+   <a class="item">
     <i class="fi-eye"></i>
     <label>Search</label>
   </a>
@@ -26,8 +17,16 @@
     <i class="fi-map"></i>
     <label>Map</label>
   </a>
-  <a class="item">
-    <i class="fi-key"></i>
-    <label>Admin</label>
-  </a>
+   <% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
+         <a class="item">
+            <i class="fi-key"></i>
+            <label>Admin</label>
+         </a>
+   <% else %>
+     <a class="item">
+        <i class="fi-key"></i>
+        <label>Account</label>
+     </a>
+<% end %>
+
 </div>
