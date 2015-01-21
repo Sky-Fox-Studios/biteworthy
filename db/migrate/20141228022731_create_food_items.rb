@@ -4,7 +4,7 @@ class CreateFoodItems < ActiveRecord::Migration
       t.integer :menu_group_id
       t.string :name
       t.string :description
-      t.integer :price
+      t.float :price
 
       t.timestamps
     end
