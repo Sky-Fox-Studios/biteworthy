@@ -1,28 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+   <div class="small-2 columns">
+      LOGO here
+   </div>
+   <div class="small-10 columns">
+      <h3><%= @restaurant.name %></h3>
+        <%= @restaurant.slogan %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+   </div>
+   <div class="small-12 columns">
+      <% @menu_groups.each do |menu| %>
+         <div class="small-12 columns menu-group-head">
+            <h5><%= menu.name %></h5>
+         </div>
+         <% menu.food_items.each do |item| %>
+            <div class="small-12 columns">
+               <td><%= link_to item.name, food_item_path(item) %> <td>
+            </div>
+         <% end %>
+      <% end %>
+   </div>
 
-<p>
-  <strong>Slogan:</strong>
-  <%= @restaurant.slogan %>
-</p>
 
-<p>
-  <strong>Food groups:</strong>
-  <%= @restaurant.food_groups %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @restaurant.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @restaurant.longitude %>
-</p>
 
 <%= link_to 'Back', restaurants_path %>
+</div>

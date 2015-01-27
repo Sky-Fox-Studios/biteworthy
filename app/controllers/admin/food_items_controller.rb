@@ -27,8 +27,11 @@ class Admin::FoodItemsController < AdminController
   end
 
   def update
-    @food_item.update(food_item_params)
-     redirect_to admin_food_items_path
+    if @food_item.update(food_item_params)
+       redirect_to admin_food_items_path
+    else
+       redirect_to edit_admin_food_item_path(@food_item)
+    end
   end
 
   def destroy
