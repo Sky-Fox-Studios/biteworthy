@@ -6,10 +6,9 @@
             <label>Home</label>
          </a>
          <a class="item" href="<%=favorites_path%>">
-            <i class="fi-eye"></i>
+            <i class="fi-star"></i>
             <label>Favorites</label>
          </a>
-
          <% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
             <a class="item" href="<%=admin_users_path%>">
                <i class="fi-torso"></i>

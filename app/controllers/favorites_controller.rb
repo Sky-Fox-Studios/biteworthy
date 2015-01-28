@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show]
+  before_action :set_favorite, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
   def index
@@ -10,10 +10,37 @@ class FavoritesController < ApplicationController
   def show
     respond_with(@favorite)
   end
- 
+
+  def new
+    @favorite = Favorite.new
+    respond_with(@favorite)
+  end
+
+  def edit
+  end
+
+  def create
+    @favorite = Favorite.new(favorite_params)
+    @favorite.save
+    respond_with(@favorite)
+  end
+
+  def update
+    @favorite.update(favorite_params)
+    respond_with(@favorite)
+  end
+
+  def destroy
+     @favorite.destroy
+    respond_with(@favorite)
+  end
+
   private
-   def set_favorite
-      @favorites = Favorite.find(params[:id])
+    def set_favorite
+      @favorite = Favorite.find(params[:id])
     end
 
+    def favorite_params
+       params.require(:favorite).permit(:favoriteable_id, :favorite_type, :title, :comment, :rating)
+    end
 end

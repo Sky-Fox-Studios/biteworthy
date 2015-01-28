@@ -1,6 +1,5 @@
 class Admin::FoodItemsController < AdminController
   before_action :set_food_item, only: [:show, :edit, :update, :destroy]
-
   respond_to :html
 
   def index
@@ -42,6 +41,7 @@ class Admin::FoodItemsController < AdminController
   private
     def set_food_item
       @food_item = FoodItem.find(params[:id])
+       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end
 
     def food_item_params

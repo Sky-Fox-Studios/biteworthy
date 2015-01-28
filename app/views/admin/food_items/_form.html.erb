@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
      <%= f.association :menu_group, collection: MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name), as: :select, :label_method => lambda { |menu_group| "#{menu_group.restaurant.name} | #{menu_group.name}" } %>
   </div>
@@ -21,7 +20,10 @@
     <%= f.input :description %>
   </div>
   <div class="field">
-    <%= f.input :price %>
+    <%= f.input :price_low %>
+  </div>
+  <div class="field">
+    <%= f.input :price_high %>
   </div>
   <div class="actions">
      <%= f.submit 'Create' %>

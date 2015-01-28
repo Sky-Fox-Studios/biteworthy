@@ -37,7 +37,7 @@ class Admin::FavoritesController < AdminController
 
   private
    def set_favorite
-      @favorites = Favorite.find(params[:id])
+      @favorite = Favorite.find(params[:id])
     end
 
     def favorite_params
