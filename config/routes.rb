@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-
-   resources :restaurants, :menu_groups, :food_items, :user_favorites, only: [:index, :show]
+   resources :restaurants, :menu_groups, :food_items, :favorites, only: [:index, :show]
 #    resources :restaurants, only: [:index, :show] do
 #       resources :menu_groups, only: [:index, :show] do
 #          resources :food_items, only: [:index, :show]
@@ -20,5 +19,5 @@ Rails.application.routes.draw do
 
    get '/admin_home', to: 'admin#home', :as => "admin_home"
 
-   root 'base#home'
+   root 'restaurants#index'
 end

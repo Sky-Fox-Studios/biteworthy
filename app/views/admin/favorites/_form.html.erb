@@ -1,11 +1,12 @@
-<%= simple_form_for(@create_user_favorite) do |f| %>
+<%= simple_form_for(@favorite) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :is_liked %>
-    <%= f.input :metta_id %>
-    <%= f.input :type_id %>
+    <%= f.input :favoriteable_id %>
+    <%= f.input :favorite_type %>
+    <%= f.input :title %>
     <%= f.input :comment %>
+    <%= f.input :rating %>
   </div>
 
   <div class="form-actions">

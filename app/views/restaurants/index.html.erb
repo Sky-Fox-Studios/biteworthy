@@ -1,11 +1,11 @@
 <div class="row">
    <div class="small-12 columns">
-      <h1>Restaurants</h1>
+      <h1>Bite Worthy Durango</h1>
       <table>
          <tbody>
             <% @restaurants.each do |restaurant| %>
             <tr>
-               <td><%= image_tag("logo_pic.png", size: "120x120", class:"center-image") %></td>
+               <td><%= link_to(image_tag("logo_pic.png", size: "120x120", class:"center-image"), restaurant) %></td>
                <td>
                   <h4><%= link_to restaurant.name, restaurant %></h4><br>
                   <%= restaurant.slogan %>

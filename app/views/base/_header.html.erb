@@ -5,9 +5,9 @@
             <i class="fi-home"></i>
             <label>Home</label>
          </a>
-         <a class="item">
+         <a class="item" href="<%=favorites_path%>">
             <i class="fi-eye"></i>
-            <label><strike>Search</strike></label>
+            <label>Favorites</label>
          </a>
 
          <% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
@@ -18,7 +18,7 @@
          <% else %>
             <a class="item"  href="<%=edit_user_registration_path(@user)%>">
                <i class="fi-torso"></i>
-               <label>Account</label>
+               <label>Login</label>
             </a>
          <% end %>
          <% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
