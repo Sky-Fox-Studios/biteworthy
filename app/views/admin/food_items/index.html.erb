@@ -19,7 +19,13 @@
          <td><%= food_item.menu_group.name %></td>
         <td><%= food_item.name %></td>
         <td><%= food_item.description %></td>
-        <td style="text-align:right">$<%= food_item.price %></td>
+        <td style="text-align:right">
+           <% if !food_item.price_high.nil? %>
+              $<%= food_item.price_low %> - $<%= food_item.price_high %>
+           <% else %>
+              $<%= food_item.price_low %>
+           <% end %>
+         </td>
         <td><%= link_to 'Show', admin_food_item_path(food_item) %></td>
         <td><%= link_to 'Edit', edit_admin_food_item_path(food_item) %></td>
         <td><%= link_to 'Destroy', admin_food_item_path(food_item), method: :delete, data: { confirm: 'Are you sure?' } %></td>

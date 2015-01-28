@@ -1,17 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
 
-<p>
-  <strong>Name:</strong>
-  <%= @food_item.name %>
-</p>
+   <div class="small-12 columns food-item-name">
+      <h3 class="center-text">
+         <%= @food_item.name %> <%= @food_item.menu_group.name.singularize %>
+      </h3>
+   </div>
+   <div class="small-12 columns">
+      <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
+   </div>
+   <div class="small-12 columns">
 
-<p>
-  <strong>Description:</strong>
-  <%= @food_item.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @food_item.price %>
-</p>
-<%= link_to 'Back', food_items_path %>
+      <p>
+        <%= @food_item.description %>
+      </p>
+      <p>
+         <% if !@food_item.price_high.nil? %>
+           $<%= @food_item.price_low %> - $<%=  @food_item.price_high %>
+         <% else %>
+           $<%= @food_item.price_low %>
+         <% end %>
+      </p>
+   </div>
+   <div class="small-12 columns">
+      <%= link_to "Back to #{@food_item.menu_group.restaurant.name}", restaurant_path(@food_item.menu_group.restaurant) %>
+   </div>
+</div>

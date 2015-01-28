@@ -1,0 +1,31 @@
+<h1>Listing create_user_favorites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Is liked</th>
+      <th>Metta</th>
+      <th>Type</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @create_user_favorites.each do |create_user_favorite| %>
+      <tr>
+        <td><%= create_user_favorite.is_liked %></td>
+        <td><%= create_user_favorite.metta_id %></td>
+        <td><%= create_user_favorite.type_id %></td>
+        <td><%= create_user_favorite.comment %></td>
+        <td><%= link_to 'Show', create_user_favorite %></td>
+        <td><%= link_to 'Edit', edit_create_user_favorite_path(create_user_favorite) %></td>
+        <td><%= link_to 'Destroy', create_user_favorite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Create user favorite', new_create_user_favorite_path %>

@@ -19,7 +19,13 @@
          <td><%= food_item.menu_group.name %></td>
         <td><%= food_item.name %></td>
         <td><%= food_item.description %></td>
-        <td><%= food_item.price %></td>
+        <td>
+           <% if !food_item.price_high.nil? %>
+              $<%= food_item.price_low %> - $<%=  food_item.price_high %>
+            <% else %>
+              $<%= food_item.price_low %>
+            <% end %>
+         </td>
         <td><%= link_to 'Show', food_item %></td>
       </tr>
     <% end %>

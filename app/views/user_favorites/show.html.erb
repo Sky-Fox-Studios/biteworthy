@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Is liked:</strong>
+  <%= @create_user_favorite.is_liked %>
+</p>
+
+<p>
+  <strong>Metta:</strong>
+  <%= @create_user_favorite.metta_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @create_user_favorite.type_id %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @create_user_favorite.comment %>
+</p>
+
+<%= link_to 'Edit', edit_create_user_favorite_path(@create_user_favorite) %> |
+<%= link_to 'Back', create_user_favorites_path %>

@@ -11,13 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228022731) do
+ActiveRecord::Schema.define(version: 20150127233744) do
+
+  create_table "favorite_restaurants", force: true do |t|
+    t.integer  "rating",        limit: 1
+    t.integer  "restaurant_id"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "favorites_items", force: true do |t|
+    t.integer  "rating",     limit: 1
+    t.integer  "item_id"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "food_items", force: true do |t|
     t.integer  "menu_group_id"
     t.string   "name"
     t.string   "description"
-    t.integer  "price"
+    t.float    "price_low"
+    t.float    "price_high"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,9 +50,9 @@ ActiveRecord::Schema.define(version: 20141228022731) do
   create_table "restaurants", force: true do |t|
     t.string   "name"
     t.string   "slogan"
-    t.string   "food_groups"
-    t.integer  "latitude",    limit: 12
-    t.integer  "longitude",   limit: 12
+    t.string   "phone_number"
+    t.float    "latitude",     limit: 12
+    t.float    "longitude",    limit: 12
     t.datetime "created_at"
     t.datetime "updated_at"
   end
