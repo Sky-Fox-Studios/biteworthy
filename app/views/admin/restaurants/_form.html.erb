@@ -10,19 +10,30 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+   <div class="small-3 columns">
+      <%= f.input :name %>
+   </div>
+   <div class="small-9 columns">
+      <%= f.input :slogan %>
+   </div>
+</div>
 
-    <%= f.input :name %>
-    <%= f.input :slogan %>
-  <div class="field">
-    <%= f.input :phone_number %>
-  </div>
-  <div class="field">
-    <%= f.input :latitude %>
-  </div>
-  <div class="field">
-    <%= f.input :longitude %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<div class="row">
+   <div class="small-3 columns">
+      <%= f.input :phone_number %>
+   </div>
+</div>
+<div class="row">
+   <div class="small-6 columns">
+      <%= f.input :latitude %>   
+   </div>
+
+   <div class="small-6 columns">
+      <%= f.input :longitude %>
+   </div>
+</div>
+   <div class="small-12 columns">
+       <%= f.submit %>
   </div>
 <% end %>

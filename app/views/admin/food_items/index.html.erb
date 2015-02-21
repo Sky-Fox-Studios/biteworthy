@@ -21,9 +21,9 @@
         <td><%= food_item.description %></td>
         <td style="text-align:right">
            <% if !food_item.price_high.nil? %>
-              $<%= food_item.price_low %> - $<%= food_item.price_high %>
+              <%= number_to_currency(food_item.price_low) %> - <%= number_to_currency(food_item.price_high) %>
            <% else %>
-              $<%= food_item.price_low %>
+              <%= number_to_currency(food_item.price_low) %>
            <% end %>
          </td>
         <td><%= link_to 'Show', admin_food_item_path(food_item) %></td>

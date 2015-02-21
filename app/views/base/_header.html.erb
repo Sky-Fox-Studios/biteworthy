@@ -1,13 +1,17 @@
 <div class="row">
 	<div class="small-12 columns">
-      <div class="icon-bar four-up">
+      <div class="icon-bar five-up">
          <a class="item" href="<%=root_path%>">
             <i class="fi-home"></i>
             <label>Home</label>
          </a>
-         <a class="item" href="<%=favorites_path%>">
+         <a class="item" href="<% %>">
             <i class="fi-star"></i>
-            <label>Favorites</label>
+            <label>Favorite Restaurants</label>
+         </a>
+         <a class="item" href="">
+            <i class="fi-star"></i>
+            <label>Favorite Foods</label>
          </a>
          <% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
             <a class="item" href="<%=admin_users_path%>">
@@ -25,8 +29,6 @@
                <i class="fi-key"></i>
                <label>Admin</label>
             </a>
-         <% else %>
-            <!-- Nada -->
          <% end %>
       </div>
    </div>

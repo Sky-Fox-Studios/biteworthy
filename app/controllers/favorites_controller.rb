@@ -1,8 +1,11 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
+  before_action :find_favoriteable, only: [:new]
   respond_to :html
+  before_filter :authenticate_user!
 
   def index
+     @favoriteable = find_favoriteable
      @favorites = Favorite.all
     respond_with(@favorites)
   end
@@ -12,6 +15,7 @@ class FavoritesController < ApplicationController
   end
 
   def new
+     binding.pry
     @favorite = Favorite.new
     respond_with(@favorite)
   end
@@ -38,9 +42,21 @@ class FavoritesController < ApplicationController
   private
     def set_favorite
       @favorite = Favorite.find(params[:id])
+      @favoriteable = find_favoriteable
+
     end
 
     def favorite_params
-       params.require(:favorite).permit(:favoriteable_id, :favorite_type, :title, :comment, :rating)
+       params.require(:favorite).permit(:favoriteable_id, :favoriteable_type, :title, :comment, :rating)
     end
+   
+   def find_favoriteable
+      params.each do |name, value|
+         if name =~ /(.+)_id$/
+            return $1.classify.constantize.find(value)
+         end
+      end
+      nil
+   end
+   
 end

@@ -2,24 +2,23 @@
 <table>
   <thead>
     <tr>
-      <th>favoriteable_id</th>
+      <th>Name</th>
+      <th>Type</th>
       <th>Rating</th>
       <th>Title</th>
       <th>Comment</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
+  
   <tbody>
     <% @favorites.each do |favorite| %>
       <tr>
-        <td><%= favorite.is_liked %></td>
-        <td><%= favorite.metta_id %></td>
-        <td><%= favorite.type_id %></td>
+         <td><%= favorite.favoriteable_id %></td>
+         <td><%= favorite.favoriteable_type %></td>
+         <td><%= favorite.rating %></td>
+         <td><%= favorite.title %></td>
         <td><%= favorite.comment %></td>
-        <td><%= link_to 'Show', favorite %></td>
-         <td><%= link_to 'Edit', edit_favorite_path(favorite) %></td>
-        <td><%= link_to 'Destroy', favorite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
