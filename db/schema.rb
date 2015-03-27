@@ -14,11 +14,12 @@
 ActiveRecord::Schema.define(version: 20150121233228) do
 
   create_table "favorites", force: true do |t|
-    t.integer  "favoriteable_id"
-    t.string   "favoriteable_type"
+    t.integer  "user_id"
+    t.integer  "favoritable_id"
+    t.string   "favoritable_type"
     t.string   "title"
     t.string   "comment"
-    t.integer  "rating",            limit: 1
+    t.integer  "rating",           limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

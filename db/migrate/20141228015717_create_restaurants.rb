@@ -5,8 +5,8 @@ class CreateRestaurants < ActiveRecord::Migration
        t.string :slogan
        t.string :address
        t.string :phone_number
-       t.float :latitude, :limit =>  12
-       t.float :longitude, :limit => 12
+       t.float  :latitude,  :limit => 12
+       t.float  :longitude, :limit => 12
        t.timestamps
     end
   end
