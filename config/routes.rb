@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-   resources :restaurants, :menu_groups, :food_items, only: [:index, :show] do
+   resources :restaurants, :menu_groups, :foods, only: [:index, :show] do
       resources :favorites
    end
    #TODO user favorites.
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 #    end
 
      namespace :admin do
-        resources :restaurants, :menu_groups, :food_items, :users, :favorites
+        resources :restaurants, :menu_groups, :foods, :users, :favorites
      end
 
    

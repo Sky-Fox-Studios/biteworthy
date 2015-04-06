@@ -13,36 +13,36 @@ rgps_salads      = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Sa
 puts "Menu Groups Seeded"
 
 #Siam
-FoodItem.find_or_create_by(menu_group_id: siam_noodles.id, name: "Pad Thai", description: "With Tofu", price_low: 9)
+Food.find_or_create_by(restaurant_id: siam.id, menu_group_id: siam_noodles.id, name: "Pad Thai", description: "With Tofu", price_low: 9)
 #DSP
-FoodItem.find_or_create_by(menu_group_id: dsp_single_slice.id, name: "Cheese", description: "Cheese Traditional", price_low: 3)
+Food.find_or_create_by(restaurant_id: dsp.id, menu_group_id: dsp_single_slice.id, name: "Cheese", description: "Cheese Traditional", price_low: 3)
    
 # RGP
-FoodItem.find_or_create_by(menu_group_id: rgps_wraps.id, name: "Roasted Chicken or Turkey Breast", 
+Food.find_or_create_by(restaurant_id: rgps.id, menu_group_id: rgps_wraps.id, name: "Roasted Chicken or Turkey Breast", 
    description: "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing.", price_low: 6.35)
-FoodItem.find_or_create_by(menu_group_id: rgps_wraps.id, name: "Pulled Pork BBQ", 
+Food.find_or_create_by(restaurant_id: rgps.id, menu_group_id: rgps_wraps.id, name: "Pulled Pork BBQ", 
    description: "Smoked Pulled Pork, Cheddar Cheese, Red Onion, Black Beans, Homemade Cole Slaw, and our Classic BBQ Sauce.", price_low: 6.63)
-FoodItem.find_or_create_by(menu_group_id: rgps_wraps.id, name: "Caesar Salad Wrap", 
+Food.find_or_create_by(restaurant_id: rgps.id, menu_group_id: rgps_wraps.id, name: "Caesar Salad Wrap", 
    description: "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and our Caesar Dressing.", price_low: 6.63)
-FoodItem.find_or_create_by(menu_group_id: rgps_wraps.id, name: "Veggie", 
+Food.find_or_create_by(restaurant_id: rgps.id, menu_group_id: rgps_wraps.id, name: "Veggie", 
    description: "Sweet roasted red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, crisp romaine lettuce and choice of Cheese and Dressing.", price_low: 6.35)
-FoodItem.find_or_create_by(menu_group_id: rgps_salads.id, name: "Full House", 
+Food.find_or_create_by(restaurant_id: rgps.id, menu_group_id: rgps_salads.id, name: "Full House", 
    description: "Romaine Lettuce with Roma Tomatoes, Red Onion, Green Peppers, Carrots, Cucumbers, Roasted Red Peppers.", price_low: 5.5)
    
 # Ninis
-FoodItem.find_or_create_by(menu_group_id: ninis_burrito.id, name: "Chicken", 
+Food.find_or_create_by(restaurant_id: ninis.id, menu_group_id: ninis_burrito.id, name: "Chicken", 
    description: "Chicken, beans, rice, sour cream, cheese, and salsa", 
    price_low: 7.5, price_high: 8.75)
-FoodItem.find_or_create_by(menu_group_id: ninis_burrito.id, name: "Barbacoa", 
+Food.find_or_create_by(restaurant_id: ninis.id, menu_group_id: ninis_burrito.id, name: "Barbacoa", 
    description: "Shredded beef, beans, rice, sour cream, cheese, and salsa", 
    price_low: 7.5, price_high: 8.75)
-FoodItem.find_or_create_by(menu_group_id: ninis_burrito.id, name: "Carnitas", 
+Food.find_or_create_by(restaurant_id: ninis.id, menu_group_id: ninis_burrito.id, name: "Carnitas", 
    description: "Shredded pork, beans, rice, sour cream, cheese, and salsa", 
    price_low: 7.5, price_high: 8.75)
-FoodItem.find_or_create_by(menu_group_id: ninis_burrito.id, name: "Fish", 
+Food.find_or_create_by(restaurant_id: ninis.id, menu_group_id: ninis_burrito.id, name: "Fish", 
    description: "Fish, spicy coleslaw, beans, rice, sour cream, cheese, and salsa", 
    price_low: 7.75, price_high: 8.95)
-FoodItem.find_or_create_by(menu_group_id: ninis_burrito.id, name: "Vegetarian", 
+Food.find_or_create_by(restaurant_id: ninis.id, menu_group_id: ninis_burrito.id, name: "Vegetarian", 
    description: "Mixed sauteed vegetables, beans, rice, sour cream, cheese, and salsa", 
    price_low: 7.75, price_high: 8.95)
 puts "Food Items Seeded"

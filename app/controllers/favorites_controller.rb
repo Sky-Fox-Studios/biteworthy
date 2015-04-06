@@ -15,7 +15,6 @@ class FavoritesController < ApplicationController
   end
 
   def new
-     binding.pry
     @favorite = Favorite.new
     respond_with(@favorite)
   end
@@ -53,10 +52,10 @@ class FavoritesController < ApplicationController
    def find_favoriteable
       params.each do |name, value|
          if name =~ /(.+)_id$/
-            return $1.classify.constantize.find(value)
+            @favoriteable = $1.classify.constantize.find(value)
          end
       end
-      nil
+      return @favoriteable
    end
    
 end

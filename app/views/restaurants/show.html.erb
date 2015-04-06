@@ -10,9 +10,9 @@
       <% @menu_groups.each do |menu| %>
          <div class="small-12 columns">
             <h5 class="menu-group-head"><%= menu.name %></h5>
-         <% menu.food_items.each do |item| %>
+         <% menu.foods.each do |item| %>
             <div class="small-12 columns">
-               <td class="food-item"><%= link_to item.name, food_item_path(item) %> </td>
+               <td class="food-item"><%= link_to item.name, food_path(item) %> </td>
             </div>
          <% end %>
          </div>
@@ -21,5 +21,7 @@
    <hr>
    <div class="small-12 columns">
       <%= link_to 'Restaurants', restaurants_path %>
+      <br>
+      <%= link_to "Make Fav", new_restaurant_favorite_path(@restaurant)%>
    </div>
 </div>

@@ -1,0 +1,30 @@
+<div class="row" align="center">
+
+   <div class="small-12 columns food-item-name">
+      <h3 class="center-text">
+         <%= @food.name %> <%= @food.menu_group.name.singularize %>
+      </h3>
+   </div>
+   <div class="small-12 columns">
+      <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
+   </div>
+   <div class="small-12 columns">
+
+      <p>
+         <%= @food.description %>
+      </p>
+      <p>
+         <% if !@food.price_high.nil? %>
+            <%= number_to_currency(@food.price_low) %> - <%=  number_to_currency(@food.price_high) %>
+         <% else %>
+            <%= number_to_currency(@food.price_low) %>
+         <% end %>
+      </p>
+   </div>
+   <div class="small-6 columns">
+      <%= link_to "Back to #{@food.menu_group.restaurant.name}", restaurant_path(@food.menu_group.restaurant) %>
+   </div>
+   <div class="small-6 columns">
+      <%= link_to "Make #{@food.name} a favorite", new_food_favorite_path(@food) %>
+   </div>
+</div>
