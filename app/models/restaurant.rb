@@ -3,5 +3,4 @@ class Restaurant < ActiveRecord::Base
    has_many :foods, dependent: :destroy
    has_many :favorites, :as => :favoritable
    has_many :tags
-
 end
