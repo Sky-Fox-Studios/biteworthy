@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="small-12 columns">
+      <div class="icon-bar four-up">
+            <a class="item" href="<%=restaurants_path%>">
+               <i class="fi-home"></i>
+               <label>Restaurants</label>
+            </a>
+            <a class="item" href="<%=foods_path%>">
+               <i class="fi-trophy"></i>
+               <label>My Favs</label>
+            </a>
+            <a class="item" href="<%=admin_users_path%>">
+               <i class="fi-torso"></i>
+               <label>Profile</label>
+            </a>
+           <% if (@user && @user.is_admin) || (current_user && current_user.is_admin) %>
+            <a class="item" href="<%=admin_home_path%>">
+               <i class="fi-key"></i>
+               <label>Admin</label>
+            </a>
+         <% end %>
+      </div>
+   </div>
+</div>
