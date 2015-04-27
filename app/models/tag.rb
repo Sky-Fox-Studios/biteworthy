@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
-   has_many :restaurants
-   has_many :foods
-   has_many :menu_groups
+   has_and_belongs_to_many :restaurants
+   has_and_belongs_to_many :foods
+   has_and_belongs_to_many :menu_groups
     
    private
     def normalize_tag_name

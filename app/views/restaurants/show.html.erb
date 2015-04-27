@@ -7,16 +7,25 @@
       <%= @restaurant.slogan %>
    </div>
    <div class="small-12 columns">
+      <table>
       <% @menu_groups.each do |menu| %>
          <div class="small-12 columns">
-            <h5 class="menu-group-head"><%= menu.name %></h5>
-         <% menu.foods.each do |item| %>
+            <th class="menu-group-head"><%= menu.name %></th>
+            <% menu.foods.each do |item| %>
             <div class="small-12 columns">
-               <td class="food-item"><%= link_to item.name, food_path(item) %> </td>
+               <tr> 
+                  <td class="food-item">
+                     <%= link_to image_tag("food_pic.png", size: "120x120", class:"center-image"), food_path(item) %>
+                  </td>
+                  <td class="food-item">
+                     <%= link_to item.name, food_path(item) %>
+                  </td>
+               <tr>
             </div>
          <% end %>
          </div>
       <% end %>
+      </table>
    </div>
    <hr>
    <div class="small-12 columns">

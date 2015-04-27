@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327215034) do
+ActiveRecord::Schema.define(version: 20150427004528) do
 
   create_table "foods", force: true do |t|
     t.integer  "menu_group_id"
@@ -24,12 +24,22 @@ ActiveRecord::Schema.define(version: 20150327215034) do
     t.datetime "updated_at"
   end
 
+  create_table "foods_tags", force: true do |t|
+    t.integer "food_id"
+    t.integer "tag_id"
+  end
+
   create_table "menu_groups", force: true do |t|
     t.integer  "restaurant_id"
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "menu_groups_tags", force: true do |t|
+    t.integer "menu_group_id"
+    t.integer "tag_id"
   end
 
   create_table "restaurants", force: true do |t|
@@ -43,9 +53,25 @@ ActiveRecord::Schema.define(version: 20150327215034) do
     t.datetime "updated_at"
   end
 
+  create_table "restaurants_tags", force: true do |t|
+    t.integer "restaurant_id"
+    t.integer "tag_id"
+  end
+
   create_table "tags", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tags_families", force: true do |t|
+    t.integer  "parent_tag_id"
+    t.integer  "child_tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags_groups_relations", force: true do |t|
   end
 
   create_table "users", force: true do |t|

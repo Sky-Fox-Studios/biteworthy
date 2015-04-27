@@ -1,35 +1,6 @@
-<div class="row">
-	<div class="small-12 columns">
-      <div class="icon-bar five-up">
-         <a class="item" href="<%=root_path%>">
-            <i class="fi-home"></i>
-            <label>Home</label>
-         </a>
-         <a class="item" href="<% %>">
-            <i class="fi-star"></i>
-            <label>Favorite Restaurants</label>
-         </a>
-         <a class="item" href="">
-            <i class="fi-star"></i>
-            <label>Favorite Foods</label>
-         </a>
-         <% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
-            <a class="item" href="<%=admin_users_path%>">
-               <i class="fi-torso"></i>
-               <label>Users</label>
-            </a>
-         <% else %>
-            <a class="item"  href="<%=edit_user_registration_path(@user)%>">
-               <i class="fi-torso"></i>
-               <label>Login</label>
-            </a>
-         <% end %>
-         <% if (!@user.nil? && @user.is_admin) || (!current_user.nil? && current_user.is_admin) %>
-            <a class="item" href="<%=admin_home_path%>">
-               <i class="fi-key"></i>
-               <label>Admin</label>
-            </a>
-         <% end %>
-      </div>
-   </div>
-</div>
+<% if current_user && user_signed_in?  %>
+   <%= render :partial => "/base/header_signed_in" %>
+<% else %>
+   <%= render :partial => "/base/header_basic" %>
+<% end %>
+
