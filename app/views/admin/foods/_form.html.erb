@@ -1,4 +1,4 @@
-<%= simple_form_for(@food, url: admin_foods_path, method: :POST) do |f| %>
+<%= simple_form_for(@food, url: admin_food_path) do |f| %>
   <% if @food.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
@@ -10,22 +10,37 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-     <%= f.association :menu_group, collection: MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name), as: :select, :label_method => lambda { |menu_group| "#{menu_group.restaurant.name} | #{menu_group.name}" } %>
-  </div>
-  <div class="field">
-    <%= f.input :name %>
-  </div>
-  <div class="field">
-    <%= f.input :description %>
-  </div>
-  <div class="field">
-    <%= f.input :price_low %>
-  </div>
-  <div class="field">
-    <%= f.input :price_high %>
-  </div>
+   <div class="row">
+      <div class="small-5 columns">
+         <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
+      </div>
+      <div class="small-2 columns">
+         <br>TODO Filter =>
+      </div>
+      <div class="small-5 columns">
+         <%= f.association :menu_group, collection: MenuGroup.all.order(:name), as: :select, :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
+      </div>
+   </div>
+   <div class="row">
+      <div class="small-4 columns">
+          <%= f.input :name %>
+      </div>
+      <div class="small-8 columns">
+          <%= f.input :description, as: :text  %>
+      </div>
+   </div>
+   <div class="row">
+      <div class="small-4 columns">
+      </div>
+      <div class="small-4 columns">
+          <%= f.input :price_low %>
+      </div>
+      <div class="small-4 columns">
+         <%= f.input :price_high %>
+      </div>
+   </div>
+
   <div class="actions">
-     <%= f.submit 'Create' %>
+     <%= f.submit %>
   </div>
 <% end %>

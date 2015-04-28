@@ -41,11 +41,11 @@ class Admin::FoodsController < AdminController
   private
     def set_food
       @food = Food.find(params[:id])
-      @food = @food.tags
-       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
+      @food_tags = @food.tags
+      @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end
 
     def food_params
-      params.require(:food).permit(:menu_group_id, :name, :description, :price)
+       params.require(:food).permit(:restauant_id, :menu_group_id, :name, :description, :price_low, :price_high)
     end
 end

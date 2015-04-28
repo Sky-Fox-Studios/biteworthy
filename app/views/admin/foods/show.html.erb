@@ -2,27 +2,27 @@
 
 <p>
   <strong>Restaurant menu group:</strong>
-  <%= @food_item.menu_group_id %>
+   <%= @food.menu_group_id %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @food_item.name %>
+   <%= @food.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @food_item.description %>
+   <%= @food.description %>
 </p>
 
 <p>
   <strong>Price Low:</strong>
-  <%= number_to_currency(@food_item.price_low) %>
+   <%= number_to_currency(@food.price_low) %>
 </p>
 <p>
   <strong>Price High:</strong>
-  <%= number_to_currency(@food_item.price_high) %>
+   <%= number_to_currency(@food.price_high) %>
 </p>
 
-<%= link_to 'Edit', edit_admin_food_item_path(@food_item) %> |
-<%= link_to 'Back', admin_food_items_path %>
+<%= link_to 'Edit', edit_admin_food_path(@food) %> |
+<%= link_to 'Back', admin_foods_path %>
