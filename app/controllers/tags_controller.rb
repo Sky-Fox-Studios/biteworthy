@@ -15,10 +15,9 @@ class TagsController < ApplicationController
  end
 
  def create
-   @tag = Tag.new(tag_params)
-
-   if @tag.save
-     redirect_to tags_url, notice: 'Tag was successfully created.'
+    @tags = Tag.save_tags(tag_params[:name])
+    if @tags.valid?
+     redirect_to tags_url, notice: 'Tag(s) was successfully created.'
    else
      render action: 'new'
    end
