@@ -1,0 +1,20 @@
+<div class="small-12 columns tag-list" data-module="tag-list">
+   <% if field_label.nil? %>
+		<label for="tag_input">Tags:</label>
+	<% elsif field_label %>
+		<label for="tag_input"><%= label %>:</label>
+	<% end %>
+	<input type="text" id="add_tags" name="add_tags" placeholder="Add tags. Use commas to separate." />
+	<div class="row">
+		<div class="small-12 columns">
+			<div id="tag-list-controls" class="hidden" style="display: none;">
+				<%= f.association :tags, as: :check_boxes, :label => false, collection: object.tags.order(:name => :asc)%>
+			</div>
+			<div id="tag-list-display">
+				<% object.tags.order(:name => :asc).each do |tag| %>
+					<span class="label tag radius secondary"><%= tag.name %> <a href="#" class="close" data-tag-id="<%= tag.id %>"><i class="fi-x"></i></a></span>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

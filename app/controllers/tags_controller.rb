@@ -1,10 +1,8 @@
 class TagsController < ApplicationController
- load_and_authorize_resource class: Bdmcs::Tag
-
  before_action :set_tag, only: [:edit, :update, :destroy]    
 
  def index
-   @tags = Tag.order(:name => :asc).page(@page).per(50)
+   @tags = Tag.order(:name => :asc) #.page(@page).per(50)
  end
 
  def new
@@ -15,11 +13,15 @@ class TagsController < ApplicationController
  end
 
  def create
-    @tags = Tag.save_tags(tag_params[:name])
-    if @tags.valid?
-     redirect_to tags_url, notice: 'Tag(s) was successfully created.'
+    @tags = []
+    tags = Tag.save_tags(tag_params[:name])
+    tags.each do |tag|
+       @tags << tag if tag.valid? && tag.save
+    end
+    if !@tags.empty?
+       redirect_to tags_url, notice: 'Tag(s) was successfully created.'
    else
-     render action: 'new'
+       redirect_to new_tag_path, notice: 'Tag creation error.'
    end
  end
 

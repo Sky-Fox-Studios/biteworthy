@@ -4,7 +4,7 @@ class Tag < ActiveRecord::Base
    has_and_belongs_to_many :menu_groups
    #TODO
    #has_and_belongs_to_many :tags, as: :parent_tag
-       
+   validates :name, presence: true
    
    def self.save_tags(tags)
       tags.split(',').map{ |tag_name|

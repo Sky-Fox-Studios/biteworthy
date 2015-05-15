@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427004528) do
+ActiveRecord::Schema.define(version: 20150515222139) do
 
   create_table "foods", force: true do |t|
     t.integer  "menu_group_id"
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(version: 20150427004528) do
   create_table "restaurants_tags", force: true do |t|
     t.integer "restaurant_id"
     t.integer "tag_id"
+  end
+
+  create_table "size_prices", force: true do |t|
+    t.integer "food_id"
+    t.string  "size"
+    t.float   "price"
   end
 
   create_table "tags", force: true do |t|

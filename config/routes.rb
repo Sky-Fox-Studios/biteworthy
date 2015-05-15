@@ -3,6 +3,7 @@ Rails.application.routes.draw do
    resources :restaurants, :menu_groups, :foods, only: [:index, :show] do
       resources :favorites
    end
+   resources  :tags
    #TODO user favorites.
 #    resources :restaurants, only: [:index, :show] do
 #       resources :menu_groups, only: [:index, :show] do

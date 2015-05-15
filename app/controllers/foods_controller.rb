@@ -15,5 +15,7 @@ class FoodsController < ApplicationController
   private
     def set_food
       @food = Food.find(params[:id])
+      @restaurant = Restaurant.find(@food.restaurant_id)
+
     end
 end
