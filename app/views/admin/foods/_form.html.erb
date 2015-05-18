@@ -30,13 +30,17 @@
          </div>
       </div>
       <div class="row">
-         <div class="small-4 columns">
+         <div class="small-12 columns">
+            Price:
          </div>
          <div class="small-4 columns">
-             <%= f.input :price_low %>
+            <input type="text" id="new_price" name="new_price" placeholder="Use sizes to explain." />
          </div>
          <div class="small-4 columns">
-            <%= f.input :price_high %>
+             <input type="text" id="new_size" name="new_size" placeholder="Size" />
+         </div>
+         <div class="small-4 columns">
+            <%= f.input :prics %>
          </div>
       </div>
       <div class="row">
