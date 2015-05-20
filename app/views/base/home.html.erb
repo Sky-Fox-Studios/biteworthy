@@ -1,18 +1,18 @@
 <div class="row">
    <div class="small-12 columns">
-      <h1 align="center">Bite Worthy Durango</h1>
-      <table>
-         <tbody>
-            <% @restaurants.each do |restaurant| %>
-            <tr>
-               <td><%= link_to(image_tag("logo_pic.png", size: "120x120", class:"center-image"), restaurant) %></td>
-               <td>
+      <h1 align="center">Bite Worthy Durango!</h1>
+      <div class="row">
+         <% @restaurants.each do |restaurant| %>
+         <div class="small-6 columns" style="padding:11px;">
+           <div class="row">
+              <div class="small-3 columns"><%= link_to(image_tag("logo_pic.png", size: "120x120", class:"center-image"), restaurant) %></div>
+              <div class="small-9 columns">
                   <h4><%= link_to restaurant.name, restaurant %></h4><br>
                   <%= restaurant.slogan %>
-               </td>
-            </tr>
-            <% end %>
-         </tbody>
-      </table>
+               </div>
+            </div>
+         </div>
+         <% end %>
+      </div>
    </div>
 </div>

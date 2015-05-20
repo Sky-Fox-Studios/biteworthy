@@ -13,13 +13,17 @@
   </head>
 
    <body>
-      <div class="row">
+      <div class="row main-page">
          <div class="small-12 columns">
             <%= render :partial => "/base/header" %>
-            
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>   
+            <% if notice || alert %>
+               <div class="small-12 columns">
+                  <p class="notice"><%= notice %></p>
+                  <p class="alert"><%= alert %></p>   
+               </div>
+            <% end %>
             <%= yield %>
+
             <%= javascript_include_tag "application" %>
          </div>
          <%= render :partial => "/base/footer" %>

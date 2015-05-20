@@ -1,11 +1,5 @@
-<div class="row">
-   <div class="small-3 columns">
-      <%= image_tag("logo_pic.png", size: "120x120", style: "margin: 5px") %>
-   </div>
-   <div class="small-9 columns">
-      <h3><%= @restaurant.name %></h3>
-      <%= @restaurant.slogan %>
-   </div>
+<%= render :partial => 'restaurant_header', locals: {restaurant: @restaurant} %>
+<% unless @menu_groups.empty? %>
    <div class="small-12 columns">
       <table>
       <% @menu_groups.each do |menu| %>
@@ -15,10 +9,13 @@
             <div class="small-12 columns">
                <tr> 
                   <td class="food-item">
-                     <%= link_to image_tag("food_pic.png", size: "120x120", class:"center-image"), food_path(item) %>
+                     <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), food_path(item) %>
+                     <br><%= link_to "(Edit info)", edit_admin_restaurant_path(@restaurant) %>
+
                   </td>
                   <td class="food-item">
-                     <%= link_to item.name, food_path(item) %>
+                     <h3><%= link_to item.name, food_path(item) %></h3><br>
+                     <%= item.description %> 
                   </td>
                <tr>
             </div>
@@ -28,9 +25,13 @@
       </table>
    </div>
    <hr>
+<% else %>
    <div class="small-12 columns">
-      <%= link_to 'Restaurants', restaurants_path %>
-      <br>
-      <%= link_to "Make Fav", new_restaurant_favorite_path(@restaurant)%>
+      <h4 style="color:RED;">Nothing yet.</h4>
+      <%= link_to "(Add Something)", new_admin_food_path %>
    </div>
+<% end %>
 </div>
+  <div class="small-3 columns">
+      <h5><%= link_to "Make Fav", new_restaurant_favorite_path(@restaurant)%></h5>
+   </div>
