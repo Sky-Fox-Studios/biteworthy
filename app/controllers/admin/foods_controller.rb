@@ -15,12 +15,17 @@ class Admin::FoodsController < AdminController
      restaurant = Restaurant.find(params[:restaurant_id])
      menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
 
-     render partial: 'modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
+    render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
 
   end
 
   def new
     @food = Food.new
+    if params[:food] && params[:food][:restaurant_id]
+      @restaurant = Restaurant.find(food_params[:restaurant_id])
+      @menu_groups = MenuGroup.where('restaurant_id' => food_params[:restaurant_id])
+
+    end
     respond_with(@food)
   end
 
@@ -29,13 +34,15 @@ class Admin::FoodsController < AdminController
 
   def create
     @food = Food.new(food_params)
-    @food.tags = Tag.save_tags(parmas[:add_tags])
+    @food.tags = Tag.save_tags(params[:add_tags])
     @food.save
     redirect_to admin_foods_path
   end
 
   def update
+    binding.pry
     @food.tags = Tag.save_tags(params[:add_tags])
+    @food.prices << Price.create(food_id: @food.id, price: params[:new_price], size: params[:new_size])
     if @food.update(food_params)
        redirect_to admin_foods_path
     else
@@ -55,6 +62,6 @@ class Admin::FoodsController < AdminController
     end
 
     def food_params
-       params.require(:food).permit(:restauant_id, :menu_group_id, :name, :description, :price_low, :price_high)
+       params.require(:food).permit(:restaurant_id, :menu_group_id, :name, :description)
     end
 end

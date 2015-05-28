@@ -17,10 +17,17 @@
  *= require foundation_and_overrides
  *= require foundation
 */
-/* @import 'foundation-icons'; */
+@import 'foundation-icons';
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+*{
+  font-family: 'Handlee', cursive;
+}
 .padded {
-  padding: 0px 11px 0px 11px;
+  padding: 0px 15px 0px 15px;
+}
+
+h1{
+  font-family: 'Architects Daughter', cursive !important;
 }

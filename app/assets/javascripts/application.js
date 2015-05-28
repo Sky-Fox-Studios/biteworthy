@@ -16,4 +16,8 @@
 //= require turbolinks
 //= require_tree .
 $(document).foundation();
-$(function(){ $(document).foundation(); });
+$(function(){ 
+  $(document).foundation(); 
+  $.food_form.init();
+});
+

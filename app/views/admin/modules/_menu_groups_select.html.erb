@@ -1,0 +1,9 @@
+<% if menu_groups.empty? %>
+<div>
+  There are no menu Groups yet. How about creating a 
+  <%= link_to  " new Menu Group.", new_admin_menu_group_path(menu_group: {restaurant_id: restaurant.id}) %>
+</div>
+  <% else %>
+  <label class="select required control-label" for="food_menu_group_id"><abbr title="required">*</abbr>Menu Group:</label>
+  <%= collection_select(:food, :food_menu_group_id, menu_groups, :id, :name) %>
+<% end %>

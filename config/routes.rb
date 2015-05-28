@@ -20,7 +20,7 @@ Rails.application.routes.draw do
      # The priority is based upon order of creation: first created -> highest priority.
 
 
-   get '/get_menu_groups_by_restaurant', to: 'admin/episode#get_menu_groups_by_restaurant', :as => "get_menu_groups_by_restaurant"
+  get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', :as => "get_menu_groups_by_restaurant"
    get '/admin_home', to: 'admin#home', :as => "admin_home"
 
    root 'base#home'

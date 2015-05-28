@@ -11,9 +11,13 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-     <%= f.association :restaurant, collection: Restaurant.all, as: :select, include_blank: false %>
+    <% if @restaurant %>
+      <%= f.association :restaurant, collection: Restaurant.all, as: :select, include_blank: false, :selected => @restaurant.id  %>
+    <% else %>
+      <%= f.association :restaurant, collection: Restaurant.all, as: :select, include_blank: false %>
+    <% end %>
+
   </div>
   <div class="field">
     <%= f.input :name %>
@@ -22,6 +26,9 @@
     <%= f.input :description %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "button small radius"  %>
   </div>
 <% end %>
+<div style="float:right;">
+  <%= link_to 'Menu Groups', admin_menu_groups_path, :class => "button tiny radius"  %>
+</div>

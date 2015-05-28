@@ -1,37 +1,43 @@
 <%= render :partial => 'restaurant_header', locals: {restaurant: @restaurant} %>
 <% unless @menu_groups.empty? %>
-   <div class="small-12 columns">
-      <table>
-      <% @menu_groups.each do |menu| %>
-         <div class="small-12 columns">
-            <th class="menu-group-head"><%= menu.name %></th>
-            <% menu.foods.each do |item| %>
-            <div class="small-12 columns">
-               <tr> 
-                  <td class="food-item">
-                     <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), food_path(item) %>
-                     <br><%= link_to "(Edit info)", edit_admin_restaurant_path(@restaurant) %>
+<div class="row padded">
+<table>
+    <% @menu_groups.each do |menu| %>
+    <div class="small-12 columns">
+      <th class="menu-group-head"><%= menu.name %></th>
+      <% menu.foods.each do |item| %>
+      <div class="small-12 columns">
+        <tr> 
+          <td class="food-item">
+            <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), food_path(item) %>
 
-                  </td>
-                  <td class="food-item">
-                     <h3><%= link_to item.name, food_path(item) %></h3><br>
-                     <%= item.description %> 
-                  </td>
-               <tr>
+          </td>
+          <td class="food-item">
+            <div class="row">
+              <div class="small-10 columns">
+                <h3><%= link_to item.name, food_path(item) %></h3><br>
+                <%= item.description %> 
+              </div>
+              <div class="small-2 columns">
+                <%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_food_path(@restaurant) %>
+              </div>
             </div>
-         <% end %>
-         </div>
+          </td>
+        <tr>
+      </div>
       <% end %>
-      </table>
-   </div>
-   <hr>
+    </div>
+    <% end %>
+  </table>
+</div>
+<hr>
 <% else %>
-   <div class="small-12 columns">
-      <h4 style="color:RED;">Nothing yet.</h4>
-      <%= link_to "(Add Something)", new_admin_food_path %>
-   </div>
+<div class="small-12 columns">
+  <h4 style="color:RED;">Nothing yet.</h4>
+  <%= link_to "(Add Something)", new_admin_food_path(food: {restaurant_id: @restaurant.id})  %>
+</div>
 <% end %>
 </div>
-  <div class="small-3 columns">
-      <h5><%= link_to "Make Fav", new_restaurant_favorite_path(@restaurant)%></h5>
-   </div>
+<div class="small-3 columns">
+  <h5><%= link_to "Make Fav", new_restaurant_favorite_path(@restaurant), :class => "button tiny radius success right" %></h5>
+</div>

@@ -14,6 +14,9 @@ class Admin::MenuGroupsController < AdminController
 
   def new
     @menu_group = MenuGroup.new
+    if params[:menu_group] && params[:menu_group][:restaurant_id]
+      @restaurant = Restaurant.find(menu_group_params[:restaurant_id])
+    end
     respond_with(@menu_group)
   end
 

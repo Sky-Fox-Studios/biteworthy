@@ -1,4 +1,4 @@
-<h1>Listing menu_groups</h1>
+<h1>Listing Menu Groups</h1>
 
 <table>
   <thead>
@@ -13,7 +13,7 @@
   <tbody>
     <% @menu_groups.each do |menu_group| %>
       <tr>
-        <td><%= menu_group.restaurant_id %></td>
+        <td><%= menu_group.restaurant.name %></td>
         <td><%= menu_group.name %></td>
         <td><%= menu_group.description %></td>
         <td><%= link_to 'Show', menu_group %></td>

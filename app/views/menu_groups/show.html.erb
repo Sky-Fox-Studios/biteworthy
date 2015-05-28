@@ -2,7 +2,7 @@
 
 <p>
   <strong>Restaurant:</strong>
-  <%= @menu_group.restaurant_id %>
+  <%= @menu_group.restaurant.name %>
 </p>
 
 <p>
@@ -15,4 +15,4 @@
   <%= @menu_group.description %>
 </p>
 
-<%= link_to 'Back', menu_groups_path %>
+<%= link_to 'Back', menu_groups_path, :class => "button tiny radius"  %>
