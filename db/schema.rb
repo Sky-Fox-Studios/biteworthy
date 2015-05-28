@@ -13,20 +13,56 @@
 
 ActiveRecord::Schema.define(version: 20150515222139) do
 
-  create_table "foods", force: true do |t|
-    t.integer  "menu_group_id"
-    t.integer  "restaurant_id"
-    t.string   "name"
-    t.string   "description"
-    t.float    "price_low"
-    t.float    "price_high"
+  create_table "favorites", force: true do |t|
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "favorite_id"
+    t.string   "favorites_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "foods", force: true do |t|
+    t.integer  "restaurant_id"
+    t.string   "name"
+    t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "foods_ingredients", force: true do |t|
+    t.integer "food_id"
+    t.integer "ingredient_id"
+  end
+
+  create_table "foods_items", force: true do |t|
+    t.integer "food_id"
+    t.integer "item_id"
   end
 
   create_table "foods_tags", force: true do |t|
     t.integer "food_id"
     t.integer "tag_id"
+  end
+
+  create_table "ingredients", force: true do |t|
+    t.string   "name"
+    t.boolean  "meat"
+    t.boolean  "local"
+    t.boolean  "organic"
+    t.boolean  "naturally_grown"
+    t.boolean  "genetically_modified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.integer  "menu_group_id"
+    t.integer  "restaurant_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "menu_groups", force: true do |t|
@@ -40,6 +76,12 @@ ActiveRecord::Schema.define(version: 20150515222139) do
   create_table "menu_groups_tags", force: true do |t|
     t.integer "menu_group_id"
     t.integer "tag_id"
+  end
+
+  create_table "prices", force: true do |t|
+    t.integer "food_id"
+    t.float   "price"
+    t.string  "size"
   end
 
   create_table "restaurants", force: true do |t|
@@ -58,26 +100,10 @@ ActiveRecord::Schema.define(version: 20150515222139) do
     t.integer "tag_id"
   end
 
-  create_table "size_prices", force: true do |t|
-    t.integer "food_id"
-    t.string  "size"
-    t.float   "price"
-  end
-
   create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "tags_families", force: true do |t|
-    t.integer  "parent_tag_id"
-    t.integer  "child_tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tags_groups_relations", force: true do |t|
   end
 
   create_table "users", force: true do |t|
