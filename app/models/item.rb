@@ -7,5 +7,5 @@ class Item < ActiveRecord::Base
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :foods
 
-  validates :restaurant_id, :name, :description, presence: true
+  validates :restaurant_id, :menu_group_id, :name, :description, presence: true
 end

@@ -15,7 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-$(document).foundation();
+Foundation.global.namespace = '';
 $(function(){ 
   $(document).foundation(); 
   $.food_form.init();
