@@ -3,11 +3,11 @@ module Dsp
 
   dsp_single_slice = MenuGroup.find_or_create_by(restaurant_id: dsp.id, name: "Single Slice", description: "Basic cheese pizza with...")
 
-  basic = Item.find_or_create_by(restaurant_id: dsp.id, menu_group_id: dsp_single_slice.id, name: "Cheese", description: "Cheese Traditional")
+  cheese_slice = Item.find_or_create_by(restaurant_id: dsp.id, menu_group_id: dsp_single_slice.id, name: "Cheese", description: "Cheese Traditional")
 
   
   cheese = Food.find_or_create_by(restaurant_id: dsp.id, name: "Cheese")
-  basic.foods << cheese
+  cheese_slice.foods << cheese
 
 
   puts "Dsp seeded"

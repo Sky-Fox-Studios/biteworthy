@@ -18,16 +18,9 @@
       <tr>
         <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_food_path(food) %></td>
          <td><%= food.restaurant.name %></td>
-        <td><%= food.menu_group.name %></td>
+        <td><%# food.items.name %></td>
         <td><%= food.name %></td>
         <td><%= food.description %></td>
-        <td style="text-align:right">
-           <% if !food.price_high.nil? %>
-              <%= number_to_currency(food.price_low) %> - <%= number_to_currency(food.price_high) %>
-           <% else %>
-              <%= number_to_currency(food.price_low) %>
-           <% end %>
-         </td>
         <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_food_path(food) %></td>
         <% if current_user.is_admin? %>
           <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_food_path(food), method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,10 +1,10 @@
 <div class="row">
-  <%= simple_form_for([:admin, @food]) do |f| %>
-  <% if @food.errors.any? %>
+  <%= simple_form_for([:admin, @item]) do |f| %>
+  <% if @item.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
+    <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
     <ul>
-      <% @food.errors.full_messages.each do |message| %>
+      <% @item.errors.full_messages.each do |message| %>
       <li><%= message %></li>
       <% end %>
     </ul>
@@ -20,27 +20,27 @@
         <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
         <% end %>
       </div>
-      <% if @restaurant %>
+      <% if @item.menu_group_id || @restaurant %>
       <div class="small-12 columns" id="menu-group-select">
-        <%= f.association :items, collection: Item.where(restaurant_id:  @restaurant).order(:name), as: :select, :selected => @food.menu_group_id , label: "Menu Group", :label_method => lambda { |item| "#{item.name}" } %>
+        <%= f.association :menu_group, collection: @menu_groups, as: :select, :selected => @item.menu_group_id , label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
 
       </div>
       <% else %>
-      <div class="small-12 columns hide" id="menu-group-select">
-        <%= f.association :items, collection: Item.all.order(:name), as: :select, label: "Menu Group", :label_method => lambda { |item| "#{item.name}" } %>
+      <div class="small-12 columns hide" id="menu-group-select">??
+        Select a Restaurant...
       </div>
       <% end %>
     </div>
     <div class="small-4 columns">
       <br>
-      <%= link_to  "<i class='fi-plus'></i>".html_safe, new_admin_restaurant_path %>
+      <%= link_to  "New Restaurant", new_admin_restaurant_path %>
       <br>
       <br>
       <br>
       <br>
       <br>
-      <% unless @food.new_record? %> 
-        <%= link_to  "New Menu Group", new_admin_menu_group_path(menu_group: {restaurant_id: @food.restaurant_id}) %>
+      <% unless @item.new_record? %> 
+      <%= link_to  "New Menu Group", new_admin_menu_group_path(menu_group: {restaurant_id: @item.restaurant_id}) %>
       <% end %>
     </div>
     <div class="small-4 columns">
@@ -48,7 +48,7 @@
     </div>
   </div>
   <hr>
-  <div class="row padded hide" id="food-form">
+  <div class="row padded hide" id="item-form">
     <div class="small-4 columns">
       <%= f.input :name %>
     </div>
@@ -63,7 +63,18 @@
       </div>
       <div class="small-6 columns">
       </div>
-
+    <% @item.prices.each do |price| %>
+    <div class="small-12 columns">
+      <div class="small-3 columns">
+        <%= price.price %>
+      </div>
+      <div class="small-3 columns">
+        <%=  price.size %>
+      </div>
+      <div class="small-6 columns">
+      </div>
+    </div>
+    <% end %>
 
     <div class="small-12 columns">
       New
@@ -72,7 +83,7 @@
       <input type="text" id="new_price" name="new_price" placeholder="11.00" />
     </div>
     <div class="small-3 columns">
-      <input type="text" id="new_size" name="new_size" placeholder="Small / Two ?" />
+      <input type="text" id="new_size" name="new_size" placeholder="Size" />
     </div>
     <div class="small-6 columns">
       <%  %>

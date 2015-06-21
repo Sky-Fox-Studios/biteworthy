@@ -5,7 +5,7 @@
     <% @menu_groups.each do |menu| %>
     <div class="small-12 columns">
       <th class="menu-group-head"><%= menu.name %></th>
-      <% menu.foods.each do |item| %>
+      <% menu.items.each do |item| %>
       <div class="small-12 columns">
         <tr> 
           <td class="food-item">
@@ -18,9 +18,11 @@
                 <h3><%= link_to item.name, food_path(item) %></h3><br>
                 <%= item.description %> 
               </div>
-              <div class="small-2 columns">
-                <%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_food_path(@restaurant) %>
-              </div>
+              <% if current_user && current_user.is_admin %>
+                <div class="small-2 columns">
+                  <%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_item_path(item) %>
+                </div>
+              <% end %>
             </div>
           </td>
         <tr>

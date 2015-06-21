@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515222139) do
+ActiveRecord::Schema.define(version: 20150515222142) do
 
-  create_table "favorites", force: true do |t|
+  create_table "favorites", force: :cascade do |t|
     t.integer  "rating"
     t.integer  "user_id"
     t.integer  "favorite_id"
@@ -22,41 +22,44 @@ ActiveRecord::Schema.define(version: 20150515222139) do
     t.datetime "updated_at"
   end
 
-  create_table "foods", force: true do |t|
+  create_table "foods", force: :cascade do |t|
     t.integer  "restaurant_id"
     t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "foods_ingredients", force: :cascade do |t|
+    t.integer  "food_id"
+    t.integer  "ingredient_id"
+    t.boolean  "local"
+    t.boolean  "organic"
+    t.boolean  "naturally_grown"
     t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "foods_ingredients", force: true do |t|
-    t.integer "food_id"
-    t.integer "ingredient_id"
-  end
-
-  create_table "foods_items", force: true do |t|
-    t.integer "food_id"
-    t.integer "item_id"
-  end
-
-  create_table "foods_tags", force: true do |t|
+  create_table "foods_tags", force: :cascade do |t|
     t.integer "food_id"
     t.integer "tag_id"
   end
 
-  create_table "ingredients", force: true do |t|
+  create_table "ingredients", force: :cascade do |t|
     t.string   "name"
+    t.boolean  "dairy"
+    t.boolean  "fruit"
+    t.boolean  "grain"
     t.boolean  "meat"
-    t.boolean  "local"
-    t.boolean  "organic"
-    t.boolean  "naturally_grown"
-    t.boolean  "genetically_modified"
+    t.boolean  "nut"
+    t.boolean  "sea_food"
+    t.boolean  "vegetable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "items", force: true do |t|
+  create_table "items", force: :cascade do |t|
     t.integer  "menu_group_id"
     t.integer  "restaurant_id"
     t.string   "name"
@@ -65,7 +68,12 @@ ActiveRecord::Schema.define(version: 20150515222139) do
     t.datetime "updated_at"
   end
 
-  create_table "menu_groups", force: true do |t|
+  create_table "items_foods", force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "item_id"
+  end
+
+  create_table "menu_groups", force: :cascade do |t|
     t.integer  "restaurant_id"
     t.string   "name"
     t.string   "description"
@@ -73,18 +81,24 @@ ActiveRecord::Schema.define(version: 20150515222139) do
     t.datetime "updated_at"
   end
 
-  create_table "menu_groups_tags", force: true do |t|
+  create_table "menu_groups_tags", force: :cascade do |t|
     t.integer "menu_group_id"
     t.integer "tag_id"
   end
 
-  create_table "prices", force: true do |t|
-    t.integer "food_id"
+  create_table "prices", force: :cascade do |t|
+    t.integer "item_id"
     t.float   "price"
     t.string  "size"
   end
 
-  create_table "restaurants", force: true do |t|
+  create_table "prices_sizes", force: :cascade do |t|
+    t.integer "item_id"
+    t.string  "size"
+    t.float   "price"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "slogan"
     t.string   "address"
@@ -95,18 +109,28 @@ ActiveRecord::Schema.define(version: 20150515222139) do
     t.datetime "updated_at"
   end
 
-  create_table "restaurants_tags", force: true do |t|
+  create_table "restaurants_tags", force: :cascade do |t|
     t.integer "restaurant_id"
     t.integer "tag_id"
   end
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "tags_families", force: :cascade do |t|
+    t.integer  "parent_tag_id"
+    t.integer  "child_tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags_groups_relations", force: :cascade do |t|
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string   "user_name",              default: "", null: false
     t.string   "first_name",             default: "", null: false
     t.string   "last_name",              default: "", null: false

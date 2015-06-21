@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 #    end
 
      namespace :admin do
-        resources :restaurants, :menu_groups, :foods, :users, :favorites
+       resources :restaurants, :menu_groups, :foods, :items, :users, :favorites
      end
 
    
