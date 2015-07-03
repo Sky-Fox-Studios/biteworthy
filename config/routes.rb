@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-   resources :restaurants, :menu_groups, :foods, only: [:index, :show] do
+  resources :restaurants, :menu_groups, :foods, :items, only: [:index, :show] do
       resources :favorites
    end
    resources  :tags

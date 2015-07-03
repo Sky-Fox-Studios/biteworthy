@@ -1,0 +1,44 @@
+<div class="row">
+   <div class="small-12 columns">
+      <h2 align="center"><%= @restaurant.name %></h3>
+<!-- TODO only show logo here.       -->
+   </div>
+   <div class="small-9 columns">
+
+      <div class="small-3 columns">
+        <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
+         <p align="center">
+           <% if !@item.prices_sizes.empty? %>
+             <% item.prices_sizes.each do |price_size| %>
+               <%= number_to_currency(price_size.price_low) %> - <%=  number_to_currency(price_size.price_high) %>
+               <%= number_to_currency(price_size.price_low) %>
+             <% end %>
+           <% end %>
+         </p>
+      </div>
+      <div class="small-9 columns item-item-name">
+         <h3>
+            <%= @item.name %> <%= @item.menu_group.name.singularize %>
+         </h3>
+         <p align="none">
+           <%= @item.description %>
+         </p>
+        <% if !@item.foods.empty? %>
+          <% @item.foods.each do |food| %>
+        <%= link_to "#{food.name}, ", food_path(food) %>
+          <% end %>
+        <% end %>
+      </div>     
+   </div>
+   <div class="small-3 columns" align="center">
+      <p> Associations:</p>
+     <%# render :partial => 'tags/tag_list', :locals => { :object => @item, :label => false } %>
+   </div>
+   <div class="small-6 columns left">
+     <%= link_to "Back to #{@item.menu_group.restaurant.name}", restaurant_path(@item.menu_group.restaurant) %>
+   </div>
+   <div class="small-6 columns" align="right">
+     <i class='fi-plus'></i> <%= link_to " #{@item.name}", new_item_favorite_path(@item) %>
+      <!--  TODO if already favorite  <i class="fi-star"></i>   -->
+   </div>
+</div>

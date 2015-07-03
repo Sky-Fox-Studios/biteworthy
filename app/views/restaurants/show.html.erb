@@ -8,14 +8,14 @@
       <% menu.items.each do |item| %>
       <div class="small-12 columns">
         <tr> 
-          <td class="food-item">
-            <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), food_path(item) %>
+          <td class="item-item">
+            <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), item_path(item) %>
 
           </td>
-          <td class="food-item">
+          <td class="item-item">
             <div class="row">
               <div class="small-10 columns">
-                <h3><%= link_to item.name, food_path(item) %></h3><br>
+                <h3><%= link_to item.name, item_path(item) %></h3><br>
                 <%= item.description %> 
               </div>
               <% if current_user && current_user.is_admin %>
@@ -36,7 +36,7 @@
 <% else %>
 <div class="small-12 columns">
   <h4 style="color:RED;">Nothing yet.</h4>
-  <%= link_to "(Add Something)", new_admin_food_path(food: {restaurant_id: @restaurant.id})  %>
+  <%= link_to "(Add Something)", new_admin_item_path(item: {restaurant_id: @restaurant.id})  %>
 </div>
 <% end %>
 </div>
