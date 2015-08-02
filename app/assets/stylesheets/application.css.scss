@@ -20,14 +20,35 @@
 @import 'foundation-icons';
 /* @import "font-awesome-sprockets"; */
 @import "font-awesome";
-
 *{
-/*   font-family: 'Handlee', cursive; */
+ font-family: 'Handlee', cursive;
+}
+.pad {
+  padding: 0px 0px 0px 15px;
 }
 .padded {
-  padding: 0px 15px 0px 15px;
+  padding: 0px 0px 0px 25px;
+}
+.padded-2 {
+  padding: 0px 0px 0px 35px;
+}
+.padded-3 {
+  padding: 0px 0px 0px 45px;
+}
+.padded-4 {
+  padding: 0px 0px 0px 55px;
 }
 
 h1{
+  font-family: 'Architects Daughter', cursive !important;
+}
+h2{
+  font-family: 'Architects Daughter', cursive !important;
+}
+h3{
+  font-family: 'Architects Daughter', cursive !important;
+  line-height: 1.0 !important;
+}
+h4{
   font-family: 'Architects Daughter', cursive !important;
 }

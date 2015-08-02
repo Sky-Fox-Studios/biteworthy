@@ -3,8 +3,8 @@
 <table>
   <thead>
     <tr>
-       <th colspan="1"></th>
-     <th>Restaurant</th>
+      <th colspan="1"></th>
+      <th>Restaurant</th>
       <th>Menu Group</th>
       <th>Name</th>
       <th>Description</th>
@@ -17,8 +17,7 @@
     <% @foods.each do |food| %>
       <tr>
         <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_food_path(food) %></td>
-         <td><%= food.restaurant.name %></td>
-        <td><%# food.items.name %></td>
+        <td><%= food.restaurant.name %></td>
         <td><%= food.name %></td>
         <td><%= food.description %></td>
         <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_food_path(food) %></td>
@@ -32,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Food', new_admin_food_path, class: "button tiny radius success" %>
+<%= link_to 'New Food...', new_admin_food_path, class: "button tiny radius success" %>

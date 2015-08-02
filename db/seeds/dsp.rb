@@ -5,9 +5,9 @@ module Dsp
 
   cheese_slice = Item.find_or_create_by(restaurant_id: dsp.id, menu_group_id: dsp_single_slice.id, name: "Cheese", description: "Cheese Traditional")
 
-  
-  cheese = Food.find_or_create_by(restaurant_id: dsp.id, name: "Cheese")
-  cheese_slice.foods << cheese
+
+  # cheese = Food.find_or_create_by(restaurant_id: dsp.id, name: "Cheese")
+  # cheese_slice.foods << cheese
 
 
   puts "Dsp seeded"

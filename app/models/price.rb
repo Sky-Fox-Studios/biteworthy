@@ -1,6 +1,6 @@
 class Price < ActiveRecord::Base
-  belongs_to :food
-  
-  validates :food_id, :price, presence: true
-  
+  belongs_to :item
+
+  validates :item_id, :price, presence: true
+
 end

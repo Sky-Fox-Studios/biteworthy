@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515222142) do
+ActiveRecord::Schema.define(version: 20150515222139) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "rating"
@@ -48,13 +48,15 @@ ActiveRecord::Schema.define(version: 20150515222142) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "dairy"
-    t.boolean  "fruit"
-    t.boolean  "grain"
-    t.boolean  "meat"
-    t.boolean  "nut"
-    t.boolean  "sea_food"
-    t.boolean  "vegetable"
+    t.string   "parent_id"
+    t.boolean  "is_sub_type", default: false
+    t.boolean  "dairy",       default: false
+    t.boolean  "fruit",       default: false
+    t.boolean  "grain",       default: false
+    t.boolean  "meat",        default: false
+    t.boolean  "nut",         default: false
+    t.boolean  "sea_food",    default: false
+    t.boolean  "vegetable",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,12 +92,6 @@ ActiveRecord::Schema.define(version: 20150515222142) do
     t.integer "item_id"
     t.float   "price"
     t.string  "size"
-  end
-
-  create_table "prices_sizes", force: :cascade do |t|
-    t.integer "item_id"
-    t.string  "size"
-    t.float   "price"
   end
 
   create_table "restaurants", force: :cascade do |t|

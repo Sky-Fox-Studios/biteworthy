@@ -4,6 +4,7 @@ gem 'rails', '4.2.1'                         # Bundle edge Rails instead: gem 'r
 gem 'sqlite3'                                # Use sqlite3 as the database for Active Record
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
+gem 'kaminari'                               # Model pagination
 
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -12,7 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc # bundle exec rake doc:rails genera
 gem 'spring',        group: :development     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'foundation-rails', '5.5.2.1'
 gem 'aws-sdk'                                # Amazon Cloud Storage: S3
-gem 'simple_form'     
+gem 'simple_form'
 # Form handlers
 gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'compass-rails'                          # you need this or you get an err

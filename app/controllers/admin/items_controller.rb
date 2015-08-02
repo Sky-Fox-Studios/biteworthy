@@ -3,20 +3,28 @@ class Admin::ItemsController < AdminController
   respond_to :html
 
   def index
-    @items = Item.all
-    respond_with(@items)
+    if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
+      @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
+      if params.has_key?(:menu_group_id) && !params[:menu_group_id].empty?
+        @items = Item.where(restaurant_id: params[:restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(25)
+      else
+        @items = Item.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
+      end
+    else
+      @items = Item.page(@page).per(25)
+    end
+  end
+
+  def restaurant_item_filter
   end
 
   def show
-    respond_with(@item)
   end
-   
+
   def get_menu_groups_by_restaurant
      restaurant = Restaurant.find(params[:restaurant_id])
      menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
-
-    render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
-
+     render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
   end
 
   def new
@@ -58,7 +66,12 @@ class Admin::ItemsController < AdminController
   private
   def set_item
       @item = Item.find(params[:id])
-      @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
+      if @item.restaurant_id
+        @restaurant = Restaurant.find(@item.restaurant_id)
+        @menu_groups = MenuGroup.includes(:restaurant).where(restaurant_id: @item.restaurant_id).order('restaurants.name').order(:name)
+      else
+        @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
+      end
     end
 
   def item_params

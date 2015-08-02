@@ -20,17 +20,14 @@
         <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
         <% end %>
       </div>
-      <% if @item.menu_group_id %>
+      <% if @item.menu_group_id || @restaurant %>
       <div class="small-12 columns" id="menu-group-select">
-        <% unless @item.menu_group_id %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, :selected => @item.menu_group_id , label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
-        <% else %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
-        <% end %>
+        <%= f.association :menu_group, collection: @menu_groups, as: :select, :selected => @item.menu_group_id , label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
+
       </div>
       <% else %>
       <div class="small-12 columns" id="menu-group-select">??
-        <%= f.association :menu_group, collection: MenuGroup.all, as: :select, label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
+        Select a Restaurant...
       </div>
       <% end %>
     </div>
@@ -51,7 +48,7 @@
     </div>
   </div>
   <hr>
-  <div class="row padded" id="item-form">
+  <div class="row padded " id="item-form">
     <div class="small-4 columns">
       <%= f.input :name %>
     </div>

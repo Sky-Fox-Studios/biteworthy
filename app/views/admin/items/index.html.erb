@@ -1,0 +1,65 @@
+<h1>Listing Bite Worthy Foods</h1>
+<div class="row">
+  <div class="small-6 columns">
+    <%= form_tag 'items', method: :get do %>
+    <!-- restaurant_item_filter -->
+      <%= label_tag "Filter by Restaurant:" %>
+      <% if params[:restaurant_id] %>
+        <%= select_tag('restaurant_id', options_for_select(Restaurant.all.order(:name).map {|r| [ r.name, r.id ]}, include_blank: true, selected: params[:restaurant_id]), onchange: "this.form.submit();") %>
+      <% else %>
+        <%= select_tag('restaurant_id', options_for_select(Restaurant.all.order(:name).map {|r| [ r.name, r.id ]}, include_blank: true), onchange: "this.form.submit();") %>
+      <% end %>
+    </div>
+    <% if @menu_groups %>
+      <div class="small-6 columns">
+        <!-- menu_group_filter -->
+        <%= label_tag "Filter by Menu Group:" %>
+        <% if params[:menu_group_id] %>
+          <%= select_tag('menu_group_id', options_for_select(@menu_groups.map {|mg| [ mg.name, mg.id ]}, include_blank: true, selected: params[:menu_group_id]), onchange: "this.form.submit();") %>
+        <% else %>
+          <%= select_tag('menu_group_id', options_for_select(@menu_groups.map {|mg| [ mg.name, mg.id ]}, include_blank: true), onchange: "this.form.submit();") %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <%= paginate @items %>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th colspan="1"></th>
+      <th>Restaurant</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_item_path(item) %></td>
+        <td><%= item.restaurant.name %></td>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_item_path(item) %></td>
+        <% if current_user.is_admin? %>
+          <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_item_path(item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="row">
+  <div class="small-12 columns">
+    <%= paginate @items %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Food...', new_admin_item_path, class: "button tiny radius success" %>
