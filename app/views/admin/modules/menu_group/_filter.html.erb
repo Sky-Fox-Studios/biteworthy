@@ -1,0 +1,11 @@
+<!-- menu_group_filter -->
+<% if menu_groups %>
+  <div class="small-6 columns">
+    <%= label_tag "Filter by Menu Group:" %>
+    <% if params[:menu_group_id] %>
+      <%= select_tag('menu_group_id', options_for_select(menu_groups.map {|mg| [ mg.name, mg.id ]}, include_blank: true, selected: params[:menu_group_id]), onchange: "this.form.submit();") %>
+    <% else %>
+      <%= select_tag('menu_group_id', options_for_select(menu_groups.map {|mg| [ mg.name, mg.id ]}, include_blank: true), onchange: "this.form.submit();") %>
+    <% end %>
+  </div>
+<% end %>

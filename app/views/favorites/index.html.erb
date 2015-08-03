@@ -1,0 +1,18 @@
+<div class="row">
+   <div class="small-12 columns">
+      <h1 align="center">Your Bite Worthy Favorites!</h1>
+      <div class="row">
+         <% @favorites.each do |favorite| %>
+         <div class="small-6 columns" style="padding:11px;">
+           <div class="row">
+              <div class="small-3 columns"><%= link_to(image_tag("logo_pic.png", size: "120x120", class:"center-image"), favorite) %></div>
+              <div class="small-9 columns">
+                  <h4><%= link_to favorite.title, favorite %></h4><br>
+                  <%= favorite.description %>
+               </div>
+            </div>
+         </div>
+         <% end %>
+      </div>
+   </div>
+</div>
