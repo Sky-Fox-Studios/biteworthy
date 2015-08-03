@@ -10,13 +10,14 @@ class Admin::PricesController < AdminController
   def show
     respond_with(@price)
   end
-   
+
   def new
     @price = Price.new
     respond_with(@price)
   end
 
   def edit
+    session[:return_to] ||= request.referer
   end
 
   def create
@@ -26,7 +27,8 @@ class Admin::PricesController < AdminController
 
   def update
     if @price.update(price_params)
-      redirect_to admin_prices_path
+      binding.pry
+      redirect_to session.delete(:return_to)
     else
       redirect_to edit_admin_price_path(@price)
     end

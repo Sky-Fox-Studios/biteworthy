@@ -3,6 +3,7 @@ class Admin::ItemsController < AdminController
   respond_to :html
 
   def index
+    @restaurants = Restaurant.all.order(:name)
     if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
       @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
       if params.has_key?(:menu_group_id) && !params[:menu_group_id].empty?
@@ -48,11 +49,9 @@ class Admin::ItemsController < AdminController
   end
 
   def update
-    binding.pry
-    @item.tags = Tag.save_tags(params[:add_tags])
     @item.prices << Price.create(item_id: @item.id, price: params[:new_price], size: params[:new_size])
     if @item.update(item_params)
-      redirect_to admin_items_path
+      redirect_to edit_admin_item_path(@item)
     else
       redirect_to edit_admin_item_path(@item)
     end

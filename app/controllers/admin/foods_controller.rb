@@ -10,7 +10,7 @@ class Admin::FoodsController < AdminController
   def show
     respond_with(@food)
   end
-   
+
   def get_menu_groups_by_restaurant
      restaurant = Restaurant.find(params[:restaurant_id])
      menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
@@ -40,7 +40,6 @@ class Admin::FoodsController < AdminController
   end
 
   def update
-    binding.pry
     @food.tags = Tag.save_tags(params[:add_tags])
     @food.prices << Price.create(food_id: @food.id, price: params[:new_price], size: params[:new_size])
     if @food.update(food_params)

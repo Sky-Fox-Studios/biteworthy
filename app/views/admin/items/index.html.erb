@@ -1,26 +1,8 @@
 <h1>Listing Bite Worthy Foods</h1>
 <div class="row">
-  <div class="small-6 columns">
     <%= form_tag 'items', method: :get do %>
-    <!-- restaurant_item_filter -->
-      <%= label_tag "Filter by Restaurant:" %>
-      <% if params[:restaurant_id] %>
-        <%= select_tag('restaurant_id', options_for_select(Restaurant.all.order(:name).map {|r| [ r.name, r.id ]}, include_blank: true, selected: params[:restaurant_id]), onchange: "this.form.submit();") %>
-      <% else %>
-        <%= select_tag('restaurant_id', options_for_select(Restaurant.all.order(:name).map {|r| [ r.name, r.id ]}, include_blank: true), onchange: "this.form.submit();") %>
-      <% end %>
-    </div>
-    <% if @menu_groups %>
-      <div class="small-6 columns">
-        <!-- menu_group_filter -->
-        <%= label_tag "Filter by Menu Group:" %>
-        <% if params[:menu_group_id] %>
-          <%= select_tag('menu_group_id', options_for_select(@menu_groups.map {|mg| [ mg.name, mg.id ]}, include_blank: true, selected: params[:menu_group_id]), onchange: "this.form.submit();") %>
-        <% else %>
-          <%= select_tag('menu_group_id', options_for_select(@menu_groups.map {|mg| [ mg.name, mg.id ]}, include_blank: true), onchange: "this.form.submit();") %>
-        <% end %>
-      </div>
-    <% end %>
+      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+      <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
   <% end %>
 </div>
 <div class="row">

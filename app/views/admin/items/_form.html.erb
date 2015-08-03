@@ -1,7 +1,7 @@
 <div class="row">
   <%= simple_form_for([:admin, @item]) do |f| %>
   <% if @item.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" class="small-12">
     <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
     <ul>
       <% @item.errors.full_messages.each do |message| %>
@@ -11,61 +11,52 @@
   </div>
   <% end %>
   <div class="row">
-    <div class="small-4 columns">
-
-      <div class="small-12 columns" id="restaurant-select">
+    <div class="small-12 columns" id="restaurant-select">
+      <div class="small-4 columns">
         <% if @restaurant %>
-        <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :selected => @restaurant , :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
+          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant.id, label_method: lambda { |restaurant| "#{restaurant.name}" } %>
         <% else %>
-        <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
+          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, label_method: lambda { |restaurant| "#{restaurant.name}" } %>
         <% end %>
       </div>
-      <% if @item.menu_group_id %>
-      <div class="small-12 columns" id="menu-group-select">
-        <% unless @item.menu_group_id %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, :selected => @item.menu_group_id , label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
-        <% else %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
-        <% end %>
+      <div class="small-4 columns">
+        <%= link_to  "New Restaurant", new_admin_restaurant_path %>
       </div>
-      <% else %>
-      <div class="small-12 columns" id="menu-group-select">??
-        <%= f.association :menu_group, collection: MenuGroup.all, as: :select, label: "Menu Group", :label_method => lambda { |menu_group| "#{menu_group.name}" } %>
-      </div>
-      <% end %>
     </div>
-    <div class="small-4 columns">
-      <br>
-      <%= link_to  "New Restaurant", new_admin_restaurant_path %>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+    <div class="small-12 columns" id="menu-group-select">
+      <div class="small-4 columns">
+        <% if @item.menu_group_id %>
+          <%= f.association :menu_group, collection: @menu_groups, as: :select, selected: @item.menu_group_id, label: "Menu Group", label_method: lambda { |menu_group| "#{menu_group.name}" } %>
+        <% elsif @menu_groups %>
+          <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group", label_method: lambda { |menu_group| "#{menu_group.name}" } %>
+        <% end %>
+      </div>
+      <div class="small-4 columns">
       <% unless @item.new_record? %>
-      <%= link_to  "New Menu Group", new_admin_menu_group_path(menu_group: {restaurant_id: @item.restaurant_id}) %>
+        <%= link_to  "New Menu Group", new_admin_menu_group_path(menu_group: {restaurant_id: @item.restaurant_id}) %>
+      <% else %>
+        <%= link_to  "New Menu Group", new_admin_menu_group_path  %>
       <% end %>
+      </div>
     </div>
-    <div class="small-4 columns">
+    <!-- <div class="small-4 columns">
       <input type="text" id="add_tags" name="add_tags" placeholder="Add tags. Use commas to separate." />
-    </div>
-  </div>
-  <hr>
+    </div> -->
   <div class="row padded" id="item-form">
     <div class="small-4 columns">
       <%= f.input :name %>
     </div>
-    <div class="small-8 columns">
+    <div class="small-7 columns">
       <%= f.input :description, as: :text  %>
     </div>
-      <div class="small-3 columns">
-        <h4>Prices:</h4>
-      </div>
-      <div class="small-3 columns">
-        <h4>Sizes:</h4>
-      </div>
-      <div class="small-6 columns">
-      </div>
+    <div class="small-3 columns">
+      <h4>Prices:</h4>
+    </div>
+    <div class="small-3 columns">
+      <h4>Sizes:</h4>
+    </div>
+    <div class="small-6 columns">
+    </div>
     <% @item.prices.map do |price| %>
     <div class="small-12 columns">
       <div class="small-3 columns">
@@ -74,14 +65,12 @@
       <div class="small-3 columns">
         <%=  price.size %>
       </div>
-      <div class="small-6 columns">
+      <div class="small-3 columns">
+        <%= link_to "edit", edit_admin_price_path(price) %>
       </div>
+
     </div>
     <% end %>
-
-    <div class="small-12 columns">
-      New
-    </div>
     <div class="small-3 columns">
       <input type="text" id="new_price" name="new_price" placeholder="11.00" />
     </div>
@@ -92,12 +81,12 @@
       <%  %>
     </div>
   </div>
-  <div class="row">
-    <div class="small-12 columns">
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="actions padded right">
+      <%= f.submit class: "button tiny radius success" %>
     </div>
   </div>
-  <div class="actions padded right">
-    <%= f.submit class: "button tiny radius success" %>
-  </div>
-  <% end %>
+<% end %>
 </div>

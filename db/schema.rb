@@ -14,10 +14,12 @@
 ActiveRecord::Schema.define(version: 20150515222139) do
 
   create_table "favorites", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
     t.integer  "rating"
     t.integer  "user_id"
     t.integer  "favorite_id"
-    t.string   "favorites_type"
+    t.string   "favorite_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
