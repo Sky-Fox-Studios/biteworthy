@@ -1,0 +1,28 @@
+<%= simple_form_for [@starable, @star] do |f| %>
+  <% if @star.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@star.errors.count, "error") %> prohibited this star from being saved:</h2>
+      <ul>
+      <% @star.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% unless @star.new_record? %>
+    <div class="row">
+      <div class="small-12">
+        <%= render partial: "/#{@star.star_type.downcase.pluralize}/show", locals: {item: @starable} %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+    <div class="small-12 columns">
+      <%= f.input :rating, collection: Star.ratings.map {|k, v| [k, k]}, include_blank: false, selected: Star.ratings[@star.rating], selected: @star.rating %>
+    </div>
+  </div>
+  <div class="small-12 columns">
+    <%= f.submit class: "button tiny radius success" %>
+  </div>
+<% end %>

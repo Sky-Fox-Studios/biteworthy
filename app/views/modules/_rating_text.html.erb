@@ -1,0 +1,17 @@
+<% rating = Star.ratings[rating] %>
+<% empty_stars = 3 - rating.abs %>
+<% if rating > 0 %>
+  <% rating.times do %>
+    <%= image_tag "good-star.png" %>
+  <% end %>
+  <% empty_stars.times do %>
+    <%= image_tag "good-star-empty.png" %>
+  <% end %>
+<% else %>
+  <% rating.times do %>
+    <%= image_tag "bad-star.png" %>
+  <% end %>
+  <% empty_stars.times do %>
+    <%= image_tag "bad-star-empty.png" %>
+  <% end %>
+<% end %>

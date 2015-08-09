@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="small-12 columns">
+    Rating: <%= render partial: "/modules/rating_stars", locals: { rating: Star.ratings[@star.rating], starable: @starable } %>
+  </div>
+  <div class="small-12 columns">
+    <%= render partial: "/#{@star.star_type.downcase.pluralize}/show", locals: {item: @starable} %>
+  </div>
+  <div class="small-12 columns">
+    <%= link_to "Update", edit_polymorphic_path(@star), class: "button tiny radius"  %>
+  </div>
+</div>
