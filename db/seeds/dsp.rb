@@ -3,7 +3,7 @@ module Dsp
 
   dsp_single_slice = MenuGroup.find_or_create_by(restaurant_id: dsp.id, name: "Single Slice", description: "Basic pizza with...")
 
-  cheese_slice = Item.find_or_create_by(restaurant_id: dsp.id, menu_group_id: dsp_single_slice.id, name: "Cheese", description: "Cheese Traditional")
+  cheese_slice = Item.find_or_create_by(restaurant_id: dsp.id, menu_group_id: dsp_single_slice.id, name: "Cheese", description: "Traditional slice of cheese pizza")
 
 
   # cheese = Food.find_or_create_by(restaurant_id: dsp.id, name: "Cheese")

@@ -5,11 +5,10 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    respond_with(@items)
   end
 
   def show
-    respond_with(@items)
+    @star = Star.where(star_type: "Item", star_id: @item.id).first
   end
 
   private

@@ -19,10 +19,14 @@
          <div class="small-12 columns">
             <%= render :partial => "/base/header" %>
             <% if notice || alert %>
-               <div class="small-12 columns">
-                  <p class="notice"><%= notice %></p>
-                  <p class="alert"><%= alert %></p>   
-               </div>
+              <div class="small-12 columns">
+                <% if alert %>
+                  <div data-alert class="alert-box radius"><%= alert %><a class="close">x</a></div>
+                <% end %>
+                <% if notice %>
+                  <div data-alert class="alert-box warning radius"><%= notice %><a class="close">x</a></div>
+                <% end %>
+              </div>
             <% end %>
             <%= yield %>
 

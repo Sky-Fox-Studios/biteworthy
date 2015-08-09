@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150515222139) do
 
-  create_table "favorites", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
-    t.integer  "rating"
-    t.integer  "user_id"
-    t.integer  "favorite_id"
-    t.string   "favorite_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "foods", force: :cascade do |t|
     t.integer  "restaurant_id"
     t.string   "name"
@@ -110,6 +99,15 @@ ActiveRecord::Schema.define(version: 20150515222139) do
   create_table "restaurants_tags", force: :cascade do |t|
     t.integer "restaurant_id"
     t.integer "tag_id"
+  end
+
+  create_table "stars", force: :cascade do |t|
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "star_id"
+    t.string   "star_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: :cascade do |t|

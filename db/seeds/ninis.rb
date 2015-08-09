@@ -2,7 +2,7 @@ module Ninis
    ninis          = Restaurant.find_or_create_by(name: "Ninis", slogan: "Food so good you wont trust the water")
    ninis_burritos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Burritos", description: "A flour tortilla with beans, rice, sour crea, cheese, salsa, and...")
    burrito_items = [
-     ["Chicken", "", [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
+     ["Chicken", nil, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
      ["Barbacoa", "Shredded beef", [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
      ["Carnitas", "Shredded pork", [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
      ["Fish", "Alaskan pollock with spicy coleslaw", [{price: 7.75, size: "small"},{price: 8.95, size: "regular"}]],
@@ -13,7 +13,7 @@ module Ninis
      item = Item.find_or_create_by(restaurant: ninis, menu_group: ninis_burritos,
       name: name,
       description: description)
-      prices_sizes.each do |price_size|
+      prices_sizes.each do |price_size| 
         Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
       end
    end
@@ -21,11 +21,11 @@ module Ninis
     ninis_tacos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name:
       "Tacos", description: "Three soft flour or corn tortillas filled with sour cream, cheese, lettuce, salsa and...")
     taco_items = [
-      ["Chicken", "", [{price: 8.25, size: ""}]],
-      ["Carnitas", "Shredded pork",  [{price: 8.25, size: ""}]],
-      ["Barbacoa", "Shredded beef",  [{price: 8.25, size: ""}]],
-      ["Fish", "Alaskan Pollock with spicy coleslaw",  [{price: 8.50, size: ""}]],
-      ["Vegetarian", "Mixed sauteed vegetables", [{price: 8.25, size: ""}]],
+      ["Chicken", nil, [{price: 8.25, size: nil}]],
+      ["Carnitas", "Shredded pork",  [{price: 8.25, size: nil}]],
+      ["Barbacoa", "Shredded beef",  [{price: 8.25, size: nil}]],
+      ["Fish", "Alaskan Pollock with spicy coleslaw",  [{price: 8.50, size: nil}]],
+      ["Vegetarian", "Mixed sauteed vegetables", [{price: 8.25, size: nil}]],
       ["Individual Taco", "Filled with choice ingredients.", [{price: 2.95, size: "each"}, {price: 3.25, size: "for fish"}]],
     ]
 
@@ -41,12 +41,12 @@ module Ninis
     ninis_quesadillas = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name:
       "Quesadillas", description: "grilled flour torilla with melted chees, sour cream, salsa and...")
     quesadillas_items = [
-      ["Chicken", "", [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
+      ["Chicken", nil, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
       ["Carnitas", "Shredded pork", [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
       ["Barbacoa", "Shredded beef", [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
       ["Fish", "Alaskan Pollock with spicy coleslaw", [{price: 8.75, size: "small"},{price: 8.75, size: "regular"}]],
       ["Vegetarian", "Mixed sauteed vegetables", [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
-      ["Just cheese", "", [{price: 5.50, size: "small"},{price: 6.50, size: "regular"}]],
+      ["Just cheese", nil, [{price: 5.50, size: "small"},{price: 6.50, size: "regular"}]],
     ]
 
     quesadillas_items.each do |name, description, prices_sizes|
@@ -58,9 +58,9 @@ module Ninis
        end
     end
 
-    mild_salsa_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Mild salsa", description: "")
-    medium_salsa_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Medium salsa", description: "")
-    hot_salsa_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Hot Salsa", description: "")
+    mild_salsa_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Mild salsa", description: nil)
+    medium_salsa_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Medium salsa", description: nil)
+    hot_salsa_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Hot Salsa", description: nil)
 
    salsa_items = [
      ["Corn & Black Beans", "Mixture of corn blackbeans, tomatoes, lime, scallions, salt and pepper.", mild_salsa_menu_group],
@@ -80,7 +80,7 @@ module Ninis
       description: description)
    end
 
-   soup_and_salad_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Salad, Soups & Other Stuff", description: "")
+   soup_and_salad_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Salad, Soups & Other Stuff", description: nil)
 
    soup_and_salad_items = [
      ["Southwestern Fish Chowder", "variation of the original with southwestern flavours, served with tortilla or chips", 5.50, soup_and_salad_menu_group],
@@ -95,7 +95,7 @@ module Ninis
       Price.find_or_create_by(price: price, item: item)
    end
 
-   for_the_kids_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "For The Kids", description: "")
+   for_the_kids_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "For The Kids", description: nil)
 
    for_the_kids_items = [
      ["El Raton", "kid size quesadilla", 3.50, for_the_kids_menu_group],
@@ -109,7 +109,7 @@ module Ninis
       Price.find_or_create_by(price: price, item: item)
    end
 
-   extras_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Extras", description: "")
+   extras_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Extras", description: nil)
 
    extra_items = [
      ["Homemade guacamole", 1.25],
@@ -128,7 +128,7 @@ module Ninis
       Price.find_or_create_by(price: price, item: item)
    end
 
-   bebidas_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Bebidas", description: "")
+   bebidas_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Bebidas", description: nil)
 
    bebidas_items = [
      "Sodas",

@@ -16,8 +16,9 @@
 //= require turbolinks
 //= require_tree .
 Foundation.global.namespace = '';
-$(function(){ 
-  $(document).foundation(); 
+$(function(){
+  $(document).foundation();
   $.food_form.init();
+  $.ratings.init();
+  setTimeout(function(){$('.alert-box').fadeOut();},11000);
 });
-

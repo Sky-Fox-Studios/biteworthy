@@ -1,33 +1,4 @@
 <%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @item.restaurant} %>
 <%= render :partial => '/menu_groups/menu_group_header', locals: {menu_group: @item.menu_group} %>
-<div class="row padded-3">
-  <div class="small-8 columns">
-    <div class="row">
-      <div class="small-4 columns">
-        <%= image_tag "food_pic.png", size: "160x160" %>
-      </div>
-      <div class="small-8 columns">
-        <h3 style="float:left;">
-          <%= @item.name %>
-        </h3>
-        <div class="row">
-          <div class="small-12 columns">
-            <p align="none">
-              <%= @item.description %>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="small-4 columns item-price">
-    <p>
-      <% if !@item.prices.empty? %>
-        <% @item.prices.each do |price_size| %>
-          <%= number_to_currency(price_size.price) %> <%= price_size.size if price_size.size %><br>
-        <% end %>
-      <% end %>
-    </p>
-  </div>
-</div>
-<%= render :partial => 'item_footer', locals: {item: @item} %>
+<%= render :partial => 'show', locals: {item: @item} %>
+<%= render :partial => 'item_footer', locals: {item: @item, star: @star} %>

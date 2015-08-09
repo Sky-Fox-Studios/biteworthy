@@ -2,28 +2,40 @@
 <% unless @menu_groups.empty? %>
 <div class="row">
   <% @menu_groups.each do |menu| %>
-    <div class="small-6 columns">
-      <div class="row">
-        <% if menu.description.empty? %>
-          <div class="menu-group-head small-11"><%= menu.name %></div>
-        <% else %>
-          <div class="menu-group-head small-4 columns"><%= menu.name %></div>
-          <div class="menu-group-description small-8 columns"><%= menu.description %></div>
-        <% end %>
-      </div>
+    <div class="small-12">
+      <div class="menu-group-head center small-12"><%= menu.name %></div>
+      <% if menu.description %>
+        <div class="menu-group-description left small-12 columns"><%= menu.description %></div>
+      <% end %>
+    </div>
+    <div class="row">
       <% menu.items.each do |item| %>
-        <div class="row">
-          <div class="item-image small-4 columns">
-            <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), item_path(item) %>
-          </div>
-          <div class="item-description small-4 columns">
-            <h3><%= link_to item.name, item_path(item) %></h3>
-            <%= item.description %>
-          </div>
-          <div class="item-price small-4 columns">
-            <% item.prices.each do |price_size| %>
-              <%= number_to_currency(price_size.price) %>:<%= price_size.size if price_size.size %><br>
-            <% end %>
+        <div class="small-6 columns">
+          <div class="row">
+            <div class="item-image small-4 columns">
+              <div class="image-wrapper">
+                <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), item_path(item) %>
+              </div>
+              <% if current_user %>
+                <div id="rating-stars-item-<%=item.id%>" class="star-rating-wrapper">
+                  <% star = Star.where(user_id: current_user.id, star_type: "Item", star_id: item.id).first %>
+                  <% if star %>
+                    <%= render partial: "/modules/rating_stars", locals: { rating: Star.ratings[star.rating], starable: item } %>
+                  <% else %>
+                    <%= render partial: "/modules/rating_stars", locals: { rating: 0, starable: item } %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="item-description small-5 columns">
+              <h3><%= link_to item.name, item_path(item) %></h3>
+              <%= item.description %>
+            </div>
+            <div class="item-price small-3 columns">
+              <% item.prices.each do |price_size| %>
+                <%= number_to_currency(price_size.price) %><%= "/#{price_size.size}" if price_size.size %><br>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
@@ -39,5 +51,5 @@
 <% end %>
 </div>
 <!-- <div class="small-3 columns">
-  <h5><%= link_to "Make Fav", new_restaurant_favorite_path(@restaurant), :class => "button tiny radius success right" %></h5>
+  <h5><%= link_to "Make Fav", new_restaurant_star_path(@restaurant), :class => "button tiny radius success right" %></h5>
 </div> -->

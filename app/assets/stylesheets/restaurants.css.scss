@@ -16,7 +16,7 @@
 }
 
 .item-image{
-  padding: 4px 4px 4px 4px;
+  padding: 4px 4px 4px 15px !important;
 }
 .item-description{
   // padding: 4px 4px 4px 4px;
@@ -25,4 +25,9 @@
   text-align: right;
   vertical-align: middle;
   // padding: 4px 4px 4px 4px;
+}
+.star-rating-wrapper{
+  position: absolute;
+  bottom: 5px;
+  right: 8px !important;
 }
