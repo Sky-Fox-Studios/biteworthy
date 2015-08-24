@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @star = Star.where(star_type: "Item", star_id: @item.id).first
+    @review = Review.where(review_type: "Item", review_id: @item.id).first
   end
 
   private

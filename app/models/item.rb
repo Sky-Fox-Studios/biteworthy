@@ -3,7 +3,7 @@ class Item < ActiveRecord::Base
   belongs_to :menu_group
   has_many   :prices
 
-  has_many :stars, :as => :star
+  has_many :reviews, :as => :review
 
   has_many :foods, through: :items_foods
   has_many :items_foods

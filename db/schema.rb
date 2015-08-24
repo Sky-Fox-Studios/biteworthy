@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 20150515222139) do
 
   create_table "menu_groups", force: :cascade do |t|
     t.integer  "restaurant_id"
+    t.integer  "menu_order"
     t.string   "name"
     t.string   "description"
+    t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,8 +90,10 @@ ActiveRecord::Schema.define(version: 20150515222139) do
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "slogan"
+    t.string   "about"
     t.string   "address"
     t.string   "phone_number"
+    t.string   "disclaimer"
     t.float    "latitude",     limit: 12
     t.float    "longitude",    limit: 12
     t.datetime "created_at"
@@ -101,11 +105,20 @@ ActiveRecord::Schema.define(version: 20150515222139) do
     t.integer "tag_id"
   end
 
-  create_table "stars", force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
     t.integer  "user_id"
-    t.integer  "star_id"
-    t.string   "star_type"
+    t.integer  "review_id"
+    t.string   "review_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tag_histories", force: :cascade do |t|
+    t.string   "tag_id"
+    t.string   "name"
+    t.integer  "created_by_id"
+    t.integer  "last_modified_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

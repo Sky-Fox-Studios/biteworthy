@@ -1,6 +1,11 @@
 // Place all the styles related to the Restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.restaurant-home-image-small{
+  min-width: 69px;
+  width: 100%;
+  height: auto;
+}
 
 .menu-group-head{
   padding-left: 11px;
@@ -26,7 +31,7 @@
   vertical-align: middle;
   // padding: 4px 4px 4px 4px;
 }
-.star-rating-wrapper{
+.review-rating-wrapper{
   position: absolute;
   bottom: 5px;
   right: 8px !important;

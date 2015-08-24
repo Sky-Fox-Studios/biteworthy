@@ -1,4 +1,16 @@
 <%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @item.restaurant} %>
 <%= render :partial => '/menu_groups/menu_group_header', locals: {menu_group: @item.menu_group} %>
-<%= render :partial => 'show', locals: {item: @item} %>
-<%= render :partial => 'item_footer', locals: {item: @item, star: @star} %>
+
+<div class="row">
+  <div class="small-4 columns">
+    <%= render :partial => 'image', locals: {item: @item} %>
+  </div>
+  <div class="small-4 columns">
+    <%= render :partial => 'name_desc', locals: {item: @item} %>
+  </div>
+  <div class="small-4 columns  item-price">
+    <%= render :partial => 'price', locals: {item: @item} %>
+  </div>
+</div>
+
+<%= render :partial => 'item_footer', locals: {item: @item, review: @review} %>

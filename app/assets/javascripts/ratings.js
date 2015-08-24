@@ -4,27 +4,27 @@ $.ratings = {
   },
 
   wireupListeners: function(){
-    $('.rating-star').click(function() {
+    $('.rating-review').click(function() {
       var rating    = $(this).data('rating');
-      var star_id   = $(this).data('star-id');
-      var star_type = $(this).data('star-type');
-      console.log("rating="+rating+" star_id="+star_id+" star_type="+star_type);
-      $.ratings.create_rating(rating, star_id, star_type);
+      var review_id   = $(this).data('review-id');
+      var review_type = $(this).data('review-type');
+      console.log("rating="+rating+" review_id="+review_id+" review_type="+review_type);
+      $.ratings.create_rating(rating, review_id, review_type);
     });
   },
 
-  create_rating: function(rating, star_id, star_type) {
-    if(star_id != ""){
+  create_rating: function(rating, review_id, review_type) {
+    if(review_id != ""){
       $.ajax({
         url: "/create_user_rating",
         cache: false,
         dataType: "html",
         type: "GET",
-        data: { rating: rating, star_id: star_id, star_type: star_type },
-        success: function(new_rating_stars){
-          var rating_stars_div = '#rating-stars-'+star_type.toLowerCase()+'-'+star_id;
-          console.log("success, updating="+rating_stars_div.toString());
-          $(rating_stars_div.toString()).html(new_rating_stars);
+        data: { rating: rating, review_id: review_id, review_type: review_type },
+        success: function(new_rating_reviews){
+          var rating_reviews_div = '#rating-reviews-'+review_type.toLowerCase()+'-'+review_id;
+          console.log("success, updating="+rating_reviews_div.toString());
+          $(rating_reviews_div.toString()).html(new_rating_reviews);
           $.ratings.wireupListeners();
         },
         error: function(error) {
