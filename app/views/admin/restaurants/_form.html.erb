@@ -1,4 +1,4 @@
-<%= simple_form_for(@restaurant, url: admin_restaurants_path, method: :POST) do |f| %>
+<%= simple_form_for([:admin, @restaurant]) do |f| %>
   <% if @restaurant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
@@ -26,11 +26,11 @@
 </div>
 <div class="row">
    <div class="small-6 columns">
-      <%= f.input :latitude %>   
+     <%= f.input :seating %>   
    </div>
 
    <div class="small-6 columns">
-      <%= f.input :longitude %>
+     <%= f.input :outside_seating %>
    </div>
 </div>
    <div class="small-12 columns">

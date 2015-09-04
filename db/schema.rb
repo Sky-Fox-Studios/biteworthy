@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515222139) do
+ActiveRecord::Schema.define(version: 20150904233208) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string  "street"
+    t.string  "city",                 default: "Durango"
+    t.string  "state",                default: "CO"
+    t.integer "zip",                  default: 81301
+    t.float   "latitude",  limit: 12
+    t.float   "longitude", limit: 12
+  end
 
   create_table "foods", force: :cascade do |t|
     t.integer  "restaurant_id"
@@ -91,11 +100,11 @@ ActiveRecord::Schema.define(version: 20150515222139) do
     t.string   "name"
     t.string   "slogan"
     t.string   "about"
-    t.string   "address"
+    t.string   "address_id"
     t.string   "phone_number"
     t.string   "disclaimer"
-    t.float    "latitude",     limit: 12
-    t.float    "longitude",    limit: 12
+    t.integer  "seating"
+    t.integer  "outside_seating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

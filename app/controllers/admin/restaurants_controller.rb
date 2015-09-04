@@ -27,8 +27,12 @@ class Admin::RestaurantsController < AdminController
   end
 
   def update
-    @restaurant.update(restaurant_params)
-    redirect_to admin_restaurants_path
+    if @restaurant.update(restaurant_params)
+      redirect_to admin_restaurants_path
+    else
+      redirect_to edit_admin_restaurant_path(@restaurant), alert: @restaurant.errors.full_messages 
+    end
+      
   end
 
   def destroy
@@ -42,6 +46,6 @@ class Admin::RestaurantsController < AdminController
     end
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :slogan, :food_groups, :latitude, :longitude)
+      params.require(:restaurant).permit(:name, :slogan, :food_groups, :seating, :outside_seating)
     end
 end
