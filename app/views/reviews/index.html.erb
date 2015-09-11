@@ -5,14 +5,18 @@
     <div class="small-12 columns">
        <% @reviews.each do |review| %>
         <% if @review_class != review.rating %>
-          <% @review_class = review.rating %>
-          <div class="small-12 columns">
-            <h3> <%= @review_class %> reviews </h3>
+          <div class="row">
+            <% @review_class = review.rating %>
+            <div class="small-12 columns">
+              <h3>
+                <%= @review_class %> reviews <%= render partial: "/modules/rating_text", locals: {rating: review.rating} %>
+              </h3>
+            </div>
           </div>
         <% end %>
          <% reviewable = Item.find(review.review_id) %>
          <div class="small-6 columns">
-           <%= render partial: "/#{review.review_type.downcase.pluralize}/show", locals: {item: reviewable} %>
+           <%= render partial: "/#{review.review_type.downcase.pluralize}/review_show", locals: {item: reviewable} %>
          </div>
        <% end %>
     </div>

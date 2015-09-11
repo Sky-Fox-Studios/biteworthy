@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="small-4 columns">
+    <%= image_tag "food_pic.png", size: "160x160" %>
+    <% if current_user %>
+      <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
+        <% review = Review.where(user_id: current_user.id, review_type: "Item", review_id: item.id).first %>
+      </div>
+    <% end %>
+  </div>
+  <div class="small-8 columns">
+    <h3 style="float:left;">
+      <%= link_to "#{item.name} #{item.menu_group.name.singularize}", edit_review_path(review) %>
+    </h3>
+    <div class="small-12 columns">
+      <p align="none">
+        <%= item.description %>
+      </p>
+    </div>
+  </div>
+</div>

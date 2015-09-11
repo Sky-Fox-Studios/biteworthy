@@ -8,7 +8,5 @@ class Food < ActiveRecord::Base
   has_many :items_foods
 
   validates :restaurant_id, :name, presence: true
-
-
   
 end

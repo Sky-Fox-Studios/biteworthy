@@ -1,0 +1,31 @@
+<%= simple_form_for([:admin, @address]) do |a| %>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= a.input :restaurant_id, as: :hidden, :input_html => { :value => restaurant.id } %>
+    </div>
+    <div class="small-4 columns">
+      <%= a.input :street %>
+    </div>
+    <div class="small-4 columns">
+      <%= a.input :city %>
+    </div>
+    <div class="small-2 columns">
+      <%= a.input :state %>
+    </div>
+    <div class="small-2 columns">
+      <%= a.input :zip %>
+    </div>
+    <div class="small-4 columns">
+      <%= a.input :latitude %>
+    </div>
+    <div class="small-4 columns">
+      <%= a.input :longitude %>
+    </div>
+    <div class="small-4 columns">
+      MAP
+    </div>
+    <div class="small-12 columns">
+        <%= f.submit %>
+   </div>
+ </div>
+<% end %>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources  :tags
 
   namespace :admin do
-    resources :restaurants, :menu_groups, :foods, :items, :prices, :users
+    resources :restaurants, :menu_groups, :foods, :items, :prices, :users, :addresses
   end
 
 

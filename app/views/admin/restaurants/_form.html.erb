@@ -23,17 +23,36 @@
    <div class="small-3 columns">
       <%= f.input :phone_number %>
    </div>
+   <div class="small-9 columns">
+      <%= f.input :about %>
+   </div>
+   <div class="small-12 columns">
+      <%= f.input :disclaimer %>
+   </div>
+   <div class="small-12 columns">
+     <% @restaurant.addresses.each do |address| %>
+       <%= render partial: 'admin/addresses/show', locals: { address: address} %>
+     <% end %>
+     <% if @restaurant.addresses.empty? %>
+      <%= render partial: 'admin/addresses/form', locals: { restaurant: @restaurant, address: Address.new} %>
+     <% end %>
+   </div>
+
 </div>
 <div class="row">
    <div class="small-6 columns">
-     <%= f.input :seating %>   
+     <%= f.input :seating %>
    </div>
 
    <div class="small-6 columns">
      <%= f.input :outside_seating %>
    </div>
+
+   <div class="small-6 columns">
+     <%= f.input :cash_only %>
+   </div>
+ <div class="small-12 columns">
+     <%= f.submit %>
 </div>
-   <div class="small-12 columns">
-       <%= f.submit %>
-  </div>
+</div>
 <% end %>

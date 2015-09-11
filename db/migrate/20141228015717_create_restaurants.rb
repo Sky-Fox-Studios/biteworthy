@@ -3,12 +3,13 @@ class CreateRestaurants < ActiveRecord::Migration
     create_table :restaurants do |t|
       t.string :name
       t.string :slogan
-      t.string :about
-      t.string :address_id
       t.string :phone_number
+      t.string :about
       t.string :disclaimer
+      t.string :website
       t.integer :seating
       t.integer :outside_seating
+      t.boolean :cash_only
       t.timestamps
     end
   end

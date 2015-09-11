@@ -13,7 +13,7 @@ module Ninis
      item = Item.find_or_create_by(restaurant: ninis, menu_group: ninis_burritos,
       name: name,
       description: description)
-      prices_sizes.each do |price_size| 
+      prices_sizes.each do |price_size|
         Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
       end
    end
@@ -26,7 +26,7 @@ module Ninis
       ["Barbacoa", "Shredded beef",  [{price: 8.25, size: nil}]],
       ["Fish", "Alaskan Pollock with spicy coleslaw",  [{price: 8.50, size: nil}]],
       ["Vegetarian", "Mixed sauteed vegetables", [{price: 8.25, size: nil}]],
-      ["Individual Taco", "Filled with choice ingredients.", [{price: 2.95, size: "each"}, {price: 3.25, size: "for fish"}]],
+      ["Individual", "Filled with choice ingredients.", [{price: 2.95, size: "each"}, {price: 3.25, size: "for fish"}]],
     ]
 
     taco_items.each do |name, description, prices_sizes|

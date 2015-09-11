@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="small-12 columns">
+    <strong>Street:</strong>
+    <%= address.street %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>city:</strong>
+    <%= address.city %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>state:</strong>
+    <%= address.state %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>zip:</strong>
+    <%= address.zip %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>Latitude:</strong>
+    <%= address.latitude %>
+  </div>
+  <div class="small-12 columns">
+    <strong>Longitude:</strong>
+    <%= address.longitude %>
+  </div>
+  <div class="small-12 columns">
+    <%= link_to 'Edit', edit_admin_address_path(address) %> |
+  </div>
+</div>
