@@ -27,7 +27,7 @@ gem 'sprockets'
 # gem "less-rails"                             # dependancy for Font Awesome less
 # gem "therubyracer"                            # dependancy for less
 gem 'holidays'
-gem 'acts_as_paranoid'
+# gem 'acts_as_paranoid'
 
 group :development, :test do
   gem 'rspec-rails', '>= 3.0.0.beta'

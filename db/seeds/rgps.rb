@@ -1,5 +1,6 @@
 module Rgps
-  rgps  = Restaurant.find_or_create_by(name: "RGP's", slogan: "Flame Grilled Wraps")
+  rgps  = Restaurant.find_or_create_by(name: "RGP's", slogan: "Flame Grilled Wraps",
+  main_image_url: "rgps.jpg")
 
   rgps_wraps       = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Flame Grilled Wraps", is_food_group: true,
     description: "Served warm on our flame grilled crusts & come with choice of REGULAR OR BARBECUE potato chips or cole slaw")

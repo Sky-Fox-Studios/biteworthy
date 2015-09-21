@@ -4,6 +4,7 @@ class CreateRestaurants < ActiveRecord::Migration
       t.string :name
       t.string :slogan
       t.string :phone_number
+      t.string :main_image_url
       t.string :about
       t.string :disclaimer
       t.string :website

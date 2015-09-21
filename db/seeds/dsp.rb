@@ -1,5 +1,6 @@
 module Dsp
-  dsp              = Restaurant.find_or_create_by(name: "DSP", slogan: "New York style pizza")
+  dsp              = Restaurant.find_or_create_by(name: "DSP", slogan: "New York style pizza",
+  main_image_url: "dsp.png")
 
   dsp_single_slice = MenuGroup.find_or_create_by(restaurant_id: dsp.id, name: "Single Slice", description: "Basic pizza with...")
 

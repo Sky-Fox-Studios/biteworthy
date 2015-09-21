@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.string   "name"
     t.string   "slogan"
     t.string   "phone_number"
+    t.string   "main_image_url"
     t.string   "about"
     t.string   "disclaimer"
     t.string   "website"
