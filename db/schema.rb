@@ -50,14 +50,15 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
     t.string   "parent_id"
-    t.boolean  "is_sub_type", default: false
-    t.boolean  "dairy",       default: false
-    t.boolean  "fruit",       default: false
-    t.boolean  "grain",       default: false
-    t.boolean  "meat",        default: false
-    t.boolean  "nut",         default: false
-    t.boolean  "sea_food",    default: false
-    t.boolean  "vegetable",   default: false
+    t.boolean  "animal_product", default: false
+    t.boolean  "dairy",          default: false
+    t.boolean  "fruit",          default: false
+    t.boolean  "grain",          default: false
+    t.boolean  "meat",           default: false
+    t.boolean  "poultry",        default: false
+    t.boolean  "nut",            default: false
+    t.boolean  "sea_food",       default: false
+    t.boolean  "vegetable",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.string   "name"
     t.string   "description"
     t.string   "color"
+    t.boolean  "is_food_group"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,6 +105,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.string   "phone_number"
     t.string   "about"
     t.string   "disclaimer"
+    t.string   "website"
     t.integer  "seating"
     t.integer  "outside_seating"
     t.boolean  "cash_only"
@@ -158,7 +161,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.boolean  "approved"
     t.boolean  "is_admin"
     t.boolean  "is_editor"
-    t.boolean  "is_creator"
+    t.boolean  "is_staff"
     t.integer  "strikes"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

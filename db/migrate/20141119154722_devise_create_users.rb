@@ -10,7 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :approved
       t.boolean :is_admin
       t.boolean :is_editor
-      t.boolean :is_creator
+      t.boolean :is_staff
       t.integer :strikes
 
 

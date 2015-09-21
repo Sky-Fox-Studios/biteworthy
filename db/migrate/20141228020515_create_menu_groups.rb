@@ -6,6 +6,7 @@ class CreateMenuGroups < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :color
+      t.boolean :is_food_group
 
       t.timestamps
     end

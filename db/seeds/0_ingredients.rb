@@ -10,9 +10,14 @@ module Ingredients
 
 
   #meats
-  Ingredient.find_or_create_by(name: "Anchovy", meat: true, sea_food: true)
+  Ingredient.find_or_create_by(name: "Water")
+  Ingredient.find_or_create_by(name: "Anchovy", meat: true, sea_food: true, meat: true)
+
   chicken = Ingredient.find_or_create_by(name: "Chicken", meat: true)
-  Ingredient.find_or_create_by(name: "Breast", parent_id: chicken.id, is_sub_type: true, meat: true)
+  Ingredient.find_or_create_by(name: "Breast", parent_id: chicken.id, meat: true)
+  Ingredient.find_or_create_by(name: "Wing", parent_id: chicken.id, meat: true)
+  Ingredient.find_or_create_by(name: "Leg", parent_id: chicken.id, meat: true)
+
   Ingredient.find_or_create_by(name: "Salami", meat: true)
   Ingredient.find_or_create_by(name: "Beef", meat: true)
   Ingredient.find_or_create_by(name: "Sausage", meat: true)
@@ -25,11 +30,17 @@ module Ingredients
 
   #Vegtables
   onion = Ingredient.find_or_create_by(name: "Onion", vegetable: true)
-  Ingredient.find_or_create_by(name: "Red", parent_id: onion.id, is_sub_type: true, vegetable: true)
-  Ingredient.find_or_create_by(name: "White", parent_id: onion.id, is_sub_type: true, vegetable: true)
+  Ingredient.find_or_create_by(name: "Red", parent_id: onion.id, vegetable: true)
+  Ingredient.find_or_create_by(name: "White", parent_id: onion.id, vegetable: true)
 
+  rice = Ingredient.find_or_create_by(name: "Rice", grain: true)
+  Ingredient.find_or_create_by(name: "Noodles", grain: true, parent_id: rice.id)
+
+  #Animal products
+  Ingredient.find_or_create_by(name: "Milk", dairy: true)
   Ingredient.find_or_create_by(name: "Cheese", dairy: true)
-  Ingredient.find_or_create_by(name: "Rice Noodles", grain: true)
+
+
 
   puts "ingredients seeded"
 end

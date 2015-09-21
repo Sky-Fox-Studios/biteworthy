@@ -12,7 +12,7 @@
   <% unless @review.new_record? %>
     <div class="row">
       <div class="small-12">
-        <%= render partial: "/#{@review.review_type.downcase.pluralize}/show", locals: {item: @reviewable} %>
+        <%= render partial: "/#{@review.review_type.downcase.pluralize}/review_show", locals: {item: @reviewable} %>
       </div>
     </div>
   <% end %>
@@ -26,3 +26,4 @@
     <%= f.submit class: "button tiny radius success" %>
   </div>
 <% end %>
+asdf

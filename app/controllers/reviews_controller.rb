@@ -1,11 +1,10 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :find_reviewable, only: [:new, :create]
+  before_action :find_reviewable, only: [:new, :create, :index]
   respond_to :html
   before_filter :authenticate_user!
 
   def index
-     @reviewable = find_reviewable
      @reviews = Review.all.order(rating: :desc)
     respond_with(@reviews)
   end
@@ -21,8 +20,8 @@ class ReviewsController < ApplicationController
   end
 
   def create_user_rating
-    new_review = Review.find_or_create_by( review_id: params[:review_id], review_type: params[:review_type], user_id: current_user.id)
-    new_review.update(rating: params[:rating].to_i)
+    user_review = Review.find_or_create_by(review_id: params[:review_id], review_type: params[:review_type], user_id: current_user.id)
+    user_review.update(rating: params[:rating].to_i)
     find_reviewable
     render partial: "modules/rating_reviews", locals: { rating: params[:rating].to_i, reviewable: @reviewable}
   end

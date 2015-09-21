@@ -16,7 +16,7 @@
         <% end %>
          <% reviewable = Item.find(review.review_id) %>
          <div class="small-6 columns">
-           <%= render partial: "/#{review.review_type.downcase.pluralize}/review_show", locals: {item: reviewable} %>
+           <%= render partial: "/#{review.review_type.downcase.pluralize}/hidden_review_show", locals: {item: reviewable} %>
          </div>
        <% end %>
     </div>

@@ -26,6 +26,8 @@ gem 'sprockets'
 # gem 'font-awesome-sass'                      # Sweet Font Icons
 # gem "less-rails"                             # dependancy for Font Awesome less
 # gem "therubyracer"                            # dependancy for less
+gem 'holidays'
+gem 'acts_as_paranoid'
 
 group :development, :test do
   gem 'rspec-rails', '>= 3.0.0.beta'
@@ -48,4 +50,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
