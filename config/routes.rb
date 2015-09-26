@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :restaurants, :menu_groups, :foods, :items, :prices, :users, :addresses
+      post 'items/update_item_price/:id', to: 'items#update_price', :as => "items_update_price"
   end
 
 

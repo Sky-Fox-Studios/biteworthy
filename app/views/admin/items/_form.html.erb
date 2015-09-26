@@ -14,56 +14,69 @@
     <div class="small-12 columns" id="restaurant-select">
       <div class="small-4 columns">
         <% if @restaurant %>
-          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant.id, label_method: lambda { |restaurant| "#{restaurant.name}" } %>
+          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant.id %>
         <% else %>
-          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, label_method: lambda { |restaurant| "#{restaurant.name}" } %>
+          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select %>
         <% end %>
       </div>
       <div class="small-4 columns">
-        <%= link_to  "New Restaurant", new_admin_restaurant_path %>
-      </div>
-    </div>
-    <div class="small-12 columns" id="menu-group-select">
-      <div class="small-4 columns">
         <% if @item.menu_group_id %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, selected: @item.menu_group_id, label: "Menu Group", label_method: lambda { |menu_group| "#{menu_group.name}" } %>
+          <%= f.association :menu_group, collection: @menu_groups, as: :select, selected: @item.menu_group_id, label: "Menu Group"%>
         <% elsif @menu_groups %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group", label_method: lambda { |menu_group| "#{menu_group.name}" } %>
+          <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group"%>
         <% end %>
       </div>
       <div class="small-4 columns">
       <% unless @item.new_record? %>
-        <%= link_to  "New Menu Group", new_admin_menu_group_path(menu_group: {restaurant_id: @item.restaurant_id}) %>
+        <%= link_to "<i class='fi-plus'></i> Menu Group".html_safe, new_admin_menu_group_path(menu_group: {restaurant_id: @item.restaurant_id}) %>
       <% else %>
-        <%= link_to  "New Menu Group", new_admin_menu_group_path  %>
+        <%= link_to "<i class='fi-plus'></i> New Menu Group".html_safe, new_admin_menu_group_path  %>
       <% end %>
       </div>
     </div>
-    <!-- <div class="small-4 columns">
-      <input type="text" id="add_tags" name="add_tags" placeholder="Add tags. Use commas to separate." />
-    </div> -->
-  <div class="row padded" id="item-form">
-    <div class="small-4 columns">
-      <%= f.input :name %>
+    <div class="small-12 columns" id="restaurant-select">
+      <div class="small-4 columns">
+        <%= f.input :name %>
+      </div>
+      <div class="small-8 columns">
+        <%= f.input :description, as: :text  %>
+      </div>
     </div>
-    <div class="small-7 columns">
-      <%= f.input :description, as: :text  %>
-    </div>
-    <div class="small-3 columns">
-      <h4>Prices:</h4>
-    </div>
-    <div class="small-3 columns">
-      <h4>Sizes:</h4>
-    </div>
-    <div class="small-6 columns">
-    </div>
-    <% @item.prices.map do |price| %>
+  </div>
+  <div class="row">
     <div class="small-12 columns">
+      <div class="actions padded">
+        <%= f.submit class: "button tiny radius success" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <div class="row padded">
+    <%= simple_form_for(@item, url: admin_items_update_price_path(@item), :method => :post) do |f| %>
+
+    <div class="row">
       <div class="small-3 columns">
-        <%= price.price %>
+        <h4>Prices:</h4>
       </div>
       <div class="small-3 columns">
-        <%=  price.size %>
+        <h4>Sizes:</h4>
+      </div>
+      <div class="small-3 columns">
+      </div>
+    </div>
+    <% @item.prices.map do |price| %>
+    <div class="row">
+      <div class="small-3 columns">
+        <%= "$#{price_to_s price.price }"  %>
+      </div>
+      <div class="small-3 columns">
+        <% if price.size != "" %>
+        <%= price.size %>
+        <% else %>
+          <i style="color:gray;"><%="$#{price_to_s price.price} worth? " %></i>
+        <% end %>
+      </div>
+      <div class="small-3 columns">
       </div>
       <div class="small-3 columns">
         <%= link_to "edit", edit_admin_price_path(price) %>
@@ -71,22 +84,23 @@
 
     </div>
     <% end %>
-    <div class="small-3 columns">
-      <input type="text" id="new_price" name="new_price" placeholder="11.00" />
+    <div class="row">
+      <div class="small-3 columns">
+        <input type="text" id="new_price" name="new_price" placeholder="11.00" />
+      </div>
+      <div class="small-3 columns">
+        <input type="text" id="new_size" name="new_size" placeholder="Size" />
+      </div>
+      <div class="small-3 columns">
+      </div>
     </div>
-    <div class="small-3 columns">
-      <input type="text" id="new_size" name="new_size" placeholder="Size" />
+
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="actions padded">
+          <%= f.submit class: "button tiny radius success", value: 'Save Price' %>
+        </div>
+      </div>
     </div>
-    <div class="small-6 columns">
-      <%  %>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="small-12 columns">
-    <div class="actions padded right">
-      <%= f.submit class: "button tiny radius success" %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
 </div>

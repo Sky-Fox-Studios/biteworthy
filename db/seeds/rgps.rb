@@ -7,12 +7,11 @@ module Rgps
   rgps_salads      = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Salads", description: "Add Chicken to any salad for $1.50", is_food_group: true)
 
   rgps_wrap_items = [
-    "Roasted Chicken or Turkey Breast", "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing.",
-    "Pulled Pork BBQ", "Smoked Pulled Pork, Cheddar Cheese, Red Onion, Black Beans, Homemade Cole Slaw, and our Classic BBQ Sauce.",
-    "Caesar Salad", "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and our Caesar Dressing.",
-    "Veggie", "Sweet roasted red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, crisp romaine lettuce and choice of Cheese and Dressing.",
-    "Full House", "Romaine Lettuce with Roma Tomatoes, Red Onion, Green Peppers, Carrots, Cucumbers, Roasted Red Peppers."
+    ["Roasted Chicken or Turkey Breast", "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing."],
+    ["Pulled Pork BBQ", "Smoked Pulled Pork, Cheddar Cheese, Red Onion, Black Beans, Homemade Cole Slaw, and our Classic BBQ Sauce."],
+    ["Veggie", "Sweet roasted red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, crisp romaine lettuce and choice of Cheese and Dressing."],
   ]
+
   rgps_wrap_items.each do |name, description|
     item = Item.find_or_create_by(restaurant: rgps, menu_group: rgps_wraps,
      name: name,
@@ -21,7 +20,19 @@ module Rgps
     #    Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
     #  end
   end
+  rgps_salad_items = [
+    ["Caesar Salad", "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and our Caesar Dressing."],
+    ["Full House", "Romaine Lettuce with Roma Tomatoes, Red Onion, Green Peppers, Carrots, Cucumbers, Roasted Red Peppers."],
+  ]
 
+  rgps_salad_items.each do |name, description|
+    item = Item.find_or_create_by(restaurant: rgps, menu_group: rgps_salads,
+     name: name,
+     description: description)
+    #  prices_sizes.each do |price_size|
+    #    Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
+    #  end
+  end
 
   puts "Rgps seeded"
 end

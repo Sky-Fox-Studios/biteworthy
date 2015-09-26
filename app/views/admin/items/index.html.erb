@@ -15,6 +15,7 @@
     <tr>
       <th colspan="1"></th>
       <th>Restaurant</th>
+      <th>Menu Group</th>
       <th>Name</th>
       <th>Description</th>
       <th colspan="2"></th>
@@ -26,6 +27,7 @@
       <tr>
         <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_item_path(item) %></td>
         <td><%= item.restaurant.name %></td>
+        <td><%= item.menu_group.name %></td>
         <td><%= item.name %></td>
         <td><%= item.description %></td>
         <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_item_path(item) %></td>

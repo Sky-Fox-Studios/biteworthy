@@ -1,8 +1,10 @@
 class Admin::ItemsController < AdminController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :update_price, :destroy]
   respond_to :html
 
   def index
+    @page= params[:page]
+
     @restaurants = Restaurant.all.order(:name)
     if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
       @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
@@ -49,12 +51,18 @@ class Admin::ItemsController < AdminController
   end
 
   def update
-    @item.prices << Price.create(item_id: @item.id, price: params[:new_price], size: params[:new_size])
     if @item.update(item_params)
-      redirect_to edit_admin_item_path(@item)
+      flash[:notice] = "Item updated"
     else
-      redirect_to edit_admin_item_path(@item)
+      flash[:notice] = "Item failed to update"
     end
+      redirect_to edit_admin_item_path(@item)
+  end
+
+  def update_price
+    @item.prices << Price.create(item_id: @item.id, price: params[:new_price], size: params[:new_size])
+    redirect_to edit_admin_item_path(@item)
+
   end
 
   def destroy

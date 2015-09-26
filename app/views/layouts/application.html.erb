@@ -18,13 +18,13 @@
       <div class="row main-page">
          <div class="small-12 columns">
             <%= render :partial => "/base/header" %>
-            <% if notice || alert %>
+            <% if flash[:notice] || flash[:alert] %>
               <div class="small-12 columns">
-                <% if alert %>
-                  <div data-alert class="alert-box radius"><%= alert %><a class="close">x</a></div>
+                <% if flash[:alert] %>
+                  <div data-alert class="alert-box radius"><%= flash[:alert] %><a class="close">x</a></div>
                 <% end %>
-                <% if notice %>
-                  <div data-alert class="alert-box warning radius"><%= notice %><a class="close">x</a></div>
+                <% if flash[:notice] %>
+                  <div data-alert class="alert-box warning radius"><%= flash[:notice] %><a class="close">x</a></div>
                 <% end %>
               </div>
             <% end %>

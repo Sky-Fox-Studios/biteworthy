@@ -27,8 +27,7 @@ class Admin::PricesController < AdminController
 
   def update
     if @price.update(price_params)
-      binding.pry
-      redirect_to session.delete(:return_to)
+      redirect_to edit_admin_price_path(@price)
     else
       redirect_to edit_admin_price_path(@price)
     end
