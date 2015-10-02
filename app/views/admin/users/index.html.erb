@@ -1,23 +1,26 @@
 <div class="row">
-  <div class="small-10 columns" align="center">
-     <h1>Welcome <%=current_user.user_name%></h1>
-      <table>
-         <th></th>
-         <th>Name</th>
-         <th>Email</th>
-         <th>Admin</th>
-         
-         <% @users.each do |user| %>
-         <tr>
-            <td><%= link_to raw('<i class="fi-pencil small"></i>'), edit_admin_user_path(user)%>
-            <td><%= user.user_name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.is_admin ? 'Yes' : 'No' %></td>
-         </tr>
-         <% end %>          
-      </table>
-      </div>
-   <div class="small-2 columns">
-      <%= button_to('Logout', destroy_user_session_path, :method => :delete) %>
-   </div>
+  <div class="small-10 columns">
+    <h1>Welcome <%=current_user.user_name%></h1>
+    <table>
+      <th></th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Approved?</th>
+      <th>Editor?</th>
+
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to raw('<i class="fi-pencil small"></i>'), edit_admin_user_path(user)%>
+        <td><%= user.user_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.approved? ? 'Yes' : 'No' %></td>
+        <td><%= user.is_editor ? 'Yes' : 'No' %></td>
+<!--     TODO strikes/warnings,      -->
+      </tr>
+      <% end %>          
+    </table>
+  </div>
+  <div class="small-2 columns">
+    <%= button_to('Logout', destroy_user_session_path, :method => :delete) %>
+  </div>
 </div>

@@ -9,16 +9,27 @@
                <i class="fi-trophy"></i>
                <label>Reviewed</label>
             </a>
+           <% if current_user.is_admin %>
             <a class="item" href="<%=admin_users_path%>">
                <i class="fi-torso"></i>
-               <label>Profile</label>
+               <label>Users</label>
             </a>
-           <% if (@user && @user.is_admin) || (current_user && current_user.is_admin) %>
             <a class="item" href="<%=admin_home_path%>">
                <i class="fi-key"></i>
                <label>Admin</label>
             </a>
-         <% end %>
+        <% else %>
+        <a class="item" href="<%= user_path(current_user) %>">
+            <i class="fi-torso"></i>
+            <label>Profile</label>
+          </a>
+        <% end %>
+        <% if current_user.is_editor %>
+        <a class="item" href="<%=admin_home_path%>">
+            <i class="fi-pencil"></i>
+            <label>Editor</label>
+          </a>
+        <% end %>
       </div>
    </div>
 </div>
