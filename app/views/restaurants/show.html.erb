@@ -34,7 +34,7 @@
                 </div>
                 <div class="item-price small-3 columns">
                   <% item.prices.each do |price_size| %>
-                    <%= number_to_currency(price_size.price) %><%= "/#{price_size.size}" if price_size.size %><br>
+                    <%= price_to_s(price_size.price) %><%= "/#{price_size.size}" if price_size.size %><br>
                   <% end %>
                 </div>
               </div>

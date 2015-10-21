@@ -5,7 +5,8 @@ class CreateMenuGroups < ActiveRecord::Migration
       t.integer :menu_order
       t.string :name
       t.string :description
-      t.string :color
+      t.string :background_color
+      t.string :text_color
       t.boolean :is_food_group
 
       t.timestamps

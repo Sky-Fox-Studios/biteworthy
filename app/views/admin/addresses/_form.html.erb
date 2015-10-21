@@ -1,4 +1,4 @@
-<%= simple_form_for([:admin, @address]) do |a| %>
+<%= simple_form_for([:admin, address]) do |a| %>
   <div class="row">
     <div class="small-12 columns">
       <%= a.input :restaurant_id, as: :hidden, :input_html => { :value => restaurant.id } %>
@@ -25,7 +25,7 @@
       MAP
     </div>
     <div class="small-12 columns">
-        <%= f.submit %>
+        <%= a.submit %>
    </div>
  </div>
 <% end %>

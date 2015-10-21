@@ -46,6 +46,7 @@ class Admin::RestaurantsController < AdminController
   private
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
+      # @address = @restaurant.addresses.first
     end
 
     def restaurant_params

@@ -30,6 +30,7 @@ class Admin::MenuGroupsController < AdminController
   end
 
   def update
+    binding.pry
     @menu_group.update(menu_group_params)
     redirect_to admin_menu_groups_path
   end
@@ -45,6 +46,6 @@ class Admin::MenuGroupsController < AdminController
     end
 
     def menu_group_params
-       params.require(:menu_group).permit(:id, :restaurant_id, :name, :description)
+       params.require(:menu_group).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color)
     end
 end

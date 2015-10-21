@@ -1,4 +1,4 @@
-<%= simple_form_for(@menu_group, url: admin_menu_groups_path, method: :POST) do |f| %>  
+<%= simple_form_for([:admin, @menu_group]) do |f| %>
 <!-- , url: admin_menu_group_path(@menu_group) -->
   <% if @menu_group.errors.any? %>
     <div id="error_explanation">
@@ -25,6 +25,13 @@
   <div class="field">
     <%= f.input :description %>
   </div>
+  <div class="field">
+    <%= f.input :background_color, input_html:{ class: 'color'} %>
+  </div>
+  <div class="field">
+    <%= f.input :text_color, input_html:{ class: 'color'} %>
+  </div>
+
   <div class="actions">
     <%= f.submit :class => "button small radius"  %>
   </div>
