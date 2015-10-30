@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   resources :reviews, only: [:index, :show, :edit]
-  resources  :tags
+  resources  :tags, :ingredients
 
   namespace :admin do
     resources :restaurants, :menu_groups, :foods, :items, :prices, :users, :addresses

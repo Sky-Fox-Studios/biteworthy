@@ -1,4 +1,5 @@
 puts "loading seeds"
+require File.expand_path('../seeds/0_ingredients', __FILE__)
 require File.expand_path('../seeds/dsp', __FILE__)
 require File.expand_path('../seeds/himalayan', __FILE__)
 require File.expand_path('../seeds/ninis', __FILE__)
