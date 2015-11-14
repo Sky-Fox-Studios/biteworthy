@@ -7,31 +7,68 @@
 <div class="row">
 	<div class="small-12 columns">
 		<%= link_to raw('<i class="fi-plus"></i> New ingredient'), new_ingredient_path, :class => "button tiny" %>
-		<table class="small-12">
+		<table class="small-12" id="ingredients-index">
 		  <thead>
 		    <tr>
-		      <th style="width: 56px;"></th>
-		      <th>ingredient</th>
+		      <th></th>
+		      <th>Ingredient</th>
+ 		      <th>Grain</th>
+ 		      <th>Fruit</th>
+ 		      <th>Vegetable</th>
+ 		      <th>Nut</th>
+ 		      <th>Bean Legume Pulse</th>
+		      <th>Animal product</th>
+		      <th>Dairy</th>
+ 		      <th>Meat</th>
+ 		      <th>Poultry</th>
+ 		      <th>Fish</th>
  		      <th></th>
-		      <th style="width: 28px;"></th>
 		    </tr>
 		  </thead>
-
 		  <tbody>
 		    <% @ingredients.each do |ingredient| %>
 		      <tr>
 		        <td>
 				       <%= link_to raw('<i class="fi-page-edit"></i>'), edit_ingredient_path(ingredient) %>
             </td>
-				<td><%= ingredient.name %></td>
-				<td>
-					
-				</td>
-		        <td><%= link_to raw('<i class="fi-trash"></i>'), ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure you want to remove this ingredient?' } %></td>
+						<td><%= ingredient.name %></td>
+						<td><%= ingredient.grain ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.fruit ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.vegetable ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.nut ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.bean_legume_pulse ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.animal_product ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.dairy ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.meat ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.poultry ? "<i class='fi-check'>".html_safe : "" %></td>
+						<td><%= ingredient.fish ? "<i class='fi-check'>".html_safe : "" %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>
 		</table>
-		
+
 	</div>
 </div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function () {
+		jQuery('#ingredients-index').DataTable({
+			"order": [[ 1, "asc" ]],
+			columns: [
+	      { orderable: false },
+	      {},
+	      {},
+	      {},
+	      {},
+	      {},
+	      {},
+	      {},
+	      {},
+	      {},
+	      {},
+	      {},
+    	]
+		  // responsive: true
+		});
+	});
+</script>

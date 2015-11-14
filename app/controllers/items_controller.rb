@@ -4,7 +4,11 @@ class ItemsController < ApplicationController
   respond_to :html
 
   def index
-    @items = Item.all
+    if current_user
+      @items = Item.where(items: :rating < -1)
+    else
+      @items = Item.all
+    end
   end
 
   def show

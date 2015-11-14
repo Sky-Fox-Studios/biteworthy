@@ -11,5 +11,8 @@ class Item < ActiveRecord::Base
   has_many :tags, through: :foods_tags
   has_many :foods_tags
 
+  has_many :ingredients, through: :items_ingredients
+  has_many :items_ingredients
+
   validates :restaurant_id, :menu_group_id, :name, presence: true
 end

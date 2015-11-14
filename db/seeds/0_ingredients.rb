@@ -1,12 +1,16 @@
 module Ingredients
 
-  #:dairy
-  #:fruit
-  #:grain
-  #:meat
-  #:nut
-  #:sea_food
-  #:vegetable
+  # :fruit
+  # :herb
+  # :grain
+  # :nut
+  # :bean_legume_pulse
+  # :vegetable
+  # :animal_product
+  # :dairy
+  # :meat
+  # :poultry
+  # :fish
 
   fruits = %w(Avocado
     Abiu
@@ -248,6 +252,7 @@ module Ingredients
     Bamboo\ shoot
     Beet
     Beetroot
+    Bell\ pepper
     Bitterleaf
     Bok\ choy
     Broadleaf
@@ -386,7 +391,7 @@ module Ingredients
     Yam
     Yarrow
     Yucca)
-    
+
   vegetables.each do |vegetable|
     Ingredient.find_or_create_by(name: vegetable, vegetable: true)
   end
@@ -588,7 +593,7 @@ module Ingredients
   herbs.each do |herb|
     Ingredient.find_or_create_by(name: herb, herb: true)
   end
-    
+
   nuts = %w(
     Almond
     Beech
@@ -647,7 +652,7 @@ module Ingredients
   nuts.each do |nut|
     Ingredient.find_or_create_by(name: nut, nut: true)
   end
-    
+
   bean_legume_pulses = %w(
     Bambara\ groundnut
     Chickpeas
@@ -710,16 +715,16 @@ module Ingredients
     Cattle
     Veal\ (calves)
     Yak)
-    
+
   meat_lagomorphs = %w(
     Hare
     Pika
     Rabbit)
-    
+
   meat_marsupials = %w(
     Kangaroo
     Opossum)
-    
+
   meat_ovis_sheep = %w(
     Lamb
     Domestic\ Sheep
@@ -777,7 +782,7 @@ module Ingredients
     Frog
     Salamander
     Toad)
-    
+
     # ALL MEATS
     all_meats = meats_beef
       .concat(meat_lagomorphs)
@@ -789,11 +794,11 @@ module Ingredients
       .concat(meat_mammals)
       .concat(meat_reptiles)
       .concat(meat_amphibians)
-      
+
   all_meats.each do |meat|
     Ingredient.find_or_create_by(name: meat, meat: true)
   end
-  
+
   meat_poultry_birds = %w(
     Chicken
     Duck
@@ -813,14 +818,14 @@ module Ingredients
     Pigeon
     Woodcock
     Ptarmigan)
-    
+
     all_poultry = meat_poultry_birds
       .concat(meat_game_birds)
 
     all_poultry.each do |poultry|
       Ingredient.find_or_create_by(name: poultry, poultry: true)
     end
-    
+
   meat_fish = %w(
     Anchovy
     Basa
@@ -854,11 +859,11 @@ module Ingredients
     Trout
     Tuna
     Walleye)
-    
+
     meat_fish.each do |fish|
       Ingredient.find_or_create_by(name: fish, fish: true, meat: true)
     end
-    
+
   meat_echinoderms = %w(
     sea\ urchin)
 

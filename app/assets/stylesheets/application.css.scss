@@ -12,10 +12,10 @@
  *
  *= require_tree .
  *= require_self
- //= require foundation_and_overrides
 
- *= require foundation_and_overrides
  *= require foundation
+ *= require foundation_and_overrides
+ *= require dataTables/jquery.dataTables.foundation
 */
 @import 'foundation-icons';
 /* @import "font-awesome-sprockets"; */
@@ -51,4 +51,9 @@ h3{
 }
 h4{
   font-family: 'Architects Daughter', cursive !important;
+}
+
+a:hover {
+  background-color: transparent !important;
+  color: hotpink !important;
 }

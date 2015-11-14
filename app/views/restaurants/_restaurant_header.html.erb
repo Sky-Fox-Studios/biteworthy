@@ -1,16 +1,16 @@
 <div class="row">
   <div class="small-12 columns" >
-    <div class="small-10 medium-9 large-8 columns" style="padding-left: 0 !important;">
+    <div class="small-9 medium-9 large-8 columns" style="padding-left: 0 !important;">
       <div style="text-align:left;margin-top: auto; margin-bottom: auto;">
         <h1><%= restaurant.name %></h1>
         <%= restaurant.slogan %>
       </div>
     </div>
-    <div class="small-2 medium-3 large-4 columns" style="text-align: right; padding-right:0px">
+    <div class="small-3 medium-3 large-4 columns" style="text-align: right; padding-right:0px">
       <% if restaurant.main_image_url %>
-        <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant, size: "120x120", style: "margin: 5px 0px 5px 5px;", class: "right") %>
+        <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant, size: "120x100%", style: "margin: 5px 0px 5px 5px;", class: "right") %>
       <% else %>
-        <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant, size: "120x120", style: "margin: 5px 0px 5px 5px;", class: "right") %>
+        <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant, size: "120x100%", style: "margin: 5px 0px 5px 5px;", class: "right") %>
       <% end %>
     </div>
   </div>

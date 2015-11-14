@@ -121,6 +121,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer "tag_id"
   end
 
+  create_table "restaurants_users", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
     t.integer  "user_id"
@@ -154,6 +159,15 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "tags_groups_relations", force: :cascade do |t|
   end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.string   "key"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_roles", ["key"], name: "index_user_roles_on_key", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name",              default: "", null: false
@@ -189,5 +203,12 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+
+  create_table "users_roles", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

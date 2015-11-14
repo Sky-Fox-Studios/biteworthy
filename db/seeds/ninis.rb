@@ -1,6 +1,6 @@
 module Ninis
-   ninis          = Restaurant.find_or_create_by(name: "Ninis", slogan: "Food so good you wont trust the water",
-   main_image_url: "ninis.gif")
+   ninis          = Restaurant.find_or_create_by(name: "Ninis", slogan: "Food so good you wont trust the water", main_image_url: "ninis.gif")
+
    ninis_burritos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Burritos", description: "A flour tortilla with beans, rice, sour crea, cheese, salsa, and...", is_food_group: true)
    burrito_items = [
      ["Chicken", nil, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
@@ -19,9 +19,8 @@ module Ninis
       end
    end
 
-    ninis_tacos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name:
-      "Tacos", description: "Three soft flour or corn tortillas filled with sour cream, cheese, lettuce, salsa and...", is_food_group: true)
-    taco_items = [
+   ninis_tacos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Tacos", description: "Three soft flour or corn tortillas filled with sour cream, cheese, lettuce, salsa and...", is_food_group: true)
+   taco_items = [
       ["Chicken", nil, [{price: 8.25, size: nil}]],
       ["Carnitas", "Shredded pork",  [{price: 8.25, size: nil}]],
       ["Barbacoa", "Shredded beef",  [{price: 8.25, size: nil}]],

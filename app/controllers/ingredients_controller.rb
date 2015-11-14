@@ -13,6 +13,9 @@ class IngredientsController < ApplicationController
 
   def new
     @ingredient = Ingredient.new
+    if params[:food_id]
+      @food = Food.find_by(params[:food_id])
+    end
     respond_with(@ingredient)
   end
 
@@ -22,14 +25,21 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    redirect_to admin_ingredients_path
+    if params[:food_id]
+      @food = Food.find_by(params[:ingredient][:food_id])
+      @ingredient.foods << @food
+      @ingredient.save
+      redirect_to food_path(@food), notice: "Ingredient created"
+    else
+      redirect_to ingredients_path, notice: "Ingredient created"
+    end
   end
 
   def update
     if @ingredient.update(ingredient_params)
-      redirect_to edit_admin_ingredient_path(@ingredient)
+      redirect_to ingredients_path, notice: "Updated: #{@ingredient.name}"
     else
-      redirect_to edit_admin_ingredient_path(@ingredient)
+      redirect_to ingredients_path, notice: "Ingredient not updated"
     end
   end
 

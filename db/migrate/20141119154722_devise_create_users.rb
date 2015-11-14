@@ -11,7 +11,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :is_admin
       t.boolean :is_editor
       t.boolean :is_staff
+
       t.integer :strikes
+      t.boolean :banned
+      t.datetime :banned_at
 
 
       ## Recoverable

@@ -1,0 +1,18 @@
+<%= simple_form_for(@ingredient) do |f| %>
+<%= render partial: "modules/form_errors", locals: {current_model: @ingredient} %>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+    <% if @food %>
+		  <%= f.input :food_id, :as => :hidden, :input_html => { :value => @food.id } %>
+    <% end %>
+	</div>
+	<div class="small-12 medium-6 large-4 columns">
+		<%= f.input :name, :placeholder => "Green pepper, Red Onion, Sharp Chedder Cheese"  %>
+    <%= f.label :notes, "*Please be descriptive, qualify what Type, Variety, or Brand", :class => "inline" %>
+  </div>
+	<div class="small-12 medium-12 large-12 columns">
+		<%= f.submit :class => "button small radius center" %>
+	</div>
+</div>
+<% end %>
