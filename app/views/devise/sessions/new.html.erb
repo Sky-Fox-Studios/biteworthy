@@ -1,8 +1,11 @@
 <div class="row">
-  <div class="small-5  columns" style="padding:11px 11px 11px 11px;">
-    <h2>Insert Credentials</h2>
+  <div class="small-12  columns" style="padding:11px;text-align:center;">
+    <h2 style="display:block;height: 200px;  line-height: 200px;"><%= link_to "<b>Create Account</b>".html_safe, new_registration_path(resource_name), class: "button" %></h2>
+  </div>
+  <div class="small-12  columns">
+    <h2  style="text-align:center;">Insert Credentials</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="small-11">
+    <div class="small-12 medium-6 large-4">
       <div class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true %>
@@ -30,8 +33,4 @@
       <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
     </div>
   </div>
-  <div class="small-7  columns" style="padding:11px;text-align:center;">
-    <h2 style="display:block;height: 200px;  line-height: 200px;"><%= link_to "Sign up", new_registration_path(resource_name) %></h2>
-  </div>
 </div>
-
