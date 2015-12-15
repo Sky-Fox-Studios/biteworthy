@@ -22,6 +22,9 @@ class Admin::RestaurantsController < AdminController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    address = @restaurant.addresses.find_or_create_by(params[:address][:street])
+    address.update(address_params)
+    binding.pry
     if @restaurant.save
       redirect_to admin_restaurants_path
     else
@@ -51,6 +54,10 @@ class Admin::RestaurantsController < AdminController
 
     def restaurant_params
       params.require(:restaurant).permit(:name, :slogan, :phone_number, :about, :disclaimer, :seating, :outside_seating)
+    end
+
+    def address_params
+      params.require(:address).permit(:restaurant_id, :street, :city, :state, :zip, :latitude, :longitude)
     end
 
 end

@@ -2,8 +2,8 @@
   <!-- restaurant_item_filter -->
   <%= label_tag "Filter by Restaurant:" %>
   <% if params[:restaurant_id] %>
-    <%= select_tag('restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}, include_blank: true, selected: params[:restaurant_id]), onchange: "document.getElementById('menu_group_id').value =null;this.form.submit();") %>
+    <%= select_tag('restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}, selected: params[:restaurant_id]), onchange: "document.getElementById('menu_group_id').value =null;this.form.submit();") %>
   <% else %>
-    <%= select_tag('restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}, include_blank: true), onchange: "this.form.submit();") %>
+    <%= select_tag('restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}), onchange: "this.form.submit();", prompt: "Choose...") %>
   <% end %>
 </div>

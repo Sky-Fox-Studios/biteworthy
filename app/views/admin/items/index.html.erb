@@ -1,4 +1,4 @@
-<h1>Listing Bite Worthy Foods</h1>
+<h1>Listing Bite Worthy Items</h1>
 <div class="row">
     <%= form_tag 'items', method: :get do %>
       <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
@@ -46,4 +46,4 @@
 
 <br>
 
-<%= link_to 'New Food...', new_admin_item_path, class: "button tiny radius success" %>
+<%= link_to 'New Item', new_admin_item_path, class: "button tiny radius success" %>

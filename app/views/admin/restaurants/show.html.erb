@@ -15,15 +15,10 @@
   <%= @restaurant.phone_number %>
 </p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @restaurant.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @restaurant.longitude %>
-</p>
+<p>Addresses:</p>
+<% @restaurant.addresses.each do |address| %>
+  <% render partial: "admin/addresses/show", locals: {address: address} %>
+<% end %>
 
 <%= link_to 'Edit', edit_admin_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', admin_restaurants_path %>

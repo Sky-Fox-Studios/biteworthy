@@ -17,7 +17,6 @@ class Admin::PricesController < AdminController
   end
 
   def edit
-    session[:return_to] ||= request.referer
   end
 
   def create
@@ -27,15 +26,15 @@ class Admin::PricesController < AdminController
 
   def update
     if @price.update(price_params)
-      redirect_to edit_admin_price_path(@price)
+      redirect_to edit_admin_item_path(@price.item), notice: "Price/Size updated"
     else
-      redirect_to edit_admin_price_path(@price)
+      render :edit
     end
   end
 
   def destroy
     @price.destroy
-    redirect_to admin_prices_path
+    redirect_to admin_prices_path, notice: "Price removed"
   end
 
   private

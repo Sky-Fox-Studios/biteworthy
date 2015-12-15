@@ -45,9 +45,14 @@ class Admin::ItemsController < AdminController
 
   def create
     @item = Item.new(item_params)
-    @item.tags = Tag.save_tags(params[:add_tags])
-    @item.save
-    redirect_to admin_items_path
+    if params[:add_tags] && !params[:add_tags].empty?
+      @item.tags = Tag.save_tags(params[:add_tags])
+    end
+    if @item.save
+      redirect_to admin_item_path(@item), notice: "Item: #{@item.name} created"
+    else
+      render :new
+    end
   end
 
   def update

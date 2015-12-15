@@ -19,36 +19,20 @@
 
 		  <tbody>
 		    <% @tags.each do |tag| %>
-			<%
-				resources_array = Array.new
-				num_asset_libs = tag.asset_libraries.where(:site => current_site).size	
-				num_assets = tag.assets.size
-				num_contents = tag.contents.size
-				if num_asset_libs > 0
-					resources_array.push(link_to "Asset Libraries (#{num_asset_libs})", tag_asset_libraries_path(tag))
-				end	
-				if num_assets > 0
-					resources_array.push(link_to "Assets (#{num_assets})", tag_assets_path(tag))
-				end	
-				if num_contents > 0
-					resources_array.push(link_to "Pieces of Content (#{num_contents})", tag_contents_path(tag))
-				end	
-			%>
-		      <tr>
+	      	<tr>
 		        <td>
-					<%= link_to raw('<i class="fi-page-edit"></i>'), edit_tag_path(tag) %>
-				</td>
-				<td><%= tag.name %></td>
-				<td>
-					
-					<%= resources_array.join(" | ").html_safe%>
-				</td>
+							<%= link_to raw('<i class="fi-page-edit"></i>'), edit_tag_path(tag) %>
+						</td>
+						<td><%= tag.name %></td>
+						<td>
+							<%= resources_array.join(" | ").html_safe%>
+						</td>
 		        <td><%= link_to raw('<i class="fi-trash"></i>'), tag_path(tag), method: :delete, data: { confirm: 'Are you sure you want to remove this tag?' } %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>
 		</table>
-		
+
 		<%= paginate @tags %>
 	</div>
 </div>

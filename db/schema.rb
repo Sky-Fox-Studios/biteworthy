@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id"
     t.string  "street"
-    t.string  "city",                     default: "Durango"
-    t.string  "state",                    default: "CO"
-    t.integer "zip",                      default: 81301
-    t.float   "latitude",      limit: 12
-    t.float   "longitude",     limit: 12
+    t.string  "city",                                   default: "Durango"
+    t.string  "state",                                  default: "CO"
+    t.integer "zip",                                    default: 81301
+    t.decimal "latitude",      precision: 10, scale: 6
+    t.decimal "longitude",     precision: 10, scale: 6
   end
 
   create_table "foods", force: :cascade do |t|
@@ -180,6 +180,8 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.boolean  "is_editor"
     t.boolean  "is_staff"
     t.integer  "strikes"
+    t.boolean  "banned"
+    t.datetime "banned_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

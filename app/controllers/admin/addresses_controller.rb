@@ -5,12 +5,10 @@ class Admin::AddressesController < AdminController
 
   def index
     @addresses = Address.all
-    respond_with(@addresses)
   end
 
   def new
     @address = Address.new
-    respond_with(@address)
   end
 
   def edit

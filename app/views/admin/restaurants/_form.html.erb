@@ -35,7 +35,9 @@
        <%= render partial: 'admin/addresses/show', locals: { address: address} %>
      <% end %>
      <% if @restaurant.addresses.empty? %>
-      <%= render partial: 'admin/addresses/form', locals: { restaurant: @restaurant, address: Address.new} %>
+       <%= f.fields_for :addresses do |builder| %>addresses msn
+          <%= render partial: 'admin/addresses/address_fields', locals: { f: builder} %>
+        <% end %>
      <% end %>
    </div>
 

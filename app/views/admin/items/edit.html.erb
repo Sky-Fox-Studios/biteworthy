@@ -1,5 +1,9 @@
-<h1>Bite Worthy <%= @item.name %></h1>
+<div class="small-12">
+  <h1>Bite Worthy <%= @item.name %></h1>
+</div>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', admin_items_path %>
+<div class="small-12" style="margin-left:30px;">
+  <%= link_to "All #{@item.restaurant.name} items", admin_items_path(restaurant_id: @item.restaurant), class: "button tiny radius padded" %>
+</div>

@@ -52,55 +52,53 @@
   </div>
   <% end %>
   <div class="row padded">
+    <div class="small-12 medium-6 columns">
+      <% unless @item.new_record? %>
     <%= simple_form_for(@item, url: admin_items_update_price_path(@item), :method => :post) do |f| %>
 
     <div class="row">
-      <div class="small-3 columns">
+      <div class="small-4 columns">
         <h4>Prices:</h4>
       </div>
-      <div class="small-3 columns">
+      <div class="small-6columns">
         <h4>Sizes:</h4>
       </div>
-      <div class="small-3 columns">
+      <div class="small-2 columns">
+
       </div>
     </div>
     <% @item.prices.map do |price| %>
-    <div class="row">
-      <div class="small-3 columns">
-        <%= "$#{price_to_s price.price }"  %>
+      <div class="row">
+        <div class="small-4 columns">
+          <%= "$#{price_to_s price.price }"  %>
+        </div>
+        <div class="small-6 columns">
+          <% if price.size != "" %>
+          <%= price.size %>
+          <% else %>
+          <i style="color:gray;"><%="*Empty*" %></i>
+          <% end %>
+        </div>
+        <div class="small-2 columns">
+          <%= link_to "Edit", edit_admin_price_path(price), class: "" %>
+        </div>
       </div>
-      <div class="small-3 columns">
-        <% if price.size != "" %>
-        <%= price.size %>
-        <% else %>
-          <i style="color:gray;"><%="$#{price_to_s price.price} worth? " %></i>
-        <% end %>
-      </div>
-      <div class="small-3 columns">
-      </div>
-      <div class="small-3 columns">
-        <%= link_to "edit", edit_admin_price_path(price) %>
-      </div>
-
-    </div>
     <% end %>
     <div class="row">
-      <div class="small-3 columns">
+      <div class="small-4 columns">
         <input type="text" id="new_price" name="new_price" placeholder="11.00" />
       </div>
-      <div class="small-3 columns">
+      <div class="small-6 columns">
         <input type="text" id="new_size" name="new_size" placeholder="Size" />
       </div>
-      <div class="small-3 columns">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="small-12 columns">
-        <div class="actions padded">
-          <%= f.submit class: "button tiny radius success", value: 'Save Price' %>
-        </div>
+      <div class="small-2 columns">
+          <%= f.submit class: "button tiny radius success", value: 'Add' %>
       </div>
     </div>
   <% end %>
+  <% end %>
+  </div>
+    <div class="small-12 medium-6 columns">
+
+    </div>
 </div>

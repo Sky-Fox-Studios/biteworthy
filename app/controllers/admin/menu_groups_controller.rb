@@ -4,7 +4,12 @@ class Admin::MenuGroupsController < AdminController
   respond_to :html
 
   def index
+    @restaurants = Restaurant.all.order(:name)
+
     @menu_groups = MenuGroup.all
+    if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
+      @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
+    end
     respond_with(@menu_groups)
   end
 
@@ -25,19 +30,24 @@ class Admin::MenuGroupsController < AdminController
 
   def create
     @menu_group = MenuGroup.new(menu_group_params)
-    @menu_group.save
-    redirect_to admin_menu_groups_path
+    if @menu_group.save
+      redirect_to admin_menu_groups_path(restaurant_id: @menu_group.restaurant_id)
+    else
+      render :new
+    end
   end
 
   def update
-    binding.pry
-    @menu_group.update(menu_group_params)
-    redirect_to admin_menu_groups_path
+    if @menu_group.update(menu_group_params)
+      redirect_to admin_menu_groups_path(restaurant_id: @menu_group.restaurant_id)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @menu_group.destroy
-    redirect_to admin_menu_groups_path
+    redirect_to admin_menu_groups_path, alert: "Menu Group Destroyed"
   end
 
   private

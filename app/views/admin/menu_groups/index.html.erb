@@ -1,5 +1,9 @@
 <h1>Listing Menu Groupings</h1>
-
+<div class="row">
+  <%= form_tag 'menu_groups', method: :get do %>
+    <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+  <% end %>
+</div>
 <table>
   <thead>
     <tr>

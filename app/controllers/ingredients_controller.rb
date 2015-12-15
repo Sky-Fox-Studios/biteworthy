@@ -24,7 +24,8 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    @ingredient = Ingredient.find_or_create_by(name: ingredient_params[:name])
+    @ingredient.update(ingredient_params)
     if params[:food_id]
       @food = Food.find_by(params[:ingredient][:food_id])
       @ingredient.foods << @food

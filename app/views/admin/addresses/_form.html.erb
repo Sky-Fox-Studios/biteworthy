@@ -2,6 +2,7 @@
   <div class="row">
     <div class="small-12 columns">
       <%= a.input :restaurant_id, as: :hidden, :input_html => { :value => restaurant.id } %>
+      <%= a.input :id, as: :hidden, :input_html => { :value => address.id } %>
     </div>
     <div class="small-4 columns">
       <%= a.input :street %>
@@ -25,7 +26,7 @@
       MAP
     </div>
     <div class="small-12 columns">
-        <%= a.submit %>
+        <%#= a.submit %>
    </div>
  </div>
 <% end %>
