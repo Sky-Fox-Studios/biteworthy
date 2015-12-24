@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :restaurants, :menu_groups, :foods, :items, :prices, :users, :addresses
-      post 'items/update_item_price/:id', to: 'items#update_price', :as => "items_update_price"
+    post 'items/update_item_price/:id', to: 'items#update_price', :as => "items_update_price"
   end
 
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', :as => "get_menu_groups_by_restaurant"
   get '/create_user_rating',            to: 'reviews#create_user_rating',                :as => "create_user_rating"
   get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        :as => "restaurant_item_filter"
-  get '/admin_home',                    to: 'admin#home',                                :as => "admin_home"
 
   root 'base#home'
+  get  'admin_root',                         to: 'admin#home', as: "admin_root"
 end

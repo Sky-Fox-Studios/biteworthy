@@ -1,18 +1,75 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="<%=root_path%>">BWD</a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="left">
+      <li><a href="<%=user_path(current_user)%>">Profile</a></li>
+      <li class="active"><a href="<%=reviews_path%>">Reviews</a></li>
+
+    </ul>
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <% if current_user %>
+        <li class="active"><a href="<%=reviews_path%>">Reviews</a></li>
+          <% if current_user.is_admin? %>
+            <li class="has-dropdown">
+              <a href="<%=admin_root_path%>">Admin</a>
+              <ul class="dropdown">
+                <li><a href="<%=admin_restaurants_path%>">Restaurants</a></li>
+                <li><a href="<%=admin_menu_groups_path%>">Menu Groups</a></li>
+                <li><a href="<%=admin_items_path%>">Items</a></li>
+                <li><a href="<%=tags_path%>"></a></li>
+                <li><a href=""></a></li>
+                <li><a href="<%admin_users_path%>"></a>Users</li>
+              </ul>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="active"><a href="<%=user_session_path%>">Login</a></li>
+        <% end %>
+    </ul>
+
+  </section>
+</nav>
+
 <div class="row">
 	<div class="small-12 columns">
-      <div class="icon-bar three-up">
-         <a class="item" href="<%=root_path%>">
-            <i class="fi-home"></i>
-            <label>BWD</label>
-         </a>
-         <a class="item" href="">
-            <i class="fi-magnifying-glass"></i>
-            <label>Search</label>
-         </a>
-         <a class="item"  href="<%=admin_home_path%>">
+      <div class="icon-bar four-up">
+            <a class="item" href="<%=root_path%>">
+               <i class="fi-home"></i>
+               <label>Restaurants</label>
+            </a>
+            <a class="item" href="<%=reviews_path%>">
+               <i class="fi-trophy"></i>
+               <label>Reviewed</label>
+            </a>
+           <% if current_user.is_admin %>
+            <a class="item" href="<%=admin_users_path%>">
+               <i class="fi-torso"></i>
+               <label>Users</label>
+            </a>
+            <a class="item" href="<%=admin_home_path%>">
+               <i class="fi-key"></i>
+               <label>Admin</label>
+            </a>
+        <% else %>
+        <a class="item" href="<%= user_path(current_user) %>">
             <i class="fi-torso"></i>
-            <label>Login</label>
-         </a>
+            <label>Profile</label>
+          </a>
+        <% end %>
+        <% if current_user.is_editor %>
+        <a class="item" href="<%=admin_home_path%>">
+            <i class="fi-pencil"></i>
+            <label>Editor</label>
+          </a>
+        <% end %>
       </div>
    </div>
 </div>
