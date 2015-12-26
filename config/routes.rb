@@ -12,7 +12,7 @@ Rails.application.routes.draw do
    end
 
 
-  resources :reviews, only: [:index, :show, :edit]
+  resources :reviews
   resources  :tags, :ingredients
 
   namespace :admin do
@@ -24,8 +24,11 @@ Rails.application.routes.draw do
         resources :prices
       end
     end
+    get 'menu_groups', to: 'menu_groups#all', as: "menu_groups"
+    get 'items', to: 'items#all', as: "items"
+    get 'foods', to: 'foods#all', as: "foods"
 
-    post 'items/update_item_price/:id', to: 'items#update_price', :as => "items_update_price"
+    post 'items/update_item_price/:id', to: 'items#update_price', as: "items_update_price"
   end
 
 
@@ -33,9 +36,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
 
 
-  get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', :as => "get_menu_groups_by_restaurant"
-  get '/create_user_rating',            to: 'reviews#create_user_rating',                :as => "create_user_rating"
-  get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        :as => "restaurant_item_filter"
+  get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"
+  get '/create_user_rating',            to: 'reviews#create_user_rating',                as: "create_user_rating"
+  get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        as: "restaurant_item_filter"
 
   root 'base#home'
   get  'admin_root',                    to: 'admin#home', as: "admin_root"

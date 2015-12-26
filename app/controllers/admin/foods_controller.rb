@@ -35,17 +35,20 @@ class Admin::FoodsController < AdminController
   def create
     @food = Food.new(food_params)
     @food.tags = Tag.save_tags(params[:add_tags])
-    @food.save
-    redirect_to admin_foods_path
+    if @food.save
+      redirect_to admin_foods_path
+    else
+      redirect_to :back
+    end
   end
 
   def update
-    @food.tags = Tag.save_tags(params[:add_tags])
-    @food.prices << Price.create(food_id: @food.id, price: params[:new_price], size: params[:new_size])
     if @food.update(food_params)
+      @food.prices << Price.create(food_id: @food.id, price: params[:new_price], size: params[:new_size])
+      @food.tags = Tag.save_tags(params[:add_tags])
        redirect_to admin_foods_path
     else
-       redirect_to edit_admin_food_path(@food)
+       redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
     end
   end
 

@@ -7,7 +7,7 @@ class Tag < ActiveRecord::Base
    #has_and_belongs_to_many :tags, as: :parent_tag
    validates :name, presence: true
 
-   before_save :normalize_tag_name
+   before_validation :normalize_tag_name
 
    def self.save_tags(tags)
       tags.split(',').map{ |tag_name|

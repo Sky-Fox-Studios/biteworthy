@@ -70,6 +70,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer "food_id"
   end
 
+  create_table "items_ingredients", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "ingredient_id"
+  end
+
   create_table "menu_groups", force: :cascade do |t|
     t.integer  "restaurant_id"
     t.integer  "menu_order"
