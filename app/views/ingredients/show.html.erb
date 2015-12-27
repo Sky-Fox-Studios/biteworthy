@@ -1,13 +1,8 @@
-<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @item.restaurant} %>
-<%= render :partial => '/menu_groups/menu_group_header', locals: {menu_group: @item.menu_group} %>
-
 <div class="row">
   <div class="small-3 medium-3 large-3 columns">
-    <%= render :partial => 'image', locals: {item: @ingredient} %>
+    <%= render :partial => 'image', locals: {ingredient: @ingredient} %>
   </div>
   <div class="small-9 medium-9 large-9 columns">
-    <%= render :partial => 'name_desc', locals: {item: @ingredient} %>
+    <%= render :partial => 'name_desc', locals: {ingredient: @ingredient} %>
   </div>
 </div>
-
-<%= render :partial => 'item_footer', locals: {item: @ingredient, review: @review} %>

@@ -9,4 +9,8 @@ class Review < ActiveRecord::Base
    def get_rating
     Review.ratings[self.rating]
    end
+
+   def get_review_name
+     self.review_type.constantize.find_by(self.review_id).name
+   end
 end
