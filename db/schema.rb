@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   end
 
   create_table "foods_ingredients", force: :cascade do |t|
+    t.integer  "restaurant_id"
     t.integer  "food_id"
     t.integer  "ingredient_id"
-    t.integer  "restaurant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,11 +66,13 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   end
 
   create_table "items_foods", force: :cascade do |t|
+    t.integer "restaurant_id"
     t.integer "item_id"
     t.integer "food_id"
   end
 
   create_table "items_ingredients", force: :cascade do |t|
+    t.integer "restaurant_id"
     t.integer "item_id"
     t.integer "ingredient_id"
   end

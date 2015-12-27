@@ -8,7 +8,7 @@ module Rgps
   puts "Rgps rgps_wraps"
 
   rgps_wrap_items = [
-    ["Roasted Chicken or Turkey Breast", "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing.", "Choice of cheese, Choice of dressing", "Roma Tomatoes, Red Onion, Green Peppers, Carrots, Romaine Lettuce"],
+    ["Roasted Chicken or Turkey Breast", "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing.", "Choice of cheese, Choice of dressing", "Roma Tomatoes, Red Onion, Green Pepper, Carrots, Romaine Lettuce"],
     ["Pulled Pork BBQ", "Smoked Pulled Pork, Cheddar Cheese, Red Onion, Black Beans, Homemade Cole Slaw, and our Classic BBQ Sauce.", "Homemade Cole Slaw", "Smoked Pulled Pork, Cheddar Cheese, red onion, Black Beans"],
     ["Veggie", "Sweet roasted red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, crisp romaine lettuce and choice of Cheese and Dressing.", "Choice of cheese, Choice of dressing", "red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, romaine lettuce"],
   ]
