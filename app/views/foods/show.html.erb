@@ -1,36 +1,30 @@
+<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @food.restaurant} %>
 <div class="row">
-   <div class="small-12 columns">
-      <h2 align="center"><%= @restaurant.name %></h3>
-<!-- TODO only show logo here.       -->
-   </div>
-   <div class="small-12 columns">
-
-      <div class="small-3 columns">
-         <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
-      </div>
-      <div class="small-9 columns food-item-name">
-        <div class="row">
+    <div class="small-3 columns">
+       <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
+    </div>
+    <div class="small-9 columns food-item-name">
+      <div class="row">
+        <div class="small-6 columns">
+          <h3>
+            <%= @food.name %>
+          </h3>
+          <p align="none">
+            <%= @food.description %>
+          </p>
+        </div>
           <div class="small-6 columns">
-            <h3>
-              <%= @food.name %>
-            </h3>
-            <p align="none">
-              <%= @food.description %>
-            </p>
-          </div>
-            <div class="small-6 columns">
 
-            Ingredients:
-            <% if @food.ingredients %>
-              <% @food.ingredients.each do |ingredient| %>
-                <%= link_to ingredient.name, ingredient_path(ingredient) %>,
-              <% end %>
+          Ingredients:
+          <% if @food.ingredients %>
+            <% @food.ingredients.each do |ingredient| %>
+              <%= link_to ingredient.name, ingredient_path(ingredient) %>,
             <% end %>
-            <% if current_user && current_user.is_admin? %>
-            <%= link_to "<i class='fi-plus'></i>".html_safe, new_ingredient_path(food_id: @food) %>
-            <% end %>
-          </div>
-          </div>
+          <% end %>
+          <% if current_user && current_user.is_admin? %>
+          <%= link_to "<i class='fi-plus'></i>".html_safe, new_ingredient_path(food_id: @food) %>
+          <% end %>
+        </div>
         </div>
       </div>
    </div>

@@ -8,14 +8,25 @@
     </p>
   </div>
     <div class="small-6 columns">
+    <% unless item.foods.empty? %>
+      FOODS:
+      <% item.foods.each do |food| %>
+        <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>,
+      <% end %>
+    <% end %>
+    <br>
+    <% unless item.ingredients.empty? %>
+      INGREDIENTS:
+      <% item.ingredients.each do |ingredient| %>
+        <%= link_to ingredient.name, ingredient_path(ingredient) %>,
+      <% end %>
+    <% end %>
 
-    FOODS:
-    <% item.foods.each do |food| %>
-      <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>,
+    <% if current_user && current_user.is_admin? %>
+      <%= link_to "New ingredient", new_ingredient_path %>
+
+
     <% end %>
-    INGREDIENTS:
-    <% item.ingredients.each do |ingredient| %>
-      <%= link_to ingredient.name, ingredient_path(ingredient) %>,
-    <% end %>
+
   </div>
 </div>
