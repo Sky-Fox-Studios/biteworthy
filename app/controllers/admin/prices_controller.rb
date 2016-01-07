@@ -26,7 +26,7 @@ class Admin::PricesController < AdminController
 
   def update
     if @price.update(price_params)
-      redirect_to edit_admin_item_path(@price.item), notice: "Price/Size updated"
+      redirect_to edit_admin_restaurant_item_path(@price.item.restaurant, @price.item), notice: "Price/Size updated"
     else
       render :edit
     end

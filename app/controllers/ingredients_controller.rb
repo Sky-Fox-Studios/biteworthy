@@ -30,7 +30,7 @@ class IngredientsController < ApplicationController
       @food = Food.find_by(params[:ingredient][:food_id])
       @ingredient.foods << @food
       @ingredient.save
-      redirect_to food_path(@food), notice: "Ingredient created"
+      redirect_to restaurant_food_path(@food.restaurant, @food), notice: "Ingredient created"
     else
       redirect_to ingredients_path, notice: "Ingredient created"
     end

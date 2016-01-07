@@ -161,9 +161,7 @@ module Ingredients
     Oregon\ grape
     Oroblanco
     Papaya
-    Papaya
     Passionfruit
-    Pawpaw
     Pawpaw
     Peach
     Peach\ Palm
@@ -238,7 +236,9 @@ module Ingredients
     Zucchini)
 
   fruits.each do |fruit|
-    Ingredient.find_or_create_by(name: fruit, fruit: true)
+    ingredient = Ingredient.find_or_create_by(name: fruit)
+    puts fruit
+    ingredient.tags << Tag.find_or_create_by(name: "fruit")
   end
 
   vegetables = %w(
@@ -334,8 +334,6 @@ module Ingredients
     Mooli
     Mozuku
     Mustard
-    New\ Zealand
-    Spinach
     Nopal
     Nori
     Ogonori
@@ -393,7 +391,9 @@ module Ingredients
     Yucca)
 
   vegetables.each do |vegetable|
-    Ingredient.find_or_create_by(name: vegetable, vegetable: true)
+    ingredient = Ingredient.find_or_create_by(name: vegetable)
+    puts vegetable
+    ingredient.tags << Tag.find_or_create_by(name: "vegetable")
   end
 
   herbs = %w(
@@ -571,10 +571,8 @@ module Ingredients
     Turmeric
     Vanilla
     Vietnamese\ Balm
-    Vietnamese
-    Cinnamon
-    Vietnamese
-    Coriander
+    Vietnamese\ Cinnamon
+    Vietnamese\ Coriander
     Wasabi
     Water-pepper
     Wattleseed
@@ -591,7 +589,9 @@ module Ingredients
     Za'atar
     Zedoary)
   herbs.each do |herb|
-    Ingredient.find_or_create_by(name: herb, herb: true)
+    ingredient = Ingredient.find_or_create_by(name: herb)
+    puts herb
+    ingredient.tags << Tag.find_or_create_by(name: "herb")
   end
 
   nuts = %w(
@@ -650,7 +650,8 @@ module Ingredients
     Walnut
     Water\ Caltr)
   nuts.each do |nut|
-    Ingredient.find_or_create_by(name: nut, nut: true)
+    ingredient = Ingredient.find_or_create_by(name: nut)
+    ingredient.tags << Tag.find_or_create_by(name: "nut")
   end
 
   bean_legume_pulses = %w(
@@ -675,7 +676,8 @@ module Ingredients
     Yam\ beans
     Soybeans)
   bean_legume_pulses.each do |bean_legume_pulse|
-    Ingredient.find_or_create_by(name: bean_legume_pulse, bean_legume_pulse: true)
+    ingredient = Ingredient.find_or_create_by(name: bean_legume_pulse)
+    ingredient.tags << Tag.find_or_create_by(name: "bean legume pulse")
   end
 
   grains = %w(Barley
@@ -704,7 +706,8 @@ module Ingredients
     Wattleseed-acacia\ seed)
 
   grains.each do |grain|
-    Ingredient.find_or_create_by(name: grain, grain: true)
+    ingredient = Ingredient.find_or_create_by(name: grain)
+    ingredient.tags << Tag.find_or_create_by(name: "grain")
   end
 
   puts "non meats seeded"
@@ -796,7 +799,8 @@ module Ingredients
       .concat(meat_amphibians)
 
   all_meats.each do |meat|
-    Ingredient.find_or_create_by(name: meat, meat: true)
+    ingredient = Ingredient.find_or_create_by(name: meat)
+    ingredient.tags << Tag.find_or_create_by(name: "meat")
   end
 
   meat_poultry_birds = %w(
@@ -823,7 +827,8 @@ module Ingredients
       .concat(meat_game_birds)
 
     all_poultry.each do |poultry|
-      Ingredient.find_or_create_by(name: poultry, poultry: true)
+      ingredient = Ingredient.find_or_create_by(name: poultry)
+      ingredient.tags << Tag.find_or_create_by(name: "poultry")
     end
 
   meat_fish = %w(
@@ -861,9 +866,12 @@ module Ingredients
     Walleye)
 
     meat_fish.each do |fish|
-      Ingredient.find_or_create_by(name: fish, fish: true, meat: true)
+      ingredient = Ingredient.find_or_create_by(name: fish)
+      ingredient.tags << Tag.find_or_create_by(name: "meat")
+      ingredient.tags << Tag.find_or_create_by(name: "fish")
     end
 
+  #nevermind this
   meat_echinoderms = %w(
     sea\ urchin)
 

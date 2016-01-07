@@ -32,12 +32,9 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   end
 
   create_table "foods_ingredients", force: :cascade do |t|
+    t.integer  "restaurant_id"
     t.integer  "food_id"
     t.integer  "ingredient_id"
-    t.boolean  "local"
-    t.boolean  "organic"
-    t.boolean  "naturally_grown"
-    t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,19 +46,14 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "fruit",             default: false
-    t.boolean  "herb",              default: false
-    t.boolean  "grain",             default: false
-    t.boolean  "nut",               default: false
-    t.boolean  "bean_legume_pulse", default: false
-    t.boolean  "vegetable",         default: false
-    t.boolean  "animal_product",    default: false
-    t.boolean  "dairy",             default: false
-    t.boolean  "meat",              default: false
-    t.boolean  "poultry",           default: false
-    t.boolean  "fish",              default: false
+    t.string   "tag_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "ingredients_tags", force: :cascade do |t|
+    t.integer "ingredient_id"
+    t.integer "tag_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -74,8 +66,15 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   end
 
   create_table "items_foods", force: :cascade do |t|
-    t.integer "food_id"
+    t.integer "restaurant_id"
     t.integer "item_id"
+    t.integer "food_id"
+  end
+
+  create_table "items_ingredients", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "item_id"
+    t.integer "ingredient_id"
   end
 
   create_table "menu_groups", force: :cascade do |t|

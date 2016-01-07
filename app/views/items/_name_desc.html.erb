@@ -11,7 +11,11 @@
 
     FOODS:
     <% item.foods.each do |food| %>
-      <%= link_to food.name, food_path(food) %>,
+      <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>,
+    <% end %>
+    INGREDIENTS:
+    <% item.ingredients.each do |ingredient| %>
+      <%= link_to ingredient.name, ingredient_path(ingredient) %>,
     <% end %>
   </div>
 </div>

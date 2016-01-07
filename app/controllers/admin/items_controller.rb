@@ -2,6 +2,24 @@ class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :update_price, :destroy]
   respond_to :html
 
+
+  def all
+    @page= params[:page]
+
+    @restaurants = Restaurant.all.order(:name)
+    if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
+      @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
+      if params.has_key?(:menu_group_id) && !params[:menu_group_id].empty?
+        @items = Item.where(restaurant_id: params[:restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(25)
+      else
+        @items = Item.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
+      end
+    else
+      @items = Item.page(@page).per(25)
+    end
+    render :index
+  end
+
   def index
     @page= params[:page]
 
@@ -45,11 +63,11 @@ class Admin::ItemsController < AdminController
 
   def create
     @item = Item.new(item_params)
-    if params[:add_tags] && !params[:add_tags].empty?
-      @item.tags = Tag.save_tags(params[:add_tags])
-    end
+    # if params[:add_tags] && !params[:add_tags].empty?
+    #   @item.tags = Tag.save_tags(params[:add_tags])
+    # end
     if @item.save
-      redirect_to admin_item_path(@item), notice: "Item: #{@item.name} created"
+      redirect_to admin_restaurant_item_path(@item.restaurant, @item), notice: "Item: #{@item.name} created"
     else
       render :new
     end
@@ -61,12 +79,12 @@ class Admin::ItemsController < AdminController
     else
       flash[:notice] = "Item failed to update"
     end
-      redirect_to edit_admin_item_path(@item)
+      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   def update_price
     @item.prices << Price.create(item_id: @item.id, price: params[:new_price], size: params[:new_size])
-    redirect_to edit_admin_item_path(@item)
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
 
   end
 

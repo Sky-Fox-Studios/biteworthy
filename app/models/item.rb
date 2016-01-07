@@ -8,6 +8,9 @@ class Item < ActiveRecord::Base
   has_many :foods, through: :items_foods
   has_many :items_foods
 
+  has_many :ingredients, through: :items_ingredients
+  has_many :items_ingredients
+
   has_many :tags, through: :foods_tags
   has_many :foods_tags
 

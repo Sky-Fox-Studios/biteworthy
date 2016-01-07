@@ -1,4 +1,4 @@
-<%= simple_form_for [@reviewable, @review] do |f| %>
+<%= simple_form_for @review do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -11,7 +11,7 @@
   <% end %>
   <% unless @review.new_record? %>
     <div class="row">
-      <div class="small-12">
+      <div class="small-12 columns">
         <%= render partial: "/#{@review.review_type.downcase.pluralize}/review_show", locals: {item: @reviewable} %>
       </div>
     </div>
@@ -26,4 +26,3 @@
     <%= f.submit class: "button tiny radius success" %>
   </div>
 <% end %>
-asdf
