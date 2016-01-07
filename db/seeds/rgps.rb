@@ -38,7 +38,7 @@ module Rgps
   end
   puts "Rgps rgps_wrap_item"
   rgps_salad_items = [
-    ["Caesar Salad", "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and our Caesar Dressing."],
+    ["Caesar Salad", "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and Dressing."],
     ["Full House", "Romaine Lettuce with Roma Tomatoes, Red Onion, Green Peppers, Carrots, Cucumbers, Roasted Red Peppers."],
   ]
 
