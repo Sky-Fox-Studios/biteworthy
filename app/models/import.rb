@@ -22,7 +22,6 @@ class Import
   end
 
   def eat(it)
-    binding.pry
     file = CSV.open("#{Rails.root.join('db', 'seeds', 'csv', it)}.csv", headers: true, header_converters: :symbol, encoding: "iso-8859-1:UTF-8")
     file.map do |row|
       unless row[0].nil? || row[0].empty?
@@ -58,13 +57,13 @@ class Import
     row[:foods].split(',').each do |food|
       foods << Food.find_or_create_by(name: food, restaurant: restaurant)
     end
-    binding.pry
-    Item.find_or_create_by(
+    puts "restaurant:#{restaurant}"
+    puts "menu_group:#{menu_group}"
+    item = Item.find_or_create_by(
       restaurant: restaurant,
       menu_group: menu_group,
-      name: row[:item_name],
-      description: row[:description],
-      foods: foods,
+      name: row[:item_name]
     )
+    item.update(description: row[:description], foods: foods)
   end
 end
