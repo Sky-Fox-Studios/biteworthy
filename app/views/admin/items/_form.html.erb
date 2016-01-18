@@ -1,5 +1,5 @@
 <div class="row">
-  <%= simple_form_for([:admin, @item]) do |f| %>
+  <%= simple_form_for([:admin, @restaurant, @item]) do |f| %>
   <% if @item.errors.any? %>
   <div id="error_explanation" class="small-12">
     <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -28,9 +28,9 @@
       </div>
       <div class="small-4 columns">
       <% unless @item.new_record? %>
-        <%= link_to "<i class='fi-plus'></i> Menu Group".html_safe, new_admin_menu_group_path(menu_group: {restaurant_id: @item.restaurant_id}) %>
+        <%= link_to "<i class='fi-plus'></i> Menu Group".html_safe, new_admin_restaurant_menu_group_path(@restaurant) %>
       <% else %>
-        <%= link_to "<i class='fi-plus'></i> New Menu Group".html_safe, new_admin_menu_group_path  %>
+        <%= link_to "<i class='fi-plus'></i> New Menu Group".html_safe, new_admin_restaurant_menu_group_path(@restaurant)  %>
       <% end %>
       </div>
     </div>
@@ -58,10 +58,10 @@
 
     <div class="row">
       <div class="small-4 columns">
-        <h4>Prices:</h4>
+        <h4>Price:</h4>
       </div>
       <div class="small-6columns">
-        <h4>Sizes:</h4>
+        <h4>Size:</h4>
       </div>
       <div class="small-2 columns">
 
@@ -80,7 +80,7 @@
           <% end %>
         </div>
         <div class="small-2 columns">
-          <%= link_to "Edit", edit_admin_price_path(price), class: "" %>
+          <%= link_to "Edit", edit_admin_restaurant_item_price_path(@restaurant, @item, price), class: "" %>
         </div>
       </div>
     <% end %>

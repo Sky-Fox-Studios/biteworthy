@@ -1,15 +1,16 @@
 class Admin::MenuGroupsController < AdminController
+  before_action :set_restaurant, only: [:index, :all, :show, :edit, :update, :destroy]
   before_action :set_menu_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_menu_groups, only: [:all, :index]
 
   respond_to :html
 
+  def all
+    @restaurants = Restaurant.all.order(:name)
+  end
+
   def index
     @restaurants = Restaurant.all.order(:name)
-
-    @menu_groups = MenuGroup.all
-    if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
-      @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
-    end
     respond_with(@menu_groups)
   end
 
@@ -19,8 +20,8 @@ class Admin::MenuGroupsController < AdminController
 
   def new
     @menu_group = MenuGroup.new
-    if params[:menu_group] && params[:menu_group][:restaurant_id]
-      @restaurant = Restaurant.find(menu_group_params[:restaurant_id])
+    if params[:restaurant_id] && params[:restaurant_id]
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
     respond_with(@menu_group)
   end
@@ -51,8 +52,23 @@ class Admin::MenuGroupsController < AdminController
   end
 
   private
+    def set_restaurant
+      if params[:restaurant_id]
+        @restaurant = Restaurant.find(params[:restaurant_id])
+      end
+    end
+
     def set_menu_group
       @menu_group = MenuGroup.find(params[:id])
+    end
+
+    def set_menu_groups
+      @page= params[:page]
+      if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
+        @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
+      else
+        @menu_groups = MenuGroup.page(@page).per(25)
+      end
     end
 
     def menu_group_params

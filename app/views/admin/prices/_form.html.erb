@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @price] do |f| %>
+<%= simple_form_for([:admin, @restaurant, @item, @price]) do |f| %>
   <% if @price.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@price.errors.count, "error") %> prohibited this price from being saved:</h2>

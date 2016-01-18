@@ -1,9 +1,17 @@
 class Admin::FoodsController < AdminController
+  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy]
   before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_foods, only: [:all, :index]
   respond_to :html
 
+
+  def all
+    @restaurants = Restaurant.all.order(:name)
+    render :index
+  end
+
   def index
-     @foods = Food.all
+    @foods = Food.all
     respond_with(@foods)
   end
 
@@ -23,8 +31,6 @@ class Admin::FoodsController < AdminController
     @food = Food.new
     if params[:food] && params[:food][:restaurant_id]
       @restaurant = Restaurant.find(food_params[:restaurant_id])
-      @menu_groups = MenuGroup.where('restaurant_id' => food_params[:restaurant_id])
-
     end
     respond_with(@food)
   end
@@ -56,9 +62,22 @@ class Admin::FoodsController < AdminController
   end
 
   private
+
     def set_food
       @food = Food.find(params[:id])
-      @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
+    end
+
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
+    end
+
+    def set_foods
+      @page= params[:page]
+      if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
+        @foods = Food.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
+      else
+        @foods = Food.page(@page).per(25)
+      end
     end
 
     def food_params

@@ -5,11 +5,13 @@ class Admin::ItemsController < AdminController
 
   def all
     @page= params[:page]
-
     @restaurants = Restaurant.all.order(:name)
     if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
       @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
-      if params.has_key?(:menu_group_id) && !params[:menu_group_id].empty?
+      if params[:restaurant_id] != params[:current_restaurant_id]
+        params[:menu_group_id] = nil
+      end
+      if params.has_key?(:menu_group_id) && params[:menu_group_id] && !params[:menu_group_id].empty?
         @items = Item.where(restaurant_id: params[:restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(25)
       else
         @items = Item.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
@@ -50,11 +52,8 @@ class Admin::ItemsController < AdminController
 
   def new
     @item = Item.new
-    if params[:item] && params[:item][:restaurant_id]
-      @restaurant = Restaurant.find(item_params[:restaurant_id])
-      @menu_groups = MenuGroup.where('restaurant_id' => item_params[:restaurant_id])
-
-    end
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
     respond_with(@item)
   end
 

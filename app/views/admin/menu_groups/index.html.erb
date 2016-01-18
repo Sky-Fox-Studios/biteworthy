@@ -1,9 +1,4 @@
-<h1>Listing Menu Groupings</h1>
-<div class="row">
-  <%= form_tag 'menu_groups', method: :get do %>
-    <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
-  <% end %>
-</div>
+<h1>Listing <%=@restaurant.name%> Menu Groups</h1>
 <table>
   <thead>
     <tr>
@@ -20,9 +15,9 @@
          <td><%= menu_group.restaurant.name if !menu_group.restaurant.nil? %></td>
         <td><%= menu_group.name %></td>
         <td><%= menu_group.description %></td>
-        <td><%= link_to 'Show', admin_menu_group_path(menu_group) %></td>
-        <td><%= link_to 'Edit', edit_admin_menu_group_path(menu_group) %></td>
-        <td><%= link_to 'Destroy', admin_menu_group_path(menu_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_restaurant_menu_group_path(@restaurant, menu_group) %></td>
+        <td><%= link_to 'Edit', edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %></td>
+        <td><%= link_to 'Destroy', admin_restaurant_menu_group_path(@restaurant, menu_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Menu group', new_admin_menu_group_path, class: "button tiny radius success" %>
+<%= link_to 'New Menu group', new_admin_restaurant_menu_group_path(@restaurant), class: "button tiny radius success" %>

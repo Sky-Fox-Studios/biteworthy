@@ -1,4 +1,9 @@
 <h1>Listing Bite Worthy Foods</h1>
+<div class="row">
+    <%= form_tag 'foods', method: :get do %>
+      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+  <% end %>
+</div>
 
 <table>
   <thead>
@@ -30,5 +35,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Food...', new_admin_food_path, class: "button tiny radius success" %>
+<% if @restaurant %>
+  <%= link_to 'New Food...', new_admin__restaurant_food_path(@restaurant), class: "button tiny radius success" %>
+<% end %>

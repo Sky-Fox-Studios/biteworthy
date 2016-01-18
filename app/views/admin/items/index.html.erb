@@ -1,8 +1,13 @@
 <h1>Listing Bite Worthy Items</h1>
 <div class="row">
-    <%= form_tag 'items', method: :get do %>
-      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
-      <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
+  <%= form_tag 'items', method: :get do %>
+    <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+    <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
+    <div class="small-12 large-4 columns">
+      <% if params[:restaurant_id] %>
+        <%= link_to 'New Item', new_admin_restaurant_item_path(params[:restaurant_id]), class: "button tiny radius success" %>
+      <% end %>
+    </div>
   <% end %>
 </div>
 <div class="row">

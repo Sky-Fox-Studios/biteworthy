@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.datetime "updated_at"
   end
 
+  create_table "items_choices", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "food_id"
+    t.integer "group"
+  end
+
   create_table "items_foods", force: :cascade do |t|
     t.integer "item_id"
     t.integer "food_id"

@@ -1,4 +1,4 @@
-<%= simple_form_for([:admin, @menu_group]) do |f| %>
+<%= simple_form_for([:admin, @restaurant, @menu_group]) do |f| %>
 <!-- , url: admin_menu_group_path(@menu_group) -->
   <% if @menu_group.errors.any? %>
     <div id="error_explanation">
@@ -37,5 +37,5 @@
   </div>
 <% end %>
 <div style="float:right;">
-  <%= link_to 'Menu Groups', admin_menu_groups_path, :class => "button tiny radius"  %>
+  <%= link_to 'Menu Groups', admin_restaurant_menu_groups_path(@restaurant), :class => "button tiny radius"  %>
 </div>

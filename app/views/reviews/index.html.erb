@@ -10,7 +10,7 @@
             <% @review_class = review.rating %>
             <div class="small-12 columns">
               <h3>
-                <%= @review_class %> <%= render partial: "/modules/rating_text", locals: {rating: review.rating} %>
+                <%= @review_class.humanize %> <%= render partial: "/modules/rating_text", locals: {rating: review.rating} %>
               </h3>
             </div>
           </div>

@@ -1,10 +1,9 @@
-<div class="small-6 columns">
+<div class="small-12 medium-6 large-4 columns">
   <!-- restaurant_item_filter -->
   <%= label_tag "Filter by Restaurant:" %>
   <% if params[:restaurant_id] %>
-    <%= select_tag('restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}, selected: params[:restaurant_id]), onchange: "document.getElementById('menu_group_id').value =null;this.form.submit();") %>
-    <%= link_to 'New Item', new_admin_restaurant_item_path(params[:restaurant_id]), class: "button tiny radius success" %>
-
+    <%= select_tag('restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}, selected: params[:restaurant_id]), onchange: "this.form.submit();") %>
+    <%= hidden_field_tag 'current_restaurant_id', params[:restaurant_id] %>
   <% else %>
     <%= select_tag('restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}), onchange: "this.form.submit();", prompt: "Choose...") %>
   <% end %>

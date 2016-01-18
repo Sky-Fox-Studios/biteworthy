@@ -40,7 +40,13 @@ class Admin::PricesController < AdminController
   private
   def set_price
     @price = Price.find(params[:id])
+    if @price.item
+      @item = @price.item
+      if @item.restaurant
+        @restaurant = @item.restaurant
+      end
     end
+  end
 
   def price_params
     params.require(:price).permit(:food_id, :price, :size)

@@ -1,5 +1,5 @@
 module Himalayan
-   himalayan = Restaurant.find_or_create_by(name: "Himalayan Kitchen", slogan: "Mountain food for mountain people")
+   himalayan = Restaurant.find_or_create_by(name: "Himalayan Kitchen", slogan: "Mountain food for mountain people", main_image_url: 'himalayan.jpg')
    starters_menu_group = MenuGroup.find_or_create_by(restaurant: himalayan, name: "Starters", description: "")
    soup_salad_menu_group = MenuGroup.find_or_create_by(restaurant: himalayan, name: "Soup & Salad", description: "")
 
