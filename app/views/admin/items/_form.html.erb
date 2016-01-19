@@ -34,14 +34,23 @@
       <% end %>
       </div>
     </div>
-    <div class="small-12 columns" id="restaurant-select">
-      <div class="small-4 columns">
-        <%= f.input :name %>
-      </div>
-      <div class="small-8 columns">
-        <%= f.input :description, as: :text  %>
-      </div>
+    <div class="small-12 columns">
+    <div class="small-12 medium-4 columns">
+      <%= f.input :name %>
     </div>
+    <div class="small-12 medium-8 columns">
+      <%= f.input :description, as: :text  %>
+    </div>
+    <!-- TODO add food  -->
+    <div class="small-12 columns">
+      Foods: <%= @item.foods.map {|food| link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
+    </div>
+    <!-- TODO add choice  -->
+    <div class="small-12 columns">
+      Choice of: <%= @item.choices.map {|choice| link_to(choice.name, edit_admin_restaurant_choice_path(@restaurant, choice)) }.to_sentence.html_safe %>
+    </div>
+    </div>
+
   </div>
   <div class="row">
     <div class="small-12 columns">

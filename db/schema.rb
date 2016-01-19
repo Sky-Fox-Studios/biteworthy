@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.decimal "longitude",     precision: 10, scale: 6
   end
 
+  create_table "choices", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "choices_foods", force: :cascade do |t|
+    t.integer "choice_id"
+    t.integer "food_id"
+  end
+
   create_table "foods", force: :cascade do |t|
     t.integer  "restaurant_id"
     t.string   "name"
@@ -66,8 +79,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "items_choices", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "food_id"
-    t.integer "group"
+    t.integer "choice_id"
   end
 
   create_table "items_foods", force: :cascade do |t|

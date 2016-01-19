@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :users
 
     resources :restaurants do
-      resources :menu_groups, :foods, :addresses
+      resources :menu_groups, :foods, :choices, :addresses
       resources :items do
         resources :prices
       end

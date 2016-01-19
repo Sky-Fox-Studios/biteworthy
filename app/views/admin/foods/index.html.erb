@@ -3,38 +3,39 @@
     <%= form_tag 'foods', method: :get do %>
       <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
   <% end %>
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="1"></th>
-      <th>Restaurant</th>
-      <th>Menu Group</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @foods.each do |food| %>
-      <tr>
-        <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_restaurant_food_path(food.restaurant, food) %></td>
-        <td><%= food.restaurant.name %></td>
-        <td><%= food.name %></td>
-        <td><%= food.description %></td>
-        <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_restaurant_food_path(food.restaurant, food) %></td>
-        <% if current_user.is_admin? %>
-          <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_food_path(food.restaurant, food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+  <div class="small-12 medium-6 large-4 columns">
+    <% if @restaurant %>
+      <%= link_to 'New Food...', new_admin_restaurant_food_path(@restaurant), class: "button tiny radius success" %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Restaurant</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-<br>
-<% if @restaurant %>
-  <%= link_to 'New Food...', new_admin__restaurant_food_path(@restaurant), class: "button tiny radius success" %>
-<% end %>
+      <tbody>
+        <% @foods.each do |food| %>
+          <tr>
+            <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_restaurant_food_path(food.restaurant, food) %></td>
+            <td><%= food.restaurant.name %></td>
+            <td><%= food.name %></td>
+            <td><%= food.description %></td>
+            <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_restaurant_food_path(food.restaurant, food) %></td>
+            <% if current_user.is_admin? %>
+              <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_food_path(food.restaurant, food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

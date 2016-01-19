@@ -49,7 +49,6 @@ class Admin::FoodsController < AdminController
 
   def update
     if @food.update(food_params)
-      @food.prices << Price.create(food_id: @food.id, price: params[:new_price], size: params[:new_size])
        redirect_to admin_foods_path
     else
        redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
@@ -68,7 +67,9 @@ class Admin::FoodsController < AdminController
     end
 
     def set_restaurant
-      @restaurant = Restaurant.find(params[:restaurant_id])
+      if params[:restaurant_id]
+        @restaurant = Restaurant.find(params[:restaurant_id])
+      end
     end
 
     def set_foods
