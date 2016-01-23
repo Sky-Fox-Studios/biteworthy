@@ -14,17 +14,21 @@ module Himalayan
 
    starter_items.each do |name, description, price|
      item = Item.find_or_create_by(restaurant: himalayan, menu_group: starters_menu_group, name: name, description: description)
-     Price.find_or_create_by(price: price, item: item)
+     Price.find_or_create_by(value: "price", priced_id: item.id, priced_type: "Item")
    end
 
    soup_salad_items = [
-     ["Soup of the Day", "Please ask your server", 4.99],
-     ["Kachumbar Salad", "Diced cucumber, tomato, and onions marinated with lime juice dressing.", 5.99],
+     ["Soup of the Day", "Please ask your server", 4.99, nil],
+     ["Tomato Soup", "Please ask your server", 4.99, "Himalayan_tomato-soup.jpg"],
+     ["Kachumbar Salad", "Diced cucumber, tomato, and onions marinated with lime juice dressing.", 5.99, nil],
    ]
 
-   soup_salad_items.each do |name, description, price|
+   soup_salad_items.each do |name, description, price, image|
      item = Item.find_or_create_by(restaurant: himalayan, menu_group: soup_salad_menu_group, name: name, description: description)
-     Price.find_or_create_by(price: price, item: item)
+     if image
+       Photo.find_or_create_by(user: @skylar, url: image, photo_id: item.id, photo_type: "Item")
+     end
+     Price.find_or_create_by(value: price, priced_id: item.id, priced_type: "Item")
    end
 
    puts "Himalayan seeded"

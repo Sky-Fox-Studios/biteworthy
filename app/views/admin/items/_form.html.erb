@@ -42,9 +42,29 @@
       <%= f.input :description, as: :text  %>
     </div>
     <!-- TODO add food  -->
-    <div class="small-12 columns">
-      Foods: <%= @item.foods.map {|food| link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="actions padded">
+          <%= f.submit class: "button tiny radius success" %>
+        </div>
+      </div>
     </div>
+    <% end %>
+    <hr>
+    <div class="small-12 columns">
+      <h3>Foods:</h3>
+    </div>
+    <div class="small-6 columns">
+       <%= @item.foods.map {|food| link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
+    </div>
+    <%= simple_form_for([:admin, @restaurant, Food.new], url: admin_restaurant_item_add_food_path(@restaurant, @item)) do |f| %>
+      <div class="small-4 columns">
+        <%= f.input :name %>
+      </div>
+      <div class="small-2 columns">
+        <%= f.submit class: "button tiny radius success", value: 'Add' %>
+      </div>
+    <% end %>
     <!-- TODO add choice  -->
     <div class="small-12 columns">
       Choice of: <%= @item.choices.map {|choice| link_to(choice.name, edit_admin_restaurant_choice_path(@restaurant, choice)) }.to_sentence.html_safe %>
@@ -52,62 +72,13 @@
     </div>
 
   </div>
-  <div class="row">
-    <div class="small-12 columns">
-      <div class="actions padded">
-        <%= f.submit class: "button tiny radius success" %>
-      </div>
-    </div>
-  </div>
-  <% end %>
   <div class="row padded">
     <div class="small-12 medium-6 columns">
       <% unless @item.new_record? %>
-    <%= simple_form_for(@item, url: admin_items_update_price_path(@item), :method => :post) do |f| %>
-
-    <div class="row">
-      <div class="small-4 columns">
-        <h4>Price:</h4>
-      </div>
-      <div class="small-6columns">
-        <h4>Size:</h4>
-      </div>
-      <div class="small-2 columns">
-
-      </div>
+        <%= render partial: "price_size_list", locals: {restaurant: @restaurant, item: @item} %>
+        <%= render partial: "price_size_form", locals: {restaurant: @restaurant, item: @item} %>
+      <% end %>
     </div>
-    <% @item.prices.map do |price| %>
-      <div class="row">
-        <div class="small-4 columns">
-          <%= "$#{price_to_s price.price }"  %>
-        </div>
-        <div class="small-6 columns">
-          <% if price.size != "" %>
-          <%= price.size %>
-          <% else %>
-          <i style="color:gray;"><%="*Empty*" %></i>
-          <% end %>
-        </div>
-        <div class="small-2 columns">
-          <%= link_to "Edit", edit_admin_restaurant_item_price_path(@restaurant, @item, price), class: "" %>
-        </div>
-      </div>
-    <% end %>
-    <div class="row">
-      <div class="small-4 columns">
-        <input type="text" id="new_price" name="new_price" placeholder="11.00" />
-      </div>
-      <div class="small-6 columns">
-        <input type="text" id="new_size" name="new_size" placeholder="Size" />
-      </div>
-      <div class="small-2 columns">
-          <%= f.submit class: "button tiny radius success", value: 'Add' %>
-      </div>
-    </div>
-  <% end %>
-  <% end %>
-  </div>
     <div class="small-12 medium-6 columns">
-
     </div>
 </div>

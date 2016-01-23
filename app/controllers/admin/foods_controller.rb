@@ -21,10 +21,8 @@ class Admin::FoodsController < AdminController
 
   def get_menu_groups_by_restaurant
      restaurant = Restaurant.find(params[:restaurant_id])
-     menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
-
-    render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
-
+     menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
+     render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
   end
 
   def new
@@ -60,6 +58,19 @@ class Admin::FoodsController < AdminController
      redirect_to admin_foods_path
   end
 
+  def add_item_food
+    binding.pry
+    @restaurant = Restaurant.find_by(params[:restaurant_id])
+
+    food = Food.find_or_create_by(restaurant: @restaurant, name: params[:food][:name])
+    if food
+      @item = Item.find_by(params[:item_id])
+      @item.foods << food
+      @item.save
+    end
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+  end
+
   private
 
     def set_food
@@ -82,6 +93,6 @@ class Admin::FoodsController < AdminController
     end
 
     def food_params
-       params.require(:food).permit(:restaurant_id, :menu_group_id, :name, :description)
+       params.require(:food).permit(:restaurant_id, :name, :description)
     end
 end

@@ -1,15 +1,19 @@
 class Item < ActiveRecord::Base
   belongs_to :restaurant
   belongs_to :menu_group
-  has_many   :prices
 
+  has_many :prices, as: :priced
   has_many :reviews, :as => :review
+  has_many :photos, :as => :photo
 
   has_many :foods, through: :items_foods
   has_many :items_foods
 
   has_many :choices, through: :items_choices
   has_many :items_choices
+
+  has_many :additions, through: :items_additions
+  has_many :items_additions
 
   has_many :ingredients, through: :items_ingredients
   has_many :items_ingredients

@@ -16,7 +16,7 @@ module CreamBeanBerry
      item = Item.find_or_create_by(restaurant: cbb, menu_group: cbb_ice_cream,
       name: name)
       prices_sizes.each do |price_size|
-        Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
+        Price.find_or_create_by(value: price_size[:price], size: price_size[:size], priced_id: item.id, priced_type: "Item")
       end
    end
 
@@ -38,7 +38,7 @@ module CreamBeanBerry
        name: name,
        description: description)
       prices_sizes.each do |price_size|
-        Price.find_or_create_by(price: price_size[:price], item: item)
+        Price.find_or_create_by(value: price_size[:price], priced_id: item.id, priced_type: "Item")
       end
     end
 
@@ -56,7 +56,7 @@ module CreamBeanBerry
        name: name,
        description: description)
        prices_sizes.each do |price_size|
-         Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
+         Price.find_or_create_by(value: price_size[:price], size: price_size[:size], priced_id: item.id, priced_type: "Item")
        end
     end
 

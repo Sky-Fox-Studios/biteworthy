@@ -8,14 +8,13 @@
     </p>
   </div>
     <div class="small-6 columns">
-
-    FOODS:
-    <% item.foods.each do |food| %>
-      <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>,
-    <% end %>
-    INGREDIENTS:
-    <% item.ingredients.each do |ingredient| %>
-      <%= link_to ingredient.name, ingredient_path(ingredient) %>,
-    <% end %>
+      <!-- TODO just Ingredients -->
+      FOODS:
+      <%= item.foods.map {|food| link_to(food.name, restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
+      <br>
+      INGREDIENTS:
+      <% item.foods.each do |food| %>
+        <%= food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
+      <% end %>
   </div>
 </div>

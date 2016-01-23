@@ -13,6 +13,19 @@
 
 ActiveRecord::Schema.define(version: 20150904233208) do
 
+  create_table "additions", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "additions_foods", force: :cascade do |t|
+    t.integer "addition_id"
+    t.integer "food_id"
+  end
+
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id"
     t.string  "street"
@@ -77,6 +90,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.datetime "updated_at"
   end
 
+  create_table "items_additions", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "addition_id"
+  end
+
   create_table "items_choices", force: :cascade do |t|
     t.integer "item_id"
     t.integer "choice_id"
@@ -109,9 +127,19 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer "tag_id"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.string   "photo_type"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prices", force: :cascade do |t|
-    t.integer "item_id"
-    t.float   "price"
+    t.integer "priced_id"
+    t.string  "priced_type"
+    t.float   "value"
     t.string  "size"
   end
 

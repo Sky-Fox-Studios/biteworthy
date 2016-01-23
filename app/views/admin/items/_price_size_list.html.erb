@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="small-4 columns">
+    <h4>Price:</h4>
+  </div>
+  <div class="small-6columns">
+    <h4>Size:</h4>
+  </div>
+  <div class="small-2 columns">
+
+  </div>
+</div>
+<% item.prices.map do |price| %>
+  <div class="row">
+    <div class="small-4 columns">
+      <%= "$#{price_to_s price.value }"  %>
+    </div>
+    <div class="small-6 columns">
+      <% if price.size != "" %>
+      <%= price.size %>
+      <% else %>
+      <i style="color:gray;"><%="*Empty*" %></i>
+      <% end %>
+    </div>
+    <div class="small-2 columns">
+      <!-- TODO change text to fields and edit to save with JS -->
+      <%= link_to "Edit", edit_admin_restaurant_item_price_path(restaurant, item, price), class: "" %>
+    </div>
+  </div>
+<% end %>

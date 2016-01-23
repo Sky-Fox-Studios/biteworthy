@@ -1,11 +1,9 @@
-class CreateItems < ActiveRecord::Migration
+class CreateAdditions < ActiveRecord::Migration
   def change
-    create_table :items do |t|
-      t.integer :menu_group_id
+    create_table :additions do |t|
       t.integer :restaurant_id
       t.string  :name
       t.string  :description
-
       t.timestamps
     end
   end

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :menu_groups, :foods, :choices, :addresses
       resources :items do
         resources :prices
+        post 'add_food', to: 'foods#add_item_food', as: "add_food"
       end
     end
     get 'menu_groups', to: 'menu_groups#all', as: "menu_groups"
