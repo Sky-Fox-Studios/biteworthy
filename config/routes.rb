@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-
     resources :restaurants do
       resources :menu_groups, :foods, :choices, :addresses
       resources :items do

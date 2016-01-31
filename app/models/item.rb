@@ -25,4 +25,6 @@ class Item < ActiveRecord::Base
   has_many :items_ingredients
 
   validates :restaurant_id, :menu_group_id, :name, presence: true
+
+
 end

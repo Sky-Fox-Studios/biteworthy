@@ -1,6 +1,6 @@
 <div class="row" id="rating-reviews-<%=review.id%>" >
-  <div class="small-4 columns">
-    <%= image_tag "food_pic.png", size: "160x160" %>
+  <div class="small-4 columns image-wrapper">
+    <%= PhotoDecorator.decorate(reviewed.photos.sample).display %>
   </div>
   <div class="small-8 columns">
     <h3 style="float:left;">

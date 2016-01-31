@@ -4,6 +4,8 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true
   validates :tag_name, presence: true
 
+  has_many :photos, :as => :photo
+
   has_many :items, through: :items_ingredients
   has_many :items_ingredients
 

@@ -1,8 +1,4 @@
-<% unless item.photos.empty? %>
-  <%= image_tag item.photos.sample.url, size: "160x160" %>
-<% else %>
-  <%= image_tag "food_pic.png", size: "160x160" %>
-<% end %>
+<%= PhotoDecorator.decorate(item.photos.sample).display %>
 
 <% if current_user %>
   <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">

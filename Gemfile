@@ -30,6 +30,7 @@ gem 'sprockets'
 gem 'holidays'
 # gem 'acts_as_paranoid'
 gem 'faker'                                  # Creating fake seed data
+gem 'draper'                                 # Moving View logic out
 
 group :development, :test do
   gem 'rspec-rails', '>= 3.0.0.beta'

@@ -14,7 +14,8 @@ class IngredientsController < ApplicationController
   def new
     @ingredient = Ingredient.new
     if params[:food_id]
-      @food = Food.find_by(params[:food_id])
+      @food = Food.find(params[:food_id])
+      @restaurant = Restaurant.find(@food.restaurant)
     end
     respond_with(@ingredient)
   end
@@ -26,8 +27,8 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.find_or_create_by(name: ingredient_params[:name])
     @ingredient.update(ingredient_params)
-    if params[:food_id]
-      @food = Food.find_by(params[:ingredient][:food_id])
+    if params[:ingredient][:food_id]
+      @food = Food.find(params[:ingredient][:food_id])
       @ingredient.foods << @food
       @ingredient.save
       redirect_to restaurant_food_path(@food.restaurant, @food), notice: "Ingredient created"

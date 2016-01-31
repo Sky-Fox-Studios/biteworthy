@@ -5,8 +5,8 @@ class Restaurant < ActiveRecord::Base
   has_many :photos, :as => :photo
   has_and_belongs_to_many :tags
   has_many :addresses, dependent: :destroy
-  accepts_nested_attributes_for :addresses, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
-  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :addresses, :reject_if => lambda { |a| a[:street].blank? }, :allow_destroy => true
+
   validates :name, presence: true
 end

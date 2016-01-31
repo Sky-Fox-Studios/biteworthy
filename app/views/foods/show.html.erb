@@ -6,7 +6,7 @@
    <div class="small-12 columns">
 
       <div class="small-3 columns">
-         <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
+        <%= PhotoDecorator.decorate(@food.photos).display %>
       </div>
       <div class="small-9 columns food-item-name">
         <div class="row">
@@ -37,7 +37,7 @@
    <div class="small-6 columns left">
    </div>
    <div class="small-6 columns" align="right">
-     <%= link_to "<i class='fi-plus'></i> Review".html_safe, new_review_path(food: @food) %>
+     <!-- <%#= link_to "<i class='fi-plus'></i> Review".html_safe, new_review_path(food: @food) %> -->
       <!--  TODO if already review  <i class="fi-review"></i>   -->
    </div>
 </div>
