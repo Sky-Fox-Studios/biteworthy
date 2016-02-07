@@ -1,20 +1,8 @@
-<div class="row">
-  <div class="small-6 columns">
-    <h3>
-      <%= item.name %>
-    </h3>
-    <p align="none">
-      <%= item.description %>
-    </p>
-  </div>
-    <div class="small-6 columns">
-      <!-- TODO just Ingredients -->
-      FOODS:
-      <%= item.foods.map {|food| link_to(food.name, restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
-      <br>
-      INGREDIENTS:
-      <% item.foods.each do |food| %>
-        <%= food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
-      <% end %>
-  </div>
+<div class="small-6 columns">
+  <h3>
+    <%= item.name %>
+  </h3>
+  <p align="none">
+    <%= item.description %>
+  </p>
 </div>

@@ -1,0 +1,3 @@
+  Choices:
+  <%= item.choices.map {|choice| link_to(choice.name, restaurant_choice_path(@restaurant, choice)) }.to_sentence.html_safe %>
+  <br>

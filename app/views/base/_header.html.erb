@@ -17,6 +17,7 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if current_user %>
+      <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
         <% if current_user.is_admin? %>
           <li class="has-dropdown">
             <a href="<%=admin_root_path%>">Admin</a>

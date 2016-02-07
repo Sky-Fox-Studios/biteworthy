@@ -1,5 +1,7 @@
 class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :update_price, :destroy]
+  before_action :set_restaurant, only: [:get_menu_groups_by_restaurant, :new, :add_food, :add_choice]
+
   respond_to :html
 
 
@@ -45,14 +47,12 @@ class Admin::ItemsController < AdminController
   end
 
   def get_menu_groups_by_restaurant
-     restaurant = Restaurant.find(params[:restaurant_id])
      menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
-     render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
+     render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => @restaurant}
   end
 
   def new
     @item = Item.new
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
     respond_with(@item)
   end
@@ -89,6 +89,32 @@ class Admin::ItemsController < AdminController
   def destroy
     @item.destroy
     redirect_to admin_items_path
+  end
+
+  def add_food
+    @item = Item.find(params[:item_id])
+    unless (params[:food_id].empty?)
+      food = Food.find(params[:food_id])
+      @item.foods << food unless @item.foods.include? food
+    end
+    if params.has_key? :admin_updating
+      redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+    else
+      redirect_to restaurant_item_path(@restaurant, @item)
+    end
+  end
+
+  def add_choice
+    @item = Item.find(params[:item_id])
+    unless (params[:choice_id].empty?)
+      choice = Food.find(params[:choice_id])
+      @item.choices << choice unless @item.choices.include? choice
+    end
+    if params.has_key? :admin_updating
+      redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+    else
+      redirect_to restaurant_item_path(@restaurant, @item)
+    end
   end
 
   private

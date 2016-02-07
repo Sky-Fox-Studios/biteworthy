@@ -15,7 +15,7 @@ class Ingredient < ActiveRecord::Base
   has_many :tags, through: :ingredients_tags
   has_many :ingredients_tags
 
-  # validates_uniqueness_of :tag_name
+  validates :name, presence: true
   validates :tag_name, uniqueness: true
 
   def set_tag_name

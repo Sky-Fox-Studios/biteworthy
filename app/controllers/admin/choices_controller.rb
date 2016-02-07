@@ -1,5 +1,5 @@
 class Admin::ChoicesController < AdminController
-  before_action :set_restaurant, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:index, :show, :new, :edit, :create, :update, :destroy, :add_food]
   before_action :set_choice, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -24,7 +24,12 @@ class Admin::ChoicesController < AdminController
 
   def create
     @choice = Choice.new(choice_params)
-    redirect_to admin_choices_path
+    if @choice.save
+      redirect_to admin_restaurant_choices_path(@restaurant), notice: "Choice: #{@choice.name} created"
+    else
+      render :new
+    end
+
   end
 
   def update
@@ -37,8 +42,22 @@ class Admin::ChoicesController < AdminController
 
   def destroy
     @choice.destroy
-    redirect_to admin_choices_path, notice: "Choice removed"
+    redirect_to admin_restaurant_choices_path(@restaurant), notice: "Choice removed"
   end
+
+  def add_food
+    @choice = Choice.find(params[:choice_id])
+    unless (params[:food_id].empty?)
+      food = Food.find(params[:food_id])
+      @choice.foods << food unless @choice.foods.include? food
+    end
+    if params.has_key? :admin_updating
+      redirect_to edit_admin_restaurant_choice_path(@restaurant, @choice)
+    else
+      redirect_to restaurant_choice_path(@restaurant, @choice)
+    end
+  end
+
 
   private
   def set_choice

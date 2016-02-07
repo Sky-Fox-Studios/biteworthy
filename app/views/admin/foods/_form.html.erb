@@ -1,33 +1,73 @@
 <div class="row">
-  <%= simple_form_for([:admin, @restaurant, @food]) do |f| %>
-  <% if @food.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
-    <ul>
-      <% @food.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+  <div class="small-12 medium-8 columns">
+    <%= simple_form_for([:admin, @restaurant, @food]) do |f| %>
+      <% if @food.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
+          <ul>
+            <% @food.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <% if @restaurant %>
+            <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant.id , :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
+          <% else %>
+            <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
+          <% end %>
+        </div>
+        <div class="small-12 medium-6 columns">
+          <%= f.input :name %>
+        </div>
+        <div class="small-12 columns">
+          <%= f.input :description, as: :text  %>
+        </div>
+      </div>
+      <div class="small-12 columns actions padded">
+        <%= f.submit class: "button tiny radius success" %>
+      </div>
+    <% end %>
   </div>
-  <% end %>
-  <div class="row">
-    <div class="small-12 columns" id="restaurant-select">
-      <!-- <% if @restaurant %>
-      <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :selected => @restaurant , :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
-      <% else %>
-      <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, :label_method => lambda { |restaurant| "#{restaurant.name}" } %>
-      <% end %> -->
-    </div>
 
+  <div class="small-12 medium-4 columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <b>Ingredients:</b>
+        <% if @food.ingredients %>
+          <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
+        <% end %>
+      </div>
+      <% if !@food.new_record? %>
+        <div class="small-12 columns">
+          <%= form_tag admin_restaurant_food_add_ingredient_by_id_path(@restaurant, @food), method: :post do %>
+            <%= hidden_field_tag 'admin_updating', true %>
+            <div class="row">
+              <div class="small-9 columns">
+                <%= select_tag('ingredient_id', options_for_select(Ingredient.all.map {|f| [ f.name, f.id ]}), prompt: "Add ingredient:") %>
+              </div>
+              <div class="small-3 columns">
+                <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="small-12 columns">
+          <%= form_tag admin_restaurant_food_add_ingredient_by_name_path(@restaurant, @food), method: :post do %>
+            <%= hidden_field_tag 'admin_updating', true %>
+            <div class="row">
+              <div class="small-9 columns">
+                <%= text_field_tag('ingredient_name', nil, placeholder: "New ingredient") %>
+              </div>
+              <div class="small-3 columns">
+                <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="small-12 medium-6 large-4 columns">
-    <%= f.input :name %>
-  </div>
-  <div class="small-12 medium-6 large-8 columns">
-    <%= f.input :description, as: :text  %>
-  </div>
-  <div class="actions padded">
-    <%= f.submit class: "button tiny radius success" %>
-  </div>
-  <% end %>
 </div>
