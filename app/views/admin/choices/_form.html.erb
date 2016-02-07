@@ -1,0 +1,24 @@
+<%= simple_form_for([:admin, @restaurant, @choice]) do |f| %>
+  <% if @choice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@choice.errors.count, "error") %> prohibited this choice from being saved:</h2>
+      <ul>
+      <% @choice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+   <div class="small-6 columns">
+      <%= f.input :name %>
+   </div>
+   <div class="small-6 columns">
+      <%= f.input :description %>
+   </div>
+</div>
+TODO add food dropdown
+ <div class="small-12 columns">
+     <%= f.submit %>
+</div>
+<% end %>

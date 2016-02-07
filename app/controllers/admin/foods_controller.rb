@@ -77,11 +77,6 @@ class Admin::FoodsController < AdminController
       @food = Food.find(params[:id])
     end
 
-    def set_restaurant
-      if params[:restaurant_id]
-        @restaurant = Restaurant.find(params[:restaurant_id])
-      end
-    end
 
     def set_foods
       @page= params[:page]

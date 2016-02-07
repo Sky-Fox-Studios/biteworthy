@@ -6,15 +6,15 @@ class Admin::ItemsController < AdminController
   def all
     @page= params[:page]
     @restaurants = Restaurant.all.order(:name)
-    if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
-      @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
-      if params[:restaurant_id] != params[:current_restaurant_id]
+    if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
+      @menu_groups = MenuGroup.where(restaurant_id: params[:filter_restaurant_id])
+      if params[:filter_restaurant_id] != params[:current_restaurant_id]
         params[:menu_group_id] = nil
       end
       if params.has_key?(:menu_group_id) && params[:menu_group_id] && !params[:menu_group_id].empty?
-        @items = Item.where(restaurant_id: params[:restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(25)
+        @items = Item.where(restaurant_id: params[:filter_restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(25)
       else
-        @items = Item.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
+        @items = Item.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(25)
       end
     else
       @items = Item.page(@page).per(25)
@@ -84,7 +84,6 @@ class Admin::ItemsController < AdminController
   def update_price
     @item.prices << Price.create(item_id: @item.id, price: params[:new_price], size: params[:new_size])
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-
   end
 
   def destroy
@@ -104,6 +103,7 @@ class Admin::ItemsController < AdminController
     end
 
   def item_params
-      params.require(:item).permit(:restaurant_id, :menu_group_id, :name, :description)
+      params.require(:item).permit(:restaurant_id, :menu_group_id, :name, :description,
+      food_attributes: [:restaurant_id, :name, :description])
     end
 end

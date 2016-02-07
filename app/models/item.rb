@@ -24,6 +24,8 @@ class Item < ActiveRecord::Base
   has_many :ingredients, through: :items_ingredients
   has_many :items_ingredients
 
+  accepts_nested_attributes_for :foods, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+
   validates :restaurant_id, :menu_group_id, :name, presence: true
 
 
