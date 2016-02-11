@@ -31,7 +31,6 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    binding.pry
     review_params[:rating] = review_params[:rating].to_i
     @review = @reviewable.reviews.new(review_params)
     @review.save

@@ -50,52 +50,55 @@
   </div>
   <% end %>
   <hr>
-  <div class="small-12 columns">
-    <h3>Foods:</h3>
-  </div>
-  <div class="small-12 medium-4 columns">
-     <%= @item.foods.map {|food| link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
-  </div>
-  <div class="small-12 medium-8 columns">
-    <%= form_tag admin_restaurant_item_add_food_path(@restaurant, @item), method: :post do %>
-      <%= hidden_field_tag 'admin_updating', true %>
-      <div class="row">
-        <div class="small-9 columns">
-          <%= select_tag('food_id', options_for_select(@restaurant.foods.map {|f| [ f.name, f.id ]}), prompt: "Add Food:") %>
-        </div>
-        <div class="small-3 columns">
-          <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-        </div>
-      </div>
-    <% end %>
-    <%= link_to "Create Food", new_admin_restaurant_food_path(@restaurant, @food), class: "button tiny radius" %>
-  </div>
-  <!-- TODO add choice  -->
-  <h3>Choices:</h3>
-  <div class="small-12 medium-4 columns">
-    <%= @item.choices.map {|choice| link_to(choice.name, edit_admin_restaurant_choice_path(@restaurant, choice)) }.to_sentence.html_safe %>
-  </div>
-  <div class="small-12 medium-8 columns">
-    <%= form_tag admin_restaurant_item_add_choice_path(@restaurant, @item), method: :post do %>
-      <%= hidden_field_tag 'admin_updating', true %>
-      <div class="row">
-        <div class="small-9 columns">
-          <%= select_tag('choice_id', options_for_select(@restaurant.choices.map {|f| [ f.name, f.id ]}), prompt: "Add Choice:") %>
-        </div>
-        <div class="small-3 columns">
-          <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-        </div>
-      </div>
-    <% end %>
-    <%= link_to "Create Choice", new_admin_restaurant_choice_path(@restaurant, @food), class: "button tiny radius" %>
-  </div>
+  <% unless @item.new_record? %>
 
-  <div class="row padded">
-    <div class="small-12 medium-6 columns">
-      <% unless @item.new_record? %>
+    <div class="small-12 columns">
+      <h3>Foods:</h3>
+    </div>
+    <div class="small-12 medium-4 columns">
+       <%= @item.foods.map {|food| link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
+    </div>
+    <div class="small-12 medium-8 columns">
+      <%= form_tag admin_restaurant_item_add_food_path(@restaurant, @item), method: :post do %>
+        <%= hidden_field_tag 'admin_updating', true %>
+        <div class="row">
+          <div class="small-9 columns">
+            <%= select_tag('food_id', options_for_select(@restaurant.foods.map {|f| [ f.name, f.id ]}), prompt: "Add Food:") %>
+          </div>
+          <div class="small-3 columns">
+            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to "Create Food", new_admin_restaurant_food_path(@restaurant, @food), class: "button tiny radius" %>
+    </div>
+
+    <!-- TODO add choice  -->
+    <h3>Choices:</h3>
+    <div class="small-12 medium-4 columns">
+      <%= @item.choices.map {|choice| link_to(choice.name, edit_admin_restaurant_choice_path(@restaurant, choice)) }.to_sentence.html_safe %>
+    </div>
+    <div class="small-12 medium-8 columns">
+      <%= form_tag admin_restaurant_item_add_choice_path(@restaurant, @item), method: :post do %>
+        <%= hidden_field_tag 'admin_updating', true %>
+        <div class="row">
+          <div class="small-9 columns">
+            <%= select_tag('choice_id', options_for_select(@restaurant.choices.map {|f| [ f.name, f.id ]}), prompt: "Add Choice:") %>
+          </div>
+          <div class="small-3 columns">
+            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to "Create Choice", new_admin_restaurant_choice_path(@restaurant, @food), class: "button tiny radius" %>
+    </div>
+
+    <div class="row padded">
+      <div class="small-12 medium-6 columns">
         <%= render partial: "price_size_list", locals: {restaurant: @restaurant, item: @item} %>
         <%= render partial: "price_size_form", locals: {restaurant: @restaurant, item: @item} %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
+
 </div>

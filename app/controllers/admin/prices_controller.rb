@@ -33,19 +33,18 @@ class Admin::PricesController < AdminController
   end
 
   def destroy
+    @price_id = @price.id
     @price.destroy
-    redirect_to admin_prices_path, notice: "Price removed"
+    respond_to do |format|
+       format.html { redirect_to :back }
+       format.json { head :no_content }
+       format.js   { render :layout => false }
+     end
   end
 
   private
   def set_price
     @price = Price.find(params[:id])
-    if @price.item
-      @item = @price.item
-      if @item.restaurant
-        @restaurant = @item.restaurant
-      end
-    end
   end
 
   def price_params

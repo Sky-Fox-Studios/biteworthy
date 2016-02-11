@@ -27,7 +27,7 @@
     <% end %>
   </div>
   <div class="small-12 medium-4 columns">
-    What are you chooising from?<br>
+    What are the food choices?<br>
     <% if @choice.foods %>
       <%= @choice.foods.map {|food| link_to(food.name, admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
     <% end %>

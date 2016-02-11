@@ -1,5 +1,5 @@
 class Admin::ItemsController < AdminController
-  before_action :set_item, only: [:show, :edit, :update, :update_price, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :add_price, :destroy]
   before_action :set_restaurant, only: [:get_menu_groups_by_restaurant, :new, :add_food, :add_choice]
 
   respond_to :html
@@ -43,9 +43,6 @@ class Admin::ItemsController < AdminController
   def restaurant_item_filter
   end
 
-  def show
-  end
-
   def get_menu_groups_by_restaurant
      menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
      render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => @restaurant}
@@ -66,7 +63,7 @@ class Admin::ItemsController < AdminController
     #   @item.tags = Tag.save_tags(params[:add_tags])
     # end
     if @item.save
-      redirect_to admin_restaurant_item_path(@item.restaurant, @item), notice: "Item: #{@item.name} created"
+      redirect_to admin_restaurant_items_path(@item.restaurant), notice: "Item: #{@item.name} created"
     else
       render :new
     end
@@ -81,14 +78,14 @@ class Admin::ItemsController < AdminController
       redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
-  def update_price
-    @item.prices << Price.create(item_id: @item.id, price: params[:new_price], size: params[:new_size])
+  def add_price
+    @item.prices.create(value: params[:new_price], size: params[:new_size])
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   def destroy
     @item.destroy
-    redirect_to admin_items_path
+    redirect_to admin_restaurant_items_path(@restaurant)
   end
 
   def add_food
@@ -107,7 +104,7 @@ class Admin::ItemsController < AdminController
   def add_choice
     @item = Item.find(params[:item_id])
     unless (params[:choice_id].empty?)
-      choice = Food.find(params[:choice_id])
+      choice = Choice.find(params[:choice_id])
       @item.choices << choice unless @item.choices.include? choice
     end
     if params.has_key? :admin_updating

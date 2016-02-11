@@ -93,8 +93,8 @@ class Admin::FoodsController < AdminController
 
     def set_foods
       @page= params[:page]
-      if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
-        @foods = Food.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
+      if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
+        @foods = Food.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(25)
       else
         @foods = Food.page(@page).per(25)
       end

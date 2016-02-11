@@ -14,7 +14,7 @@ class Admin::RestaurantsController < AdminController
 
   def new
     @restaurant = Restaurant.new
-    @restaurant.addresses.build
+    # @restaurant.addresses.build
   end
 
   def edit

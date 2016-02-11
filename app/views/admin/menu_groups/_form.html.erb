@@ -1,9 +1,10 @@
+<script type="text/javascript" src="/assets/jscolor.js"></script>
+
 <%= simple_form_for([:admin, @restaurant, @menu_group]) do |f| %>
 <!-- , url: admin_menu_group_path(@menu_group) -->
   <% if @menu_group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@menu_group.errors.count, "error") %> prohibited this menu_group from being saved:</h2>
-
       <ul>
       <% @menu_group.errors.full_messages.each do |message| %>
         <li><%= message %></li>

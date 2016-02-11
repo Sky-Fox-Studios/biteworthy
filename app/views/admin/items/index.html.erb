@@ -3,9 +3,9 @@
   <%= form_tag 'items', method: :get do %>
     <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
     <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
-    <div class="small-12 large-4 columns">
-      <% if params[:restaurant_id] %>
-        <%= link_to 'New Item', new_admin_restaurant_item_path(params[:restaurant_id]), class: "button tiny radius success" %>
+    <div class="small-12 medium-4 large-4 columns">
+      <% if params[:filter_restaurant_id] %>
+        <%= link_to 'New Item', new_admin_restaurant_item_path(params[:filter_restaurant_id]), class: "button tiny radius success" %>
       <% end %>
     </div>
   <% end %>
@@ -37,7 +37,7 @@
         <td><%= item.description %></td>
         <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %></td>
         <% if current_user.is_admin? %>
-          <td><%= render partial: "partials/forms/delete", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %></td>
+          <td><%= render partial: "partials/forms/delete", locals: {path: admin_restaurant_item_path(item.restaurant, item)} %></td>
         <% end %>
       </tr>
     <% end %>

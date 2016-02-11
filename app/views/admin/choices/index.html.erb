@@ -35,7 +35,7 @@
 						<td><%= choice.restaurant.name %></td>
 						<td><%= choice.name %></td>
 						<td><%= choice.description %></td>
-						<td><%= render partial: "partials/forms/edit", locals: {path: admin_restaurant_choice_path(choice.restaurant, choice)} %></td>
+						<td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_choice_path(choice.restaurant, choice)} %></td>
 		        <td><%= link_to raw('<i class="fi-trash"></i>'), admin_restaurant_choice_path(choice.restaurant, choice), method: :delete, data: { confirm: 'Are you sure you want to remove this choice?' } %></td>
 		      </tr>
 		    <% end %>

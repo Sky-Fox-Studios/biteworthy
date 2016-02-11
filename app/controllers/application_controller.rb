@@ -30,6 +30,8 @@ class ApplicationController < ActionController::Base
   def set_restaurant
     if params[:restaurant_id]
       @restaurant = Restaurant.find(params[:restaurant_id])
+    elsif params[:filter_restaurant_id]
+      @restaurant = Restaurant.find(params[:filter_restaurant_id])
     end
   end
 

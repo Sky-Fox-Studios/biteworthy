@@ -1,4 +1,4 @@
-<%= simple_form_for([:admin, restaurant, item, Price.new], url: admin_items_update_price_path(@item), method: :post) do |f| %>
+<%= simple_form_for([:admin, restaurant, item, Price.new], url: admin_items_add_price_path(@item), method: :post) do |f| %>
   <div class="row">
     <div class="small-4 columns">
       <input type="text" id="new_price" name="new_price" placeholder="11.00" />

@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     get 'items', to: 'items#all', as: "items"
     get 'foods', to: 'foods#all', as: "foods"
 
-    post 'items/update_item_price/:id', to: 'items#update_price', as: "items_update_price"
+    post 'items/add_item_price/:id', to: 'items#add_price', as: "items_add_price"
   end
 
 
