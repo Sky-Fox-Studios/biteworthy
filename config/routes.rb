@@ -10,11 +10,12 @@ Rails.application.routes.draw do
    end
 
 
-  resources :reviews, :ingredients
+  resources :reviews
   resources  :tags
 
   namespace :admin do
     resources :users
+    resources :ingredients
     resources :restaurants do
       resources :menu_groups, :addresses
       resources :items do

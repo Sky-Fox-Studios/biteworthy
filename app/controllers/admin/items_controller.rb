@@ -1,26 +1,10 @@
 class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :add_price, :destroy]
-  before_action :set_restaurant, only: [:get_menu_groups_by_restaurant, :new, :add_food, :add_choice]
 
   respond_to :html
 
 
   def all
-    @page= params[:page]
-    @restaurants = Restaurant.all.order(:name)
-    if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
-      @menu_groups = MenuGroup.where(restaurant_id: params[:filter_restaurant_id])
-      if params[:filter_restaurant_id] != params[:current_restaurant_id]
-        params[:menu_group_id] = nil
-      end
-      if params.has_key?(:menu_group_id) && params[:menu_group_id] && !params[:menu_group_id].empty?
-        @items = Item.where(restaurant_id: params[:filter_restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(25)
-      else
-        @items = Item.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(25)
-      end
-    else
-      @items = Item.page(@page).per(25)
-    end
     render :index
   end
 
@@ -116,14 +100,14 @@ class Admin::ItemsController < AdminController
 
   private
   def set_item
-      @item = Item.find(params[:id])
-      if @item.restaurant_id
-        @restaurant = Restaurant.find(@item.restaurant_id)
-        @menu_groups = MenuGroup.includes(:restaurant).where(restaurant_id: @item.restaurant_id).order('restaurants.name').order(:name)
-      else
-        @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
-      end
+    @item = Item.find(params[:id])
+    if @item.restaurant_id
+      @restaurant = Restaurant.find(@item.restaurant_id)
+      @menu_groups = MenuGroup.includes(:restaurant).where(restaurant_id: @item.restaurant_id).order('restaurants.name').order(:name)
+    else
+      @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end
+  end
 
   def item_params
       params.require(:item).permit(:restaurant_id, :menu_group_id, :name, :description,

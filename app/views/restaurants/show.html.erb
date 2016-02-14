@@ -4,7 +4,7 @@
   <div class="small-12">
     <ul class="tabs vertical" data-tab>
       <% @menu_groups.each do |menu| %>
-        <li class="tab-title"><a href="#menu-<%= menu.id %>"><%= menu.name %></a></li>
+        <li class="tab-title" <%= menu.background_color ? "style=background-color:#{menu.background_color};" : "" %> ><a href="#menu-<%= menu.id %>"><%= menu.name %></a></li>
       <% end %>
     </ul>
     <div class="tabs-content vertical">
