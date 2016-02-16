@@ -15,6 +15,12 @@
       </ul>
     <% end %>
     <!-- Right Nav Section -->
+    <% if !current_user %>
+      <ul class="center">
+        <!-- <li>Login to create favorites and upload images</li> -->
+      </ul>
+    <% end %>
+
     <ul class="right">
       <% if current_user %>
       <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>

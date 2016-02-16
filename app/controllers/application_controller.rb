@@ -76,9 +76,9 @@ class ApplicationController < ActionController::Base
   def set_items
     if @restaurant
       if @menu_group
-        @items = Item.where(restaurant: @restaurant, menu_group: @menu_group).page(@page).per(25)
+        @items = Item.where(restaurant: @restaurant, menu_group: @menu_group).page(@page).per(per_page_count)
       else
-        @items = Item.where(restaurant: @restaurant).page(@page).per(25)
+        @items = Item.where(restaurant: @restaurant).page(@page).per(per_page_count)
       end
     end
   end

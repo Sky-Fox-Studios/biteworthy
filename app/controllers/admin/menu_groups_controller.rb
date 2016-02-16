@@ -59,9 +59,9 @@ class Admin::MenuGroupsController < AdminController
     def set_menu_groups
       @page= params[:page]
       if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
-        @menu_groups = MenuGroup.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(25)
+        @menu_groups = MenuGroup.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(per_page_count)
       else
-        @menu_groups = MenuGroup.page(@page).per(25)
+        @menu_groups = MenuGroup.page(@page).per(per_page_count)
       end
     end
 

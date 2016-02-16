@@ -1,15 +1,15 @@
 <%= render :partial => 'restaurant_header', locals: {restaurant: @restaurant} %>
 <% unless @menu_groups.empty? %>
 <div class="row">
-  <div class="small-12">
+  <div class="small-12 columns">
     <ul class="tabs vertical" data-tab>
-      <% @menu_groups.each do |menu| %>
-        <li class="tab-title" <%= menu.background_color ? "style=background-color:#{menu.background_color};" : "" %> ><a href="#menu-<%= menu.id %>"><%= menu.name %></a></li>
+      <% @menu_groups.each_with_index do |menu, index| %>
+        <li class="tab-title <%= index==0 ? 'active' : ''%>" <%= menu.background_color ? "style=background-color:#{menu.background_color};" : "" %> ><a href="#menu-<%= menu.id %>"><%= menu.name %></a></li>
       <% end %>
     </ul>
     <div class="tabs-content vertical">
-      <% @menu_groups.each do |menu| %>
-        <div class="content" id="menu-<%= menu.id %>">
+      <% @menu_groups.each_with_index do |menu, index| %>
+        <div class="content <%= index==0 ? 'active' : ''%>" id="menu-<%= menu.id %>">
             <% menu.items.each do |item| %>
           <div class="row">
               <div class="item-image small-4 columns image-wrapper">
@@ -32,7 +32,7 @@
                   </div>
                   <div class="item-price small-3 columns">
                     <% item.prices.each do |price_size| %>
-                      <%= price_to_s(price_size.value) %><%= "/#{price_size.size}" if price_size.size %><br>
+                      <%= price_to_s(price_size.value) %><%= "/#{price_size.size}" if price_size.size && !price_size.size.empty? %><br>
                     <% end %>
                   </div>
                 </div>

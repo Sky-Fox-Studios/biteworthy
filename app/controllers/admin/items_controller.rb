@@ -5,22 +5,22 @@ class Admin::ItemsController < AdminController
 
 
   def all
+    unless @items
+      @items = Item.page(@page).per(per_page_count)
+    end
     render :index
   end
 
   def index
-    @page= params[:page]
-
-    @restaurants = Restaurant.all.order(:name)
     if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
       @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
       if params.has_key?(:menu_group_id) && !params[:menu_group_id].empty?
-        @items = Item.where(restaurant_id: params[:restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(25)
+        @items = Item.where(restaurant_id: params[:restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(per_page_count)
       else
-        @items = Item.where(restaurant_id: params[:restaurant_id]).page(@page).per(25)
+        @items = Item.where(restaurant_id: params[:restaurant_id]).page(@page).per(per_page_count)
       end
     else
-      @items = Item.page(@page).per(25)
+      @items = Item.page(@page).per(per_page_count)
     end
   end
 

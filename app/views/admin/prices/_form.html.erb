@@ -3,21 +3,21 @@
     <div id="error_explanation">
       <h2><%= pluralize(@price.errors.count, "error") %> prohibited this price from being saved:</h2>
       <ul>
-      <% @price.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @price.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-<div class="row">
-   <div class="small-6 columns">
-      <%= f.input :price %>
-   </div>
-   <div class="small-6 columns">
-      <%= f.input :size %>
-   </div>
-</div>
- <div class="small-12 columns">
+  <div class="row">
+     <div class="small-6 columns">
+        <%= f.input :value %>
+     </div>
+     <div class="small-6 columns">
+        <%= f.input :size %>
+     </div>
+  </div>
+   <div class="small-12 columns">
      <%= f.submit %>
-</div>
+  </div>
 <% end %>
