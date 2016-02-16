@@ -6,7 +6,7 @@
    <div class="small-9 columns">
 
       <div class="small-3 columns">
-        <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
+        <%= PhotoDecorator.decorate(@item.photos).display %>
          <p align="center">
            <% if !@item.price_high.nil? %>
            <%= number_to_currency(@item.price_low) %> - <%=  number_to_currency(@item.price_high) %>
@@ -22,7 +22,7 @@
          <p align="none">
            <%= @item.description %>
          </p>
-      </div>     
+      </div>
    </div>
    <div class="small-3 columns" align="center">
       <p> Associations:</p>

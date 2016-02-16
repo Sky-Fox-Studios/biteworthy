@@ -5,12 +5,10 @@ class Admin::AddressesController < AdminController
 
   def index
     @addresses = Address.all
-    respond_with(@addresses)
   end
 
   def new
     @address = Address.new
-    respond_with(@address)
   end
 
   def edit
@@ -19,32 +17,33 @@ class Admin::AddressesController < AdminController
   def create
     @address = Address.new(address_params)
     if @address.save
-      redirect_to admin_addresses_path
+      redirect_to edit_admin_restaurant_path(@restaurant)
     else
-      redirect_to admin_addresses_path, alert: @address.errors.full_messages
+      redirect_to edit_admin_restaurant_address_path(@restaurant, @address), alert: @address.errors.full_messages
     end
   end
 
   def update
     if @address.update(address_params)
-      redirect_to admin_addresses_path
+      redirect_to edit_admin_restaurant_path(@restaurant)
     else
-      redirect_to edit_admin_address_path(@address), alert: @address.errors.full_messages
+      redirect_to edit_admin_restaurant_address_path(@restaurant, @address), alert: @address.errors.full_messages
     end
   end
 
   def destroy
     @address.destroy
-    redirect_to admin_addresses_path
+    redirect_to edit_admin_restaurant_path(@restaurant)
   end
 
   private
     def set_address
       @address = Address.find(params[:id])
+      @restaurant = Restaurant.find(@address.restaurant_id)
     end
 
     def address_params
-      params.require(:address).permit(:street, :city, :state, :zip, :latitute, :longitute, :restuarant_id)
+      params.require(:address).permit(:street, :city, :state, :zip, :latitude, :longitude, :restuarant_id)
     end
 
 end

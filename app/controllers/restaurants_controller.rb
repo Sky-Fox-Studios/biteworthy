@@ -9,12 +9,19 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @menu_groups = MenuGroup.includes(:items).where(restaurant_id: @restaurant.id).all
+
     respond_with(@restaurant)
+    if current_user
+      @items = Item.includes(:reviews).where(restaurant_id: @restaurant.id)
+      .where.not("reviews.rating = 'Worst'")
+    else
+      @items = Item.all
+    end
   end
 
   private
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
+      @menu_groups = MenuGroup.includes(:items).where(restaurant_id: @restaurant.id) #.where("items.review.rating > ?", -1)
     end
 end

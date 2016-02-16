@@ -22,6 +22,7 @@ gem 'spring',        group: :development     # Spring speeds up development by k
 gem 'foundation-rails', '5.5.2.1'
 gem 'aws-sdk'                                # Amazon Cloud Storage: S3
 gem 'simple_form'
+gem 'jquery-datatables-rails', '~> 3.3.0'
 # Form handlers
 gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'compass-rails'                          # you need this or you get an err
@@ -36,6 +37,8 @@ gem 'sprockets'
 # gem "therubyracer"                            # dependancy for less
 gem 'holidays'
 # gem 'acts_as_paranoid'
+gem 'faker'                                  # Creating fake seed data
+gem 'draper'                                 # Moving View logic out
 
 group :development, :test do
   gem 'rspec-rails', '>= 3.0.0.beta'

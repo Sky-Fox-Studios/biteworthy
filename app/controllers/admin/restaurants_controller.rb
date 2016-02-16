@@ -14,7 +14,7 @@ class Admin::RestaurantsController < AdminController
 
   def new
     @restaurant = Restaurant.new
-    respond_with(@restaurant)
+    # @restaurant.addresses.build
   end
 
   def edit
@@ -49,8 +49,12 @@ class Admin::RestaurantsController < AdminController
       # @address = @restaurant.addresses.first
     end
 
-    def restaurant_params
-      params.require(:restaurant).permit(:name, :slogan, :phone_number, :about, :disclaimer, :seating, :outside_seating)
+    def create_address
+
     end
 
+    def restaurant_params
+      params.require(:restaurant).permit(:name, :slogan, :phone_number, :about, :disclaimer, :seating, :outside_seating, :cash_only,
+        addresses_attributes: [:restaurant_id, :street, :city, :state, :zip, :latitude, :longitude])
+    end
 end

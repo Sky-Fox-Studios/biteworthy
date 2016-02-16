@@ -1,5 +1,5 @@
 <div class="row">
-  <%= simple_form_for([:admin, @item]) do |f| %>
+  <%= simple_form_for([:admin, @restaurant, @item]) do |f| %>
   <% if @item.errors.any? %>
   <div id="error_explanation" class="small-12">
     <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -10,39 +10,37 @@
     </ul>
   </div>
   <% end %>
-  <div class="row">
-    <div class="small-12 columns" id="restaurant-select">
-      <div class="small-4 columns">
-        <% if @restaurant %>
-          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant.id %>
-        <% else %>
-          <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select %>
-        <% end %>
-      </div>
-      <div class="small-4 columns">
-        <% if @item.menu_group_id %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, selected: @item.menu_group_id, label: "Menu Group"%>
-        <% elsif @menu_groups %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group"%>
-        <% end %>
-      </div>
-      <div class="small-4 columns">
-      <% unless @item.new_record? %>
-        <%= link_to "<i class='fi-plus'></i> Menu Group".html_safe, new_admin_menu_group_path(menu_group: {restaurant_id: @item.restaurant_id}) %>
+  <div class="small-12 columns" id="restaurant-select">
+    <div class="small-4 columns">
+      <% if @restaurant %>
+        <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant.id %>
       <% else %>
-        <%= link_to "<i class='fi-plus'></i> New Menu Group".html_safe, new_admin_menu_group_path  %>
+        <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select %>
       <% end %>
-      </div>
     </div>
-    <div class="small-12 columns" id="restaurant-select">
-      <div class="small-4 columns">
-        <%= f.input :name %>
-      </div>
-      <div class="small-8 columns">
-        <%= f.input :description, as: :text  %>
-      </div>
+    <div class="small-4 columns">
+      <% if @item.menu_group_id %>
+        <%= f.association :menu_group, collection: @menu_groups, as: :select, selected: @item.menu_group_id, label: "Menu Group"%>
+      <% elsif @menu_groups %>
+        <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group"%>
+      <% end %>
+    </div>
+    <div class="small-4 columns">
+    <% unless @item.new_record? %>
+      <%= link_to "<i class='fi-plus'></i> Menu Group".html_safe, new_admin_restaurant_menu_group_path(@restaurant) %>
+    <% else %>
+      <%= link_to "<i class='fi-plus'></i> New Menu Group".html_safe, new_admin_restaurant_menu_group_path(@restaurant)  %>
+    <% end %>
     </div>
   </div>
+  <div class="small-12 columns">
+  <div class="small-12 medium-4 columns">
+    <%= f.input :name %>
+  </div>
+  <div class="small-12 medium-8 columns">
+    <%= f.input :description, as: :text  %>
+  </div>
+  <!-- TODO add food  -->
   <div class="row">
     <div class="small-12 columns">
       <div class="actions padded">
@@ -51,56 +49,56 @@
     </div>
   </div>
   <% end %>
-  <div class="row padded">
-    <%= simple_form_for(@item, url: admin_items_update_price_path(@item), :method => :post) do |f| %>
+  <hr>
+  <% unless @item.new_record? %>
 
-    <div class="row">
-      <div class="small-3 columns">
-        <h4>Prices:</h4>
-      </div>
-      <div class="small-3 columns">
-        <h4>Sizes:</h4>
-      </div>
-      <div class="small-3 columns">
-      </div>
+    <div class="small-12 columns">
+      <h3>Foods:</h3>
     </div>
-    <% @item.prices.map do |price| %>
-    <div class="row">
-      <div class="small-3 columns">
-        <%= "$#{price_to_s price.price }"  %>
-      </div>
-      <div class="small-3 columns">
-        <% if price.size != "" %>
-        <%= price.size %>
-        <% else %>
-          <i style="color:gray;"><%="$#{price_to_s price.price} worth? " %></i>
-        <% end %>
-      </div>
-      <div class="small-3 columns">
-      </div>
-      <div class="small-3 columns">
-        <%= link_to "edit", edit_admin_price_path(price) %>
-      </div>
-
+    <div class="small-12 medium-4 columns">
+       <%= @item.foods.map {|food| link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
     </div>
-    <% end %>
-    <div class="row">
-      <div class="small-3 columns">
-        <input type="text" id="new_price" name="new_price" placeholder="11.00" />
-      </div>
-      <div class="small-3 columns">
-        <input type="text" id="new_size" name="new_size" placeholder="Size" />
-      </div>
-      <div class="small-3 columns">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="small-12 columns">
-        <div class="actions padded">
-          <%= f.submit class: "button tiny radius success", value: 'Save Price' %>
+    <div class="small-12 medium-8 columns">
+      <%= form_tag admin_restaurant_item_add_food_path(@restaurant, @item), method: :post do %>
+        <%= hidden_field_tag 'admin_updating', true %>
+        <div class="row">
+          <div class="small-9 columns">
+            <%= select_tag('food_id', options_for_select(@restaurant.foods.map {|f| [ f.name, f.id ]}), prompt: "Add Food:") %>
+          </div>
+          <div class="small-3 columns">
+            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+          </div>
         </div>
+      <% end %>
+      <%= link_to "Create Food", new_admin_restaurant_food_path(@restaurant, @food), class: "button tiny radius" %>
+    </div>
+
+    <!-- TODO add choice  -->
+    <h3>Choices:</h3>
+    <div class="small-12 medium-4 columns">
+      <%= @item.choices.map {|choice| link_to(choice.name, edit_admin_restaurant_choice_path(@restaurant, choice)) }.to_sentence.html_safe %>
+    </div>
+    <div class="small-12 medium-8 columns">
+      <%= form_tag admin_restaurant_item_add_choice_path(@restaurant, @item), method: :post do %>
+        <%= hidden_field_tag 'admin_updating', true %>
+        <div class="row">
+          <div class="small-9 columns">
+            <%= select_tag('choice_id', options_for_select(@restaurant.choices.map {|f| [ f.name, f.id ]}), prompt: "Add Choice:") %>
+          </div>
+          <div class="small-3 columns">
+            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to "Create Choice", new_admin_restaurant_choice_path(@restaurant, @food), class: "button tiny radius" %>
+    </div>
+
+    <div class="row padded">
+      <div class="small-12 medium-6 columns">
+        <%= render partial: "price_size_list", locals: {restaurant: @restaurant, item: @item} %>
+        <%= render partial: "price_size_form", locals: {restaurant: @restaurant, item: @item} %>
       </div>
     </div>
   <% end %>
+
 </div>

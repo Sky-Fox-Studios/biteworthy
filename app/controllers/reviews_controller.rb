@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    session[:return_to] ||= request.referer
+    session[:return_to] = request.referer
   end
 
   def create

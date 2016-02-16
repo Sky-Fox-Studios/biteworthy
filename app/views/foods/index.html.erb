@@ -1,32 +1,26 @@
-<h1>Listing Bite Worthy Foods</h1>
-
+<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
+<h1>Listing Foods</h1>
 <table>
   <thead>
     <tr>
-      <th>Restaurant</th>
-      <th>Menu Group</th>
+      <th colspan="1"></th>
       <th>Name</th>
       <th>Description</th>
-      <th>Price</th>
-      <th colspan="3"></th>
+      <% if current_user && current_user.is_admin? %>
+        <th colspan="2"></th>
+      <% end %>
     </tr>
   </thead>
-
   <tbody>
-     <% @foods.each do |food_item| %>
+     <% @foods.each do |food| %>
       <tr>
-         <td><%= food_item.menu_group.restaurant.name %></td>
-         <td><%= food_item.menu_group.name %></td>
-        <td><%= food_item.name %></td>
-        <td><%= food_item.description %></td>
-        <td>
-           <% if !food_item.price_high.nil? %>
-              <%= number_to_currency(food_item.price_low) %> - <%=  number_to_currency(food_item.price_high) %>
-            <% else %>
-              <%= number_to_currency(food_item.price_low) %>
-            <% end %>
-         </td>
-        <td><%= link_to 'Show', food_item %></td>
+        <td><%= render partial: "partials/forms/show", locals: {path: restaurant_food_path(@restaurant, food)} %></td>
+        <td><%= food.name %></td>
+        <td><%= food.description %></td>
+        <% if current_user && current_user.is_admin? %>
+          <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_food_path(@restaurant, food)} %></td>
+          <td><%= render partial: "partials/forms/delete", locals: {path: restaurant_food_path(@restaurant, food)} %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

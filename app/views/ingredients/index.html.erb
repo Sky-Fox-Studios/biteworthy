@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="small-12 columns">
+		<h1>Ingredients</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<table class="small-12" id="ingredients-index-table">
+		  <thead>
+		    <tr>
+		      <th></th>
+		      <th>Ingredient</th>
+		      <th>Tag</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @ingredients.each do |ingredient| %>
+		      <tr>
+		        <td>
+				       <%= link_to raw('<i class="fi-eye"></i>'), ingredient_path(ingredient) %>
+            </td>
+						<td><%= ingredient.name %></td>
+						<td><%= ingredient.tag_name %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
+	</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function () {
+		jQuery('#ingredients-index-table').DataTable({
+			"order": [[ 1, "asc" ]],
+			columns: [
+	      { orderable: false },
+	      {},
+	      {},
+
+    	]
+		  // responsive: true
+		});
+	});
+</script>

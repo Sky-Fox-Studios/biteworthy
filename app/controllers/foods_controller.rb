@@ -4,7 +4,8 @@ class FoodsController < ApplicationController
   respond_to :html
 
   def index
-    @foods = Food.all
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @foods = Food.where(restaurant: @restaurant)
     respond_with(@foods)
   end
 

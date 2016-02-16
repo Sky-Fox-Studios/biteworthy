@@ -1,30 +1,52 @@
+<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
 <div class="row">
-   <div class="small-12 columns">
-      <h2 align="center"><%= @restaurant.name %></h3>
-<!-- TODO only show logo here.       -->
-   </div>
-   <div class="small-9 columns">
-
-      <div class="small-3 columns">
-         <%= image_tag("food_pic.png", size: "120x120", class:"center-image") %>
+  <div class="small-3 columns">
+    <%= PhotoDecorator.decorate(@food.photos).display %>
+    <% if current_user && current_user.is_admin? %>
+      <br>
+      <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_food_path(@restaurant, @food)} %>
+    <% end %>
+  </div>
+  <div class="small-9 columns food-item-name">
+    <div class="row">
+      <div class="small-6 columns">
+        <h3>
+          <%= @food.name.capitalize %>
+        </h3>
+        <p align="none">
+          <%= @food.description %>
+        </p>
       </div>
-      <div class="small-9 columns food-item-name">
-         <p align="none">
-           <%= @food.name %>
-         </p>
-         <p align="none">
-            <%= @food.description %>
-         </p>
-      </div>     
-   </div>
-   <div class="small-3 columns" align="center">
-      <p> Associations:</p>
-      <%= render :partial => 'tags/tag_list', :locals => { :object => @food, :label => false } %>
-   </div>
-   <div class="small-6 columns left">
-   </div>
-   <div class="small-6 columns" align="right">
-     <i class='fi-plus'></i> <%= link_to " #{@food.name}", new_food_review_path(@food) %>
-      <!--  TODO if already review  <i class="fi-review"></i>   -->
-   </div>
+        <div class="small-6 columns">
+          Ingredients:
+          <% if @food.ingredients %>
+            <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
+          <% end %>
+          <% if current_user && current_user.is_admin? %>
+            <%= form_tag admin_restaurant_food_add_ingredient_by_id_path(@restaurant, @food), method: :post do %>
+              <div class="row">
+                <div class="small-9 columns">
+                  <%= select_tag('ingredient_id', options_for_select(Ingredient.all.map {|f| [ f.name, f.id ]}), prompt: "Add ingredient:") %>
+                </div>
+                <div class="small-3 columns">
+                  <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+                </div>
+              </div>
+            <% end %>
+            <%= form_tag admin_restaurant_food_add_ingredient_by_name_path(@restaurant, @food), method: :post do %>
+              <div class="row">
+                <div class="small-9 columns">
+                  <%= text_field_tag('ingredient_name', nil, placeholder: "New ingredient") %>
+                </div>
+                <div class="small-3 columns">
+                  <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

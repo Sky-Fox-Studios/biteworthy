@@ -1,6 +1,6 @@
 module Ninis
-   ninis          = Restaurant.find_or_create_by(name: "Ninis", slogan: "Food so good you wont trust the water",
-   main_image_url: "ninis.gif")
+   ninis          = Restaurant.find_or_create_by(name: "Ninis", slogan: "Food so good you wont trust the water", main_image_url: "ninis.gif")
+
    ninis_burritos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Burritos", description: "A flour tortilla with beans, rice, sour crea, cheese, salsa, and...", is_food_group: true)
    burrito_items = [
      ["Chicken", nil, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
@@ -15,13 +15,12 @@ module Ninis
       name: name,
       description: description)
       prices_sizes.each do |price_size|
-        Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
+        Price.find_or_create_by(value: price_size[:price], size: price_size[:size], priced_id: item.id, priced_type: "Item")
       end
    end
 
-    ninis_tacos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name:
-      "Tacos", description: "Three soft flour or corn tortillas filled with sour cream, cheese, lettuce, salsa and...", is_food_group: true)
-    taco_items = [
+   ninis_tacos = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Tacos", description: "Three soft flour or corn tortillas filled with sour cream, cheese, lettuce, salsa and...", is_food_group: true)
+   taco_items = [
       ["Chicken", nil, [{price: 8.25, size: nil}]],
       ["Carnitas", "Shredded pork",  [{price: 8.25, size: nil}]],
       ["Barbacoa", "Shredded beef",  [{price: 8.25, size: nil}]],
@@ -35,7 +34,7 @@ module Ninis
        name: name,
        description: description)
       prices_sizes.each do |price_size|
-        Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
+        Price.find_or_create_by(value: price_size[:price], size: price_size[:size], priced_id: item.id, priced_type: "Item")
       end
     end
 
@@ -55,7 +54,7 @@ module Ninis
        name: name,
        description: description)
        prices_sizes.each do |price_size|
-         Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
+         Price.find_or_create_by(value: price_size[:price], size: price_size[:size], priced_id: item.id, priced_type: "Item")
        end
     end
 
@@ -93,7 +92,7 @@ module Ninis
      item = Item.find_or_create_by(restaurant: ninis, menu_group: menu_group,
       name: name,
       description: description)
-      Price.find_or_create_by(price: price, item: item)
+      Price.find_or_create_by(value: price, priced_id: item.id, priced_type: "Item")
    end
 
    for_the_kids_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "For The Kids", description: nil)
@@ -107,7 +106,7 @@ module Ninis
      item = Item.find_or_create_by(restaurant: ninis, menu_group: menu_group,
       name: name,
       description: description)
-      Price.find_or_create_by(price: price, item: item)
+      Price.find_or_create_by(value: price, priced_id: item.id, priced_type: "Item")
    end
 
    extras_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Extras", description: nil)
@@ -126,7 +125,7 @@ module Ninis
    extra_items.each do |name, price|
      item = Item.find_or_create_by(restaurant: ninis, menu_group: extras_menu_group,
       name: name)
-      Price.find_or_create_by(price: price, item: item)
+      Price.find_or_create_by(value: price, priced_id: item.id, priced_type: "Item")
    end
 
    bebidas_menu_group = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Bebidas", description: nil)

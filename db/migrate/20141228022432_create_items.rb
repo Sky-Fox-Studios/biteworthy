@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :restaurant_id
       t.string  :name
       t.string  :description
+
       t.timestamps
     end
   end

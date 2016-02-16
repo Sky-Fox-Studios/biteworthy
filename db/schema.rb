@@ -13,14 +13,40 @@
 
 ActiveRecord::Schema.define(version: 20150904233208) do
 
+  create_table "additions", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "additions_foods", force: :cascade do |t|
+    t.integer "addition_id"
+    t.integer "food_id"
+  end
+
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id"
     t.string  "street"
-    t.string  "city",                     default: "Durango"
-    t.string  "state",                    default: "CO"
-    t.integer "zip",                      default: 81301
-    t.float   "latitude",      limit: 12
-    t.float   "longitude",     limit: 12
+    t.string  "city",                                   default: "Durango"
+    t.string  "state",                                  default: "CO"
+    t.integer "zip",                                    default: 81301
+    t.decimal "latitude",      precision: 10, scale: 6
+    t.decimal "longitude",     precision: 10, scale: 6
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "choices_foods", force: :cascade do |t|
+    t.integer "choice_id"
+    t.integer "food_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -34,10 +60,6 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   create_table "foods_ingredients", force: :cascade do |t|
     t.integer  "food_id"
     t.integer  "ingredient_id"
-    t.boolean  "local"
-    t.boolean  "organic"
-    t.boolean  "naturally_grown"
-    t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,18 +71,14 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.string   "parent_id"
-    t.boolean  "animal_product", default: false
-    t.boolean  "dairy",          default: false
-    t.boolean  "fruit",          default: false
-    t.boolean  "grain",          default: false
-    t.boolean  "meat",           default: false
-    t.boolean  "poultry",        default: false
-    t.boolean  "nut",            default: false
-    t.boolean  "sea_food",       default: false
-    t.boolean  "vegetable",      default: false
+    t.string   "tag_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "ingredients_tags", force: :cascade do |t|
+    t.integer "ingredient_id"
+    t.integer "tag_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -72,9 +90,24 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.datetime "updated_at"
   end
 
-  create_table "items_foods", force: :cascade do |t|
-    t.integer "food_id"
+  create_table "items_additions", force: :cascade do |t|
     t.integer "item_id"
+    t.integer "addition_id"
+  end
+
+  create_table "items_choices", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "choice_id"
+  end
+
+  create_table "items_foods", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "food_id"
+  end
+
+  create_table "items_ingredients", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "ingredient_id"
   end
 
   create_table "menu_groups", force: :cascade do |t|
@@ -94,9 +127,19 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer "tag_id"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.string   "photo_type"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prices", force: :cascade do |t|
-    t.integer "item_id"
-    t.float   "price"
+    t.integer "priced_id"
+    t.string  "priced_type"
+    t.float   "value"
     t.string  "size"
   end
 
@@ -118,6 +161,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   create_table "restaurants_tags", force: :cascade do |t|
     t.integer "restaurant_id"
     t.integer "tag_id"
+  end
+
+  create_table "restaurants_users", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -154,6 +202,15 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   create_table "tags_groups_relations", force: :cascade do |t|
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.string   "key"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_roles", ["key"], name: "index_user_roles_on_key", unique: true
+
   create_table "users", force: :cascade do |t|
     t.string   "user_name",              default: "", null: false
     t.string   "first_name",             default: "", null: false
@@ -165,6 +222,8 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.boolean  "is_editor"
     t.boolean  "is_staff"
     t.integer  "strikes"
+    t.boolean  "banned"
+    t.datetime "banned_at"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -188,5 +247,12 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+
+  create_table "users_roles", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

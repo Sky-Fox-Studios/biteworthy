@@ -1,59 +1,57 @@
 <%= render :partial => 'restaurant_header', locals: {restaurant: @restaurant} %>
 <% unless @menu_groups.empty? %>
 <div class="row">
-  <% @menu_groups.each do |menu| %>
-    <div class="small-12">
-      <div class="menu-group-head center small-12"><%= menu.name %></div>
-      <% if menu.description %>
-        <div class="menu-group-description left small-12 columns"><%= menu.description %></div>
+  <div class="small-12 columns">
+    <ul class="tabs vertical" data-tab>
+      <% @menu_groups.each_with_index do |menu, index| %>
+        <li class="tab-title <%= index==0 ? 'active' : ''%>" <%= menu.background_color ? "style=background-color:#{menu.background_color};" : "" %> ><a href="#menu-<%= menu.id %>"><%= menu.name %></a></li>
       <% end %>
-    </div>
-    <div class="row">
-      <% menu.items.each do |item| %>
-        <div class="small-6 columns">
+    </ul>
+    <div class="tabs-content vertical">
+      <% @menu_groups.each_with_index do |menu, index| %>
+        <div class="content <%= index==0 ? 'active' : ''%>" id="menu-<%= menu.id %>">
+            <% menu.items.each do |item| %>
           <div class="row">
-            <div class="item-image small-4 columns">
-              <div class="image-wrapper">
-                <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), item_path(item) %>
+              <div class="item-image small-4 columns image-wrapper">
+                  <%= PhotoDecorator.decorate(item.photos).display %>
+                <% if current_user %>
+                  <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
+                    <% review = Review.where(user_id: current_user.id, review_type: "Item", review_id: item.id).first %>
+                    <% if review %>
+                      <%= render partial: "/modules/rating_reviews", locals: { rating: Review.ratings[review.rating], reviewable: item } %>
+                    <% else %>
+                      <%= render partial: "/modules/rating_reviews", locals: { rating: 0, reviewable: item } %>
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
-              <% if current_user %>
-                <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
-                  <% review = Review.where(user_id: current_user.id, review_type: "Item", review_id: item.id).first %>
-                  <% if review %>
-                    <%= render partial: "/modules/rating_reviews", locals: { rating: Review.ratings[review.rating], reviewable: item } %>
-                  <% else %>
-                    <%= render partial: "/modules/rating_reviews", locals: { rating: 0, reviewable: item } %>
-                  <% end %>
+              <div class="item-description small-8 columns">
+                <div class="row">
+                  <div class="small-9 columns">
+                    <h3><%= link_to item.name, restaurant_item_path(item.restaurant, item) %></h3>
+                  </div>
+                  <div class="item-price small-3 columns">
+                    <% item.prices.each do |price_size| %>
+                      <%= price_to_s(price_size.value) %><%= "/#{price_size.size}" if price_size.size && !price_size.size.empty? %><br>
+                    <% end %>
+                  </div>
                 </div>
-              <% end %>
-            </div>
-            <div class="item-description small-8 columns">
-              <div class="row">
-                <div class="small-9 columns">
-                  <h3><%= link_to item.name, item_path(item) %></h3>
-                </div>
-                <div class="item-price small-3 columns">
-                  <% item.prices.each do |price_size| %>
-                    <%= price_to_s(price_size.price) %><%= "/#{price_size.size}" if price_size.size %><br>
-                  <% end %>
-                </div>
+                <%= item.description %>
               </div>
-              <%= item.description %>
-            </div>
           </div>
+            <% end %>
         </div>
       <% end %>
     </div>
-  <% end %>
 </div>
 <hr>
 <% else %>
 <div class="small-12 columns">
   <h4 style="color:RED;">Nothing yet.</h4>
-  <%= link_to "(Add Something)", new_admin_item_path(item: {restaurant_id: @restaurant.id})  %>
+  <%= link_to "(Add Something)", new_admin_restaurant_item_path(@restaurant.id)  %>
 </div>
 <% end %>
 </div>
 <!-- <div class="small-3 columns">
-  <h5><%= link_to "Make Fav", new_restaurant_review_path(@restaurant), :class => "button tiny radius success right" %></h5>
+  <h5><%= link_to "Make Fav", new_review_path(@restaurant), :class => "button tiny radius success right" %></h5>
 </div> -->

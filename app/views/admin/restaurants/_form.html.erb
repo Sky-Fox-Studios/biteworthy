@@ -1,64 +1,73 @@
 <%= simple_form_for([:admin, @restaurant]) do |f| %>
-  <% if @restaurant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+<% if @restaurant.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
 
-      <ul>
-      <% @restaurant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @restaurant.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 <div class="row">
-   <div class="small-3 columns">
-      <%= f.input :name %>
-   </div>
-   <div class="small-6 columns">
-      <%= f.input :slogan %>
-   </div>
-   <div class="small-3 columns">
-      <%= f.input :phone_number %>
-   </div>
+  <div class="small-12 columns">
+    <%= f.input :name %>
+  </div>
+  <div class="small-6 columns">
+    <%= f.input :slogan %>
+  </div>
+  <div class="small-3 columns">
+    <%= f.input :phone_number %>
+  </div>
 </div>
 
 <div class="row">
-
-   <div class="small-12 columns">
-      <%= f.input :about %>
-   </div>
-   <div class="small-12 columns">
-      <%= f.input :disclaimer %>
-   </div>
-   <div class="small-12 columns">
-     <h3>Location</h3>
-     <% @restaurant.addresses.each do |address| %>
-       <%= render partial: 'admin/addresses/show', locals: { address: address} %>
-     <% end %>
-     <% if @restaurant.addresses.empty? %>
-      <%= render partial: 'admin/addresses/form', locals: { restaurant: @restaurant, address: Address.new} %>
-     <% end %>
-   </div>
-
+  <div class="small-12 columns">
+    <%= f.input :about %>
+  </div>
+  <div class="small-12 columns">
+    <%= f.input :disclaimer %>
+  </div>
 </div>
 <div class="row">
   <div class="small-12 columns">
     <h3>Extras</h3>
   </div>
 
-   <div class="small-6 columns">
-     <%= f.input :seating %>
-   </div>
+  <div class="small-6 columns">
+    <%= f.input :seating, label: "Indoor seating" %>
+  </div>
 
-   <div class="small-6 columns">
-     <%= f.input :outside_seating %>
-   </div>
+  <div class="small-6 columns">
+    <%= f.input :outside_seating %>
+  </div>
 
-   <div class="small-6 columns">
-     <%= f.input :cash_only %>
-   </div>
- <div class="small-12 columns">
-     <%= f.submit %>
-</div>
+  <div class="small-6 columns">
+    <%= f.input :cash_only %>
+  </div>
+
+  <div class="small-12 columns">
+    <h3>Location(s):</h3>
+  </div>
+  <% unless @restaurant.addresses.empty? %>
+    <% @restaurant.addresses.each do |address| %>
+      <div class="small-12 medium-6 large-4 columns">
+        <%= render partial: 'admin/addresses/show', locals: { address: address} %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="small-12 columns">
+    <p>New:</p>
+    <%= f.simple_fields_for :addresses, @restaurant.addresses.build do |addresses_form| %>
+      <%= render partial: 'admin/addresses/address_fields', locals: { a: addresses_form } %>
+    <% end %>
+  </div>
+
+
+
+  <div class="small-12 columns">
+    <%= f.submit %>
+  </div>
 </div>
 <% end %>

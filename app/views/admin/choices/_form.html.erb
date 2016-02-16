@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="small-12 medium-8 columns">
+    <%= simple_form_for([:admin, @restaurant, @choice]) do |f| %>
+      <% if @choice.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@choice.errors.count, "error") %> prohibited this choice from being saved:</h2>
+          <ul>
+          <% @choice.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <%= hidden_field_tag 'choice[restaurant_id]', @restaurant.id %>
+
+         <div class="small-6 columns">
+            <%= f.input :name %>
+         </div>
+         <div class="small-6 columns">
+            <%= f.input :description %>
+         </div>
+      </div>
+      <div class="small-12 columns">
+           <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+  <div class="small-12 medium-4 columns">
+    What are the food choices?<br>
+    <% if @choice.foods %>
+      <%= @choice.foods.map {|food| link_to(food.name, admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
+    <% end %>
+    <% unless @choice.new_record? %>
+      <%= form_tag admin_restaurant_choice_add_food_path(@restaurant, @choice), method: :post do %>
+        <%= hidden_field_tag 'admin_updating', true %>
+
+        <div class="row">
+          <div class="small-9 columns">
+            <%= select_tag('food_id', options_for_select(@restaurant.foods.map {|f| [ f.name, f.id ]}), prompt: "Add choice:") %>
+          </div>
+          <div class="small-3 columns">
+            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

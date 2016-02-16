@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, restaurant, item, Price.new], url: admin_items_add_price_path(@item), method: :post) do |f| %>
+  <div class="row">
+    <div class="small-4 columns">
+      <input type="text" id="new_price" name="new_price" placeholder="11.00" />
+    </div>
+    <div class="small-6 columns">
+      <input type="text" id="new_size" name="new_size" placeholder="Size" />
+    </div>
+    <div class="small-2 columns">
+        <%= f.submit class: "button tiny radius success", value: 'Add' %>
+    </div>
+  </div>
+<% end %>

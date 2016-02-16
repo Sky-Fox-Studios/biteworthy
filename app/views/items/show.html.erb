@@ -2,15 +2,14 @@
 <%= render :partial => '/menu_groups/menu_group_header', locals: {menu_group: @item.menu_group} %>
 
 <div class="row">
-  <div class="small-4 columns">
+  <div class="small-3 medium-3 large-3 columns">
     <%= render :partial => 'image', locals: {item: @item} %>
   </div>
-  <div class="small-4 columns">
-    <%= render :partial => 'name_desc', locals: {item: @item} %>
-  </div>
-  <div class="small-4 columns  item-price">
-    <%= render :partial => 'price', locals: {item: @item} %>
+  <div class="small-9 medium-9 large-9 columns">
+    <div class="row">
+      <%= render :partial => 'name_desc', locals: {item: @item} %>
+      <%= render :partial => 'foods_choices_options', locals: {item: @item} %>
+    </div>
   </div>
 </div>
-
 <%= render :partial => 'item_footer', locals: {item: @item, review: @review} %>
