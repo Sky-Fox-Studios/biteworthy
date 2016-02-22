@@ -14,6 +14,8 @@ gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'kaminari'                               # Model pagination
 
+gem 'honeybadger', '~> 2.0'
+
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'jbuilder', '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
