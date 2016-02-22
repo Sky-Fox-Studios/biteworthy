@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
- before_action :set_tag, only: [:edit, :update, :destroy]    
+ before_action :set_tag, only: [:edit, :update, :destroy]
 
  def index
    @tags = Tag.order(:name => :asc) #.page(@page).per(50)
@@ -19,7 +19,7 @@ class TagsController < ApplicationController
        @tags << tag if tag.valid? && tag.save
     end
     if !@tags.empty?
-       redirect_to tags_url, notice: 'Tag(s) was successfully created.'
+       redirect_to tags_url, notice: 'Tag(s) successfully created.'
    else
        redirect_to new_tag_path, notice: 'Tag creation error.'
    end
@@ -38,7 +38,7 @@ class TagsController < ApplicationController
    redirect_to tags_url, notice: 'Tag was successfully deleted.'
  end
 
- private 
+ private
 
  # Use callbacks to share common setup or constraints between actions.
  def set_tag
@@ -48,5 +48,5 @@ class TagsController < ApplicationController
  # Only allow a trusted parameter "white list" through.
  def tag_params
    params.require(:tag).permit(:name)
- end    
+ end
 end

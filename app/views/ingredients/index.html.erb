@@ -1,12 +1,10 @@
 <div class="row">
 	<div class="small-12 columns">
-		<h1>Manage Ingredients</h1>
+		<h1>Ingredients</h1>
 	</div>
 </div>
-
 <div class="row">
 	<div class="small-12 columns">
-		<%= link_to raw('<i class="fi-plus"></i> New ingredient'), new_ingredient_path, :class => "button tiny" %>
 		<table class="small-12" id="ingredients-index-table">
 		  <thead>
 		    <tr>
@@ -19,7 +17,7 @@
 		    <% @ingredients.each do |ingredient| %>
 		      <tr>
 		        <td>
-				       <%= link_to raw('<i class="fi-page-edit"></i>'), edit_ingredient_path(ingredient) %>
+				       <%= link_to raw('<i class="fi-eye"></i>'), ingredient_path(ingredient) %>
             </td>
 						<td><%= ingredient.name %></td>
 						<td><%= ingredient.tag_name %></td>

@@ -1,7 +1,7 @@
 class Price < ActiveRecord::Base
-  belongs_to :item
+  belongs_to :priced, polymorphic: true
 
-  validates :item_id, :price, presence: true
+  validates :value, presence: true
 
   def to_s
     number_with_precision(price, strip_insignificant_zeros: true);

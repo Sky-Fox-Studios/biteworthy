@@ -14,7 +14,7 @@
           <div class="row">
             <div class="item-image small-4 columns">
               <div class="image-wrapper">
-                <%= link_to image_tag("food_pic.png", size: "142x142", class:"center-image"), item_path(item) %>
+                <%= PhotoDecorator.decorate(item.photos).display %>
               </div>
               <% if current_user %>
                 <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">

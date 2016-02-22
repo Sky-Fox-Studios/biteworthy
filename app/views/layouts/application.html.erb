@@ -12,7 +12,6 @@
     <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <%= csrf_meta_tags %>
     <%= render :partial => "/ga/tracking" %>
-    <script type="text/javascript" src="assets/jscolor.js"></script>
   </head>
 
    <body>
@@ -30,10 +29,9 @@
               </div>
             <% end %>
             <%= yield %>
-
             <%= javascript_include_tag "application" %>
          </div>
-         <%= render :partial => "/base/footer" %>
       </div>
+      <%= render :partial => "/base/footer" %>
    </body>
 </html>

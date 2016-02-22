@@ -20,7 +20,7 @@
         <td><%= restaurant.phone_number %></td>
         <td><%= restaurant.seating %></td>
         <td><%= restaurant.outside_seating %></td>
-        <td><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
         <td><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
         <td><%= link_to 'Destroy', admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

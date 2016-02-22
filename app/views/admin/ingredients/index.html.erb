@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="small-12 columns">
+		<h1>Manage Ingredients</h1>
+	</div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <% if current_user && current_user.is_admin? %>
+      <%= link_to raw('<i class="fi-plus"></i> New ingredient'), new_admin_ingredient_path, :class => "button tiny" %>
+    <% end %>
+    <table class="small-12" id="admin-ingredients-index-table">
+      <thead>
+        <tr>
+          <th colspan="1"></th>
+          <th>Name</th>
+          <th>Tag</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @ingredients.each do |ingredient| %>
+          <tr>
+            <td><%= render partial: "partials/forms/show", locals: {path: ingredient_path(ingredient)} %></td>
+            <td><%= ingredient.name %></td>
+            <td><%= ingredient.tag_name %>
+            <td>
+              <%= render partial: "partials/forms/edit", locals: {path: edit_admin_ingredient_path(ingredient)} %>
+              <% if current_user.is_admin? %>
+                 | <%= render partial: "partials/forms/delete", locals: {path: admin_ingredient_path(ingredient)} %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,6 +1,5 @@
-<h1>Bite Worthy <%= @food.name %></h1>
+<h1><%= @restaurant.name %>: <%= @food.name %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @food %> |
-<%= link_to 'Back', admin_foods_path %>
+<%= link_to 'Foods Index', admin_foods_path %>

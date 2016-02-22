@@ -8,24 +8,29 @@ module Rgps
   puts "Rgps rgps_wraps"
 
   rgps_wrap_items = [
-    ["Roasted Chicken or Turkey Breast", "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing.", "Choice of cheese, Choice of dressing", "Roma Tomatoes, Red Onion, Green Pepper, Carrots, Romaine Lettuce"],
-    ["Pulled Pork BBQ", "Smoked Pulled Pork, Cheddar Cheese, Red Onion, Black Beans, Homemade Cole Slaw, and our Classic BBQ Sauce.", "Homemade Cole Slaw", "Smoked Pulled Pork, Cheddar Cheese, red onion, Black Beans"],
-    ["Veggie", "Sweet roasted red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, crisp romaine lettuce and choice of Cheese and Dressing.", "Choice of cheese, Choice of dressing", "red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, romaine lettuce"],
+    ["Roasted Chicken or Turkey Breast", "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing.",
+       "Roma Tomatoes, Red Onion, Green Pepper, Carrots, Romaine Lettuce", "Cheese, Dressing"],
+    ["Pulled Pork BBQ", "Smoked Pulled Pork, Cheddar Cheese, Red Onion, Black Beans, Homemade Cole Slaw, and our Classic BBQ Sauce.",
+       "Smoked pulled pork, Cheddar cheese, Red onion, Black beans, Homemade cole slaw, BBQ sauce", nil],
+    ["Veggie", "Sweet roasted red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, crisp romaine lettuce and choice of Cheese and Dressing.",
+       "red peppers, sweet corn, roma tomatoes, red onion, green pepper, carrots, romaine lettuce", "Cheese, Dressing"],
   ]
 
-  rgps_wrap_items.each do |name, description, foods_array, ingredients_array|
+  rgps_wrap_items.each do |name, description, foods_array, choices_array|
     item = Item.find_or_create_by(restaurant: rgps,
       menu_group: rgps_wraps,
       name: name,
       description: description,
     )
     foods_array.split(',').each do |food|
-      item.foods << Food.find_or_create_by(name: food, restaurant: rgps)
+      food = Food.find_or_create_by(name: food.downcase, restaurant: rgps)
+      item.foods << food
     end
-    ingredients_array.split(',').each do |ingredient|
-      i = Ingredient.find_or_create_by(tag_name: Tag.normalize(ingredient))
-      i.update(name: ingredient)
-      item.ingredients << i
+    if choices_array
+      choices_array.split(',').each do |choice|
+        choice = Choice.find_or_create_by(name: choice.downcase, restaurant: rgps)
+        item.choices << choice
+      end
     end
     item.save
     puts "Rgps #{item.name} saved"
@@ -38,7 +43,7 @@ module Rgps
   rgps_salads      = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Salads", description: "Add Chicken to any salad for $1.50", is_food_group: true)
   puts "Rgps Salads..."
   rgps_salad_items = [
-    ["Caesar Salad", "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and our Caesar Dressing."],
+    ["Caesar Salad", "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and Dressing."],
     ["Full House", "Romaine Lettuce with Roma Tomatoes, Red Onion, Green Peppers, Carrots, Cucumbers, Roasted Red Peppers."],
   ]
 

@@ -18,7 +18,7 @@
   <% end %>
   <div class="row">
     <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
-    <div class="small-12 columns">
+    <div class="small-6 medium-4 large-3 columns">
       <%= f.input :rating, collection: Review.ratings.map {|k, v| [k, k]}, include_blank: false, selected: Review.ratings[@review.rating], selected: @review.rating %>
     </div>
   </div>

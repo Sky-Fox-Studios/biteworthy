@@ -22,8 +22,7 @@ class Tag < ActiveRecord::Base
 
     def self.normalize(tag_name)
       if tag_name then
-        return tag_name.to_s.strip.gsub(/[^A-Za-z0-9-\s]+/, "").singularize.gsub(/[_\s]+/, '-').downcase
-      else
+        return tag_name.to_s.strip.gsub(/[^A-Za-z0-9\s]+/, "").singularize.gsub(/[_\s]+/, '-').downcase    else
         nil
       end
     end

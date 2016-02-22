@@ -27,7 +27,10 @@
     <strong>Longitude:</strong>
     <%= address.longitude %>
   </div>
+  <%= render partial: 'admin/addresses/map', locals: { latitude: address.latitude, longitude: address.longitude } %>
+
   <div class="small-12 columns">
-    <%= link_to 'Edit', edit_admin_address_path(address) %> |
+    <%= link_to 'Edit', edit_admin_restaurant_address_path(@restaurant, address) %> |
+    <%= link_to 'Remove', admin_restaurant_address_path(@restaurant, address), method: :delete, data: { confirm: 'Are you sure?' }  %>
   </div>
 </div>

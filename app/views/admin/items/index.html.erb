@@ -1,8 +1,13 @@
 <h1>Listing Bite Worthy Items</h1>
 <div class="row">
-    <%= form_tag 'items', method: :get do %>
-      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
-      <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
+  <%= form_tag 'items', method: :get do %>
+    <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+    <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
+    <div class="small-12 medium-4 large-4 columns">
+      <% if params[:filter_restaurant_id] %>
+        <%= link_to 'New Item', new_admin_restaurant_item_path(params[:filter_restaurant_id]), class: "button tiny radius success" %>
+      <% end %>
+    </div>
   <% end %>
 </div>
 <div class="row">
@@ -25,14 +30,14 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= link_to "<i class='fi-eye'></i>".html_safe, restaurant_item_path(item.restaurant, item) %></td>
+        <td><%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %></td>
         <td><%= item.restaurant.name %></td>
         <td><%= item.menu_group.name %></td>
         <td><%= item.name %></td>
         <td><%= item.description %></td>
-        <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_restaurant_item_path(item.restaurant, item) %></td>
+        <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %></td>
         <% if current_user.is_admin? %>
-          <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_item_path(item.restaurant, item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= render partial: "partials/forms/delete", locals: {path: admin_restaurant_item_path(item.restaurant, item)} %></td>
         <% end %>
       </tr>
     <% end %>

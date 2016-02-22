@@ -7,8 +7,10 @@
     <%= render :partial => 'price', locals: {item: @item} %>
   </div>
   <div class="small-9 medium-9 large-9 columns">
-    <%= render :partial => 'name_desc', locals: {item: @item} %>
+    <div class="row">
+      <%= render :partial => 'name_desc', locals: {item: @item} %>
+      <%= render :partial => 'foods_choices_options', locals: {item: @item} %>
+    </div>
   </div>
 </div>
-
 <%= render :partial => 'item_footer', locals: {item: @item, review: @review} %>

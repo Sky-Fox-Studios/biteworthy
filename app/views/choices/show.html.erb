@@ -1,0 +1,31 @@
+<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
+<div class="row">
+  <div class="small-12 medium-6 large-4 columns">
+    <h3>
+      <%= @choice.name.capitalize.pluralize %>
+    </h3>
+    <p align="none">
+      <%= @choice.description %>
+    </p>
+  </div>
+    <div class="small-12 medium-6 large-8 columns">
+
+    Choices are:
+    <% if @choice.foods %>
+      <%= @choice.foods.map {|food| link_to(food.name, restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
+    <% end %>
+    <% if current_user && current_user.is_admin? %>
+      <br>
+      <%= form_tag admin_restaurant_choice_add_food_path(@restaurant, @choice), method: :post do %>
+        <div class="row">
+          <div class="small-9 columns">
+            <%= select_tag('food_id', options_for_select(@restaurant.foods.map {|f| [ f.name, f.id ]}), prompt: "Add choice:") %>
+          </div>
+          <div class="small-3 columns">
+            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

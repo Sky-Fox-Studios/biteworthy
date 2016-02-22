@@ -1,9 +1,17 @@
 class Admin::FoodsController < AdminController
+  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient_by_id, :add_ingredient_by_name]
   before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_foods, only: [:all, :index]
   respond_to :html
 
+
+  def all
+    @restaurants = Restaurant.all.order(:name)
+    render :index
+  end
+
   def index
-     @foods = Food.all
+    @foods = Food.all
     respond_with(@foods)
   end
 
@@ -13,18 +21,16 @@ class Admin::FoodsController < AdminController
 
   def get_menu_groups_by_restaurant
      restaurant = Restaurant.find(params[:restaurant_id])
-     menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
-
-    render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
-
+     menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
+     render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
   end
 
   def new
     @food = Food.new
     if params[:food] && params[:food][:restaurant_id]
       @restaurant = Restaurant.find(food_params[:restaurant_id])
-      @menu_groups = MenuGroup.where('restaurant_id' => food_params[:restaurant_id])
-
+    elsif params.has_key? :restaurant_id
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
     respond_with(@food)
   end
@@ -43,7 +49,6 @@ class Admin::FoodsController < AdminController
 
   def update
     if @food.update(food_params)
-      @food.prices << Price.create(food_id: @food.id, price: params[:new_price], size: params[:new_size])
        redirect_to admin_foods_path
     else
        redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
@@ -55,13 +60,47 @@ class Admin::FoodsController < AdminController
      redirect_to admin_foods_path
   end
 
+  def add_ingredient_by_id
+    @food = Food.find(params[:food_id])
+    unless params[:ingredient_id].empty?
+      ingredient = Ingredient.find(params[:ingredient_id])
+      @food.ingredients << ingredient unless @food.ingredients.include? ingredient
+    end
+    if params.has_key? :admin_updating
+      redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
+    else
+      redirect_to restaurant_food_path(@restaurant, @food)
+    end
+  end
+
+  def add_ingredient_by_name
+    @food = Food.find(params[:food_id])
+    unless params[:ingredient_name].empty?
+      ingredient = Ingredient.find_or_create_by(name: params[:ingredient_name])
+      @food.ingredients << ingredient unless @food.ingredients.include? ingredient
+    end
+    if params.has_key? :admin_updating
+      redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
+    else
+      redirect_to restaurant_food_path(@restaurant, @food)
+    end
+  end
+
   private
     def set_food
       @food = Food.find(params[:id])
-      @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
+    end
+
+    def set_foods
+      @page= params[:page]
+      if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
+        @foods = Food.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(per_page_count)
+      else
+        @foods = Food.page(@page).per(per_page_count)
+      end
     end
 
     def food_params
-       params.require(:food).permit(:restaurant_id, :menu_group_id, :name, :description)
+       params.require(:food).permit(:restaurant_id, :name, :description)
     end
 end

@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Restaurant menu group:</strong>
-   <%= @food.menu_group_id %>
+  <strong>Restaurant:</strong>
+   <%= @food.restaurant.name %>
 </p>
 
 <p>
@@ -13,15 +13,6 @@
 <p>
   <strong>Description:</strong>
    <%= @food.description %>
-</p>
-
-<p>
-  <strong>Price Low:</strong>
-   <%= number_to_currency(@food.price_low) %>
-</p>
-<p>
-  <strong>Price High:</strong>
-   <%= number_to_currency(@food.price_high) %>
 </p>
 
 <%= link_to 'Edit', edit_admin_restaurant_food_path(@food.restaurant, @food) %> |

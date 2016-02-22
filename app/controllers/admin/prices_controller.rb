@@ -1,5 +1,6 @@
 class Admin::PricesController < AdminController
   before_action :set_price, only: [:show, :edit, :update, :destroy]
+  before_action :find_priced, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
   def index
@@ -20,29 +21,55 @@ class Admin::PricesController < AdminController
   end
 
   def create
-    @price = Price.new(price_params)
+    @price = @priced.prices.new(price_params)
     redirect_to admin_prices_path
   end
 
   def update
     if @price.update(price_params)
-      redirect_to edit_admin_restaurant_item_path(@price.item.restaurant, @price.item), notice: "Price/Size updated"
+      if @price.priced_type == "Item"
+        redirect_to edit_admin_restaurant_item_path(@priced.restaurant, @priced), notice: "Price/Size updated"
+      else
+        redirect_to admin_prices_path
+      end
     else
       render :edit
     end
   end
 
   def destroy
+    @price_id = @price.id
     @price.destroy
-    redirect_to admin_prices_path, notice: "Price removed"
+    respond_to do |format|
+       format.html { redirect_to :back }
+       format.json { head :no_content }
+       format.js   { render :layout => false }
+     end
   end
 
   private
   def set_price
     @price = Price.find(params[:id])
-    end
+  end
 
   def price_params
-    params.require(:price).permit(:food_id, :price, :size)
-    end
+    params.require(:price).permit(:priced_type, :priced_id, :value, :size)
+  end
+
+  def find_priced
+    if params.include?(:priced_type) && params.include?(:priced_id)
+      @priced = params[:priced_type].classify.constantize.find(params[:priced_id])
+    else
+       params.each do |name, value|
+          if name =~ /(.+)_id$/
+            puts "name=#{name}, value=#{value}"
+             @priced = $1.classify.constantize.find(value)
+          end
+       end
+     end
+     if !@priced && @price
+       @priced = @price.priced_type.classify.constantize.find(@price.review_id)
+     end
+     @priced
+  end
 end
