@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  before_validation :set_noramlized_name
+  before_validation :set_normalized_name
 
   has_many :photos, :as => :photo
 
@@ -12,10 +12,10 @@ class Ingredient < ActiveRecord::Base
   has_many :tags, through: :ingredients_tags
   has_many :ingredients_tags
 
-  validates :name, :noramlized_name, presence: true
-  validates :noramlized_name, uniqueness: true
+  validates :name, :normalized_name, presence: true
+  validates :normalized_name, uniqueness: true
 
-  def set_noramlized_name
-    noramlized_name = Tag.normalize(self.name)
+  def set_normalized_name
+    normalized_name = Tag.normalize(self.name)
   end
 end
