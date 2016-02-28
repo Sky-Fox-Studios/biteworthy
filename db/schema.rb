@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.string   "tag_name"
+    t.string   "normalized_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

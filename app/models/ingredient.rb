@@ -16,6 +16,6 @@ class Ingredient < ActiveRecord::Base
   validates :normalized_name, uniqueness: true
 
   def set_normalized_name
-    normalized_name = Tag.normalize(self.name)
+    self.normalized_name = Tag.normalize(self.name)
   end
 end
