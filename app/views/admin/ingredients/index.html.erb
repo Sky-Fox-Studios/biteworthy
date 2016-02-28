@@ -24,7 +24,7 @@
           <tr>
             <td><%= render partial: "partials/forms/show", locals: {path: ingredient_path(ingredient)} %></td>
             <td><%= ingredient.name %></td>
-            <td><%= ingredient.tag_name %>
+            <td><%= ingredient.noramlized_name %>
             <td>
               <%= render partial: "partials/forms/edit", locals: {path: edit_admin_ingredient_path(ingredient)} %>
               <% if current_user.is_admin? %>
