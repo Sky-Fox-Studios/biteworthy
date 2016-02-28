@@ -1,5 +1,5 @@
 <% unless item.prices.empty? %>
   <% item.prices.each do |price| %>
-    <p class="margin-none">$<%= price.price %> <%= price.size %></p>
+    <p class="margin-none">$<%= price.value %> <%= price.size %></p>
   <% end %>
 <% end %>

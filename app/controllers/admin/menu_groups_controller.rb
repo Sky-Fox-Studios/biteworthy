@@ -10,7 +10,7 @@ class Admin::MenuGroupsController < AdminController
   end
 
   def index
-    @restaurants = Restaurant.all.order(:name)
+    @menu_groups = MenuGroup.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
     respond_with(@menu_groups)
   end
 

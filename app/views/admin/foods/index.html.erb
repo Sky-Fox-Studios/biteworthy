@@ -1,21 +1,13 @@
-<h1>Listing Bite Worthy Foods</h1>
+<h1>Listing <%= @restaurant.name %> Foods</h1>
 <div class="row">
-    <%= form_tag 'foods', method: :get do %>
-      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
-  <% end %>
   <div class="small-12 medium-6 large-4 columns">
-    <% if @restaurant %>
-      <%= link_to 'New Food...', new_admin_restaurant_food_path(@restaurant), class: "button tiny radius success" %>
-    <% end %>
+    <%= link_to 'New Food...', new_admin_restaurant_food_path(@restaurant), class: "button tiny radius success" %>
   </div>
-</div>
-<div class="row">
   <div class="small-12 columns">
-    <table>
+    <table class="small-12">
       <thead>
         <tr>
           <th></th>
-          <th>Restaurant</th>
           <th>Name</th>
           <th>Description</th>
           <th colspan="2"></th>
@@ -26,7 +18,6 @@
         <% @foods.each do |food| %>
           <tr>
             <td><%= link_to "<i class='fi-eye'></i>".html_safe, restaurant_food_path(food.restaurant, food) %></td>
-            <td><%= food.restaurant.name %></td>
             <td><%= food.name %></td>
             <td><%= food.description %></td>
             <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_restaurant_food_path(food.restaurant, food) %></td>

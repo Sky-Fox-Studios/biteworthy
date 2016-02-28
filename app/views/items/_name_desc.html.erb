@@ -23,7 +23,7 @@
     <% end %>
 
     <% if current_user && current_user.is_admin? %>
-      <%= link_to "New ingredient", new_ingredient_path %>
+      <%= link_to "New ingredient", new_admin_ingredient_path %>
     <% end %>
   </div>
 </div>
