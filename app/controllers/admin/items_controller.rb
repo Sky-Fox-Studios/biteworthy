@@ -1,5 +1,6 @@
 class Admin::ItemsController < AdminController
-  before_action :set_item, only: [:show, :edit, :update, :add_price, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item_form, only: [:add_price, :add_food, :add_choice, :add_new_price, :add_new_food, :add_new_choice]
 
   respond_to :html
 
@@ -8,20 +9,11 @@ class Admin::ItemsController < AdminController
     unless @items
       @items = Item.page(@page).per(per_page_count)
     end
-    render :index
   end
 
   def index
-    if params.has_key?(:restaurant_id) && !params[:restaurant_id].empty?
-      @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
-      if params.has_key?(:menu_group_id) && !params[:menu_group_id].empty?
-        @items = Item.where(restaurant_id: params[:restaurant_id], menu_group_id: params[:menu_group_id]).page(@page).per(per_page_count)
-      else
-        @items = Item.where(restaurant_id: params[:restaurant_id]).page(@page).per(per_page_count)
-      end
-    else
-      @items = Item.page(@page).per(per_page_count)
-    end
+    @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
+
   end
 
   def restaurant_item_filter
@@ -62,39 +54,47 @@ class Admin::ItemsController < AdminController
       redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
-  def add_price
-    @item.prices.create(value: params[:new_price], size: params[:new_size])
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-  end
-
   def destroy
     @item.destroy
     redirect_to admin_restaurant_items_path(@restaurant)
   end
 
+  def add_new_price
+    @item.prices.create(value: params[:price_value], size: params[:new_size])
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+  end
+
+  def add_new_food
+    @item.foods.create(name: params[:food_name], description: params[:food_description], restaurant: @item.restaurant)
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+  end
+
+  def add_new_choice
+    @item.choices.create(name: params[:choice_name], description: params[:choice_description], restaurant: @item.restaurant)
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+  end
+
   def add_food
-    @item = Item.find(params[:item_id])
     unless (params[:food_id].empty?)
       food = Food.find(params[:food_id])
       @item.foods << food unless @item.foods.include? food
     end
     if params.has_key? :admin_updating
-      redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
     else
-      redirect_to restaurant_item_path(@restaurant, @item)
+      redirect_to restaurant_item_path(@item.restaurant, @item)
     end
   end
 
   def add_choice
-    @item = Item.find(params[:item_id])
     unless (params[:choice_id].empty?)
       choice = Choice.find(params[:choice_id])
       @item.choices << choice unless @item.choices.include? choice
     end
     if params.has_key? :admin_updating
-      redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
     else
-      redirect_to restaurant_item_path(@restaurant, @item)
+      redirect_to restaurant_item_path(@item.restaurant, @item)
     end
   end
 
@@ -103,10 +103,18 @@ class Admin::ItemsController < AdminController
     @item = Item.find(params[:id])
     if @item.restaurant_id
       @restaurant = Restaurant.find(@item.restaurant_id)
-      @menu_groups = MenuGroup.includes(:restaurant).where(restaurant_id: @item.restaurant_id).order('restaurants.name').order(:name)
+      @menu_groups = MenuGroup.includes(:restaurant).where(restaurant: @restaurant).order(:name)
+      @foods = Food.where(restaurant: @restaurant).order(:name)
+      @item_foods = Food.joins(:items).where(restaurant: @restaurant).order(:name)
+      @choices = Choice.where(restaurant: @restaurant).order(:name)
+      @item_choices = Choice.joins(:items).where(restaurant: @restaurant).order(:name)
     else
       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end
+  end
+
+  def set_item_form
+    @item = Item.find(params[:item_id])
   end
 
   def item_params

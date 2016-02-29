@@ -1,12 +1,12 @@
-<%= simple_form_for(item, url: admin_items_add_food_path(item), method: :post) do |f| %>
+<%= simple_form_for(item, url: admin_restaurant_item_add_new_food_path(restaurant, item), method: :post) do |f| %>
   <div class="row">
     <div class="small-4 columns">
-      <input type="text" id="new_price" name="new_price" placeholder="11.00" />
+      <input type="text" id="item[food_name]" name="food_name" placeholder="Name" />
     </div>
-    <div class="small-6 columns">
-      <input type="text" id="new_size" name="new_size" placeholder="Size" />
+    <div class="small-5 columns">
+      <input type="text" id="item[food_description]" name="food_description" placeholder="Description" />
     </div>
-    <div class="small-2 columns">
+    <div class="small-3 columns">
         <%= f.submit class: "button tiny radius success", value: 'Add' %>
     </div>
   </div>

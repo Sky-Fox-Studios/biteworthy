@@ -5,7 +5,7 @@ class Admin::ChoicesController < AdminController
   respond_to :html
 
   def index
-    @choices = filter_index_by_restaurant(params, "Choice")
+    @choices = Choice.where(restaurant: @restaurant).order(:name).page(params[:page]).per(per_page_count)
     @restaurants = Restaurant.all
     respond_with(@choices)
   end
@@ -62,8 +62,10 @@ class Admin::ChoicesController < AdminController
   private
   def set_choice
     @choice = Choice.find(params[:id])
-    if @choice.restaurant
+    if @choice
       @restaurant = @choice.restaurant
+      @foods = Food.where(restaurant: @restaurant).order(:name)
+      @choice_foods = Food.joins(:choices).where(restaurant: @restaurant).order(:name)
     end
   end
 
