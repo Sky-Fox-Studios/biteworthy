@@ -30,6 +30,14 @@
     <div class="small-12 medium-8 columns">
       <%= f.input :description, as: :text  %>
     </div>
+    <div class="small-12 medium-8 columns">
+      <%= f.file_field :photo, name: "photo", multiple: true  %>
+      <% unless @item.photos.empty? %>
+        <% @item.photos.each do |photo| %>
+          <%= photo.url %>
+        <% end %>
+      <% end %>
+    </div>
     <!-- TODO add food  -->
     <div class="row">
       <div class="small-12 columns">
