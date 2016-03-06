@@ -3,7 +3,7 @@ class Admin::IngredientsController < AdminController
   respond_to :html
 
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.all.includes(:tags)
     respond_with(@ingredients)
   end
 

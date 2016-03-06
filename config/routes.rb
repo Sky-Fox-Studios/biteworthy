@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :ingredients
+    resources :ingredients do
+      post 'add_tag', to: 'ingredients#add_tag', as: 'add_tags'
+    end
     resources :restaurants do
       resources :menu_groups, :addresses
       resources :items do

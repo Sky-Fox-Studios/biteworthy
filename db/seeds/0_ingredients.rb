@@ -11,6 +11,7 @@ module Ingredients
   # :meat
   # :poultry
   # :fish
+  # :spice
 
   fruits = %w(Avocado
     Abiu
@@ -545,7 +546,7 @@ module Ingredients
     Piper\ sarmentosum
     Quassia
     Ramsons
-    Rice\ Paddy\ Herb
+    Rice\ Paddy
     Rosemary
     Rue
     Safflower
@@ -582,7 +583,7 @@ module Ingredients
     Wattleseed
     White\ Mustard
     Wild\ thyme
-    Willow\ herb
+    Willow
     Winter\ savory
     Wintergreen
     Wood\ Avens

@@ -1,6 +1,9 @@
 <h1>Listing <%= @restaurant.name %> Items</h1>
 <div class="row">
-  <%= link_to 'New Item', new_admin_restaurant_item_path(@restaurant), class: "button tiny radius success" %>
+  <div class="small-12 columns">
+    <%= link_to 'New Item', new_admin_restaurant_item_path(@restaurant), class: "button tiny radius success" %>
+  </div>
+
   <div class="small-12 columns">
     <%= paginate @items %>
   </div>

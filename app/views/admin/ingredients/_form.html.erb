@@ -10,13 +10,36 @@
     </div>
   <% end %>
 <div class="row">
-   <div class="small-6 columns">
+   <div class="small-6 medium-4 columns">
       <%= f.input :name %>
    </div>
-   <div class="small-6 columns">
+   <div class="small-6 medium-4 columns">
       <%= f.input :normalized_name, readonly: true, label: "Tag name (unique)" %>
    </div>
+  <% if !@ingredient.new_record? %>
+    <div class="small-12 columns">
+      <b>Tags:</b>
+      <% if @ingredient.tags %>
+        <%= @ingredient.tags.map {|ingredient| "#{link_to(ingredient.name, ingredient_path(ingredient))} <sup>x</sup>".html_safe }.to_sentence.html_safe %>
+      <% end %>
+    </div>
+
+    <div class="small-12 columns">
+      <%= form_tag admin_ingredient_add_tags_path(@ingredient), method: :post do %>
+      <%= hidden_field_tag 'admin_updating', true %>
+      <div class="row">
+        <div class="small-9 columns">
+          <%= select_tag('tag_id', options_for_select(Tag.all.order(:name).map {|f| [ f.name, f.id ]}), prompt: "Add Tag:") %>
+        </div>
+        <div class="small-3 columns">
+          <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+
  <div class="small-12 columns">
      <%= f.submit %>
 </div>

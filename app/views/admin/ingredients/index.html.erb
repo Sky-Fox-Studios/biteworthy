@@ -15,6 +15,7 @@
           <th colspan="1"></th>
           <th>Name</th>
           <th>Normalized name</th>
+          <th>Tags</th>
           <th></th>
           <th></th>
         </tr>
@@ -25,7 +26,12 @@
           <tr>
             <td><%= link_to "<i class='fi-eye'></i>".html_safe, ingredient_path(ingredient) %></td>
             <td><%= ingredient.name %></td>
-            <td><%= ingredient.normalized_name %>
+            <td><%= ingredient.normalized_name %></td>
+            <td>
+              <% unless ingredient.tags.empty? %>
+                <%= ingredient.tags.map(&:name).to_a.to_sentence %>
+              <% end %>
+            </td>
             <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_ingredient_path(ingredient) %></td>
             <% if current_user.is_admin? %>
 							<td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' } %></td>

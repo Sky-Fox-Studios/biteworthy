@@ -10,9 +10,10 @@ $(document).ready(function () {
 	  // responsive: true
 	});
 	jQuery('#admin-ingredients-index-table').DataTable({
-		"order": [[ 1, "asc" ]],
+		"order": [[3, 'asc'],[ 1, "asc" ]],
 		columns: [
       { orderable: false },
+      {},
       {},
       {},
       { orderable: false },
