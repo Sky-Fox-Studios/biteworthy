@@ -14,6 +14,7 @@ gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'kaminari'                               # Model pagination
 gem 'carrierwave'                            # File uploads
+
 gem 'honeybadger', '~> 2.0'
 
 gem 'jquery-rails'                           # Use jquery as the JavaScript library

@@ -46,7 +46,7 @@ class Admin::ItemsController < AdminController
   end
 
   def update
-    uploader = AvatarUploader.new
+    uploader = PhotoUploader.new
     binding.pry
     if @item.update(item_params)
       @item.photos.new(user_id: current_user, photo_type: "Item", url: params[:photo]).save
