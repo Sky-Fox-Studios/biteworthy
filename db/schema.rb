@@ -131,7 +131,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer  "user_id"
     t.integer  "photo_id"
     t.string   "photo_type"
-    t.string   "url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "image_type",         default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

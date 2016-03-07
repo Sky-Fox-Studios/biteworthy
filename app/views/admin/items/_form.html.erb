@@ -31,19 +31,17 @@
       <%= f.input :description, as: :text  %>
     </div>
     <div class="small-12 medium-8 columns">
-      <%= f.file_field :photo, name: "photo", multiple: true  %>
+      <%= f.file_field :image, name: "image", multiple: true  %>
       <% unless @item.photos.empty? %>
         <% @item.photos.each do |photo| %>
           <div class="small-12 medium-4 large-3 columns">
-            <%= photo.id %> : <%= photo.url %><br>
-
-            <%= image_tag photo.url %>
+            <%= image_tag photo.image(:thumb) %>
           </div>
         <% end %>
 
       <% end %>
     </div>
-    <!-- TODO add food  -->
+    <br>
     <div class="row">
       <div class="small-12 columns">
         <div class="actions padded">

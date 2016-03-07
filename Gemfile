@@ -13,7 +13,8 @@ gem 'rails', '4.2.1'                         # Bundle edge Rails instead: gem 'r
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'kaminari'                               # Model pagination
-gem 'carrierwave'                            # File uploads
+# gem 'carrierwave'                            # File uploads
+gem "paperclip", "~> 4.3"
 
 gem 'honeybadger', '~> 2.0'
 

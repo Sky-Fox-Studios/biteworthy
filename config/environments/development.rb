@@ -6,7 +6,7 @@ Rails.application.configure do
       AWS_ACCESS_KEY_ID:       "AKIAJ7XZ6BKJXGFDGDMA",
       AWS_SECRET_ACCESS_KEY:   "+82hOkPePIKqSX4B23j8WJabOsd8YV/P0wsPnQfT"
    }
-
+   Paperclip.options[:command_path] = "/usr/bin/convert/"
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -42,5 +42,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-   
+
 end
