@@ -7,11 +7,10 @@ class Admin::FoodsController < AdminController
 
   def all
     @restaurants = Restaurant.all.order(:name)
-    render :index
   end
 
   def index
-    @foods = Food.all
+    @foods = Food.where(restaurant: @restaurant)
     respond_with(@foods)
   end
 

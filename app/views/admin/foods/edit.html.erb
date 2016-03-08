@@ -2,4 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Foods Index', admin_foods_path %>
+<%= link_to "#{@restaurant.name} Foods", admin_foods_path, class: "button tiny round" %>
+<%= link_to 'All Foods', admin_foods_path, class: "button tiny round right" %>

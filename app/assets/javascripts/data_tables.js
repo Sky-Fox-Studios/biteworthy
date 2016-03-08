@@ -15,6 +15,7 @@ $(document).ready(function () {
       { orderable: false },
       {},
       {},
+      { orderable: false },
       { orderable: false }
   	]
 	  // responsive: true

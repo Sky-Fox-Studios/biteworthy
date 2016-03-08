@@ -12,14 +12,7 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <% if @restaurant %>
-      <%= f.association :restaurant, collection: Restaurant.all, as: :select, include_blank: false, :selected => @restaurant.id  %>
-    <% else %>
-      <%= f.association :restaurant, collection: Restaurant.all, as: :select, include_blank: false %>
-    <% end %>
-
-  </div>
+  <%= hidden_field_tag 'menu_group[restaurant_id]', @restaurant.id %>
   <div class="field">
     <%= f.input :name %>
   </div>

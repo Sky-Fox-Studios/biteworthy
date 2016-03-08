@@ -1,20 +1,13 @@
 <div class="row">
 	<div class="small-12 columns">
-		<h1>Manage Choices</h1>
+		<h1>Manage <%= @restaurant.name %> Choices</h1>
 	</div>
 </div>
-<div class="row">
-    <%= form_tag 'choices', method: :get do %>
-      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
-  <% end %>
-  <div class="small-12 medium-6 large-4 columns">
-    <% if @restaurant %>
-      <%= link_to 'New Choice...', new_admin_restaurant_choice_path(@restaurant), class: "button tiny radius success" %>
-    <% end %>
-  </div>
+<div class="small-12 medium-6 large-4 columns">
+  <%= link_to 'New Choice...', new_admin_restaurant_choice_path(@restaurant), class: "button tiny radius success" %>
 </div>
 
-<div class="row">
+<div class="row pad">
 	<div class="small-12 columns">
 		<table class="small-12">
 		  <thead>

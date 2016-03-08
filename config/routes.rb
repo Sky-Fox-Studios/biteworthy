@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       resources :menu_groups, :addresses
       resources :items do
         resources :prices
+        post 'add_new_food', to: 'items#add_new_food', as: "add_new_food"
+        post 'add_new_price', to: 'items#add_new_price', as: "add_new_price"
+        post 'add_new_choice', to: 'items#add_new_choice', as: "add_new_choice"
         post 'add_food', to: 'items#add_food', as: "add_food"
         post 'add_choice', to: 'items#add_choice', as: "add_choice"
       end
@@ -35,7 +38,6 @@ Rails.application.routes.draw do
     get 'items', to: 'items#all', as: "items"
     get 'foods', to: 'foods#all', as: "foods"
 
-    post 'items/add_item_price/:id', to: 'items#add_price', as: "items_add_price"
   end
 
 

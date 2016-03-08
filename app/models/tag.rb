@@ -11,19 +11,12 @@ class Tag < ActiveRecord::Base
 
    def self.save_tags(tags)
       tags.split(',').map{ |tag_name|
-         find_or_create_by(name: Tag.normalize(tag_name))
+         find_or_create_by(normalized_name: tag_name.parameterize).update(name: tag_name)
       }.flatten.uniq
    end
 
    private
    def normalize_tag_name
-      self.name = Tag.normalize(self.name)
-    end
-
-    def self.normalize(tag_name)
-      if tag_name then
-        return tag_name.to_s.strip.gsub(/[^A-Za-z0-9\s]+/, "").singularize.gsub(/[_\s]+/, '-').downcase    else
-        nil
-      end
+      self.name = self.name.parameterize
     end
 end

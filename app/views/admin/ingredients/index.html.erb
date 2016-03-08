@@ -14,23 +14,22 @@
         <tr>
           <th colspan="1"></th>
           <th>Name</th>
-          <th>Tag</th>
-          <th colspan="2"></th>
+          <th>Normalized name</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody>
         <% @ingredients.each do |ingredient| %>
           <tr>
-            <td><%= render partial: "partials/forms/show", locals: {path: ingredient_path(ingredient)} %></td>
+            <td><%= link_to "<i class='fi-eye'></i>".html_safe, ingredient_path(ingredient) %></td>
             <td><%= ingredient.name %></td>
-            <td><%= ingredient.tag_name %>
-            <td>
-              <%= render partial: "partials/forms/edit", locals: {path: edit_admin_ingredient_path(ingredient)} %>
-              <% if current_user.is_admin? %>
-                 | <%= render partial: "partials/forms/delete", locals: {path: admin_ingredient_path(ingredient)} %>
-              <% end %>
-            </td>
+            <td><%= ingredient.normalized_name %>
+            <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_ingredient_path(ingredient) %></td>
+            <% if current_user.is_admin? %>
+							<td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

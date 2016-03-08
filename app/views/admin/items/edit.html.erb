@@ -1,5 +1,5 @@
 <div class="small-12">
-  <h1>Bite Worthy <%= @item.name %></h1>
+  <h1><%= "#{@restaurant.name} #{@item.name}" %></h1>
 </div>
 
 <%= render 'form' %>

@@ -1,24 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-12 columns">
+    <p id="notice"><%= notice %></p>
+    <h1><%=  link_to @restaurant.name, edit_admin_restaurant_path(@restaurant) %></h1>
+    <p>
+      <strong>Slogan:</strong>
+      <%= @restaurant.slogan %>
+    </p>
+    <p>
+      <strong>Phone Number:</strong>
+      <%= @restaurant.phone_number %>
+    </p>
+    <p>
+      <strong>Addresses:</strong>
+      <% @restaurant.addresses.each do |address| %>
+        <% render partial: "admin/addresses/show", locals: {address: address} %>
+      <% end %>
+    </p><hr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+    <h2><%= link_to "Menu Groups", admin_restaurant_menu_groups_path(@restaurant) %></h2>
+    <div class="row">
+      <% @menu_groups.each do |menu_group| %>
+        <div class="small-6 medium-4 large-3 columns">
+          <%= link_to menu_group.name, edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %>
+        </div>
+      <% end %>
+    </div><hr>
 
-<p>
-  <strong>Slogan:</strong>
-  <%= @restaurant.slogan %>
-</p>
+    <h2><%= link_to "Items", admin_restaurant_items_path(@restaurant) %></h2>
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="small-6 medium-4 large-3 columns">
+          <%= link_to item.name, edit_admin_restaurant_item_path(@restaurant, item) %>
+        </div>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Food groups:</strong>
-  <%= @restaurant.phone_number %>
-</p>
+    <hr>
+    <h2><%= link_to "Foods", admin_restaurant_foods_path(@restaurant) %></h2>
+    <div class="row">
+      <% @foods.each do |food| %>
+        <div class="small-6 medium-4 large-3 columns">
+          <%= link_to food.name, edit_admin_restaurant_food_path(@restaurant, food) %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to 'Restaurants', admin_restaurants_path, class: "button small round" %>
+  </div>
+</div>
 
-<p>Addresses:</p>
-<% @restaurant.addresses.each do |address| %>
-  <% render partial: "admin/addresses/show", locals: {address: address} %>
-<% end %>
-
-<%= link_to 'Edit', edit_admin_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', admin_restaurants_path %>

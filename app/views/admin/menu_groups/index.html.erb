@@ -2,7 +2,6 @@
 <table>
   <thead>
     <tr>
-      <th>Restaurant</th>
       <th>Name</th>
       <th>Description</th>
       <th colspan="2"></th>
@@ -12,7 +11,6 @@
   <tbody>
     <% @menu_groups.each do |menu_group| %>
       <tr>
-        <td><%= menu_group.restaurant.name if !menu_group.restaurant.nil? %></td>
         <td><%= menu_group.name %></td>
         <td><%= menu_group.description %></td>
         <td><%= link_to 'Edit', edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %></td>
