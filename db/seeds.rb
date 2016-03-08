@@ -1,5 +1,4 @@
 puts "loading seeds"
-require File.expand_path('../seeds/0_ingredients', __FILE__)
 if !User.exists?(:email => "skylar.bolton@gmail.com") then
   @skylar = User.new(user_name: "Skylar", email: "skylar.bolton@gmail.com", password: "g00df00d", approved: true, is_admin: true).save
   puts "Users Seeded"
@@ -8,6 +7,7 @@ if !User.exists?(:email => "editor@bwd.com") then
   @skylar = User.new(user_name: "Editor", email: "editor@bwd.com", password: "g00df00d", approved: true, is_editor: true).save
   puts "Users Seeded"
 end
+require File.expand_path('../seeds/0_ingredients', __FILE__)
 require File.expand_path('../seeds/dsp',              __FILE__)
 require File.expand_path('../seeds/himalayan',        __FILE__)
 require File.expand_path('../seeds/ninis',            __FILE__)
