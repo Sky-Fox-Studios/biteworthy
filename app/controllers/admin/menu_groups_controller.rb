@@ -32,7 +32,7 @@ class Admin::MenuGroupsController < AdminController
   def create
     @menu_group = MenuGroup.new(menu_group_params)
     if @menu_group.save
-      redirect_to admin_menu_groups_path(filter_restaurant_id: @menu_group.restaurant_id)
+      redirect_to admin_restaurant_menu_groups_path(@menu_group.restaurant_id)
     else
       render :new
     end
@@ -40,7 +40,7 @@ class Admin::MenuGroupsController < AdminController
 
   def update
     if @menu_group.update(menu_group_params)
-      redirect_to admin_menu_groups_path(restaurant_id: @menu_group.restaurant_id)
+      redirect_to admin_restaurant_menu_groups_path(@menu_group.restaurant_id)
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class Admin::MenuGroupsController < AdminController
 
   def destroy
     @menu_group.destroy
-    redirect_to admin_menu_groups_path, alert: "Menu Group Destroyed"
+    redirect_to admin_restaurant_menu_groups_path(@restaurant), alert: "Menu Group Destroyed"
   end
 
   private
