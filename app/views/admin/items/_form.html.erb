@@ -13,13 +13,14 @@
     <div class="row pad">
       <%= hidden_field_tag 'item[restaurant_id]', @restaurant.id %>
       <div class="small-8 medium-6 large-4 columns">
-        <% if @item.menu_group_id %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, selected: @item.menu_group_id, label: "Menu Group"%>
-        <% elsif @menu_groups %>
-          <%= f.association :menu_group, collection: @menu_groups, as: :select, label: "Menu Group"%>
+        <%= f.association :menu_groups, collection: @menu_groups, as: :select, label: "Menu Group"%>
+      </div>
+      <div class="small-4 medium-4 large-4 columns">
+        <% if !@item.new_record? && @item.menu_groups %>
+          <%= render partial: "admin/items/menu_groups_list", locals: {item: @item } %>
         <% end %>
       </div>
-      <div class="small-4 medium-6 large-8 columns">
+      <div class="small-12 medium-2 large-4 columns">
         <br>
         <%= link_to "<i class='fi-plus'></i> Menu Group".html_safe, new_admin_restaurant_menu_group_path(@restaurant)  %>
       </div>
@@ -52,15 +53,9 @@
   <% end %><hr>
 
   <% unless @item.new_record? %>
-    <div class="small-12 columns">
-      <h3>Foods:</h3>
-    </div>
-    <div class="small-12 medium-4 columns">
-       <%= @item_foods.map {|food| link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
-    </div>
+    <%= render partial: "admin/items/foods_list", locals: {item: @item } %>
     <div class="small-12 medium-8 columns">
       <%= form_tag admin_restaurant_item_add_food_path(@restaurant, @item), method: :post do %>
-        <%= hidden_field_tag 'admin_updating', true %>
         <div class="row">
           <div class="small-9 columns">
             <%= select_tag('food_id', options_for_select(@foods.map {|f| [ f.name, f.id ]}), prompt: "Add Food:") %>
@@ -72,16 +67,9 @@
       <% end %>
       <%= render partial: "food_form", locals: {restaurant: @restaurant, item: @item} %>
     </div><hr>
-
-    <div class="small-12 columns">
-      <h3>Choices:</h3>
-    </div>
-    <div class="small-12 medium-4 columns">
-      <%= @item_choices.map {|choice| link_to(choice.name, edit_admin_restaurant_choice_path(@restaurant, choice)) }.to_sentence(last_word_connector: " or ").html_safe %>
-    </div>
+    <%= render partial: "admin/items/choices_list", locals: {item: @item } %>
     <div class="small-12 medium-8 columns">
       <%= form_tag admin_restaurant_item_add_choice_path(@restaurant, @item), method: :post do %>
-        <%= hidden_field_tag 'admin_updating', true %>
         <div class="row">
           <div class="small-9 columns">
             <%= select_tag('choice_id', options_for_select(@choices.map {|f| [ f.name, f.id ]}), prompt: "Add Choice:") %>

@@ -1,26 +1,17 @@
 <%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
 <h1>Listing Foods</h1>
-<table>
+<table class="small-12 columns">
   <thead>
     <tr>
-      <th colspan="1"></th>
       <th>Name</th>
       <th>Description</th>
-      <% if current_user && current_user.is_admin? %>
-        <th colspan="2"></th>
-      <% end %>
     </tr>
   </thead>
   <tbody>
      <% @foods.each do |food| %>
       <tr>
-        <td><%= render partial: "partials/forms/show", locals: {path: restaurant_food_path(@restaurant, food)} %></td>
-        <td><%= food.name %></td>
+        <td><%= link_to food.name, restaurant_food_path(@restaurant, food) %></td>
         <td><%= food.description %></td>
-        <% if current_user && current_user.is_admin? %>
-          <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_food_path(@restaurant, food)} %></td>
-          <td><%= render partial: "partials/forms/delete", locals: {path: restaurant_food_path(@restaurant, food)} %></td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -11,14 +11,11 @@
 </div>
 <% end %>
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 medium-4 large-3 columns">
     <%= f.input :name %>
   </div>
-  <div class="small-6 columns">
+  <div class="small-12 medium-8 large-9 columns">
     <%= f.input :slogan %>
-  </div>
-  <div class="small-3 columns">
-    <%= f.input :phone_number %>
   </div>
 </div>
 
@@ -36,7 +33,7 @@
   </div>
 
   <div class="small-6 columns">
-    <%= f.input :seating, label: "Indoor seating" %>
+    <%= f.input :inside_seating, label: "Indoor seating" %>
   </div>
 
   <div class="small-6 columns">
@@ -44,7 +41,11 @@
   </div>
 
   <div class="small-6 columns">
-    <%= f.input :cash_only %>
+    <%= f.input :cash_only? %>
+  </div>
+
+  <div class="small-6 columns">
+    <%= f.input :will_deliver? %>
   </div>
 
   <div class="small-12 columns">

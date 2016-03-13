@@ -1,6 +1,6 @@
 class Admin::FoodsController < AdminController
-  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient_by_id, :add_ingredient_by_name]
-  before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient]
+  before_action :set_food, only: [:show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient]
   before_action :set_foods, only: [:all, :index]
   respond_to :html
 
@@ -48,7 +48,7 @@ class Admin::FoodsController < AdminController
 
   def update
     if @food.update(food_params)
-       redirect_to admin_foods_path
+       redirect_to admin_restaurant_foods_path(@food.restaurant)
     else
        redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
     end
@@ -59,35 +59,38 @@ class Admin::FoodsController < AdminController
      redirect_to admin_foods_path
   end
 
-  def add_ingredient_by_id
-    @food = Food.find(params[:food_id])
+  def add_ingredient
     unless params[:ingredient_id].empty?
       ingredient = Ingredient.find(params[:ingredient_id])
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
-    end
-    if params.has_key? :admin_updating
       redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
     else
-      redirect_to restaurant_food_path(@restaurant, @food)
+      redirect_to edit_admin_restaurant_food_path(@restaurant, @food), notice: "No ingredient selected"
     end
   end
 
   def add_ingredient_by_name
-    @food = Food.find(params[:food_id])
     unless params[:ingredient_name].empty?
       ingredient = Ingredient.find_or_create_by(name: params[:ingredient_name])
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
     end
-    if params.has_key? :admin_updating
-      redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
-    else
-      redirect_to restaurant_food_path(@restaurant, @food)
-    end
+    redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
+  end
+
+  def remove_ingredient
+    ingredient = Ingredient.find(params[:ingredient_id])
+    @food.ingredients.delete(ingredient)
+    redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
   end
 
   private
     def set_food
+    if params[:id]
       @food = Food.find(params[:id])
+    elsif params[:food_id]
+      @food = Food.find(params[:food_id])
+    end
+
     end
 
     def set_foods

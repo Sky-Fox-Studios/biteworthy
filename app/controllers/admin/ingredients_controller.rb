@@ -1,5 +1,5 @@
 class Admin::IngredientsController < AdminController
-  before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :set_ingredient, only: [:show, :edit, :update, :destroy, :add_tag, :remove_tag]
   respond_to :html
 
   def index
@@ -33,15 +33,15 @@ class Admin::IngredientsController < AdminController
       @ingredient.save
       redirect_to restaurant_food_path(@food.restaurant, @food), notice: "Ingredient created"
     else
-      redirect_to ingredients_path, notice: "Ingredient created"
+      redirect_to admin_ingredients_path, notice: "Ingredient created"
     end
   end
 
   def update
     if @ingredient.update(ingredient_params)
-      redirect_to ingredients_path, notice: "Updated: #{@ingredient.name}"
+      redirect_to admin_ingredients_path, notice: "Updated: #{@ingredient.name}"
     else
-      redirect_to ingredients_path, notice: "Ingredient not updated"
+      redirect_to edit_admin_ingredients_path, notice: "Ingredient not updated"
     end
   end
 
@@ -50,10 +50,26 @@ class Admin::IngredientsController < AdminController
     redirect_to admin_ingredients_path
   end
 
+  def add_tag
+    tag = Tag.find(params[:tag_id])
+    @ingredient.tags << tag unless @ingredient.tags.include? tag
+    redirect_to edit_admin_ingredient_path(@ingredient)
+  end
+
+  def remove_tag
+    tag = Tag.find(params[:tag_id])
+    @ingredient.tags.delete(tag)
+    redirect_to edit_admin_ingredient_path(@ingredient)
+  end
+
   private
   def set_ingredient
-    @ingredient = Ingredient.find(params[:id])
+    if params[:id]
+      @ingredient = Ingredient.find(params[:id])
+    elsif params[:ingredient_id]
+      @ingredient = Ingredient.find(params[:ingredient_id])
     end
+  end
 
   def ingredient_params
     params.require(:ingredient).permit(:name)
