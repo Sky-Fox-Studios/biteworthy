@@ -51,7 +51,7 @@ module Rgps
     item = Item.find_or_create_by(restaurant: rgps,
      name: name,
      description: description)
-     item.menu_groups << rgps_salads
+     item.menu_groups << rgps_salads unless item.menu_groups.include? rgps_salads
     #  prices_sizes.each do |price_size|
     #    Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
     #  end

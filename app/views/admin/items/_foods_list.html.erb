@@ -1,0 +1,8 @@
+<div class="small-12 columns">
+  <h3>Foods:</h3>
+</div>
+<div class="small-12 medium-4 columns">
+  <%= @item.foods.map do |food|
+    "#{link_to(food.name, edit_admin_restaurant_food_path(item.restaurant, food))} <sup>#{link_to 'x', admin_restaurant_item_remove_food_path(item.restaurant, item, food_id: food.id), method: :post, style: 'color:red'}</sup>"
+  end.to_sentence.html_safe %>
+</div>

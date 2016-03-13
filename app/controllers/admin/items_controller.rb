@@ -1,6 +1,6 @@
 class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_item_form, only: [:add_price, :add_food, :add_choice, :add_new_price, :add_new_food, :add_new_choice]
+  before_action :just_set_item, only: [:add_price, :add_food, :add_choice, :add_new_price, :add_new_food, :add_new_choice, :remove_menu_group, :remove_food, :remove_choice]
 
   respond_to :html
 
@@ -94,27 +94,48 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
+  def remove_menu_group
+    menu_group = MenuGroup.find(params[:menu_group_id])
+    @item.menu_groups.delete(menu_group)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+  end
+
+  def remove_food
+    food = Food.find(params[:food_id])
+    @item.foods.delete(food)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+  end
+
+  def remove_choice
+    choice = Choice.find(params[:choice_id])
+    @item.choices.delete(choice)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+  end
+
   private
   def set_item
-    @item = Item.find(params[:id])
+    just_set_item
     if @item.restaurant_id
       @restaurant = Restaurant.find(@item.restaurant_id)
       @menu_groups = MenuGroup.includes(:restaurant).where(restaurant: @restaurant).order(:name)
       @foods = Food.where(restaurant: @restaurant).order(:name)
-      @item_foods = Food.joins(:items).where(restaurant: @restaurant).order(:name)
       @choices = Choice.where(restaurant: @restaurant).order(:name)
-      @item_choices = Choice.joins(:items).where(restaurant: @restaurant).order(:name)
     else
       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end
   end
 
-  def set_item_form
-    @item = Item.find(params[:item_id])
-  end
+  def just_set_item
+    if params[:id]
+      @item = Item.find(params[:id])
+    elsif params[:item_id]
+      @item = Item.find(params[:item_id])
+    end
+end
+
 
   def item_params
-      params.require(:item).permit(:restaurant_id, :menu_group_id, :name, :description,
+      params.require(:item).permit(:restaurant_id, :name, :description, menu_group_ids: [],
       food_attributes: [:restaurant_id, :name, :description])
     end
 end

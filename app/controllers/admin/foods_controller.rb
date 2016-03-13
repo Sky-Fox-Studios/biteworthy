@@ -48,7 +48,7 @@ class Admin::FoodsController < AdminController
 
   def update
     if @food.update(food_params)
-       redirect_to admin_foods_path
+       redirect_to admin_restaurant_foods_path(@food.restaurant)
     else
        redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
     end

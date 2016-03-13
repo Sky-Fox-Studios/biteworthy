@@ -1,4 +1,6 @@
 Rails.application.configure do
+  config.app_version = ".0.1"
+
   # Settings specified here will take precedence over those in config/application.rb.
    #Rails.configuration.s3[:s3_bucket]
    config.s3 = {
@@ -42,5 +44,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 
 end

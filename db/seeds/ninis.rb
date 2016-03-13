@@ -13,28 +13,28 @@ module Ninis
    extras_menu_group         = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Extras", description: nil)
 
    burrito_items = [
-     ["Chicken", nil, ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
-     ["Barbacoa", "Shredded beef", ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
-     ["Carnitas", "Shredded pork", ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
-     ["Fish", "Alaskan pollock with spicy coleslaw", ninis_burritos, [{price: 7.75, size: "small"},{price: 8.95, size: "regular"}]],
-     ["Vegetarian", "Mixed sauteed vegetables", ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
-     ["Beans, rice, & salsa", "Beans, rice, sour cream, cheese, and salsa", ninis_burritos, [{price: 6.25, size: "small"},{price: 7.25, size: "regular"}]],
+     ["Chicken burrito", nil, ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
+     ["Barbacoa burrito", "Shredded beef", ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
+     ["Carnitas burrito", "Shredded pork", ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
+     ["Fish burrito", "Alaskan pollock with spicy coleslaw", ninis_burritos, [{price: 7.75, size: "small"},{price: 8.95, size: "regular"}]],
+     ["Vegetarian burrito", "Mixed sauteed vegetables", ninis_burritos, [{price: 7.50, size: "small"},{price: 8.75, size: "regular"}]],
+     ["Beans, rice, & salsa burrito", "Beans, rice, sour cream, cheese, and salsa", ninis_burritos, [{price: 6.25, size: "small"},{price: 7.25, size: "regular"}]],
    ]
    taco_items = [
-      ["Chicken", nil, ninis_tacos, [{price: 8.25, size: nil}]],
-      ["Carnitas", "Shredded pork", ninis_tacos, [{price: 8.25, size: nil}]],
-      ["Barbacoa", "Shredded beef", ninis_tacos, [{price: 8.25, size: nil}]],
-      ["Fish", "Alaskan Pollock with spicy coleslaw", ninis_tacos, [{price: 8.50, size: nil}]],
-      ["Vegetarian", "Mixed sauteed vegetables", ninis_tacos, [{price: 8.25, size: nil}]],
-      ["Individual", "Filled with choice ingredients.", ninis_tacos, [{price: 2.95, size: "each"}, {price: 3.25, size: "for fish"}]],
+      ["Chicken taco", nil, ninis_tacos, [{price: 8.25, size: nil}]],
+      ["Carnitas taco", "Shredded pork", ninis_tacos, [{price: 8.25, size: nil}]],
+      ["Barbacoa taco", "Shredded beef", ninis_tacos, [{price: 8.25, size: nil}]],
+      ["Fish taco", "Alaskan Pollock with spicy coleslaw", ninis_tacos, [{price: 8.50, size: nil}]],
+      ["Vegetarian taco", "Mixed sauteed vegetables", ninis_tacos, [{price: 8.25, size: nil}]],
+      ["Individual taco", "Filled with choice ingredients.", ninis_tacos, [{price: 2.95, size: "each"}, {price: 3.25, size: "for fish"}]],
     ]
     quesadillas_items = [
-      ["Chicken", nil, ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
-      ["Carnitas", "Shredded pork", ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
-      ["Barbacoa", "Shredded beef", ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
-      ["Fish", "Alaskan Pollock with spicy coleslaw", ninis_quesadillas, [{price: 8.75, size: "small"},{price: 8.75, size: "regular"}]],
-      ["Vegetarian", "Mixed sauteed vegetables", ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
-      ["Just cheese", nil, ninis_quesadillas, [{price: 5.50, size: "small"},{price: 6.50, size: "regular"}]],
+      ["Chicken quesadilla", nil, ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
+      ["Carnitas quesadilla", "Shredded pork", ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
+      ["Barbacoa quesadilla", "Shredded beef", ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
+      ["Fis quesadilla", "Alaskan Pollock with spicy coleslaw", ninis_quesadillas, [{price: 8.75, size: "small"},{price: 8.75, size: "regular"}]],
+      ["Vegetarian quesadilla", "Mixed sauteed vegetables", ninis_quesadillas, [{price: 7.50, size: "small"},{price: 8.50, size: "regular"}]],
+      ["Cheese quesadilla ", nil, ninis_quesadillas, [{price: 5.50, size: "small"},{price: 6.50, size: "regular"}]],
     ]
 
    salsa_items = [
@@ -81,7 +81,7 @@ module Ninis
      item = Item.find_or_create_by(restaurant: ninis,
       name: name,
       description: description)
-      item.menu_groups << menu_group
+      item.menu_groups << menu_group unless item.menu_groups.include? menu_group
       if prices_sizes
         prices_sizes.each do |price_size|
           Price.find_or_create_by(value: price_size[:price], size: price_size[:size], priced_id: item.id, priced_type: "Item")

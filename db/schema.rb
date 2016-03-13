@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id"
+    t.string  "phone_number"
     t.string  "street"
     t.string  "city",                                   default: "Durango"
     t.string  "state",                                  default: "CO"
@@ -157,12 +158,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "slogan"
-    t.string   "phone_number"
     t.string   "main_image_url"
     t.string   "about"
     t.string   "disclaimer"
     t.string   "website"
-    t.integer  "seating"
+    t.integer  "inside_seating"
     t.integer  "outside_seating"
     t.boolean  "cash_only?"
     t.boolean  "will_deliver?"

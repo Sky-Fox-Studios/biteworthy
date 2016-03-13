@@ -1,4 +1,6 @@
 Rails.application.configure do
+  config.app_version = ".0.1"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's

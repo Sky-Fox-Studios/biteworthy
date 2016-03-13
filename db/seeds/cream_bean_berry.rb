@@ -38,7 +38,7 @@ module CreamBeanBerry
       item = Item.find_or_create_by(restaurant: cbb,
        name: name,
        description: description)
-       item.menu_groups << menu_group
+       item.menu_groups << menu_group unless item.menu_groups.include? menu_group
        if prices_sizes
          prices_sizes.each do |price_size|
            Price.find_or_create_by(value: price_size[:price], size: price_size[:size], priced_id: item.id, priced_type: "Item")

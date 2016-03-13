@@ -7,10 +7,6 @@
       <%= @restaurant.slogan %>
     </p>
     <p>
-      <strong>Phone Number:</strong>
-      <%= @restaurant.phone_number %>
-    </p>
-    <p>
       <strong>Addresses:</strong>
       <% @restaurant.addresses.each do |address| %>
         <% render partial: "admin/addresses/show", locals: {address: address} %>
