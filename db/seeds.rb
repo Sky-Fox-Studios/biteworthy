@@ -10,7 +10,7 @@ if !User.exists?(:email => "editor@bwd.com") then
 end
 puts "Sky, Carina and editor users seeded"
 puts "q flag"
-# require File.expand_path('../seeds/0_ingredients', __FILE__)
+require File.expand_path('../seeds/0_ingredients', __FILE__)
 require File.expand_path('../seeds/rgps',             __FILE__)
 require File.expand_path('../seeds/himalayan',        __FILE__)
 require File.expand_path('../seeds/thai_kitchen',     __FILE__)
