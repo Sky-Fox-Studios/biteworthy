@@ -13,7 +13,8 @@ module Himalayan
    ]
 
    starter_items.each do |name, description, price|
-     item = Item.find_or_create_by(restaurant: himalayan, menu_group: starters_menu_group, name: name, description: description)
+     item = Item.find_or_create_by(restaurant: himalayan, name: name, description: description)
+     item.update(menu_groups: [starters_menu_group])
      Price.find_or_create_by(value: "price", priced_id: item.id, priced_type: "Item")
    end
 
@@ -24,7 +25,8 @@ module Himalayan
    ]
 
    soup_salad_items.each do |name, description, price|
-     item = Item.find_or_create_by(restaurant: himalayan, menu_group: soup_salad_menu_group, name: name, description: description)
+     item = Item.find_or_create_by(restaurant: himalayan, name: name, description: description)
+     item.update(menu_groups: [soup_salad_menu_group])
      Price.find_or_create_by(value: price, priced_id: item.id, priced_type: "Item")
    end
 

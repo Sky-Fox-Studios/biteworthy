@@ -4,7 +4,7 @@ module Dsp
   home_slice_single_slice = MenuGroup.find_or_create_by(restaurant_id: home_slice.id, name: "Single Slice", description: "Basic pizza with...")
 
   cheese_slice = Item.find_or_create_by(restaurant_id: home_slice.id, menu_group_id: home_slice_single_slice.id, name: "Cheese", description: "")
-
+cheese_slice.up
 sauces = " marinara, garlic oil, garlic butter, bbq, alfredo, pesto, ranch, spicy thai coconut, buffalo sauce"
 
 cheeses = "feta "

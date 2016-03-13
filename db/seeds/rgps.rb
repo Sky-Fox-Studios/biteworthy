@@ -18,10 +18,10 @@ module Rgps
 
   rgps_wrap_items.each do |name, description, foods_array, choices_array|
     item = Item.find_or_create_by(restaurant: rgps,
-      menu_group: rgps_wraps,
       name: name,
       description: description,
     )
+    item.menu_groups << rgps_wraps
     foods_array.split(',').each do |food|
       food = Food.find_or_create_by(name: food.downcase, restaurant: rgps)
       item.foods << food
@@ -48,12 +48,15 @@ module Rgps
   ]
 
   rgps_salad_items.each do |name, description|
-    item = Item.find_or_create_by(restaurant: rgps, menu_group: rgps_salads,
+    item = Item.find_or_create_by(restaurant: rgps,
      name: name,
      description: description)
+     item.menu_groups << rgps_salads
     #  prices_sizes.each do |price_size|
     #    Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
     #  end
+    item.save
+    puts "Rgps #{item.name} saved"
   end
 
   puts "Rgps seeded"

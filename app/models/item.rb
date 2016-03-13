@@ -1,10 +1,11 @@
 class Item < ActiveRecord::Base
   belongs_to :restaurant
-  belongs_to :menu_group
 
   has_many :prices, as: :priced
   has_many :reviews, :as => :review
   has_many :photos, :as => :photo
+
+  has_and_belongs_to_many :menu_groups
 
   has_many :foods, through: :items_foods
   has_many :items_foods
@@ -26,7 +27,8 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :foods, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
-  validates :restaurant_id, :menu_group_id, :name, presence: true
+  validates :restaurant_id, :name, presence: true
+  validates_uniqueness_of :name, scope: [:restaurant_id]
 
 
 end

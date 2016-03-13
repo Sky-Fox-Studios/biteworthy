@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer  "menu_group_id"
     t.integer  "restaurant_id"
     t.string   "name"
     t.string   "description"
@@ -109,6 +108,14 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer "item_id"
     t.integer "ingredient_id"
   end
+
+  create_table "items_menu_groups", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "menu_group_id"
+  end
+
+  add_index "items_menu_groups", ["item_id"], name: "index_items_menu_groups_on_item_id"
+  add_index "items_menu_groups", ["menu_group_id"], name: "index_items_menu_groups_on_menu_group_id"
 
   create_table "menu_groups", force: :cascade do |t|
     t.integer  "restaurant_id"
@@ -157,7 +164,8 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.string   "website"
     t.integer  "seating"
     t.integer  "outside_seating"
-    t.boolean  "cash_only"
+    t.boolean  "cash_only?"
+    t.boolean  "will_deliver?"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

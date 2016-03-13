@@ -31,7 +31,6 @@
       <%= @choice_foods.map {|food| link_to(food.name, admin_restaurant_food_path(@restaurant, food)) }.to_sentence.html_safe %>
     <% unless @choice.new_record? %>
       <%= form_tag admin_restaurant_choice_add_food_path(@restaurant, @choice), method: :post do %>
-        <%= hidden_field_tag 'admin_updating', true %>
         <div class="row">
           <div class="small-9 columns">
             <%= select_tag('food_id', options_for_select(@foods.map {|f| [ f.name, f.id ]}), prompt: "Add choice:") %>

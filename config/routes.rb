@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'base#home'
   get  'admin_root',                    to: 'admin#home', as: "admin_root"
 
-  resources :restaurants, :ingredients, only: [:index, :show] do
+  resources :restaurants, :ingredients, :tags, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :choices, only: [:index, :show]
     resources :items, only: [:index, :show] do
        resources :prices, only: [:index, :show]
@@ -11,12 +11,12 @@ Rails.application.routes.draw do
 
 
   resources :reviews
-  resources  :tags
 
   namespace :admin do
-    resources :users
+    resources :users, :tags
     resources :ingredients do
-      post 'add_tag', to: 'ingredients#add_tag', as: 'add_tags'
+      post 'add_tag', to: 'ingredients#add_tag', as: 'add_tag'
+      post 'remove_tag', to: 'ingredients#remove_tag', as: 'remove_tag'
     end
     resources :restaurants do
       resources :menu_groups, :addresses
@@ -29,8 +29,9 @@ Rails.application.routes.draw do
         post 'add_choice', to: 'items#add_choice', as: "add_choice"
       end
       resources :foods do
-        post 'add_ingredient_by_id', to: 'foods#add_ingredient_by_id', as: "add_ingredient_by_id"
+        post 'add_ingredient', to: 'foods#add_ingredient', as: "add_ingredient"
         post 'add_ingredient_by_name', to: 'foods#add_ingredient_by_name', as: "add_ingredient_by_name"
+        post 'remove_ingredient', to: 'foods#remove_ingredient', as: "remove_ingredient"
       end
       resources :choices do
         post 'add_food', to: 'choices#add_food', as: "add_food"

@@ -1,0 +1,6 @@
+<div class="small-12 columns">
+  <b>Ingredients:</b>
+  <%= food.ingredients.map do |ingredient|
+    "#{link_to(ingredient.name, admin_ingredient_path(ingredient))} <sup>#{link_to 'x', admin_restaurant_food_remove_ingredient_path(food.restaurant, food, ingredient_id: ingredient.id), method: :post, style: 'color:red'}</sup>"
+  end.to_sentence.html_safe %>
+</div>

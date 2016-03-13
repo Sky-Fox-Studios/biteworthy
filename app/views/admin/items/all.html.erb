@@ -32,7 +32,7 @@
       <tr>
         <td><%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %></td>
         <td><%= item.restaurant.name %></td>
-        <td><%= item.menu_group.name %></td>
+        <td><%= item.menu_groups.map(&:name).to_sentence %></td>
         <td><%= item.name %></td>
         <td><%= item.description %></td>
         <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %></td>

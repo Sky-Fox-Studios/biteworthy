@@ -17,36 +17,16 @@
           <%= @food.description %>
         </p>
       </div>
+      <% unless @food.ingredients.empty? %>
         <div class="small-6 columns">
-          Ingredients:
-          <% if @food.ingredients %>
-            <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
-          <% end %>
-          <% if current_user && current_user.is_admin? %>
-            <%= form_tag admin_restaurant_food_add_ingredient_by_id_path(@restaurant, @food), method: :post do %>
-              <div class="row">
-                <div class="small-9 columns">
-                  <%= select_tag('ingredient_id', options_for_select(Ingredient.all.map {|f| [ f.name, f.id ]}), prompt: "Add ingredient:") %>
-                </div>
-                <div class="small-3 columns">
-                  <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-                </div>
-              </div>
-            <% end %>
-            <%= form_tag admin_restaurant_food_add_ingredient_by_name_path(@restaurant, @food), method: :post do %>
-              <div class="row">
-                <div class="small-9 columns">
-                  <%= text_field_tag('ingredient_name', nil, placeholder: "New ingredient") %>
-                </div>
-                <div class="small-3 columns">
-                  <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
+          Ingredients: <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
         </div>
-      </div>
+      <% end %>
+      <% unless @food.tags.empty? %>
+        <div class="small-6 columns">
+          Tags: <%= @food.tags.map {|tag| link_to(tag.name, tag_path(tag)) }.to_sentence.html_safe %>
+        </div>
+      <% end %>
     </div>
-
   </div>
 </div>

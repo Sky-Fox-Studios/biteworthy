@@ -51,11 +51,7 @@ class Admin::ChoicesController < AdminController
       food = Food.find(params[:food_id])
       @choice.foods << food unless @choice.foods.include? food
     end
-    if params.has_key? :admin_updating
-      redirect_to edit_admin_restaurant_choice_path(@restaurant, @choice)
-    else
-      redirect_to restaurant_choice_path(@restaurant, @choice)
-    end
+    redirect_to edit_admin_restaurant_choice_path(@restaurant, @choice)
   end
 
 

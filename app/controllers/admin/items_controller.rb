@@ -83,11 +83,7 @@ class Admin::ItemsController < AdminController
       food = Food.find(params[:food_id])
       @item.foods << food unless @item.foods.include? food
     end
-    if params.has_key? :admin_updating
-      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-    else
-      redirect_to restaurant_item_path(@item.restaurant, @item)
-    end
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   def add_choice
@@ -95,11 +91,7 @@ class Admin::ItemsController < AdminController
       choice = Choice.find(params[:choice_id])
       @item.choices << choice unless @item.choices.include? choice
     end
-    if params.has_key? :admin_updating
-      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-    else
-      redirect_to restaurant_item_path(@item.restaurant, @item)
-    end
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   private
