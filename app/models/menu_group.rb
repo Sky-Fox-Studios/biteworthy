@@ -4,6 +4,7 @@ class MenuGroup < ActiveRecord::Base
    has_and_belongs_to_many :tags
 
    has_and_belongs_to_many :items
+   has_and_belongs_to_many :menus
 
    validates :name, :restaurant_id, presence: true
 

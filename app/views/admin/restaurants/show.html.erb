@@ -6,41 +6,58 @@
       <strong>Slogan:</strong>
       <%= @restaurant.slogan %>
     </p>
+  </div>
+  <div class="small-12 columns">
     <p>
       <strong>Addresses:</strong>
-      <% @restaurant.addresses.each do |address| %>
-        <% render partial: "admin/addresses/show", locals: {address: address} %>
-      <% end %>
-    </p><hr>
-
-    <h2><%= link_to "Menu Groups", admin_restaurant_menu_groups_path(@restaurant) %></h2>
-    <div class="row">
-      <% @menu_groups.each do |menu_group| %>
-        <div class="small-6 medium-4 large-3 columns">
-          <%= link_to menu_group.name, edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %>
-        </div>
-      <% end %>
-    </div><hr>
-
-    <h2><%= link_to "Items", admin_restaurant_items_path(@restaurant) %></h2>
-    <div class="row">
-      <% @items.each do |item| %>
-        <div class="small-6 medium-4 large-3 columns">
-          <%= link_to item.name, edit_admin_restaurant_item_path(@restaurant, item) %>
-        </div>
-      <% end %>
-    </div>
-
-    <hr>
-    <h2><%= link_to "Foods", admin_restaurant_foods_path(@restaurant) %></h2>
-    <div class="row">
-      <% @foods.each do |food| %>
-        <div class="small-6 medium-4 large-3 columns">
-          <%= link_to food.name, edit_admin_restaurant_food_path(@restaurant, food) %>
-        </div>
-      <% end %>
-    </div>
-    <%= link_to 'Restaurants', admin_restaurants_path, class: "button small round" %>
+    </p>
+    <% @restaurant.addresses.each do |address| %>
+      <%= render partial: "admin/addresses/show", locals: {address: address} %>
+    <% end %>
   </div>
 </div>
+
+<hr>
+
+<div class="row">
+  <div class="small-12 medium-6 large-4 columns">
+    <h2><%= link_to "Menus", admin_restaurant_menus_path(@restaurant) %></h2>
+    <% @menus.each do |menu| %>
+      <div class="small-6 medium-4 large-3 columns">
+        <%= link_to menu.name == nil ? "Default" : menu.name, edit_admin_restaurant_menu_path(@restaurant, menu) %>
+      </div>
+    <% end %>
+  </div>
+  <div class="small-12 medium-6 larege-8 columns">
+    <h2><%= link_to "Menu Groups", admin_restaurant_menu_groups_path(@restaurant) %></h2>
+    <% @menu_groups.each do |menu_group| %>
+      <div class="small-6 medium-4 large-3 columns">
+        <%= link_to menu_group.name, edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="small-12 columns">
+    <h2><%= link_to "Items", admin_restaurant_items_path(@restaurant) %></h2>
+    <% @items.each do |item| %>
+      <div class="small-6 medium-4 large-3 columns">
+        <%= link_to item.name, edit_admin_restaurant_item_path(@restaurant, item) %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="small-12 columns">
+    <h2><%= link_to "Foods", admin_restaurant_foods_path(@restaurant) %></h2>
+    <% @foods.each do |food| %>
+      <div class="small-6 medium-4 large-3 columns">
+        <%= link_to food.name, edit_admin_restaurant_food_path(@restaurant, food) %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="small-12 small-centered columns">
+    <%= link_to 'All Restaurants', admin_restaurants_path, class: "button small round" %>
+  </div>
+</div>
+
 

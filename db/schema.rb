@@ -70,6 +70,16 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer "tag_id"
   end
 
+  create_table "hours", force: :cascade do |t|
+    t.time     "opening"
+    t.time     "closing"
+    t.integer  "day"
+    t.integer  "hour_id"
+    t.string   "hour_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
     t.string   "normalized_name"
@@ -130,9 +140,28 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.datetime "updated_at"
   end
 
+  create_table "menu_groups_menus", force: :cascade do |t|
+    t.integer "menu_group_id"
+    t.integer "menu_id"
+  end
+
+  add_index "menu_groups_menus", ["menu_group_id"], name: "index_menu_groups_menus_on_menu_group_id"
+  add_index "menu_groups_menus", ["menu_id"], name: "index_menu_groups_menus_on_menu_id"
+
   create_table "menu_groups_tags", force: :cascade do |t|
     t.integer "menu_group_id"
     t.integer "tag_id"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "background_color"
+    t.string   "text_color"
+    t.boolean  "is_food_group"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", force: :cascade do |t|

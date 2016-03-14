@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  root 'base#home'
-  get  'admin_root',                    to: 'admin#home', as: "admin_root"
 
   resources :restaurants, :ingredients, :tags, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :choices, only: [:index, :show]
@@ -13,12 +11,14 @@ Rails.application.routes.draw do
   resources :reviews
 
   namespace :admin do
+    root 'layouts#home'
     resources :users, :tags
     resources :ingredients do
       post 'add_tag', to: 'ingredients#add_tag', as: 'add_tag'
       post 'remove_tag', to: 'ingredients#remove_tag', as: 'remove_tag'
     end
     resources :restaurants do
+      resources :menus
       resources :menu_groups do
         post 'remove_item', to: 'foods#remove_item', as: "remove_item"
       end
@@ -44,9 +44,10 @@ Rails.application.routes.draw do
         post 'add_food', to: 'choices#add_food', as: "add_food"
       end
     end
+    get 'menus',       to: 'menus#all',       as: "menus"
     get 'menu_groups', to: 'menu_groups#all', as: "menu_groups"
-    get 'items', to: 'items#all', as: "items"
-    get 'foods', to: 'foods#all', as: "foods"
+    get 'items',       to: 'items#all',       as: "items"
+    get 'foods',       to: 'foods#all',       as: "foods"
 
   end
 
@@ -58,5 +59,7 @@ Rails.application.routes.draw do
   get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"
   get '/create_user_rating',            to: 'reviews#create_user_rating',                as: "create_user_rating"
   get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        as: "restaurant_item_filter"
+  root 'layouts#home'
+  # get  'admin_root',                    to: 'admin#home', as: "admin_root"
 
 end

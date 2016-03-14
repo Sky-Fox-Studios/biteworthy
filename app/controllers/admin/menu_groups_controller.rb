@@ -1,8 +1,5 @@
 class Admin::MenuGroupsController < AdminController
-  before_action :set_restaurant, only: [:index, :all, :create, :show, :edit, :update, :destroy]
-  before_action :set_menu_group, only: [:show, :edit, :update, :destroy]
-  before_action :set_menu_groups, only: [:all, :index]
-
+  before_action :set_menu_group_on_id, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
   def all
@@ -52,20 +49,16 @@ class Admin::MenuGroupsController < AdminController
   end
 
   private
-    def set_menu_group
+    def set_menu_group_on_id
       @menu_group = MenuGroup.find(params[:id])
     end
 
     def set_menu_groups
       @page= params[:page]
-      if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
-        @menu_groups = MenuGroup.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(per_page_count)
-      else
-        @menu_groups = MenuGroup.page(@page).per(per_page_count)
-      end
+      @menu_groups = MenuGroup.where(restaurant: @restaurant).page(@page).per(per_page_count)
     end
 
     def menu_group_params
-       params.require(:menu_group).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color)
+       params.require(:menu_group).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color, :menu_order, menu_ids: [])
     end
 end

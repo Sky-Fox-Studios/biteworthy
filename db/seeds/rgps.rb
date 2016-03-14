@@ -1,11 +1,11 @@
 module Rgps
   rgps  = Restaurant.find_or_create_by(name: "RGP's", slogan: "Flame Grilled Wraps",
   main_image_url: "rgps.jpg")
-  puts "Rgps Restaurant"
+  default_menu    = rgps.menus.create
 
   rgps_wraps       = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Flame Grilled Wraps", is_food_group: true,
     description: "Served warm on our flame grilled crusts & come with choice of REGULAR OR BARBECUE potato chips or cole slaw")
-  puts "Rgps rgps_wraps"
+  rgps_wraps.menus << default_menu
 
   rgps_wrap_items = [
     ["Roasted Chicken or Turkey Breast", "With the Freshest Combination of Roma Tomatoes, Red Onion, Green Peppers, Carrots, Crisp Romaine Lettuce, and Choice of Cheese and Dressing.",
@@ -33,7 +33,6 @@ module Rgps
       end
     end
     item.save
-    puts "Rgps #{item.name} saved"
 
     #  prices_sizes.each do |price_size|
     #    Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
@@ -41,7 +40,7 @@ module Rgps
   end
 
   rgps_salads      = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Salads", description: "Add Chicken to any salad for $1.50", is_food_group: true)
-  puts "Rgps Salads..."
+  rgps_salads.menus << default_menu
   rgps_salad_items = [
     ["Caesar Salad", "Crisp Romaine Lettuce, Croutons, Pecorino Romano Cheese, and Dressing."],
     ["Full House", "Romaine Lettuce with Roma Tomatoes, Red Onion, Green Peppers, Carrots, Cucumbers, Roasted Red Peppers."],
@@ -56,7 +55,6 @@ module Rgps
     #    Price.find_or_create_by(price: price_size[:price], size: price_size[:size], item: item)
     #  end
     item.save
-    puts "Rgps #{item.name} saved"
   end
 
   puts "Rgps seeded"

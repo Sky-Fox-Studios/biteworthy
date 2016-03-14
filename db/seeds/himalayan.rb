@@ -1,7 +1,11 @@
 module Himalayan
    himalayan = Restaurant.find_or_create_by(name: "Himalayan Kitchen", slogan: "Mountain food for mountain people", main_image_url: 'himalayan.jpg')
-   starters_menu_group = MenuGroup.find_or_create_by(restaurant: himalayan, name: "Starters", description: "")
+   default_menu         = himalayan.menus.create
+
+   starters_menu_group   = MenuGroup.find_or_create_by(restaurant: himalayan, name: "Starters", description: "")
    soup_salad_menu_group = MenuGroup.find_or_create_by(restaurant: himalayan, name: "Soup & Salad", description: "")
+   starters_menu_group.menus   << default_menu
+   soup_salad_menu_group.menus << default_menu
 
    starter_items =[
      ["Mo-mo", "A very popular dish among Nepalese and Tibetains. These steamed dumplings are filled with your choice of veggie, chicken, lamb or any combination and served with achaar.", 12.99],

@@ -3,9 +3,13 @@ module CreamBeanBerry
     about: "Our ice cream is made from scratch with 100% percent organic milk, crea, and sugar. We user as many local ingredients as possible. We reduce our waste through recycling and biodegradable packaging.",
     main_image_url: "cbb.png")
 
-  cbb_ice_cream   = MenuGroup.find_or_create_by(restaurant_id: cbb.id, name: "Ice Cream Servings", description: "")
-  cbb_drinks      = MenuGroup.find_or_create_by(restaurant_id: cbb.id, name: "Drinks", description: nil)
-  cbb_specialties = MenuGroup.find_or_create_by(restaurant_id: cbb.id, name: "Specialities", description: "")
+  default_menu         = cbb.menus.create
+  cbb_ice_cream   = MenuGroup.find_or_create_by(restaurant: cbb, name: "Ice Cream Servings", description: "")
+  cbb_drinks      = MenuGroup.find_or_create_by(restaurant: cbb, name: "Drinks", description: "")
+  cbb_specialties = MenuGroup.find_or_create_by(restaurant: cbb, name: "Specialities", description: "")
+  cbb_drinks.menus      << default_menu
+  cbb_ice_cream.menus   << default_menu
+  cbb_specialties.menus << default_menu
 
   cbb_ice_cream_items = [
      ["Mini Scoop",   nil, cbb_ice_cream, [{price:2.75, size: nil}, {price: 2.25, size: "with cone"}, {price: 3.75, size: "with waffle cone"}]],

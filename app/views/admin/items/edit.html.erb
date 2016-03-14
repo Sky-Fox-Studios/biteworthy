@@ -4,6 +4,6 @@
 
 <%= render 'form' %>
 
-<div class="small-12" style="margin-left:30px;">
+<div class="small-12 columns">
   <%= link_to "All #{@item.restaurant.name} items", admin_items_path(restaurant_id: @item.restaurant), class: "button tiny radius padded" %>
 </div>
