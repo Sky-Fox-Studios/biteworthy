@@ -130,12 +130,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "menu_groups", force: :cascade do |t|
     t.integer  "restaurant_id"
-    t.integer  "menu_order"
+    t.integer  "menu_order",       default: 1
     t.string   "name"
     t.string   "description"
     t.string   "background_color"
     t.string   "text_color"
-    t.boolean  "is_food_group"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -155,11 +154,10 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "menus", force: :cascade do |t|
     t.integer  "restaurant_id"
-    t.string   "name"
+    t.string   "name",             default: "Default"
     t.string   "description"
     t.string   "background_color"
     t.string   "text_color"
-    t.boolean  "is_food_group"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -214,6 +212,17 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer  "user_id"
     t.integer  "review_id"
     t.string   "review_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "single_day?"
+    t.integer  "season_id"
+    t.string   "season_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

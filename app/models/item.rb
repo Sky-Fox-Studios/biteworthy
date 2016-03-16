@@ -28,7 +28,7 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :foods, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
   validates :restaurant_id, :name, presence: true
-  validates_uniqueness_of :name, scope: [:restaurant_id]
+  validates_uniqueness_of :name, scope: [:restaurant_id, :description]
 
 
 end
