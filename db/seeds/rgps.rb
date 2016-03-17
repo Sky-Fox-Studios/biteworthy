@@ -151,6 +151,10 @@ module Rgps
       description: description,
     )
     item.menu_groups << menu_group
+    if menu_group == rgps_wraps
+        side = Choice.find_or_create_by(name: "Side", description: "Regular OR Barbecue Chips OR coleslaw", restaurant: rgps)
+        item.choices << side
+    end
     foods_array.split(', ').each do |food|
       food = Food.find_or_create_by(name: food.downcase, restaurant: rgps)
       item.foods << food
@@ -161,11 +165,10 @@ module Rgps
         item.choices << choice
       end
     end
-    item.save
-
      prices_sizes.each do |price_size|
        item.prices.create(value: price_size[:price], size: price_size[:size])
      end
+    item.save
 
   end
   puts "Rgps seeded"

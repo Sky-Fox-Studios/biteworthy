@@ -25,19 +25,19 @@
  font-family: 'Handlee', cursive;
 }
 .pad {
-  padding: 0px 0px 0px 15px;
+  padding: 0px 15px 0px 15px;
 }
 .padded {
-  padding: 0px 0px 0px 25px;
+  padding: 0px 25px 0px 25px;
 }
 .padded-2 {
-  padding: 0px 0px 0px 35px;
+  padding: 0px 35px 0px 35px;
 }
 .padded-3 {
-  padding: 0px 0px 0px 45px;
+  padding: 0px 45px 0px 45px;
 }
 .padded-4 {
-  padding: 0px 0px 0px 55px;
+  padding: 0px 55px 0px 55px;
 }
 
 h1{
@@ -57,4 +57,13 @@ h4{
 a:hover {
   // background-color: transparent !important;
   color: hotpink !important;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  p {
+    margin: 0px;
+    text-align:center;
+  }
 }

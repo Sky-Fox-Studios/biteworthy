@@ -1,10 +1,6 @@
 <!--Some footer stuff here :) -->
-<div class="row padded">
-  <div class="small-6 columnns">
-    Built by a local, for the locals.
-
-   </div>
-  <div class="small-6 columnns right">
-  <span class="right"><%= Rails.env.capitalize %>, V<%= Rails.application.config.app_version %></span>
-   </div>
+<div class="row footer padded center">
+  <div class="small-12 columnns">
+    <p><%= Rails.env.capitalize %> Version: <%= Rails.application.config.app_version %></p>
+  </div>
 </div>
