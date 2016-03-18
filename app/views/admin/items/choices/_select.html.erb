@@ -1,0 +1,10 @@
+<%= form_tag admin_restaurant_item_add_choice_path(restaurant, item), method: :post do %>
+  <div class="row">
+    <div class="small-9 columns">
+      <%= select_tag('choice_id', options_for_select(choices.map {|f| [ f.name, f.id ]}), prompt: "Add Choice:") %>
+    </div>
+    <div class="small-3 columns">
+      <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+    </div>
+  </div>
+<% end %>

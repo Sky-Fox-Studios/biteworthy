@@ -9,6 +9,7 @@ class Admin::RestaurantsController < AdminController
   end
 
   def show
+    @menus = Menu.where(restaurant: @restaurant).order(:name)
     @menu_groups = MenuGroup.where(restaurant: @restaurant).order(:name)
     @items       = Item.where(restaurant: @restaurant).order(:name)
     @foods       = Food.where(restaurant: @restaurant).order(:name)

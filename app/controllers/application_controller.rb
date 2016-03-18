@@ -2,13 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :set_page
-  before_action :set_restaurant
-  before_action :set_restaurants
-  before_action :set_menu_groups
-  before_action :set_menu_group
-  before_action :set_items
-  before_action :set_item
+  before_action :set_page, :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
 
   before_action :page_history, only: [:create, :update]
 
@@ -45,6 +39,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_menu
+    if params[:menu_id] && !params[:menu_id].empty?
+      @menu = Menu.find(params[:menu_id])
+    elsif params[:filter_menu_id] && !params[:filter_menu_id].empty?
+      @menu = Menu.find(params[:filter_menu_id])
+    end
+  end
+
   def set_menu_group
     if params[:menu_group_id] && !params[:menu_group_id].empty?
       @menu_group = MenuGroup.find(params[:menu_group_id])
@@ -63,6 +65,14 @@ class ApplicationController < ActionController::Base
 
   def set_restaurants
     @restaurants = Restaurant.all.order(:name)
+  end
+
+  def set_menus
+    if @restaurant
+      @menus = Menu.where(restaurant: @restaurant).order(:name)
+    else
+      @menus = Menu.all.order(:name)
+    end
   end
 
   def set_menu_groups

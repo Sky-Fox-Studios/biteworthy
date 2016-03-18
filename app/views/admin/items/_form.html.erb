@@ -1,29 +1,8 @@
 <div class="row">
   <%= simple_form_for([:admin, @restaurant, @item]) do |f| %>
-    <% if @item.errors.any? %>
-    <div id="error_explanation" class="small-12">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+    <%= hidden_field_tag 'item[restaurant_id]', @restaurant.id %>
     <div class="row pad">
-      <%= hidden_field_tag 'item[restaurant_id]', @restaurant.id %>
-      <div class="small-8 medium-6 large-4 columns">
-        <%= f.association :menu_groups, collection: @menu_groups, as: :select, label: "Menu Group"%>
-      </div>
-      <div class="small-4 medium-4 large-4 columns">
-        <% if !@item.new_record? && @item.menu_groups %>
-          <%= render partial: "admin/items/menu_groups_list", locals: {item: @item } %>
-        <% end %>
-      </div>
-      <div class="small-12 medium-2 large-4 columns">
-        <br>
-        <%= link_to "<i class='fi-plus'></i> Menu Group".html_safe, new_admin_restaurant_menu_group_path(@restaurant)  %>
-      </div>
+      <%= render partial: "admin/items/menu_groups/info_and_forms", locals: {f: f} %>
     </div>
     <div class="small-12 medium-4 columns">
       <%= f.input :name %>
@@ -53,41 +32,9 @@
   <% end %><hr>
 
   <% unless @item.new_record? %>
-    <%= render partial: "admin/items/foods_list", locals: {item: @item } %>
-    <div class="small-12 medium-8 columns">
-      <%= form_tag admin_restaurant_item_add_food_path(@restaurant, @item), method: :post do %>
-        <div class="row">
-          <div class="small-9 columns">
-            <%= select_tag('food_id', options_for_select(@foods.map {|f| [ f.name, f.id ]}), prompt: "Add Food:") %>
-          </div>
-          <div class="small-3 columns">
-            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-          </div>
-        </div>
-      <% end %>
-      <%= render partial: "food_form", locals: {restaurant: @restaurant, item: @item} %>
-    </div><hr>
-    <%= render partial: "admin/items/choices_list", locals: {item: @item } %>
-    <div class="small-12 medium-8 columns">
-      <%= form_tag admin_restaurant_item_add_choice_path(@restaurant, @item), method: :post do %>
-        <div class="row">
-          <div class="small-9 columns">
-            <%= select_tag('choice_id', options_for_select(@choices.map {|f| [ f.name, f.id ]}), prompt: "Add Choice:") %>
-          </div>
-          <div class="small-3 columns">
-            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-          </div>
-        </div>
-      <% end %>
-      <%= render partial: "choice_form", locals: {restaurant: @restaurant, item: @item} %>
-    </div><hr>
-
-    <div class="row padded">
-      <div class="small-12 medium-6 columns">
-        <%= render partial: "price_size_list", locals: {restaurant: @restaurant, item: @item} %>
-        <%= render partial: "price_size_form", locals: {restaurant: @restaurant, item: @item} %>
-      </div>
-    </div>
+    <%= render partial: "admin/items/foods/info_and_forms" %>
+    <%= render partial: "admin/items/choices/info_and_forms" %>
+    <%= render partial: "admin/items/prices/info_and_forms" %>
   <% end %>
 
 </div>

@@ -14,24 +14,24 @@
     <%= render :partial => "/ga/tracking" %>
   </head>
 
-   <body>
-      <div class="row main-page">
-         <div class="small-12 columns">
-            <%= render :partial => "/base/header" %>
-            <% if flash[:notice] || flash[:alert] %>
-              <div class="small-12 columns">
-                <% if flash[:alert] %>
-                  <div data-alert class="alert-box radius"><%= flash[:alert] %><a class="close">x</a></div>
-                <% end %>
-                <% if flash[:notice] %>
-                  <div data-alert class="alert-box warning radius"><%= flash[:notice] %><a class="close">x</a></div>
-                <% end %>
-              </div>
+  <body>
+    <div class="row main-page">
+      <div class="small-12 columns">
+        <%= render :partial => "/layouts/header" %>
+        <% if flash[:notice] || flash[:alert] %>
+          <div class="small-12 columns">
+            <% if flash[:alert] %>
+              <div data-alert class="alert-box radius"><%= flash[:alert] %><a class="close">x</a></div>
             <% end %>
-            <%= yield %>
-            <%= javascript_include_tag "application" %>
-         </div>
+            <% if flash[:notice] %>
+              <div data-alert class="alert-box warning radius"><%= flash[:notice] %><a class="close">x</a></div>
+            <% end %>
+          </div>
+        <% end %>
+        <%= yield %>
+        <%= javascript_include_tag "application" %>
       </div>
-      <%= render :partial => "/base/footer" %>
-   </body>
+    </div>
+    <%= render :partial => "/layouts/footer" %>
+  </body>
 </html>

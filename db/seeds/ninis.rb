@@ -1,9 +1,10 @@
 module Ninis
    ninis                     = Restaurant.find_or_create_by(name: "Ninis", slogan: "Food so good you wont trust the water", main_image_url: "ninis.gif")
+   default_menu              = ninis.menus.create
 
-   ninis_burritos            = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Burritos",     description: "A flour tortilla with beans, rice, sour crea, cheese, salsa, and...", is_food_group: true)
-   ninis_tacos               = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Tacos",        description: "Three soft flour or corn tortillas filled with sour cream, cheese, lettuce, salsa and...", is_food_group: true)
-   ninis_quesadillas         = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Quesadillas",  description: "grilled flour torilla with melted chees, sour cream, salsa and...", is_food_group: true)
+   ninis_burritos            = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Burritos",     description: "A flour tortilla with beans, rice, sour crea, cheese, salsa, and...")
+   ninis_tacos               = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Tacos",        description: "Three soft flour or corn tortillas filled with sour cream, cheese, lettuce, salsa and...")
+   ninis_quesadillas         = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Quesadillas",  description: "grilled flour torilla with melted chees, sour cream, salsa and...")
    mild_salsa_menu_group     = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Mild salsa",   description: nil)
    medium_salsa_menu_group   = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Medium salsa", description: nil)
    hot_salsa_menu_group      = MenuGroup.find_or_create_by(restaurant_id: ninis.id, name: "Hot Salsa",    description: nil)
@@ -78,6 +79,7 @@ module Ninis
    ]
    ninis_items = burrito_items + taco_items +  quesadillas_items + salsa_items + soup_and_salad_items + for_the_kids_items +  bebidas_items + extra_items
    ninis_items.each do |name, description, menu_group, prices_sizes|
+     menu_group.menus << default_menu
      item = Item.find_or_create_by(restaurant: ninis,
       name: name,
       description: description)

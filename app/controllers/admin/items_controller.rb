@@ -50,12 +50,12 @@ class Admin::ItemsController < AdminController
       if params[:image]
         @item.photos.new(user_id: current_user, photo_type: "Item", image: params[:image]).save
       end
-
       flash[:notice] = "Item updated"
+      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
     else
       flash[:notice] = "Item failed to update"
+      render :edit
     end
-      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   def destroy

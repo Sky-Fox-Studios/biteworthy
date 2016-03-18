@@ -16,15 +16,14 @@ class Food < ActiveRecord::Base
   has_many :ingredients, through: :foods_ingredients
   has_many :foods_ingredients
 
+  before_validation :trim_name
+
   validates :restaurant_id, :name, presence: true
 
   validates_uniqueness_of :name, scope: :restaurant_id
 
-  # before_create :create_ingredient
-  #
-  # def create_ingredient
-  #   self.ingredients << Ingredient.find_or_create_by(name: self.name)
-  # end
-  #
+  def trim_name
+    self.name = self.name.strip.downcase unless self.name.nil?
+  end
 
 end

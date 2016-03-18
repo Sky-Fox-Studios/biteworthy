@@ -1,4 +1,5 @@
 class Restaurant < ActiveRecord::Base
+  has_many :menus, dependent: :destroy
   has_many :menu_groups, dependent: :destroy
   has_many :foods, dependent: :destroy
   has_many :choices, dependent: :destroy

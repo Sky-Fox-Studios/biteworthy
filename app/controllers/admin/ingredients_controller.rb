@@ -51,8 +51,10 @@ class Admin::IngredientsController < AdminController
   end
 
   def add_tag
-    tag = Tag.find(params[:tag_id])
-    @ingredient.tags << tag unless @ingredient.tags.include? tag
+    if !params[:tag_id].empty?
+      tag = Tag.find(params[:tag_id])
+      @ingredient.tags << tag unless @ingredient.tags.include? tag
+    end
     redirect_to edit_admin_ingredient_path(@ingredient)
   end
 
