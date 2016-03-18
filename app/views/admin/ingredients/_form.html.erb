@@ -1,0 +1,43 @@
+<div class="row">
+
+  <%= simple_form_for([:admin, @ingredient]) do |f| %>
+    <% if @ingredient.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+        <ul>
+        <% @ingredient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <div class="small-6 medium-4 columns">
+        <%= f.input :name %>
+      </div>
+      <div class="small-6 medium-4 columns">
+        <%= f.input :normalized_name, readonly: true, label: "Tag name (unique)" %>
+      </div>
+
+      <div class="small-12 columns">
+          <%= f.submit class: "button tiny success round" %>
+      </div>
+  <% end %>
+
+  <% if !@ingredient.new_record? %>
+    <% if @ingredient.tags %>
+      <%= render partial: "admin/ingredients/tags_list", locals: {ingredient: @ingredient } %>
+    <% end %>
+    <div class="small-12 columns">
+      <%= form_tag admin_ingredient_add_tag_path(@ingredient), method: :post do %>
+      <div class="row">
+        <div class="small-9 columns">
+          <%= select_tag('tag_id', options_for_select(Tag.all.order(:name).map {|f| [ f.name, f.id ]}), prompt: "Add Tag:") %>
+        </div>
+        <div class="small-3 columns">
+          <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

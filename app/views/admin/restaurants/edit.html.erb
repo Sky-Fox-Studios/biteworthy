@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="small-12 columns">
+    <% if @restaurant.new_record? %>
+      <h1>Editing restaurant</h1>
+    <% else %>
+      <h1>Editing <%= @restaurant.name %></h1>
+    <% end %>
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @restaurant %> |
+    <%= link_to 'Back', admin_restaurants_path %>
+  </div>
+</div>

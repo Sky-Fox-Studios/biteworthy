@@ -1,0 +1,19 @@
+<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
+<h1>Listing Foods</h1>
+<table class="small-12 columns" id="restaurant-food-index-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @foods.each do |food| %>
+      <tr>
+        <td><%= link_to food.name, restaurant_food_path(@restaurant, food) %></td>
+        <td><%= food.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

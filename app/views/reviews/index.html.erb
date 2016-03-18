@@ -1,0 +1,23 @@
+<div class="row">
+   <div class="small-12 columns">
+      <h1 align="center">Your Bite Worthy Reviews</h1>
+   </div>
+    <div class="small-12 columns">
+       <% @reviews.each do |review| %>
+        <% if @review_class != review.rating %>
+        <hr>
+          <div class="row">
+            <% @review_class = review.rating %>
+            <div class="small-12 columns">
+              <h3>
+                <%= @review_class.humanize %> <%= render partial: "/modules/rating_text", locals: {rating: review.rating} %>
+              </h3>
+            </div>
+          </div>
+        <% end %>
+         <div class="small-6 columns">
+           <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
+         </div>
+       <% end %>
+    </div>
+</div>

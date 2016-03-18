@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="small-12 columns">
+    <strong>Phone #:</strong>
+    <%= address.phone_number %>
+  </div>
+  <div class="small-12 columns">
+    <strong>Street:</strong>
+    <%= address.street %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>city:</strong>
+    <%= address.city %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>state:</strong>
+    <%= address.state %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>zip:</strong>
+    <%= address.zip %>
+  </div>
+
+  <div class="small-12 columns">
+    <strong>Latitude:</strong>
+    <%= address.latitude %>
+  </div>
+  <div class="small-12 columns">
+    <strong>Longitude:</strong>
+    <%= address.longitude %>
+  </div>
+  <%= render partial: 'admin/addresses/map', locals: { latitude: address.latitude, longitude: address.longitude } %>
+
+  <div class="small-12 columns">
+    <%= link_to 'Edit', edit_admin_restaurant_address_path(@restaurant, address) %> |
+    <%= link_to 'Remove', admin_restaurant_address_path(@restaurant, address), method: :delete, data: { confirm: 'Are you sure?' }  %>
+  </div>
+</div>

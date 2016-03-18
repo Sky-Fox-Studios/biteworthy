@@ -1,0 +1,17 @@
+<% rating = Review.ratings[rating] if rating %>
+<% empty_reviews = 3 - (rating.abs) %>
+<% if rating > 0 %>
+  <% rating.times do %>
+    <%= image_tag "good-review.png" %>
+  <% end %>
+  <% empty_reviews.times do %>
+    <%= image_tag "good-review-empty.png" %>
+  <% end %>
+<% else %>
+  <% rating.abs.times do %>
+    <%= image_tag "bad-review.png" %>
+  <% end %>
+  <% empty_reviews.times do %>
+    <%= image_tag "bad-review-empty.png" %>
+  <% end %>
+<% end %>

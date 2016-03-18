@@ -1,0 +1,32 @@
+<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
+<div class="row">
+  <div class="small-3 columns">
+    <%= PhotoDecorator.decorate(@food.photos).display %>
+    <% if current_user && current_user.is_admin? %>
+      <br>
+      <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_food_path(@restaurant, @food)} %>
+    <% end %>
+  </div>
+  <div class="small-9 columns food-item-name">
+    <div class="row">
+      <div class="small-6 columns">
+        <h3>
+          <%= @food.name.capitalize %>
+        </h3>
+        <p align="none">
+          <%= @food.description %>
+        </p>
+      </div>
+      <% unless @food.ingredients.empty? %>
+        <div class="small-6 columns">
+          Ingredients: <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
+        </div>
+      <% end %>
+      <% unless @food.tags.empty? %>
+        <div class="small-6 columns">
+          Tags: <%= @food.tags.map {|tag| link_to(tag.name, tag_path(tag)) }.to_sentence.html_safe %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

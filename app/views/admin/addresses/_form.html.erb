@@ -1,0 +1,8 @@
+<%= simple_form_for([:admin, @restaurant, @address]) do |a| %>
+  <div class="row">
+    <%= render partial: 'admin/addresses/address_fields', locals: { a: a } %>
+    <div class="small-12 columns">
+        <%= a.submit %>
+   </div>
+ </div>
+<% end %>

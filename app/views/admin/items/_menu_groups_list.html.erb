@@ -1,0 +1,6 @@
+<div class="small-12 columns">
+  <b>Menu Groups:</b>
+  <%= item.menu_groups.map do |menu_group|
+    "#{link_to(menu_group.name, edit_admin_restaurant_menu_group_path(item.restaurant, menu_group))} <sup>#{link_to 'x', admin_restaurant_item_remove_menu_group_path(item.restaurant, item, menu_group_id: menu_group.id), method: :post, style: 'color:red'}</sup>"
+  end.to_sentence.html_safe %>
+</div>

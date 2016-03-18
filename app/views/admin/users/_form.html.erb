@@ -1,0 +1,30 @@
+<div class="row">
+   <div class="small-12 columns">
+      <% if current_user.is_admin %>
+      <%= simple_form_for(@user, :url => admin_user_path(@user)) do |f| %>
+            <% if @user.errors.any? %>
+               <div class="div.alert-box.alert.round" id="error_explanation">
+                  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+                  <ul>
+                     <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                     <% end %>
+                  </ul>
+               </div>
+            <% end %>
+            <%= f.input :user_name %>
+            <%= f.input :email %>
+            <%= f.input :is_editor %>
+            <% if current_user.is_admin %>
+               <%= f.input :is_admin %>
+            <% end %>
+            <% if !@user.approved %>
+               <%= f.input :approved %>
+            <% end %>
+            <%= f.button :submit %>
+         <% end %>
+      <% else %>
+         <h2> You do not have permissions to edit a user </h2>
+      <% end %>
+   </div>
+</div>

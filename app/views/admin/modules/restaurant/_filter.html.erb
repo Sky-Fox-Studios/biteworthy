@@ -1,0 +1,13 @@
+<div class="small-12 medium-4 large-4 columns">
+  <!-- restaurant_item_filter -->
+  <%= label_tag "Filter by Restaurant:" %>
+  <% if params[:filter_restaurant_id] %>
+    <%= select_tag('filter_restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}, selected: params[:filter_restaurant_id]), onchange: "this.form.submit();") %>
+    <%= hidden_field_tag 'current_restaurant_id', params[:filter_restaurant_id] %>
+  <% elsif params[:restaurant_id] %>
+    <%= select_tag('filter_restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}, selected: params[:restaurant_id]), onchange: "this.form.submit();") %>
+    <%= hidden_field_tag 'current_restaurant_id', params[:restaurant_id] %>
+  <% else %>
+    <%= select_tag('filter_restaurant_id', options_for_select(restaurants.map {|r| [ r.name, r.id ]}), onchange: "this.form.submit();", prompt: "Choose...") %>
+  <% end %>
+</div>

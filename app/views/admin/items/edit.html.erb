@@ -1,0 +1,9 @@
+<div class="small-12">
+  <h1><%= "#{@restaurant.name} #{@item.name}" %></h1>
+</div>
+
+<%= render 'form' %>
+
+<div class="small-12 columns">
+  <%= link_to "All #{@item.restaurant.name} items", admin_items_path(restaurant_id: @item.restaurant), class: "button tiny radius padded" %>
+</div>

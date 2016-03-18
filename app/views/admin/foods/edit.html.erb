@@ -1,0 +1,6 @@
+<h1><%= @restaurant.name %>: <%= @food.name %></h1>
+
+<%= render 'form' %>
+
+<%= link_to "#{@restaurant.name} Foods", admin_foods_path, class: "button tiny round" %>
+<%= link_to 'All Foods', admin_foods_path, class: "button tiny round right" %>

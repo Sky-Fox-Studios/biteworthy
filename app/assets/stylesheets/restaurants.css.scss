@@ -1,0 +1,44 @@
+// Place all the styles related to the Restaurants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.restaurant-home-image-small{
+  min-width: 69px;
+  width: 100%;
+  height: auto;
+}
+
+.menu-group-head{
+  padding-left: 11px;
+  padding-right: 11px;
+  font-size: 24px;
+  font-family: 'Architects Daughter', cursive !important;
+  background-color: cornflowerblue;
+}
+.menu-group-description{
+  padding-left: 11px;
+  font-size: 16px;
+  font-family: 'Architects Daughter', cursive !important;
+}
+
+.item-image{
+  padding: 4px 4px 4px 15px !important;
+}
+.item-description{
+  // padding: 4px 4px 4px 4px;
+}
+.item-price{
+  text-align: right;
+  vertical-align: middle;
+  // padding: 4px 4px 4px 4px;
+}
+.review-rating-wrapper{
+  position: absolute;
+  bottom: 10px;
+  // right: 8px !important;
+}
+.review-rating-show{
+  position: absolute;
+  top: 5px;
+  // right: 8px !important;
+  text-decoration-skip: spaces;
+}

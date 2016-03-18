@@ -1,0 +1,66 @@
+class Admin::MenusController < AdminController
+  before_action :set_menu_on_id, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
+
+  def all
+    @restaurants = Restaurant.all.order(:name)
+  end
+
+  def index
+    @menus = Menu.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
+    respond_with(@menus)
+  end
+
+  def show
+    respond_with(@menu)
+  end
+
+  def new
+    @menu = Menu.new
+    if params[:restaurant_id] && params[:restaurant_id]
+      @restaurant = Restaurant.find(params[:restaurant_id])
+    end
+    respond_with(@menu)
+  end
+
+  def edit
+  end
+
+  def create
+    @menu = Menu.new(menu_params)
+    if @menu.save
+      redirect_to admin_restaurant_menus_path(@menu.restaurant_id)
+    else
+      render :new
+    end
+  end
+
+  def update
+    if @menu.update(menu_params)
+      redirect_to admin_restaurant_menus_path(@menu.restaurant_id)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @menu.destroy
+    redirect_to admin_restaurant_menus_path(@restaurant), alert: "Menu Group Destroyed"
+  end
+
+  private
+    def set_menu_on_id
+      @menu = Menu.find(params[:id])
+    end
+
+    def set_menus
+      @page= params[:page]
+      @menus = Menu.where(restaurant: @restaurant).page(@page).per(per_page_count)
+      end
+    end
+
+    def menu_params
+       params.require(:menu).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color)
+    end
+end

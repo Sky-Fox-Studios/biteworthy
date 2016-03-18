@@ -1,0 +1,28 @@
+<%= simple_form_for @review do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% unless @review.new_record? %>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= render partial: "/#{@review.review_type.downcase.pluralize}/review_show", locals: {item: @reviewable} %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+    <div class="small-6 medium-4 large-3 columns">
+      <%= f.input :rating, collection: Review.ratings.map {|k, v| [k, k]}, include_blank: false, selected: Review.ratings[@review.rating], selected: @review.rating %>
+    </div>
+  </div>
+  <div class="small-12 columns">
+    <%= f.submit class: "button tiny radius success" %>
+  </div>
+<% end %>

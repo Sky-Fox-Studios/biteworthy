@@ -1,0 +1,36 @@
+<% size ||= 21 %>
+<% empty_reviews = 3 - rating.abs %>
+<% if rating == 0 %>
+    <%= image_tag "bad-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: -3, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    <%= image_tag "bad-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: -2, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    <%= image_tag "bad-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    <%= image_tag "good-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    <%= image_tag "good-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: 2, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    <%= image_tag "good-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: 3, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+<% elsif rating > 0 %>
+  <%= image_tag "bad-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: -3, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+  <%= image_tag "bad-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: -2, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+  <%= image_tag "bad-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+  <% rating_counter = 0 %>
+  <% rating.times do %>
+    <% rating_counter = rating_counter + 1 %>
+    <%= image_tag "good-review.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: rating_counter, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+  <% end %>
+  <% empty_reviews.times do %>
+    <% rating_counter = rating_counter + 1 %>
+    <%= image_tag "good-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: rating_counter, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+  <% end %>
+<% else %>
+  <% rating_counter = -3 %>
+  <% empty_reviews.times do %>
+    <%= image_tag "bad-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: rating_counter, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    <% rating_counter = rating_counter + 1 %>
+  <% end %>
+  <% rating.abs.times do %>
+    <%= image_tag "bad-review.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: rating_counter, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    <% rating_counter = rating_counter + 1 %>
+  <% end %>
+  <%= image_tag "good-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+  <%= image_tag "good-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: 2, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+  <%= image_tag "good-review-empty.png", size: "#{size}x#{size}", class: "rating-review", data: {rating: 3, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+<% end %>

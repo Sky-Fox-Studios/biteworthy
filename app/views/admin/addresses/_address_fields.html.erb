@@ -1,0 +1,27 @@
+<div class="small-12 columns">
+  <%= a.input :restaurant_id, as: :hidden, input_html: { value: @restaurant.id } %>
+</div>
+<div class="small-12 medium-4 columns">
+  <%= a.input :phone_number %>
+</div>
+<div class="small-12 medium-4 columns">
+  <%= a.input :street %>
+</div>
+<div class="small-6 medium-4 columns">
+  <%= a.input :city %>
+</div>
+<div class="small-2 medium-2 columns">
+  <%= a.input :state %>
+</div>
+<div class="small-4 medium-2 columns">
+  <%= a.input :zip %>
+</div>
+<div class="small-6 medium-4 columns">
+  <%= a.input :latitude %>
+</div>
+<div class="small-6 medium-4 columns">
+  <%= a.input :longitude %>
+</div>
+<div class="small-12 medium-4 columns">
+  <%#= render partial: 'admin/addresses/map', locals: { latitude: @address.latitude, longitude: @address.longitude } %>
+</div>
