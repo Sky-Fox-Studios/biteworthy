@@ -130,19 +130,11 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "menu_groups", force: :cascade do |t|
     t.integer  "restaurant_id"
-<<<<<<< HEAD
-    t.integer  "menu_order"
-=======
     t.integer  "menu_order",       default: 1
->>>>>>> 4ab13598724826dbf2c6e4a936e90f178c7a7e7e
     t.string   "name"
     t.string   "description"
     t.string   "background_color"
     t.string   "text_color"
-<<<<<<< HEAD
-    t.boolean  "is_food_group"
-=======
->>>>>>> 4ab13598724826dbf2c6e4a936e90f178c7a7e7e
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -162,18 +154,10 @@ ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "menus", force: :cascade do |t|
     t.integer  "restaurant_id"
-<<<<<<< HEAD
-    t.string   "name"
-    t.string   "description"
-    t.string   "background_color"
-    t.string   "text_color"
-    t.boolean  "is_food_group"
-=======
     t.string   "name",             default: "Default"
     t.string   "description"
     t.string   "background_color"
     t.string   "text_color"
->>>>>>> 4ab13598724826dbf2c6e4a936e90f178c7a7e7e
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -232,8 +216,6 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
   create_table "seasons", force: :cascade do |t|
     t.string   "name"
     t.date     "start_date"
@@ -245,7 +227,6 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.datetime "updated_at"
   end
 
->>>>>>> 4ab13598724826dbf2c6e4a936e90f178c7a7e7e
   create_table "tag_histories", force: :cascade do |t|
     t.string   "tag_id"
     t.string   "name"
