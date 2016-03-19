@@ -27,36 +27,33 @@
     <% end %>
   </div>
   <% if !@food.new_record? %>
-
     <div class="small-12 medium-4 columns">
       <div class="row">
         <% unless @food.ingredients.empty? %>
           <%= render partial: "admin/foods/ingredients_list", locals: {food: @food } %>
         <% end %>
-        <% if !@food.new_record? %>
-          <div class="small-12 columns">
-            <%= form_tag admin_restaurant_food_add_ingredient_path(@restaurant, @food), method: :post do %>
-              <div class="row">
-                <div class="small-9 columns">
-                  <%= select_tag('ingredient_id', options_for_select(Ingredient.all.order(:name).map {|f| [ f.name, f.id ]}), prompt: "Add ingredient:") %>
-                </div>
-                <div class="small-3 columns">
-                  <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-                </div>
+        <div class="small-12 columns">
+          <%= form_tag admin_restaurant_food_add_ingredient_path(@restaurant, @food), method: :post do %>
+            <div class="row">
+              <div class="small-9 columns">
+                <%= select_tag('ingredient_id', options_for_select(Ingredient.all.order(:name).map {|f| [ f.name, f.id ]}), prompt: "Add ingredient:") %>
               </div>
-            <% end %>
-          </div>
-          <div class="small-12 columns">
-            <%= form_tag admin_restaurant_food_add_ingredient_by_name_path(@restaurant, @food), method: :post do %>
-              <div class="row">
-                <div class="small-9 columns">
-                  <%= text_field_tag('ingredient_name', nil, placeholder: "New ingredient") %>
-                </div>
-                <div class="small-3 columns">
-                  <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-                </div>
+              <div class="small-3 columns">
+                <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
               </div>
-            <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="small-12 columns">
+          <%= form_tag admin_restaurant_food_add_ingredient_by_name_path(@restaurant, @food), method: :post do %>
+            <div class="row">
+              <div class="small-9 columns">
+                <%= text_field_tag('ingredient_name', nil, placeholder: "New ingredient") %>
+              </div>
+              <div class="small-3 columns">
+                <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+              </div>
+            </div>
           <% end %>
         </div>
       </div>

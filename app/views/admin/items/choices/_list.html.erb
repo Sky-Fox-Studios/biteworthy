@@ -1,0 +1,3 @@
+<%= @item.choices.map do |choice|
+  "#{link_to(choice.name, edit_admin_restaurant_choice_path(item.restaurant, choice))} <sup>#{link_to 'x', admin_restaurant_item_remove_choice_path(item.restaurant, item, choice_id: choice.id), method: :post, style: 'color:red'}</sup>"
+end.to_sentence.html_safe %>

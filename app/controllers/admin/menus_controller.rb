@@ -4,7 +4,7 @@ class Admin::MenusController < AdminController
   respond_to :html
 
   def all
-    @restaurants = Restaurant.all.order(:name)
+    @menus = Menu.all.order(:name)
   end
 
   def index
@@ -50,17 +50,16 @@ class Admin::MenusController < AdminController
   end
 
   private
-    def set_menu_on_id
-      @menu = Menu.find(params[:id])
-    end
+  def set_menu_on_id
+    @menu = Menu.find(params[:id])
+  end
 
-    def set_menus
-      @page= params[:page]
-      @menus = Menu.where(restaurant: @restaurant).page(@page).per(per_page_count)
-      end
-    end
+  def set_menus
+    @page= params[:page]
+    @menus = Menu.where(restaurant: @restaurant).page(@page).per(per_page_count)
+  end
 
-    def menu_params
-       params.require(:menu).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color)
-    end
+  def menu_params
+    params.require(:menu).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color)
+  end
 end

@@ -3,7 +3,7 @@ class Admin::MenuGroupsController < AdminController
   respond_to :html
 
   def all
-    @restaurants = Restaurant.all.order(:name)
+    @menu_groups = MenuGroup.all.order(:name)
   end
 
   def index

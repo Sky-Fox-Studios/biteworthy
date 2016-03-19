@@ -1,0 +1,9 @@
+<%= simple_form_for(ingredient, url: admin_ingredient_add_new_tag_path(ingredient), method: :post) do |f| %>
+  <div class="row">
+    <div class="small-9 columns">
+      <input type="text" id="ingredient[tag_name]" name="tag_name" placeholder="Name" />
+    </div>
+    <div class="small-3 columns">
+      <%= f.submit class: "button tiny radius success", value: 'Add' %>
+    </div>
+  </div>

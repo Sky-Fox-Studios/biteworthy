@@ -15,5 +15,4 @@ class PhotoDecorator < Draper::Decorator
       image_tag "food_pic.png", size: "160x160"
     end
   end
-
 end

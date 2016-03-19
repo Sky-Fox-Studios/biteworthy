@@ -1,0 +1,10 @@
+<div class="small-12 columns">
+  <h3>tags:</h3>
+</div>
+<div class="small-12 medium-4 columns">
+  <%= render partial: "admin/ingredients/tags/list", locals: {ingredient: @ingredient } %>
+</div>
+<div class="small-12 medium-8 columns">
+  <%= render partial: "admin/ingredients/tags/select", locals: {ingredient: @ingredient, tags: @tags} %>
+  <%= render partial: "admin/ingredients/tags/form",   locals: {ingredient: @ingredient} %>
+</div><hr>
