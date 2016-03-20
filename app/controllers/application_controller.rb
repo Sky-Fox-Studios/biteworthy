@@ -2,8 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :set_page, :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
-
+  before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
   before_action :page_history, only: [:create, :update]
 
    def after_sign_in_path_for(resource)
@@ -27,8 +26,8 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def set_page
-    @page= params[:page]
+  def page
+    params[:page]
   end
 
   def set_restaurant
@@ -86,9 +85,9 @@ class ApplicationController < ActionController::Base
   def set_items
     if @restaurant
       if @menu_group
-        @items = Item.where(restaurant: @restaurant, menu_group: @menu_group).page(@page).per(per_page_count)
+        @items = @menu_group.items.page(page).per(per_page_count)
       else
-        @items = Item.where(restaurant: @restaurant).page(@page).per(per_page_count)
+        @items = Item.where(restaurant: @restaurant).page(page).per(per_page_count)
       end
     end
   end

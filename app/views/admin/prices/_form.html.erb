@@ -1,14 +1,4 @@
-<%= simple_form_for([:admin, @restaurant, @item, @price]) do |f| %>
-  <% if @price.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@price.errors.count, "error") %> prohibited this price from being saved:</h2>
-      <ul>
-        <% @price.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for([:admin, @restaurant, @priced, @price]) do |f| %>
   <div class="row">
      <div class="small-6 columns">
         <%= f.input :value %>
@@ -18,6 +8,6 @@
      </div>
   </div>
    <div class="small-12 columns">
-     <%= f.submit %>
+     <%= f.submit class: "button tiny success radius" %>
   </div>
 <% end %>

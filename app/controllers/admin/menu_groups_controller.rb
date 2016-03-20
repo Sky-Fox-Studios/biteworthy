@@ -54,8 +54,7 @@ class Admin::MenuGroupsController < AdminController
     end
 
     def set_menu_groups
-      @page= params[:page]
-      @menu_groups = MenuGroup.where(restaurant: @restaurant).page(@page).per(per_page_count)
+      @menu_groups = MenuGroup.where(restaurant: @restaurant).page(page).per(per_page_count)
     end
 
     def menu_group_params

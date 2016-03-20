@@ -7,7 +7,7 @@ class Admin::ItemsController < AdminController
 
   def all
     unless @items
-      @items = Item.page(@page).per(per_page_count)
+      @items = Item.page(page).per(per_page_count)
     end
   end
 
@@ -131,7 +131,7 @@ class Admin::ItemsController < AdminController
     elsif params[:item_id]
       @item = Item.find(params[:item_id])
     end
-end
+  end
 
 
   def item_params

@@ -31,5 +31,8 @@ class Item < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 
 end

@@ -2,4 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'All Items', admin_items_path %>
+<%= link_to @priced.name, polymorphic_url([:admin, @priced.restaurant, @priced, @price]) %>
+<%= render partial: "admin/restaurants/footer" %>

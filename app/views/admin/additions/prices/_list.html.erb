@@ -9,8 +9,8 @@
 
   </div>
 </div>
-<% item.prices.map do |price| %>
-  <div class="row item-price-<%=price.id%>">
+<% addition.prices.map do |price| %>
+  <div class="row addition-price-<%=price.id%>">
     <div class="small-4 columns">
       <%= price_to_s price.value %>
     </div>
@@ -23,8 +23,8 @@
     </div>
     <div class="small-3 columns">
       <!-- TODO change text to fields and edit to save with JS -->
-      <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_price_path(item.restaurant, item, price)} %> |
-      <%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_item_price_path(restaurant, item, price), method: :delete, remote: true %>
+      <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_addition_price_path(addition.restaurant, addition, price)} %> |
+      <%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_addition_price_path(restaurant, addition, price), method: :delete, remote: true %>
     </div>
   </div>
 <% end %>

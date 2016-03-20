@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="small-12 columns">
+		<h1>Manage <%= @restaurant.name %> Additions</h1>
+	</div>
+</div>
+<div class="small-12 medium-6 large-4 columns">
+  <%= link_to 'New Addition...', new_admin_restaurant_addition_path(@restaurant), class: "button tiny radius success" %>
+</div>
+
+<div class="row pad">
+	<div class="small-12 columns">
+		<table class="small-12">
+		  <thead>
+		    <tr>
+		      <th></th>
+		      <th>Restaurant</th>
+		      <th>Addition</th>
+		      <th>Description</th>
+ 		      <th></th>
+		      <th></th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @additions.each do |addition| %>
+	      	<tr>
+						<td><%= link_to raw('<i class="fi-eye"></i>'), restaurant_addition_path(@restaurant, addition) %></td>
+						<td><%= @restaurant.name %></td>
+						<td><%= addition.name %></td>
+						<td><%= addition.description %></td>
+						<td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_addition_path(@restaurant, addition)} %></td>
+		        <td><%= link_to raw('<i class="fi-trash"></i>'), admin_restaurant_addition_path(@restaurant, addition), method: :delete, data: { confirm: 'Are you sure you want to remove this addition?' } %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
+		<%= paginate @additions %>
+	</div>
+</div>
+<%= render partial: "admin/restaurants/footer" %>

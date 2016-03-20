@@ -11,4 +11,8 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :addresses, :reject_if => lambda { |a| a[:street].blank? }, :allow_destroy => true
 
   validates :name, presence: true
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 end

@@ -1,0 +1,12 @@
+<div class="row">
+  <%= hidden_field_tag 'food[restaurant_id]', @restaurant.id %>
+  <div class="small-12 medium-8 large-6 columns">
+    <%= f.input :name %>
+  </div>
+  <div class="small-12 columns">
+    <%= f.input :description, as: :text  %>
+  </div>
+</div>
+<div class="small-12 columns actions">
+  <%= f.submit class: "button tiny radius success" %>
+</div>

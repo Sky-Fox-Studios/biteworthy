@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :restaurants, :ingredients, :tags, only: [:index, :show] do
-    resources :menu_groups, :foods, :addresses, :choices, only: [:index, :show]
+    resources :menu_groups, :foods, :addresses, :choices, :additions, only: [:index, :show]
     resources :items, only: [:index, :show] do
        resources :prices, only: [:index, :show]
      end
@@ -41,7 +41,16 @@ Rails.application.routes.draw do
         post 'remove_ingredient', to: 'foods#remove_ingredient', as: "remove_ingredient"
       end
       resources :choices do
-        post 'add_food', to: 'choices#add_food', as: "add_food"
+        post 'add_foods',    to: 'choices#add_foods',    as: "add_foods"
+        post 'add_new_food', to: 'choices#add_new_food', as: "add_new_food"
+        post 'remove_food',  to: 'choices#remove_food',  as: "remove_food"
+      end
+      resources :additions do
+        resources :prices
+        post 'add_new_price', to: 'additions#add_new_price', as: "add_new_price"
+        post 'add_foods',     to: 'additions#add_foods',     as: "add_foods"
+        post 'add_new_food',  to: 'additions#add_new_food',  as: "add_new_food"
+        post 'remove_food',   to: 'additions#remove_food',   as: "remove_food"
       end
     end
     get 'menus',       to: 'menus#all',       as: "menus"

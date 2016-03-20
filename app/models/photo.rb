@@ -9,5 +9,9 @@ class Photo < ActiveRecord::Base
      :basic,
      :banner,
      :icon]
+   
+   def to_param
+     "#{id}-#{name.parameterize}"
+   end
 
  end

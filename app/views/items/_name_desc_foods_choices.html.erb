@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="small-12 medium-6 columns">
+    <h3>
+      <%= item.name %>
+    </h3>
+    <p align="none">
+      <%= item.description %>
+    </p>
+  </div>
+  <div class="small-12 medium-6 columns">
+    <% unless item.foods.empty? %>
+      FOODS:
+      <%= render partial: "items/foods/list" %>
+    <% end %>
+    <br>
+    <% unless item.ingredients.empty? %>
+      INGREDIENTS:
+      <% item.ingredients.map do |ingredient| %>
+        <%= link_to ingredient.name, ingredient_path(ingredient) %>
+      <% end.to_sentence %>
+    <% end %>
+  </div>
+  <div class="small-12 medium-6 columns">
+    <%= render :partial => 'choices', locals: {item: @item} %>
+  </div>
+</div>

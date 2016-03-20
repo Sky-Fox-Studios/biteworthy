@@ -1,0 +1,7 @@
+<div class="row">
+  <div class="small-12 columns">
+    <% left_button ||= nil %>
+    <%= left_button.html_safe if left_button %>
+    <%= link_to @restaurant.name, admin_restaurant_path(@restaurant), class: "right button info tiny" %>
+  </div>
+</div>

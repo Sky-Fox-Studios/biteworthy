@@ -10,6 +10,10 @@ class Review < ActiveRecord::Base
     Review.ratings[self.rating]
    end
 
+   def to_param
+     "#{id}-#{user.name}"
+   end
+
    def get_review_name
      self.review_type.constantize.find_by(self.review_id).name
    end

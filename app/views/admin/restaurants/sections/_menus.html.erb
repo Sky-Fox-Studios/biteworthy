@@ -1,0 +1,31 @@
+<div class="small-12 medium-6 large-4 columns">
+  <div class="row">
+    <div class="small-8 columns">
+      <h2><%= link_to "Menus", admin_restaurant_menus_path(@restaurant) %></h2>
+    </div>
+    <div class="small-4 columns">
+      <%= link_to '+', new_admin_restaurant_menu_path(@restaurant), class: "button tiny radius success right" %>
+    </div>
+  </div>
+  <% @menus.each do |menu| %>
+    <div class="small-12 medium-6 columns">
+      <%= link_to menu.name == nil ? "Default" : menu.name, edit_admin_restaurant_menu_path(@restaurant, menu) %>
+    </div>
+  <% end %>
+</div>
+<div class="small-12 medium-6 large-8 columns">
+  <div class="row">
+    <div class="small-9 columns">
+      <h2><%= link_to "Menu Groups", admin_restaurant_menu_groups_path(@restaurant) %></h2>
+    </div>
+    <div class="small-3 columns">
+      <%= link_to '+', new_admin_restaurant_menu_group_path(@restaurant), class: "button tiny radius success right" %>
+    </div>
+  </div>
+  <% @menu_groups.each do |menu_group| %>
+    <div class="small-12 medium-6 columns">
+      <%= link_to menu_group.name, edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %>
+    </div>
+  <% end %>
+</div>
+<hr>

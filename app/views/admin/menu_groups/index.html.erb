@@ -21,5 +21,4 @@
 </table>
 
 <br>
-
-<%= link_to 'New Menu group', new_admin_restaurant_menu_group_path(@restaurant), class: "button tiny radius success" %>
+<%= render partial: "admin/restaurants/footer", locals: {left_button: (link_to 'New Menu group', new_admin_restaurant_menu_group_path(@restaurant), class: "button tiny radius success")} %>
