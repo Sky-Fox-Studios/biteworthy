@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-
 group :development do
   gem 'sqlite3'                                # Use sqlite3 as the database for Active Record
 end
@@ -9,6 +8,7 @@ group :production do
   gem "activerecord-postgresql-adapter"
 end
 
+ruby '2.1.2'
 gem 'rails', '4.2.1'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
