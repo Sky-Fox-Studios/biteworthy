@@ -1,5 +1,4 @@
 <%= simple_form_for([:admin, @restaurant, @addition], url: admin_restaurant_addition_add_foods_path(@restaurant, @addition), method: "POST") do |f| %>
-
   <div class="row">
     <div class="small-9 columns">
       <%= f.association :foods, collection: @foods, as: :select, label: "Add Foods"%>
@@ -10,5 +9,3 @@
     </div>
   </div>
 <% end %>
-
-<%#= form_tag admin_restaurant_addition_add_food_path(@restaurant, @addition), method: :post do %>

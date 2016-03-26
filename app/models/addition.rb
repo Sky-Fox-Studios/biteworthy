@@ -10,7 +10,6 @@ class Addition < ActiveRecord::Base
   has_many :additions_foods
 
   validates :restaurant_id, :name, presence: true
-
   validates_uniqueness_of :name, scope: :restaurant_id
 
   def to_param
@@ -18,4 +17,3 @@ class Addition < ActiveRecord::Base
   end
 
 end
- 

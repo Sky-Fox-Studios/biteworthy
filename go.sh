@@ -17,7 +17,7 @@ while [[ "$command" != "q" ]] && [[ "$command" != "q" ]]; do
     echo "===================================="
     read command
 
-    echo "Yes Dave..."
+    echo "Yes Sky..."
     if [[ "$command" == "1" ]]; then
         echo "** Rebuilding the database from seeds, please wait..."
 		      bundle exec rake db:drop db:create db:migrate db:seed
