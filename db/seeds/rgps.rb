@@ -144,28 +144,28 @@ module Rgps
 
 
   rgps_items = rgps_wrap_items + rgps_salad_items
-  rgps_side = Choice.find_or_create_by(name: "Regular OR Barbecue Chips OR coleslaw", description: "Regular OR Barbecue Chips OR coleslaw", restaurant: rgps)
+  rgps_side = Extra.find_or_create_by(name: "Regular OR Barbecue Chips OR coleslaw", description: "Regular OR Barbecue Chips OR coleslaw", restaurant: rgps, extra_type: "choice")
   rgps_side.foods.create(name: "coleslaw")
   rgps_side.foods.create(name: "Regular Potato chips", description: "Lays regular potato chips")
   rgps_side.foods.create(name: "BBQ Potato chips", description: "Lays BBQ potato chips")
 
-  rgps_items.each do |name, description, prices_sizes, foods_array, choices_array, menu_group|
+  rgps_items.each do |name, description, prices_sizes, foods_array, extras_array, menu_group|
     item = Item.find_or_create_by(restaurant: rgps,
       name: name,
       description: description,
     )
     item.menu_groups << menu_group
     if menu_group == rgps_wraps
-        item.choices << rgps_side
+        item.extras << rgps_side
     end
     foods_array.split(', ').each do |food|
       food = Food.find_or_create_by(name: food.downcase, restaurant: rgps)
       item.foods << food
     end
-    if choices_array
-      choices_array.split(', ').each do |choice|
-        choice = Choice.find_or_create_by(name: choice.downcase, restaurant: rgps)
-        item.choices << choice
+    if extras_array
+      extras_array.split(', ').each do |extra_name|
+        extra = Extra.where(name: extra_name.downcase, restaurant: rgps, extra_type: Extra.choice).first_or_create
+        item.extras << extra if extra
       end
     end
     item.save

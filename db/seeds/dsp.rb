@@ -11,16 +11,13 @@ module Dsp
 
   toppings = "Pepperoni, Italian Sausage, Canadian Bacon, Chicken, Anchovies, Green Peppers, Peperoncini, Jalepeños, Geeen Chillies, Onions, Roasted Onions, Green Olives, Black Olives, Feta, Blue Cheese, Extra Cheese, Spinish, Fresh Basil, Sundried tomatoes, Roma Tomatoes, Mushrooms, Garlic, Artichoke hearts, Pineapple"
 
-  topping_choices = []
+  topping_extras = []
   toppings.split(', ').each do |topping|
-    topping_choices << Food.find_or_create_by(name: topping, restaurant: dsp)
+    topping_extras << Food.find_or_create_by(name: topping, restaurant: dsp)
   end
 
-  toppings_choice = Choice.find_or_create_by(name: "Toppings", restaurant: dsp)
-  toppings_choice.foods = topping_choices
-
-  # cheese = Food.find_or_create_by(restaurant_id: dsp.id, name: "Cheese")
-  # cheese_slice.foods << cheese
+  toppings_extra = Extra.find_or_create_by(name: "Toppings", restaurant: dsp, extra_type: Extra.addition)
+  toppings_extra.foods = topping_extras
 
   puts "Dsp seeded"
 end

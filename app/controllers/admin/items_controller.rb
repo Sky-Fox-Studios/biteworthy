@@ -1,6 +1,6 @@
 class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :just_set_item, only: [:add_price, :add_food, :add_choice, :add_addition, :add_new_price, :add_new_food, :add_new_choice, :add_new_addition, :remove_menu_group, :remove_food, :remove_choice, :remove_addition]
+  before_action :just_set_item, only: [:add_price, :add_food, :add_extra, :add_new_price, :add_new_food, :add_new_extra, :remove_menu_group, :remove_food, :remove_extra]
 
   respond_to :html
 
@@ -73,13 +73,8 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
-  def add_new_choice
-    @item.choices.create(name: params[:choice_name], description: params[:choice_description], restaurant: @item.restaurant)
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-  end
-
-  def add_new_addition
-    @item.additions.create(name: params[:addition_name], description: params[:addition_description], restaurant: @item.restaurant)
+  def add_new_extra
+    @item.extras.create(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type].to_i, restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
@@ -91,18 +86,10 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
-  def add_choice
-    unless (params[:choice_id].empty?)
-      choice = Choice.find(params[:choice_id])
-      @item.choices << choice unless @item.choices.include? choice
-    end
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-  end
-
-  def add_addition
-    unless (params[:addition_id].empty?)
-      addition = Addition.find(params[:addition_id])
-      @item.additions << addition unless @item.additions.include? addition
+  def add_extra
+    unless (params[:extra_id].empty?)
+      extra = Extra.find(params[:extra_id])
+      @item.extras << extra unless @item.extras.include? extra
     end
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
@@ -119,15 +106,9 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
   end
 
-  def remove_choice
-    choice = Choice.find(params[:choice_id])
-    @item.choices.delete(choice)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
-  end
-
-  def remove_addition
-    addition = Addition.find(params[:addition_id])
-    @item.additions.delete(addition)
+  def remove_extra
+    extra = Extra.find(params[:extra_id])
+    @item.extras.delete(extra)
     redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
   end
 
@@ -138,8 +119,7 @@ class Admin::ItemsController < AdminController
       @restaurant  = Restaurant.find(@item.restaurant_id)
       @menu_groups = MenuGroup.includes(:restaurant).where(restaurant: @restaurant).order(:name)
       @foods       = Food.where(restaurant: @restaurant).order(:name)
-      @choices     = Choice.where(restaurant: @restaurant).order(:name)
-      @additions   = Addition.where(restaurant: @restaurant).order(:name)
+      @extras   = Extra.where(restaurant: @restaurant).order(:name)
     else
       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end

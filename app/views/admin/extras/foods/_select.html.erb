@@ -1,0 +1,11 @@
+<%= simple_form_for([:admin, @restaurant, @extra], url: admin_restaurant_extra_add_foods_path(@restaurant, @extra), method: "POST") do |f| %>
+  <div class="row">
+    <div class="small-9 columns">
+      <%= f.association :foods, collection: @foods, as: :select, label: "Add Foods"%>
+    </div>
+    <div class="small-3 columns">
+      <br><br>
+      <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+    </div>
+  </div>
+<% end %>

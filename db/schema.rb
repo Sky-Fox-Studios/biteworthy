@@ -13,19 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150904233208) do
 
-  create_table "additions", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "additions_foods", force: :cascade do |t|
-    t.integer "addition_id"
-    t.integer "food_id"
-  end
-
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id"
     t.string  "phone_number"
@@ -37,16 +24,17 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.decimal "longitude",     precision: 10, scale: 6
   end
 
-  create_table "choices", force: :cascade do |t|
+  create_table "extras", force: :cascade do |t|
     t.integer  "restaurant_id"
+    t.integer  "extra_type"
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "choices_foods", force: :cascade do |t|
-    t.integer "choice_id"
+  create_table "extras_foods", force: :cascade do |t|
+    t.integer "extra_id"
     t.integer "food_id"
   end
 
@@ -100,14 +88,9 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.datetime "updated_at"
   end
 
-  create_table "items_additions", force: :cascade do |t|
+  create_table "items_extras", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "addition_id"
-  end
-
-  create_table "items_choices", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "choice_id"
+    t.integer "extra_id"
   end
 
   create_table "items_foods", force: :cascade do |t|

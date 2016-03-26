@@ -23,8 +23,7 @@
   <%= render partial: "admin/restaurants/sections/menus" %>
   <%= render partial: "admin/restaurants/sections/basic", locals: {name: "item", values: @items, } %>
   <%= render partial: "admin/restaurants/sections/basic", locals: {name: "food", values: @foods, } %>
-  <%= render partial: "admin/restaurants/sections/basic", locals: {name: "choice", values: @choices, } %>
-  <%= render partial: "admin/restaurants/sections/basic", locals: {name: "addition", values: @additions, } %>
+  <%= render partial: "admin/restaurants/sections/basic", locals: {name: "extra", values: @extras, } %>
   <div class="small-12 small-centered columns">
     <%= link_to 'All Restaurants', admin_restaurants_path, class: "button small round" %>
   </div>

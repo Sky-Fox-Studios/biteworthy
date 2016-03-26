@@ -10,11 +10,8 @@ class Item < ActiveRecord::Base
   has_many :foods, through: :items_foods
   has_many :items_foods
 
-  has_many :choices, through: :items_choices
-  has_many :items_choices
-
-  has_many :additions, through: :items_additions
-  has_many :items_additions
+  has_many :extras, through: :items_extras
+  has_many :items_extras
 
   has_many :ingredients, through: :items_ingredients
   has_many :items_ingredients

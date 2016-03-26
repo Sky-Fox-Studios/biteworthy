@@ -107,8 +107,8 @@ SimpleForm.setup do |config|
   # with `html: { :class }`. Defaulting to none.
   # config.default_form_class = nil
 
-  # You can define which elements should obtain additional classes
-  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+  # You can define which elements should obtain extraal classes
+  # config.generate_extraal_classes_for = [:wrapper, :label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true

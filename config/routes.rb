@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :restaurants, :ingredients, :tags, only: [:index, :show] do
-    resources :menu_groups, :foods, :addresses, :choices, :additions, only: [:index, :show]
+    resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
     resources :items, only: [:index, :show] do
        resources :prices, only: [:index, :show]
      end
@@ -27,15 +27,12 @@ Rails.application.routes.draw do
         resources :prices
         post 'add_new_food',      to: 'items#add_new_food',      as: "add_new_food"
         post 'add_new_price',     to: 'items#add_new_price',     as: "add_new_price"
-        post 'add_new_choice',    to: 'items#add_new_choice',    as: "add_new_choice"
-        post 'add_new_addition',  to: 'items#add_new_addition',  as: "add_new_addition"
+        post 'add_new_extra',  to: 'items#add_new_extra',  as: "add_new_extra"
         post 'add_food',          to: 'items#add_food',          as: "add_food"
-        post 'add_choice',        to: 'items#add_choice',        as: "add_choice"
-        post 'add_addition',      to: 'items#add_addition',      as: "add_addition"
+        post 'add_extra',      to: 'items#add_extra',      as: "add_extra"
         post 'remove_menu_group', to: 'items#remove_menu_group', as: "remove_menu_group"
         post 'remove_food',       to: 'items#remove_food',       as: "remove_food"
-        post 'remove_choice',     to: 'items#remove_choice',     as: "remove_choice"
-        post 'remove_addition',   to: 'items#remove_addition',   as: "remove_addition"
+        post 'remove_extra',   to: 'items#remove_extra',   as: "remove_extra"
 
       end
       resources :foods do
@@ -43,17 +40,12 @@ Rails.application.routes.draw do
         post 'add_ingredient_by_name', to: 'foods#add_ingredient_by_name', as: "add_ingredient_by_name"
         post 'remove_ingredient', to: 'foods#remove_ingredient', as: "remove_ingredient"
       end
-      resources :choices do
-        post 'add_foods',    to: 'choices#add_foods',    as: "add_foods"
-        post 'add_new_food', to: 'choices#add_new_food', as: "add_new_food"
-        post 'remove_food',  to: 'choices#remove_food',  as: "remove_food"
-      end
-      resources :additions do
+      resources :extras do
         resources :prices
-        post 'add_new_price', to: 'additions#add_new_price', as: "add_new_price"
-        post 'add_foods',     to: 'additions#add_foods',     as: "add_foods"
-        post 'add_new_food',  to: 'additions#add_new_food',  as: "add_new_food"
-        post 'remove_food',   to: 'additions#remove_food',   as: "remove_food"
+        post 'add_new_price', to: 'extras#add_new_price', as: "add_new_price"
+        post 'add_foods',     to: 'extras#add_foods',     as: "add_foods"
+        post 'add_new_food',  to: 'extras#add_new_food',  as: "add_new_food"
+        post 'remove_food',   to: 'extras#remove_food',   as: "remove_food"
       end
     end
     get 'menus',       to: 'menus#all',       as: "menus"

@@ -18,7 +18,7 @@ Devise.setup do |config|
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
-  # available as additional gems.
+  # available as extraal gems.
   require 'devise/orm/active_record'
 
   # ==> Configuration for any authentication mechanism
@@ -116,7 +116,7 @@ Devise.setup do |config|
   # config.confirm_within = 3.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
-  # initial account confirmation) to be applied. Requires additional unconfirmed_email
+  # initial account confirmation) to be applied. Requires extraal unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
   config.reconfirmable = true

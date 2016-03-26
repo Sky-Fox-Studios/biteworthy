@@ -1,3 +1,0 @@
-<%= @item.additions.map do |addition|
-  "#{link_to(addition.name, edit_admin_restaurant_addition_path(item.restaurant, addition))} <sup>#{link_to 'x', admin_restaurant_item_remove_addition_path(item.restaurant, item, addition_id: addition.id), method: :post, style: 'color:red'}</sup>"
-end.to_sentence.html_safe %>
