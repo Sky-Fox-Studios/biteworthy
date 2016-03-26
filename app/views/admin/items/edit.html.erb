@@ -4,6 +4,4 @@
 
 <%= render 'form' %>
 
-<div class="small-12 columns">
-  <%= link_to "All #{@item.restaurant.name} items", admin_items_path(restaurant_id: @item.restaurant), class: "button tiny radius padded" %>
-</div>
+<%= render partial: "admin/restaurants/footer", locals: {left_button: (link_to "#{@restaurant.name} Items", admin_restaurant_items_path(@restaurant), class: "button tiny round") } %>
