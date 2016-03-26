@@ -11,19 +11,7 @@
           </ul>
         </div>
       <% end %>
-      <div class="row">
-        <%= hidden_field_tag 'food[restaurant_id]', @restaurant.id %>
-
-        <div class="small-12 medium-6 columns">
-          <%= f.input :name %>
-        </div>
-        <div class="small-12 columns">
-          <%= f.input :description, as: :text  %>
-        </div>
-      </div>
-      <div class="small-12 columns actions padded">
-        <%= f.submit class: "button tiny radius success" %>
-      </div>
+      <%= render partial: "admin/foods/basic_fields_and_submit", locals: {f: f} %>
     <% end %>
   </div>
   <% if !@food.new_record? %>

@@ -1,0 +1,11 @@
+<div class="small-12 columns">
+  <h3>Additions:</h3>
+</div>
+<div class="small-12 medium-4 columns">
+  <%= render partial: "admin/items/additions/list", locals: {item: @item } %>
+</div>
+<div class="small-12 medium-8 columns">
+  <%= render partial: "admin/items/additions/select", locals: {restaurant: @restaurant, item: @item, additions: @additions} %>
+  <%= render partial: "admin/items/additions/form",   locals: {restaurant: @restaurant, item: @item} %>
+</div>
+<hr>

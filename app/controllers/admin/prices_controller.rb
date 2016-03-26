@@ -22,7 +22,7 @@ class Admin::PricesController < AdminController
 
   def create
     @price = @priced.prices.new(price_params)
-    redirect_to admin_prices_path
+    redirect_to edit_polymorphic_path([:admin, @priced.restaurant, @priced])
   end
 
   def update
@@ -30,7 +30,7 @@ class Admin::PricesController < AdminController
       if @price.priced_type == "Item"
         redirect_to edit_admin_restaurant_item_path(@priced.restaurant, @priced), notice: "Price/Size updated"
       else
-        redirect_to admin_prices_path
+        redirect_to edit_polymorphic_path([:admin, @priced.restaurant, @priced])
       end
     else
       render :edit

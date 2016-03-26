@@ -15,6 +15,10 @@ class Ingredient < ActiveRecord::Base
   validates :name, :normalized_name, presence: true
   validates :normalized_name, uniqueness: true
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
   def set_normalized_name
     self.normalized_name = self.name.parameterize
   end

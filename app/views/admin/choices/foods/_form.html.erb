@@ -1,0 +1,13 @@
+<%= simple_form_for(choice, url: admin_restaurant_choice_add_new_food_path(restaurant, choice), method: :post) do |f| %>
+  <div class="row">
+    <div class="small-4 columns">
+      <input type="text" id="choice[food_name]" name="food_name" placeholder="Name" />
+    </div>
+    <div class="small-5 columns">
+      <input type="text" id="choice[food_description]" name="food_description" placeholder="Description" />
+    </div>
+    <div class="small-3 columns">
+        <%= f.submit class: "button tiny radius success", value: 'Create' %>
+    </div>
+  </div>
+<% end %>

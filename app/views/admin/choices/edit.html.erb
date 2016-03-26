@@ -2,4 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to "Back to #{@restaurant.name}", admin_restaurant_choices_path(@restaurant) %>
+<%= render partial: "admin/restaurants/footer", locals: {left_button: (link_to "#{@restaurant.name} Choices", admin_restaurant_choices_path(@restaurant), class: "button tiny")} %>

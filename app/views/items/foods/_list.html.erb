@@ -1,0 +1,1 @@
+<%= @item.foods.map {|food| link_to(food.name, restaurant_food_path(@item.restaurant, food)) }.to_sentence.html_safe %>

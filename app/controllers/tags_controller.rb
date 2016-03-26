@@ -2,7 +2,7 @@ class TagsController < ApplicationController
  before_action :set_tag, only: [:edit, :update, :destroy]
 
  def index
-   @tags = Tag.order(:name => :asc) #.page(@page).per(50)
+   @tags = Tag.order(:name => :asc)
  end
 
  def new

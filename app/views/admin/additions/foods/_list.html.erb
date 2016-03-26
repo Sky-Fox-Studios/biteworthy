@@ -1,0 +1,4 @@
+<%= @addition.foods.map do |food|
+  "#{link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food))}
+    <sup>#{link_to 'x', admin_restaurant_addition_remove_food_path(@restaurant, @addition, food_id: food.id), method: :post, style: 'color:red'}</sup>"
+end.to_sentence(last_word_connector: " and ").html_safe %>

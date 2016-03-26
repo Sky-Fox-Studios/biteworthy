@@ -23,6 +23,10 @@ class Food < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: :restaurant_id
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
 
   def trim_name
     self.name = self.name.strip.downcase unless self.name.nil?

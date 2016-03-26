@@ -55,8 +55,7 @@ class Admin::MenusController < AdminController
   end
 
   def set_menus
-    @page= params[:page]
-    @menus = Menu.where(restaurant: @restaurant).page(@page).per(per_page_count)
+    @menus = Menu.where(restaurant: @restaurant).page(page).per(per_page_count)
   end
 
   def menu_params

@@ -3,7 +3,7 @@ class Admin::MenuGroupsController < AdminController
   respond_to :html
 
   def all
-    @menu_groups = MenuGroup.all.order(:name)
+    # @menu_groups = MenuGroup.all.order(:name)
   end
 
   def index
@@ -54,8 +54,7 @@ class Admin::MenuGroupsController < AdminController
     end
 
     def set_menu_groups
-      @page= params[:page]
-      @menu_groups = MenuGroup.where(restaurant: @restaurant).page(@page).per(per_page_count)
+      @menu_groups = MenuGroup.where(restaurant: @restaurant).page(page).per(per_page_count)
     end
 
     def menu_group_params

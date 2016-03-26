@@ -9,5 +9,9 @@
 
     <%= link_to 'Show', @restaurant %> |
     <%= link_to 'Back', admin_restaurants_path %>
+    <div class="small-12 columns">
+      <%= link_to "All #{@item.restaurant.name} items", admin_items_path(restaurant_id: @item.restaurant), class: "button tiny radius padded" %>
+    </div>
+
   </div>
 </div>

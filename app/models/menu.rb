@@ -10,4 +10,8 @@ class Menu < ActiveRecord::Base
 
   validates :restaurant_id, presence: true
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
 end
