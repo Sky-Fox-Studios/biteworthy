@@ -1,0 +1,6 @@
+<% unless list.empty? %>
+  <div class="small-12 medium-6 columns">
+    <%= list_name.upcase %>:
+    <%= list.map {|list_item| link_to(list_item.name, polymorphic_path([@item.restaurant, list_item])) }.to_sentence.html_safe %>
+  </div>
+<% end %>
