@@ -8,7 +8,7 @@ group :production do
   gem "activerecord-postgresql-adapter"
 end
 
-ruby '2.1.2'
+# ruby '2.1.2'
 gem 'rails', '4.2.1'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
