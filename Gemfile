@@ -22,7 +22,7 @@ gem 'jquery-rails'                           # Use jquery as the JavaScript libr
 gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'jbuilder', '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0',          group: :doc # bundle exec rake doc:rails generates the API under doc/api.
-gem 'spring',        group: :development     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+# gem 'spring',        group: :development     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'foundation-rails', '5.5.2.1'
 gem 'aws-sdk'                                # Amazon Cloud Storage: S3
 gem 'simple_form'

@@ -242,7 +242,6 @@ GEM
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slop (3.6.0)
-    spring (1.3.6)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -301,8 +300,10 @@ DEPENDENCIES
   sass-rails (>= 4.0.3)
   sdoc (~> 0.4.0)
   simple_form
-  spring
   sprockets
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+
+BUNDLED WITH
+   1.11.2
