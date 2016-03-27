@@ -1,0 +1,3 @@
+Extras:
+<%= item.extras.map {|extra| link_to(extra.name, restaurant_extra_path(@restaurant, extra)) }.to_sentence.html_safe %>
+<br>
