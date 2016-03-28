@@ -1,13 +1,14 @@
 module Rgps
-  rgps  = Restaurant.find_or_create_by(name: "RGP's", slogan: "Flame Grilled Wraps",
-  main_image_url: "rgps.jpg")
+  rgps  = Restaurant.find_or_create_by(name: "RGP's", slogan: "A True Mom & Pop Sandwich Shop", main_image_url: "rgps.jpg")
   default_menu    = rgps.menus.create
 
-  rgps_wraps       = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Flame Grilled Wraps", description: "Served warm on our flame grilled crusts & come with choice of REGULAR OR BARBECUE potato chips or cole slaw")
-  rgps_salads      = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Salads",              description: "Add Chicken to any salad for $1.50")
+  rgps_wraps  = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Flame Grilled Wraps", description: "Served warm on our flame grilled crusts & come with choice of REGULAR OR BARBECUE potato chips or cole slaw")
+  rgps_salads = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Salads",              description: "Add Chicken to any salad for $1.50")
+  rgps_kids   = MenuGroup.find_or_create_by(restaurant_id: rgps.id, name: "Kids",                description: "Add Chicken to any salad for $1.50")
 
   rgps_wraps.menus << default_menu
   rgps_salads.menus << default_menu
+  rgps_kids.menus << default_menu
 
   rgps_wrap_items = [
     ["Chicken Pesto",
@@ -140,6 +141,18 @@ module Rgps
       "Romaine Lettuce, Pecorino Romano Cheese, croutons, caesar Dressing",
       nil,
       rgps_salads],
+    ["Cheese Pizza",
+      "Small Cheese pizza",
+      [{price: 5.95, size: nil}],
+      "",
+      nil,
+      rgps_kids],
+    ["Cheese Quesadilla",
+      "",
+      [{price: 5.95, size: nil}],
+      "",
+      nil,
+      rgps_kids],
   ]
 
 
