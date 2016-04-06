@@ -308,7 +308,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   meta_request
-  mysql2 (>= 0.3.13, < 0.5)
+  mysql2
   paperclip (~> 4.3)
   pry
   rails (= 4.2.1)
