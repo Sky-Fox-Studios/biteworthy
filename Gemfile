@@ -20,6 +20,7 @@ gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'kaminari'                               # Model pagination
 
+gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'sqlite3'                                # Use sqlite3 as the database for Active Record
 
 # gem 'carrierwave'                            # File uploads
