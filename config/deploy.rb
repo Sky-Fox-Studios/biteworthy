@@ -70,4 +70,6 @@ namespace :figaro do
     end
   end
 end
+before "deploy:migrate",       "figaro:setup"
+before "deploy:migrate",       "figaro:symlink"
 after  "deploy:finishing",     "deploy:restart_nginx"
