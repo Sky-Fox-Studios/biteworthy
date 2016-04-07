@@ -167,7 +167,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
-    mysql2 (0.4.3)
+    mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
@@ -310,7 +310,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   meta_request
-  mysql2
+  mysql2 (~> 0.3.20)
   paperclip (~> 4.3)
   pry
   rails (= 4.2.1)
