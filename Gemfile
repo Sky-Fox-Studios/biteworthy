@@ -22,7 +22,7 @@ gem 'kaminari'                               # Model pagination
 
 gem 'mysql2', '~> 0.3.20'
 # gem 'sqlite3'                                # Use sqlite3 as the database for Active Record
-
+gem 'figaro'
 # gem 'carrierwave'                            # File uploads
 gem "paperclip", "~> 4.3"
 
