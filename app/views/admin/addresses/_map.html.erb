@@ -1,11 +1,13 @@
+start MAP
 <% if latitude && longitude %>
 <div class="small-12 columns">
   <iframe
     width="300"
     height="225"
     frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyC3Uk2YZciZrOVtMi8IJwZCRw-6155LDpY
-      &location=<%= latitude %>,<%= longitude %>" allowfullscreen>
+    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC3Uk2YZciZrOVtMi8IJwZCRw-6155LDpY
+      &center=<%= latitude %>,<%= longitude %>&zoom=17&waypoints=<%= latitude %>,<%= longitude %>" allowfullscreen>
   </iframe>
 </div>
+end map
 <% end %>

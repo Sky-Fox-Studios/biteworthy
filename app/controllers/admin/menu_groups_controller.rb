@@ -58,6 +58,6 @@ class Admin::MenuGroupsController < AdminController
     end
 
     def menu_group_params
-       params.require(:menu_group).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color, :menu_order, menu_ids: [])
+       params.require(:menu_group).permit(:id, :restaurant_id, :name, :description, :menu_order, menu_ids: [])
     end
 end

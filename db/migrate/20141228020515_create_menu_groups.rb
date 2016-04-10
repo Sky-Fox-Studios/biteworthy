@@ -5,8 +5,6 @@ class CreateMenuGroups < ActiveRecord::Migration
       t.integer :menu_order, default: 1
       t.string  :name
       t.string  :description
-      t.string  :background_color
-      t.string  :text_color
       t.timestamps
     end
   end

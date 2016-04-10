@@ -6,12 +6,12 @@
         <%= devise_error_messages! %>
         <div class="row">
 
-          <div class="small-12 columns">
+          <div class="small-12 medium-6 columns">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true %>
           </div>
 
-          <div class="small-12 columns">
+          <div class="small-12 medium-6 columns">
             <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
             <%= f.password_field :current_password, autocomplete: "off" %>
           </div>
@@ -33,6 +33,11 @@
           <div class="small-12 columns">
             <%= f.submit "Update", class: "button small success" %>
           </div>
+        </div>
+      <% end %>
+      <% current_user.photos.each do |photo| %>
+        <div class="small-12 medium-4 large-3 columns">
+          <%= image_tag photo.image(:thumb) %><sup>X</sup>
         </div>
       <% end %>
       <hr>

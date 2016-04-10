@@ -37,6 +37,7 @@ class Admin::MenusController < AdminController
   end
 
   def update
+    binding.pry
     if @menu.update(menu_params)
       redirect_to admin_restaurant_menus_path(@menu.restaurant_id)
     else
@@ -59,6 +60,7 @@ class Admin::MenusController < AdminController
   end
 
   def menu_params
-    params.require(:menu).permit(:id, :restaurant_id, :name, :description, :background_color, :text_color)
+    params.require(:menu).permit(:id, :restaurant_id, :name, :description, seasons_attributes: [:name, :start_date, :end_date, :single_day], hours_attributes: [:opens, :closes, :day])
   end
+
 end

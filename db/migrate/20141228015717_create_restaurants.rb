@@ -9,8 +9,8 @@ class CreateRestaurants < ActiveRecord::Migration
       t.string :website
       t.integer :inside_seating
       t.integer :outside_seating
-      t.boolean :cash_only?
-      t.boolean :will_deliver?
+      t.boolean :cash_only
+      t.boolean :delivers
       t.timestamps
     end
   end

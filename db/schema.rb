@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   end
 
   create_table "hours", force: :cascade do |t|
-    t.time     "opening"
-    t.time     "closing"
+    t.time     "opens"
+    t.time     "closes"
     t.integer  "day"
     t.integer  "hour_id"
     t.string   "hour_type"
@@ -174,8 +174,8 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.string   "website"
     t.integer  "inside_seating"
     t.integer  "outside_seating"
-    t.boolean  "cash_only?"
-    t.boolean  "will_deliver?"
+    t.boolean  "cash_only"
+    t.boolean  "delivers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.string   "name"
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "single_day?"
+    t.boolean  "single_day"
     t.integer  "season_id"
     t.string   "season_type"
     t.datetime "created_at"

@@ -10,6 +10,8 @@ class Menu < ActiveRecord::Base
 
   validates :restaurant_id, presence: true
 
+  accepts_nested_attributes_for :hours, :allow_destroy => true
+
   def to_param
     "#{id}-#{name.parameterize}"
   end

@@ -5,6 +5,6 @@ class Hour < ActiveRecord::Base
 
   belongs_to :hour, :polymorphic => true
 
-  validates :day, :opening, :closing, presence: true
+  validates :day, :opens, :closes, presence: true
 
 end

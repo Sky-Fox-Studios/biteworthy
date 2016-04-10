@@ -48,7 +48,7 @@ class Admin::ItemsController < AdminController
   def update
     if @item.update(item_params)
       if params[:image]
-        @item.photos.new(user_id: current_user, photo_type: "Item", image: params[:image]).save
+        @item.photos.new(user_id: current_user.id, photo_type: "Item", image: params[:image]).save
       end
       flash[:notice] = "Item updated"
       redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
