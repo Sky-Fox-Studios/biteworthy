@@ -11,6 +11,7 @@ class CreateRestaurants < ActiveRecord::Migration
       t.integer :outside_seating
       t.boolean :cash_only
       t.boolean :delivers
+      t.boolean :wifi
       t.timestamps
     end
   end
