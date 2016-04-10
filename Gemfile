@@ -1,18 +1,28 @@
 source 'https://rubygems.org'
 group :development do
-  gem 'sqlite3'                                # Use sqlite3 as the database for Active Record
+  gem 'capistrano', '~> 3.4.0', require: false
+  gem 'capistrano-rvm'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
+  gem 'capistrano-rails', '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-passenger', '~> 0.0.5'
 end
 
-group :production do
-  gem 'pg'
-  gem "activerecord-postgresql-adapter"
-end
+# group :production do
+#   gem 'pg'
+#   gem "activerecord-postgresql-adapter"
+# end
 
 # ruby '2.1.2'
 gem 'rails', '4.2.1'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'kaminari'                               # Model pagination
+
+gem 'mysql2', '~> 0.3.20'
+# gem 'sqlite3'                                # Use sqlite3 as the database for Active Record
+gem 'figaro'
 # gem 'carrierwave'                            # File uploads
 gem "paperclip", "~> 4.3"
 
