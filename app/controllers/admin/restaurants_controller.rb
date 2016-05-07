@@ -4,7 +4,7 @@ class Admin::RestaurantsController < AdminController
   respond_to :html
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.all.order(:name)
     respond_with(@restaurants)
   end
 

@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   respond_to :html
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.where(active: true)
   end
 
   def show
