@@ -8,9 +8,8 @@
     </div>
     <div class="small-2 columns">
       <% Extra.extra_types.each do |extra_type| %>
-        <%= "<input type='radio' name='extra_type' id='extra_type_#{extra_type.first}' value=#{extra_type.first}> #{extra_type.first} <br>".html_safe %>
+        <%= "<input type='radio' name='extra_type' id='extra_type_#{extra_type.first}' value=#{extra_type.first} #{'checked' if extra_type.first == 'addition'}> #{extra_type.first} <br>".html_safe %>
       <% end %>
-      <!-- <input type="radio" id="item[extra_type]" name="extra_type" placeholder="Type" /> -->
     </div>
     <div class="small-2 columns">
         <%= f.submit class: "button tiny radius success", value: 'Add' %>

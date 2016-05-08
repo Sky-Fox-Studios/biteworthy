@@ -14,220 +14,217 @@
 ActiveRecord::Schema.define(version: 20150904233208) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.string  "phone_number"
-    t.string  "street"
-    t.string  "city",                                   default: "Durango"
-    t.string  "state",                                  default: "CO"
-    t.integer "zip",                                    default: 81301
-    t.decimal "latitude",      precision: 10, scale: 6
-    t.decimal "longitude",     precision: 10, scale: 6
+    t.integer "restaurant_id", limit: 4
+    t.string  "phone_number",  limit: 255
+    t.string  "street",        limit: 255
+    t.string  "city",          limit: 255,                          default: "Durango"
+    t.string  "state",         limit: 255,                          default: "CO"
+    t.integer "zip",           limit: 4,                            default: 81301
+    t.decimal "latitude",                  precision: 10, scale: 6
+    t.decimal "longitude",                 precision: 10, scale: 6
   end
 
   create_table "extras", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.integer  "extra_type"
-    t.string   "name"
-    t.string   "description"
+    t.integer  "restaurant_id", limit: 4
+    t.integer  "extra_type",    limit: 4
+    t.string   "name",          limit: 255
+    t.string   "description",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "extras_foods", force: :cascade do |t|
-    t.integer "extra_id"
-    t.integer "food_id"
+    t.integer "extra_id", limit: 4
+    t.integer "food_id",  limit: 4
   end
 
   create_table "foods", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.string   "name"
-    t.string   "description"
+    t.integer  "restaurant_id", limit: 4
+    t.string   "name",          limit: 255
+    t.string   "description",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "foods_ingredients", force: :cascade do |t|
-    t.integer  "food_id"
-    t.integer  "ingredient_id"
+    t.integer  "food_id",       limit: 4
+    t.integer  "ingredient_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "foods_tags", force: :cascade do |t|
-    t.integer "food_id"
-    t.integer "tag_id"
+    t.integer "food_id", limit: 4
+    t.integer "tag_id",  limit: 4
   end
 
   create_table "hours", force: :cascade do |t|
     t.time     "opens"
     t.time     "closes"
-    t.integer  "day"
-    t.integer  "hour_id"
-    t.string   "hour_type"
+    t.integer  "day",        limit: 4
+    t.integer  "hour_id",    limit: 4
+    t.string   "hour_type",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "ingredients", force: :cascade do |t|
-    t.string   "name"
-    t.string   "normalized_name"
+    t.string   "name",            limit: 255
+    t.string   "normalized_name", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "ingredients_tags", force: :cascade do |t|
-    t.integer "ingredient_id"
-    t.integer "tag_id"
+    t.integer "ingredient_id", limit: 4
+    t.integer "tag_id",        limit: 4
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.string   "name"
-    t.string   "description"
+    t.integer  "restaurant_id", limit: 4
+    t.string   "name",          limit: 255
+    t.string   "description",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "items_extras", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "extra_id"
+    t.integer "item_id",  limit: 4
+    t.integer "extra_id", limit: 4
   end
 
   create_table "items_foods", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "food_id"
+    t.integer "item_id", limit: 4
+    t.integer "food_id", limit: 4
   end
 
   create_table "items_ingredients", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "ingredient_id"
+    t.integer "item_id",       limit: 4
+    t.integer "ingredient_id", limit: 4
   end
 
   create_table "items_menu_groups", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "menu_group_id"
+    t.integer "item_id",       limit: 4
+    t.integer "menu_group_id", limit: 4
   end
 
-  add_index "items_menu_groups", ["item_id"], name: "index_items_menu_groups_on_item_id"
-  add_index "items_menu_groups", ["menu_group_id"], name: "index_items_menu_groups_on_menu_group_id"
+  add_index "items_menu_groups", ["item_id"], name: "index_items_menu_groups_on_item_id", using: :btree
+  add_index "items_menu_groups", ["menu_group_id"], name: "index_items_menu_groups_on_menu_group_id", using: :btree
 
   create_table "menu_groups", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.integer  "menu_order",       default: 1
-    t.string   "name"
-    t.string   "description"
-    t.string   "background_color"
-    t.string   "text_color"
+    t.integer  "restaurant_id", limit: 4
+    t.integer  "menu_order",    limit: 4,   default: 1
+    t.string   "name",          limit: 255
+    t.string   "description",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "menu_groups_menus", force: :cascade do |t|
-    t.integer "menu_group_id"
-    t.integer "menu_id"
+    t.integer "menu_group_id", limit: 4
+    t.integer "menu_id",       limit: 4
   end
 
-  add_index "menu_groups_menus", ["menu_group_id"], name: "index_menu_groups_menus_on_menu_group_id"
-  add_index "menu_groups_menus", ["menu_id"], name: "index_menu_groups_menus_on_menu_id"
+  add_index "menu_groups_menus", ["menu_group_id"], name: "index_menu_groups_menus_on_menu_group_id", using: :btree
+  add_index "menu_groups_menus", ["menu_id"], name: "index_menu_groups_menus_on_menu_id", using: :btree
 
   create_table "menu_groups_tags", force: :cascade do |t|
-    t.integer "menu_group_id"
-    t.integer "tag_id"
+    t.integer "menu_group_id", limit: 4
+    t.integer "tag_id",        limit: 4
   end
 
   create_table "menus", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.string   "name",             default: "Default"
-    t.string   "description"
-    t.string   "background_color"
-    t.string   "text_color"
+    t.integer  "restaurant_id", limit: 4
+    t.string   "name",          limit: 255, default: "Default"
+    t.string   "description",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "photos", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "photo_id"
-    t.string   "photo_type"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
+    t.integer  "user_id",            limit: 4
+    t.integer  "photo_id",           limit: 4
+    t.string   "photo_type",         limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
-    t.integer  "image_type",         default: 1
+    t.integer  "image_type",         limit: 4,   default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "prices", force: :cascade do |t|
-    t.integer "priced_id"
-    t.string  "priced_type"
-    t.float   "value"
-    t.string  "size"
+    t.integer "priced_id",   limit: 4
+    t.string  "priced_type", limit: 255
+    t.float   "value",       limit: 24
+    t.string  "size",        limit: 255
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name"
-    t.string   "slogan"
-    t.string   "main_image_url"
-    t.string   "about"
-    t.string   "disclaimer"
-    t.string   "website"
-    t.integer  "inside_seating"
-    t.integer  "outside_seating"
-    t.boolean  "cash_only"
-    t.boolean  "delivers"
+    t.string   "name",            limit: 255
+    t.string   "slogan",          limit: 255
+    t.string   "main_image_url",  limit: 255
+    t.string   "about",           limit: 255
+    t.string   "disclaimer",      limit: 255
+    t.string   "website",         limit: 255
+    t.integer  "inside_seating",  limit: 4
+    t.integer  "outside_seating", limit: 4
+    t.boolean  "cash_only",       limit: 1
+    t.boolean  "delivers",        limit: 1
+    t.boolean  "wifi",            limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "restaurants_tags", force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "tag_id"
+    t.integer "restaurant_id", limit: 4
+    t.integer "tag_id",        limit: 4
   end
 
   create_table "restaurants_users", force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "user_id"
+    t.integer "restaurant_id", limit: 4
+    t.integer "user_id",       limit: 4
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "rating"
-    t.integer  "user_id"
-    t.integer  "review_id"
-    t.string   "review_type"
+    t.integer  "rating",      limit: 4
+    t.integer  "user_id",     limit: 4
+    t.integer  "review_id",   limit: 4
+    t.string   "review_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "seasons", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "single_day"
-    t.integer  "season_id"
-    t.string   "season_type"
+    t.boolean  "single_day",  limit: 1
+    t.integer  "season_id",   limit: 4
+    t.string   "season_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tag_histories", force: :cascade do |t|
-    t.string   "tag_id"
-    t.string   "name"
-    t.integer  "created_by_id"
-    t.integer  "last_modified_by_id"
+    t.string   "tag_id",              limit: 255
+    t.string   "name",                limit: 255
+    t.integer  "created_by_id",       limit: 4
+    t.integer  "last_modified_by_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tags_families", force: :cascade do |t|
-    t.integer  "parent_tag_id"
-    t.integer  "child_tag_id"
+    t.integer  "parent_tag_id", limit: 4
+    t.integer  "child_tag_id",  limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -236,54 +233,55 @@ ActiveRecord::Schema.define(version: 20150904233208) do
   end
 
   create_table "user_roles", force: :cascade do |t|
-    t.string   "key"
-    t.string   "name"
+    t.string   "key",        limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_roles", ["key"], name: "index_user_roles_on_key", unique: true
+  add_index "user_roles", ["key"], name: "index_user_roles_on_key", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "user_name",              default: "", null: false
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.boolean  "approved"
-    t.boolean  "is_admin"
-    t.boolean  "is_editor"
-    t.boolean  "is_staff"
-    t.integer  "strikes"
-    t.boolean  "banned"
+    t.string   "user_name",              limit: 255, default: "", null: false
+    t.string   "first_name",             limit: 255, default: "", null: false
+    t.string   "last_name",              limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.boolean  "approved",               limit: 1
+    t.boolean  "is_admin",               limit: 1
+    t.boolean  "is_editor",              limit: 1
+    t.boolean  "is_staff",               limit: 1
+    t.integer  "level",                  limit: 4
+    t.integer  "strikes",                limit: 4
+    t.boolean  "banned",                 limit: 1
     t.datetime "banned_at"
-    t.string   "reset_password_token"
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
-    t.string   "unlock_token"
+    t.string   "unconfirmed_email",      limit: 255
+    t.integer  "failed_attempts",        limit: 4,   default: 0,  null: false
+    t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "users_roles", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "role_id"
+    t.string   "user_id",    limit: 255
+    t.string   "role_id",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

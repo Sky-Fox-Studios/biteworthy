@@ -87,10 +87,12 @@ class Admin::ItemsController < AdminController
   end
 
   def add_extra
-    unless (params[:extra_id].empty?)
-      extra = Extra.find(params[:extra_id])
-      @item.extras << extra unless @item.extras.include? extra
+    if !params[:extra_choice_id].empty?
+      extra = Extra.find(params[:extra_choice_id])
+    elsif !params[:extra_addition_id].empty?
+      extra ||= Extra.find(params[:extra_addition_id])
     end
+    @item.extras << extra unless @item.extras.include? extra
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 

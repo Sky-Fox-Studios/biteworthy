@@ -126,7 +126,7 @@ module Rgps
     ["House",
       "Romaine lettuce, roasted red peppers, red onion, carrots, green peppers, tomato, croutons and choice of dressing",
       [{price: 5.95, size: nil}, {price: 1.75, size: "Add Chicken or Turkey"}],
-      "Romaine lettuce, roasted red peppers, red onion, carrots, green peppers, tomato, croutons, dressing",
+      "Romaine lettuce, roasted red peppers, red onion, carrots, green peppers, tomato, croutons",
       "Dressing",
       rgps_salads],
     ["Greek",

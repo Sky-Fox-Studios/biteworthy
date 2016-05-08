@@ -12,7 +12,7 @@
           <div class="small-12 columns">
             <ul class="tabs vertical" data-tab>
               <% menu.menu_groups.each_with_index do |menu_group, index| %>
-                <li class="tab-title <%= index==0 ? 'active' : ''%>" <%= menu_group.background_color ? "style=background-color:#{menu_group.background_color};" : "" %> ><a href="#menu_group-<%= menu_group.id %>"><%= menu_group.name %></a></li>
+                <li class="tab-title <%= index==0 ? 'active' : ''%>" ><a href="#menu_group-<%= menu_group.id %>"><%= menu_group.name %></a></li>
               <% end %>
             </ul>
             <div class="tabs-content vertical">

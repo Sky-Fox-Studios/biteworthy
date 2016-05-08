@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
     eater:     2,
     taster:    1,
     nibbler:   0,
-    crust:    -1
-    stale:    -2
-    leftover: -3
-    slop:     -4
+    crust:    -1,
+    stale:    -2,
+    leftover: -3,
+    slop:     -4,
     trash:    -5
     }
 
