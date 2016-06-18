@@ -13,7 +13,6 @@ end
 #   gem 'pg'
 #   gem "activerecord-postgresql-adapter"
 # end
-
 # ruby '2.1.2'
 gem 'rails', '4.2.1'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'devise'                                 # User authentication
