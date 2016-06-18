@@ -12,6 +12,7 @@ class CreateRestaurants < ActiveRecord::Migration
       t.boolean :cash_only
       t.boolean :delivers
       t.boolean :wifi
+      t.boolean :active
       t.timestamps
     end
   end
