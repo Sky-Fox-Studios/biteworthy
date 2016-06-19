@@ -46,10 +46,14 @@
   <div class="small-6 columns">
     <%= f.input :cash_only %>
   </div>
-
   <div class="small-6 columns">
     <%= f.input :delivers %>
   </div>
+  <% if current_user.is_admin%>
+    <div class="small-6 columns">
+      <%= f.input :active %>
+    </div>
+  <% end %>
 
   <div class="small-12 columns">
     <h3>Location(s):</h3>

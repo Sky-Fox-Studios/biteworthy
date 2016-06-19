@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.boolean  "cash_only",       limit: 1
     t.boolean  "delivers",        limit: 1
     t.boolean  "wifi",            limit: 1
+    t.boolean  "active",          limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
