@@ -1,7 +1,5 @@
 <div class="small-12">
   <h1><%= "#{@restaurant.name} #{@item.name}" %></h1>
 </div>
-
 <%= render 'form' %>
-
 <%= render partial: "admin/restaurants/footer", locals: {left_button: (link_to "#{@restaurant.name} Items", admin_restaurant_items_path(@restaurant), class: "button tiny round") } %>

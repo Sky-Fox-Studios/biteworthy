@@ -4,7 +4,8 @@ class RestaurantsController < ApplicationController
   respond_to :html
 
   def index
-    @restaurants = Restaurant.where(active: true)
+    # not used
+    @restaurants = Restaurant.active
   end
 
   def show
@@ -13,7 +14,7 @@ class RestaurantsController < ApplicationController
   private
     def set_restaurant_know_how
       @restaurant  = Restaurant.find(params[:id])
-      @menus       = Menu.includes(:menu_groups).includes(menu_groups: :items).where(restaurant_id: @restaurant.id).order("menu_groups.menu_order") #.where("items.review.rating > ?", -1)
+      @menus       = Menu.includes(:menu_groups).includes(menu_groups: :items).includes(menu_groups: [items: :reviews]).where(restaurant_id: @restaurant.id).order("menu_groups.menu_order").order("reviews.rating DESC") #.where("items.review.rating > ?", -1)
       @menu_groups = MenuGroup.includes(:items).where(restaurant_id: @restaurant.id) #.where("items.review.rating > ?", -1)
     end
 end

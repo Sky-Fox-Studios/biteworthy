@@ -24,6 +24,9 @@
 *{
  font-family: 'Handlee', cursive;
 }
+.p {
+  padding: 5px;
+}
 .pad {
   padding: 0px 15px 0px 15px;
 }
@@ -57,6 +60,11 @@ h4{
 a:hover {
   // background-color: transparent !important;
   color: hotpink !important;
+}
+.close{
+  position: absolute;
+  top: 0px;
+
 }
 
 .footer {

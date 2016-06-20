@@ -1,6 +1,6 @@
 class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :just_set_item, only: [:add_price, :add_food, :add_extra, :add_new_price, :add_new_food, :add_new_extra, :remove_menu_group, :remove_food, :remove_extra]
+  before_action :just_set_item, only: [:add_price, :add_food, :add_extra, :add_new_price, :add_new_food, :add_new_extra, :remove_menu_group, :remove_food, :remove_extra, :remove_photo]
 
   respond_to :html
 
@@ -111,6 +111,12 @@ class Admin::ItemsController < AdminController
   def remove_extra
     extra = Extra.find(params[:extra_id])
     @item.extras.delete(extra)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+  end
+
+  def remove_photo
+    photo = Photo.find(params[:photo_id])
+    @item.photos.delete(photo)
     redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
   end
 

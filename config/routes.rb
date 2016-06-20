@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         post 'remove_menu_group', to: 'items#remove_menu_group', as: "remove_menu_group"
         post 'remove_food',       to: 'items#remove_food',       as: "remove_food"
         post 'remove_extra',   to: 'items#remove_extra',   as: "remove_extra"
+        post 'remove_photo',   to: 'items#remove_photo',   as: "remove_photo"
 
       end
       resources :foods do

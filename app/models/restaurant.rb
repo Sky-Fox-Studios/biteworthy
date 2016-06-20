@@ -11,6 +11,8 @@ class Restaurant < ActiveRecord::Base
 
   validates :name, presence: true
 
+  scope :active, -> {where(active: true)}
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
