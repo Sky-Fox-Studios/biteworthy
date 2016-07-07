@@ -43,7 +43,7 @@ class Admin::AddressesController < AdminController
     end
 
     def address_params
-      params.require(:address).permit(:street, :city, :state, :zip, :latitude, :longitude, :restuarant_id)
+      params.require(:address).permit(:street, :city, :state, :zip, :latitude, :longitude, :restuarant_id, :place_id)
     end
 
 end

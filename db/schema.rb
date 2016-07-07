@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150904233208) do
+ActiveRecord::Schema.define(version: 20160626012726) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.integer "zip",           limit: 4,                            default: 81301
     t.decimal "latitude",                  precision: 10, scale: 6
     t.decimal "longitude",                 precision: 10, scale: 6
+    t.string  "place_id",      limit: 255
   end
 
   create_table "extras", force: :cascade do |t|

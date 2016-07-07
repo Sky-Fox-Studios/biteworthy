@@ -1,42 +1,38 @@
 <div class="row">
-  <div class="small-12 medium-6 columns">
-    <div class="row">
-      <div class="small-12 columns">
-        <strong>Phone #:</strong>
-        <%= address.phone_number %>
-      </div>
-      <div class="small-12 columns">
-        <strong>Street:</strong>
-        <%= address.street %>
-      </div>
+  <div class="small-12 columns">
+    <strong>Phone #:</strong>
+    <%= address.phone_number %>
+  </div>
+  <div class="small-12 columns">
+    <strong>Street:</strong>
+    <%= address.street %>
+  </div>
 
-      <div class="small-12 columns">
-        <strong>city:</strong>
-        <%= address.city %>
-      </div>
+  <div class="small-12 columns">
+    <strong>city:</strong>
+    <%= address.city %>
+  </div>
 
-      <div class="small-12 columns">
-        <strong>state:</strong>
-        <%= address.state %>
-      </div>
+  <div class="small-12 columns">
+    <strong>state:</strong>
+    <%= address.state %>
+  </div>
 
-      <div class="small-12 columns">
-        <strong>zip:</strong>
-        <%= address.zip %>
-      </div>
+  <div class="small-12 columns">
+    <strong>zip:</strong>
+    <%= address.zip %>
+  </div>
 
-      <div class="small-12 columns">
-        <strong>Latitude:</strong>
-        <%= address.latitude %>
-      </div>
-      <div class="small-12 columns">
-        <strong>Longitude:</strong>
-        <%= address.longitude %>
-      </div>
-    </div>
-    <div class="small-12 medium-6 columns">
-      <%= render partial: 'admin/addresses/map', locals: { latitude: address.latitude, longitude: address.longitude } %>
-    </div>
+  <div class="small-12 columns">
+    <strong>Latitude:</strong>
+    <%= address.latitude %>
+  </div>
+  <div class="small-12 columns">
+    <strong>Longitude:</strong>
+    <%= address.longitude %>
+  </div>
+  <div class="small-12 columns">
+    <%= render partial: 'admin/addresses/map', locals: { address: address } %>
   </div>
 
   <div class="small-12 columns">
