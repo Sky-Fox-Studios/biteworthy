@@ -1,46 +1,44 @@
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="<%=root_path%>">BWD</a></h1>
+      <h1><%= link_to "BWD", root_path %></h1>
     </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
 
   <section class="top-bar-section">
     <% if current_user %>
       <ul class="left">
-        <li><a href="<%= edit_user_registration_path(current_user) %>">Profile</a></li>
-        <li><a href="<%=reviews_path%>">Reviews</a></li>
-      </ul>
-    <% end %>
-    <!-- Right Nav Section -->
-    <% if !current_user %>
-      <ul class="center">
-        <!-- <li>Login to create favorites and upload images</li> -->
+        <li class="has-dropdown">
+          <%= link_to "Profile", me_path %>
+          <ul class="dropdown">
+            <li><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
+            <li><%= link_to "Reviews", reviews_path %></li>
+          </ul>
+        </li>
       </ul>
     <% end %>
 
     <ul class="right">
       <% if current_user %>
-      <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
         <% if current_user.is_admin? %>
-        <li><a href="<%=admin_users_path%>">Users</a></li>
+          <li><%= link_to "Users", admin_users_path %></li>
           <li class="has-dropdown">
-            <a href="<%=admin_root_path%>">Admin</a>
+            <%= link_to "Admin", admin_root_path %>
             <ul class="dropdown">
-              <li><a href="<%=admin_restaurants_path%>">Restaurants</a></li>
-              <li><a href="<%=admin_menus_path%>">Menus</a></li>
-              <li><a href="<%=admin_menu_groups_path%>">Menu Groups</a></li>
-              <li><a href="<%=admin_items_path%>">Items</a></li>
-              <li><a href="<%=admin_foods_path%>">Foods</a></li>
-              <li><a href="<%=admin_ingredients_path%>">Ingredients</a></li>
-              <li><a href="<%=tags_path%>">Tags</a></li>
+              <li><%= link_to "Restaurants", admin_restaurants_path %></li>
+              <li><%= link_to "Menus",       admin_menus_path %></li>
+              <li><%= link_to "MenuGroups",  admin_menu_groups_path %></li>
+              <li><%= link_to "Items",       admin_items_path %></li>
+              <li><%= link_to "Foods",       admin_foods_path %></li>
+              <li><%= link_to "Ingredients", admin_ingredients_path %></li>
+              <li><%= link_to "Tags",        tags_path %></li>
             </ul>
           </li>
         <% end %>
       <% else %>
-        <li class="active"><a href="<%=user_session_path%>">Login</a></li>
+        <li class="active"><%=link_to "Login", user_session_path%></li>
       <% end %>
     </ul>
 

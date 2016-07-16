@@ -58,7 +58,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users #, :path_prefix => 'admin'
-  # The priority is based upon order of creation: first created -> highest priority.
+  get 'me', to: 'users#show', as: 'me'
 
 
   get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"
