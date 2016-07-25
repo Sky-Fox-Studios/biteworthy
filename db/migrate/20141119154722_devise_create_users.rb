@@ -8,14 +8,16 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.boolean :approved
+
       t.boolean :is_admin
       t.boolean :is_editor
       t.boolean :is_staff
 
-      t.integer :level
-      t.integer :strikes
+      t.integer :level, default: 0
+      t.integer :strikes, default: 0
       t.boolean :banned
       t.datetime :banned_at
+      t.string :ban_reason
 
 
       ## Recoverable

@@ -5,7 +5,7 @@ module ApplicationHelper
       "$#{number_with_precision(price, strip_insignificant_zeros: true)}"
     elsif price > 0
       "#{number_with_precision(price, precision: 2).sub(/^[0.]*/,"")}¢"
-    else
+    elsif price != 0
       "#{price}"
     end
   end

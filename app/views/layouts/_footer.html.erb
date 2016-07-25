@@ -1,5 +1,9 @@
 <div class="row footer padded center">
   <div class="small-12 columnns">
+    <p class="right"><%= link_to "<i class='fi-skull'></i>".html_safe, root_path %></p>
+    <p class="left"><%= link_to "<i class='fi-lightbulb'></i>".html_safe, root_path %></p>
+  </div>
+  <div class="small-12 columnns">
     <p><%= Rails.env.capitalize %> Version: <%= Rails.application.config.app_version %></p>
   </div>
 </div>

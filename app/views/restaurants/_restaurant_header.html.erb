@@ -4,7 +4,7 @@
       <div style="text-align:left;margin-top: auto; margin-bottom: auto;">
         <h1><%= restaurant.name %></h1>
         <p><%= restaurant.slogan %></p>
-        <p><%= restaurant.addresses.first.phone_number if !restaurant.addresses.empty? %></p>
+          <p><%= link_to restaurant.addresses.first.phone_number, "tel://+#{restaurant.addresses.first.phone_number}" if !restaurant.addresses.empty? %></p>
       </div>
     </div>
     <div class="small-5 medium-4 large-3 columns" style="text-align: right; padding-right:0px">
