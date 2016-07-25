@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.app_version = ".1"
+  config.app_version = ".2"
 
   # Settings specified here will take precedence over those in config/application.rb.
 

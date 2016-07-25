@@ -1,7 +1,7 @@
 <div class="row">
   <div class="small-12 columns">
     <strong>Phone #:</strong>
-    <%= address.phone_number %>
+    <%= link_to address.phone_number, "tel://+#{address.phone_number}" %>
   </div>
   <div class="small-12 columns">
     <strong>Street:</strong>
