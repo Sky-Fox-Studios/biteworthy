@@ -13,7 +13,7 @@ class Tag < ActiveRecord::Base
 
    def self.save_tags(tags)
       tags.split(',').map{ |tag_name|
-         find_or_create_by(normalized_name: tag_name.parameterize).update(name: tag_name)
+         find_or_create_by(name: tag_name.parameterize)
       }.flatten.uniq
    end
 

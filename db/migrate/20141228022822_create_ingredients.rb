@@ -7,6 +7,3 @@ class CreateIngredients < ActiveRecord::Migration
     end
   end
 end
-#
-
-# What about has_many to ingredient_type

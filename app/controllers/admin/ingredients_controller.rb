@@ -4,7 +4,7 @@ class Admin::IngredientsController < AdminController
 
   def index
     @ingredients = Ingredient.all.includes(:tags)
-    respond_with(@ingredients)
+    # respond_with(@ingredients)
   end
 
   def show
@@ -21,7 +21,7 @@ class Admin::IngredientsController < AdminController
   end
 
   def edit
-    session[:return_to] ||= request.referer
+    # session[:return_to] ||= request.referer
   end
 
   def create
@@ -71,6 +71,7 @@ class Admin::IngredientsController < AdminController
     elsif params[:ingredient_id]
       @ingredient = Ingredient.find(params[:ingredient_id])
     end
+    @tags        = Tag.all
   end
 
   def ingredient_params

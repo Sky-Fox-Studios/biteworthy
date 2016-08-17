@@ -1,6 +1,9 @@
 <div class="row">
-	<div class="small-12 columns">
+	<div class="small-12 medium-8 columns">
 		<h1>Manage Tags</h1>
+	</div>
+	<div class="small-12 medium-4 columns">
+    <%= link_to "New", new_tag_path %>
 	</div>
 </div>
 
@@ -11,22 +14,20 @@
 		    <tr>
 		      <th></th>
 		      <th>Tag</th>
-		      <th>Normalized Name</th>
 		    </tr>
 		  </thead>
 
 		  <tbody>
 		    <% @tags.each do |tag| %>
-		      <tr>
-		        <td>
-					<%= link_to raw('<i class="fi-page-edit"></i>'), edit_tag_path(tag) %>
-				</td>
-				<td><%= tag.name %></td>
-				<td><%= tag.normalized_name %></td>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>
+          <tr>
+            <td>
+              <%= link_to raw('<i class="fi-page-edit"></i>'), edit_tag_path(tag) %>
+            </td>
+            <td><%= tag.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-	</div>
+  </div>
 </div>

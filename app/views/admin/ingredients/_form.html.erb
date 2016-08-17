@@ -14,20 +14,8 @@
 
   <% if !@ingredient.new_record? %>
     <%= render partial: "admin/ingredients/tags/info_and_forms" %>
-    <% if @ingredient.tags %>
+    <% unless @ingredient.tags.empty? %>
       <%= render partial: "admin/ingredients/tags_list", locals: {ingredient: @ingredient } %>
     <% end %>
-    <div class="small-12 columns">
-      <%= form_tag admin_ingredient_add_tag_path(@ingredient), method: :post do %>
-      <div class="row">
-        <div class="small-9 columns">
-          <%= select_tag('tag_id', options_for_select(Tag.all.order(:name).map {|f| [ f.name, f.id ]}), prompt: "Add Tag:") %>
-        </div>
-        <div class="small-3 columns">
-          <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
-        </div>
-      </div>
-      <% end %>
-    </div>
   <% end %>
 </div>

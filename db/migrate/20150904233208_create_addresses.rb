@@ -7,6 +7,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :city, default: "Durango"
       t.string :state, default: "CO"
       t.integer :zip, default: 81301
+      t.string  :place_id
       t.decimal :latitude, precision: 10, scale: 6
       t.decimal :longitude, precision: 10, scale: 6
     end
