@@ -5,7 +5,6 @@ class CreateSeasons < ActiveRecord::Migration
       t.date :start_date
       t.date :end_date
       t.boolean :single_day
-      t.integer :season_id
       t.string :season_type
       t.timestamps
     end
