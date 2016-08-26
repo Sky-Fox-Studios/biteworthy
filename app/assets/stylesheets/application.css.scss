@@ -1,10 +1,20 @@
+/*
+ *= require_tree .
+ *= require_self
+
+ *= require foundation
+ *= require dataTables/jquery.dataTables.foundation
+ *= require foundation_and_overrides
+
+*/
 @import 'foundation-icons';
 /* @import "font-awesome-sprockets"; */
 @import "font-awesome";
 $cursive: 'cookie ', cursive !important;
 *{
- font-family: 'Handlee', cursive;
+  font-family: 'Handlee', cursive;
   color: white;
+  opacity: 1;
 }
 .p {
   padding: 5px;
@@ -23,12 +33,6 @@ $cursive: 'cookie ', cursive !important;
 }
 .padded-4 {
   padding: 0px 55px 0px 55px;
-}
-.font-cookie {
-  font-family: 'cookie ', cursive !important;
-}
-.font-handlee {
-  font-family: 'Handlee', cursive !important;
 }
 h1{
   @extend .font-cookie;
@@ -55,10 +59,14 @@ h4{
 }
 .top-bar{
   background-color: #2F2E2E !important;
-  opacity: .9 !important;
+  opacity: 1 !important;
   border-bottom-style: solid;
   border-width: medium;
   border-color: #207EA9;
+  z-index: 999;
+}
+.top-bar-section li{
+  margin: -4px;
 }
 
 .footer {
@@ -72,6 +80,12 @@ h4{
   // left: 50%;
   p {
     margin: 0px;
-    text-align:center;
+    // text-align:center;
   }
+}
+.font-cookie {
+  font-family: 'cookie ', cursive !important;
+}
+.font-handlee {
+  font-family: 'Handlee', cursive !important;
 }
