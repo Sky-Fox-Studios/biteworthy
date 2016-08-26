@@ -39,7 +39,7 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 # Form handlers
 gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'compass-rails'                          # you need this or you get an err
-gem 'sass-rails', '>= 4.0.3'                 # Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0'               # Use CoffeeScript for .js.coffee assets and views
 # gem 'font-awesome-sprockets'

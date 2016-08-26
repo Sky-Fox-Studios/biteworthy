@@ -1,28 +1,10 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
-
- *= require foundation
- *= require dataTables/jquery.dataTables.foundation
- *= require foundation_and_overrides
-
-*/
 @import 'foundation-icons';
 /* @import "font-awesome-sprockets"; */
 @import "font-awesome";
+$cursive: 'cookie ', cursive !important;
 *{
  font-family: 'Handlee', cursive;
+  color: white;
 }
 .p {
   padding: 5px;
@@ -42,34 +24,52 @@
 .padded-4 {
   padding: 0px 55px 0px 55px;
 }
-
+.font-cookie {
+  font-family: 'cookie ', cursive !important;
+}
+.font-handlee {
+  font-family: 'Handlee', cursive !important;
+}
 h1{
-  font-family: 'Architects Daughter', cursive !important;
+  @extend .font-cookie;
+  color: white !important;
 }
 h2{
-  font-family: 'Architects Daughter', cursive !important;
+  font-family: 'cookie', cursive !important;
+  color: white !important;
 }
 h3{
-  font-family: 'Architects Daughter', cursive !important;
+  font-family: 'cookie', cursive !important;
   line-height: 1.0 !important;
+  color: white !important;
 }
 h4{
-  font-family: 'Architects Daughter', cursive !important;
+  font-family: 'cookie', cursive !important;
+  color: white !important;
 }
 
-a:hover {
-  // background-color: transparent !important;
-  color: hotpink !important;
-}
 .close{
   position: absolute;
   top: 0px;
 
 }
+.top-bar{
+  background-color: #2F2E2E !important;
+  opacity: .9 !important;
+  border-bottom-style: solid;
+  border-width: medium;
+  border-color: #207EA9;
+}
 
 .footer {
-  background-color: black;
+  background-color: #2F2E2E;
+  opacity: .9;
   color: white;
+  bottom: 0px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  // left: 50%;
   p {
     margin: 0px;
     text-align:center;
