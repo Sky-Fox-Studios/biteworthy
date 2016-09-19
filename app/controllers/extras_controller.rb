@@ -1,6 +1,5 @@
-class Admin::ExtrasController < AdminController
-  before_action :set_extra, only: [:show, :edit, :update, :destroy]
-  before_action :just_set_extra, only: [:add_foods, :add_new_food, :remove_food, :add_new_price]
+class ExtrasController < AdminController
+  before_action :set_extra, only: [:show]
 
   respond_to :html
 
@@ -12,14 +11,6 @@ class Admin::ExtrasController < AdminController
 
   def show
     respond_with(@extra)
-  end
-
-  def new
-    @extra = Extra.new
-    respond_with(@extra)
-  end
-
-  def edit
   end
 
   private
@@ -40,7 +31,4 @@ class Admin::ExtrasController < AdminController
     end
   end
 
-  def extra_params
-    params.require(:extra).permit(:restaurant_id, :name, :description, :extra_type)
-    end
 end

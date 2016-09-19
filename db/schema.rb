@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150904233208) do
+ActiveRecord::Schema.define(version: 20160919015643) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -162,6 +162,15 @@ ActiveRecord::Schema.define(version: 20150904233208) do
     t.string  "priced_type", limit: 255
     t.float   "value",       limit: 24
     t.string  "size",        limit: 255
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.string   "page_url",    limit: 255
+    t.integer  "report_type", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "restaurants", force: :cascade do |t|

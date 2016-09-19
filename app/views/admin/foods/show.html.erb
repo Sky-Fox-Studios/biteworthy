@@ -15,5 +15,7 @@
    <%= @food.description %>
 </p>
 
-<%= link_to 'Edit', edit_admin_restaurant_food_path(@food.restaurant, @food) %> |
-<%= link_to 'Back', admin_foods_path %>
+<% if current_user.is_admin? %>
+  <%= link_to 'Edit', edit_admin_restaurant_food_path(@food.restaurant, @food) %> |
+  <%= link_to 'Back', admin_foods_path %>
+<% end  %>
