@@ -1,4 +1,4 @@
-class ExtrasController < AdminController
+class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show]
 
   respond_to :html

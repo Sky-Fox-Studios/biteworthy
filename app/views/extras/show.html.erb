@@ -7,13 +7,16 @@
     <h4>Name:</h4>
     <%= @extra.name %>
   </div>
-  <div class="small-5 columns">
-    <h4>Description:</h4>
-    <%= @extra.description %>
-  </div>
+  <% if defined? @extra.description %>
+    <% binding.pry %>
+    <div class="small-5 columns">
+      <h4>Description:</h4>
+      <%= @extra.description %>
+    </div>
+  <% end %>
   <div class="small-5 columns">
   </div>
 </div>
-<% if current_user.is_admin? %>
+<% if current_user && current_user.is_admin? %>
   <%= link_to 'Edit', edit_admin_restaurant_extra_path(@extra.restaurant, @extra) %>
 <% end  %>

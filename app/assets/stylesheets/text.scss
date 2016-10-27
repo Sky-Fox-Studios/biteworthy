@@ -15,3 +15,22 @@ i{
 label{
   color: white !important;
 }
+textarea, option,
+input[type] {
+  color: black !important;
+}
+$sky-blue: #008CBA !important;
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: $sky-blue;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    $sky-blue;
+  opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    $sky-blue;
+  opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:    $sky-blue;
+}
