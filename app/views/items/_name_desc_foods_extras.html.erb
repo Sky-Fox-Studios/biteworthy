@@ -7,8 +7,12 @@
       <%= item.description %>
     </p>
   </div>
-  <%= render partial: "items/list", locals:{list_name: "foods", list: item.foods} %>
-  <%= render partial: "items/list", locals:{list_name: "ingredients", list: item.ingredients} %>
-  <%= render partial: "items/list", locals:{list_name: "choices", list: item.extras.choice} %>
-  <%= render partial: "items/list", locals:{list_name: "additions", list: item.extras.addition} %>
+  1
+  <%= render partial: "items/list", locals: {list_name: "foods", list: item.foods} %>
+  2
+  <%= render partial: "items/list", locals: {list_name: "ingredients", list: item.ingredients} %>
+  3
+  <%= render partial: "items/list", locals: {list_name: "choices", list: item.extras.choice} %>
+  4
+  <%= render partial: "items/list", locals: {list_name: "additions", list: item.extras.addition} %>
 </div>

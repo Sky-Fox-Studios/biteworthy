@@ -37,7 +37,6 @@ class Admin::MenusController < AdminController
   end
 
   def update
-    binding.pry
     if @menu.update(menu_params)
       redirect_to admin_restaurant_menus_path(@menu.restaurant_id)
     else
