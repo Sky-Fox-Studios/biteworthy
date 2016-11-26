@@ -1,0 +1,28 @@
+<ul id="search-modal" class="reveal" data-reveal>
+  <div class="columns small-12 close-group" data-close>
+    <a class="close-reveal-modal" aria-label="Close"><i class="fi-x"></i></a>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <h3 class="modal-header">Search Bite Worthy Durango</h3>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="small-12 medium-8 medium-offset-2 columns">
+      <%= form_tag "/search", url: 'search', method: :get do |f| %>
+        <div class="row ">
+          <div class="columns small-12 medium-6">
+            <div id="search_input">
+              <input type="search" name="query" id="query-model" placeholder="Enter your search" autofocus>
+            </div>
+          </div>
+          <div class="columns small-6 small-offset-3 medium-4 medium-offset-4 search-button-group">
+            <%= button_tag(class: "search-button search button") do %>
+              <i class="fi-magnifying-glass"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</ul>

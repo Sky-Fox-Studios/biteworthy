@@ -9,41 +9,67 @@ Rails.application.configure do
       AWS_SECRET_ACCESS_KEY:   "+82hOkPePIKqSX4B23j8WJabOsd8YV/P0wsPnQfT"
    }
    Paperclip.options[:command_path] = "/usr/bin/convert/"
-  # In the development environment your application's code is reloaded on
-  # every request. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+   Paperclip::Attachment.default_options.merge!({
+     path: "herald/images/dev/:class/:id/:attachment/:style/img_:fingerprint",
+     storage: :fog,
+     fog_credentials: {
+       provider:           'Rackspace',
+       rackspace_username: ENV['rackspace_username'],
+       rackspace_api_key:  ENV['rackspace_api_key'],
+       rackspace_region:   :dfw,
+       persistent:         true
+     },
+     fog_directory: ENV['rackspace_cdn_dir'],
+     fog_public:    true,
+     fog_host:      ENV['rackspace_cdn_name']
+   })
 
-  # Do not eager load code on boot.
-  config.eager_load = false
+   # In the development environment your application's code is reloaded on
+   # every request. This slows down response time but is perfect for development
+   # since you don't have to restart the web server when you make code changes.
 
-  # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+   unless ENV['enable_cache'] == "true"
+     config.cache_classes = false
+     config.action_controller.perform_caching = false
+     config.perform_caching = false
+     config.cache_store = :null_store
+   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+   # In the development environment your application's code is reloaded on
+   # every request. This slows down response time but is perfect for development
+   # since you don't have to restart the web server when you make code changes.
+   config.cache_classes = false
 
-  # Print deprecation notices to the Rails logger.
-  config.active_support.deprecation = :log
+   # Do not eager load code on boot.
+   config.eager_load = false
 
-  # Raise an error on page load if there are pending migrations.
-  config.active_record.migration_error = :page_load
+   # Show full error reports and disable caching.
+   config.consider_all_requests_local       = true
+   config.action_controller.perform_caching = false
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
-  config.assets.debug = true
+   # Don't care if the mailer can't send.
+   config.action_mailer.raise_delivery_errors = false
 
-  # Adds extraal error checking when serving assets at runtime.
-  # Checks for improperly declared sprockets dependencies.
-  # Raises helpful error messages.
-  config.assets.raise_runtime_errors = true
+   # Print deprecation notices to the Rails logger.
+   config.active_support.deprecation = :log
 
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
-  # Devise mailer
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+   # Raise an error on page load if there are pending migrations.
+   config.active_record.migration_error = :page_load
+
+   # Debug mode disables concatenation and preprocessing of assets.
+   # This option may cause significant delays in view rendering with a large
+   # number of complex assets.
+   config.assets.debug = true
+
+   # Adds extraal error checking when serving assets at runtime.
+   # Checks for improperly declared sprockets dependencies.
+   # Raises helpful error messages.
+   config.assets.raise_runtime_errors = true
+
+   # Raises error for missing translations
+   # config.action_view.raise_on_missing_translations = true
+   # Devise mailer
+   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 
 end

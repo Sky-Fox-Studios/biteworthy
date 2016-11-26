@@ -15,6 +15,7 @@ end
 # end
 # ruby '2.1.2'
 gem 'rails', '4.2.1'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rake', '11.3.0'
 gem 'devise'                                 # User authentication
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'kaminari'                               # Model pagination
@@ -25,6 +26,11 @@ gem 'figaro'
 # gem 'carrierwave'                            # File uploads
 gem "paperclip", "~> 4.3"
 
+#Search
+gem "progress_bar"
+gem "sunspot_rails", "2.2.4"
+gem "sunspot_solr", "2.2.7"
+#Error reporting
 gem 'honeybadger', '~> 2.0'
 
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
@@ -32,7 +38,7 @@ gem 'turbolinks'                             # Turbolinks makes following links 
 gem 'jbuilder', '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0',          group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'spring',        group: :development     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'foundation-rails', '5.5.2.1'
+gem 'foundation-rails', '6.2.4.0'
 gem 'aws-sdk'                                # Amazon Cloud Storage: S3
 gem 'simple_form'
 gem 'jquery-datatables-rails', '~> 3.3.0'

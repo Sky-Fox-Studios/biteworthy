@@ -7,6 +7,7 @@
     <title>BWD</title>
 
     <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
@@ -17,20 +18,10 @@
    <body>
       <div class="row main-page">
          <div class="small-12 columns">
-            <%= render :partial => "/layouts/header" %>
-            <% if flash[:notice] || flash[:alert] %>
-              <div class="small-12 columns">
-                <% if flash[:alert] %>
-                  <div data-alert class="alert-box radius"><%= flash[:alert] %><a class="close">x</a></div>
-                <% end %>
-                <% if flash[:notice] %>
-                  <div data-alert class="alert-box warning radius"><%= flash[:notice] %><a class="close">x</a></div>
-                <% end %>
-              </div>
-            <% end %>
+            <%= render partial: "/layouts/header" %>
+            <%= render partial: "/admin/modules/alert_notice" %>
             ADMIN HOME
             <%= yield %>
-            <%= javascript_include_tag "application" %>
          </div>
       </div>
       <%= render :partial => "/layouts/footer" %>

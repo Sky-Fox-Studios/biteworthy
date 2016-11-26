@@ -1,6 +1,8 @@
 /*
  *= require_tree .
  *= require_self
+//= require foundation_and_overrides
+
 
  *= require foundation
  *= require dataTables/jquery.dataTables.foundation
@@ -13,7 +15,7 @@
 $cursive: 'cookie ', cursive !important;
 *{
   font-family: 'Handlee', cursive;
-  color: white;
+  // color: white;
   opacity: 1;
 }
 .p {

@@ -7,9 +7,10 @@
       <div class="small-12 columns main-page">
         <%= render partial: "layouts/notice" %>
         <%= yield %>
+        <%= render partial: "modules/search" %>
         <%= javascript_include_tag "application" %>
       </div>
-        <%= render partial: "/layouts/footer" %>
+      <%= render partial: "/layouts/footer" %>
     </div>
   </body>
 </html>

@@ -20,6 +20,13 @@ class Food < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: :restaurant_id
 
+  searchable do
+    text    :name,         boost: 11
+    text    :description
+    text    :tags do
+      tags.map { |tag| tag.name }
+    end
+  end
   def to_param
     "#{id}-#{name.parameterize}"
   end

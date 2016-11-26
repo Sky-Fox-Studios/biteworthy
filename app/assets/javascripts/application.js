@@ -17,8 +17,9 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-Foundation.global.namespace = '';
+$(function(){ $(document).foundation(); });
 $(function(){
+  // Foundation.global.namespace = ''
   $(document).foundation();
   $.food_form.init();
   $.ratings.init();
@@ -32,4 +33,5 @@ $(function(){
 ga('create', 'UA-67871013-1', 'auto');
 ga('require', 'linkid');
 ga('send', 'pageview');
+
 

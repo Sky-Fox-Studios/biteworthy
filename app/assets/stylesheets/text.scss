@@ -1,5 +1,6 @@
+$sky-blue: #008CBA !important;
 a{
-  color: #FFFFFF;
+  color: $sky-blue;
 }
 a:hover {
   // background-color: transparent !important;
@@ -7,19 +8,18 @@ a:hover {
 }
 a:visited{
   // background-color: transparent !important;
-  color: #30BDFF;
+  color: $sky-blue !important;
 }
 i{
   color: black;
 }
 label{
-  color: white !important;
+  // color: white !important;
 }
 textarea, option,
 input[type] {
   color: black !important;
 }
-$sky-blue: #008CBA !important;
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
   color: $sky-blue;
 }
