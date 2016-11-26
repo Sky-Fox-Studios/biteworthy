@@ -15,15 +15,15 @@
     <%= render :partial => "/ga/tracking" %>
   </head>
 
-   <body>
-      <div class="row main-page">
-         <div class="small-12 columns">
-            <%= render partial: "/layouts/header" %>
-            <%= render partial: "/admin/modules/alert_notice" %>
-            ADMIN HOME
-            <%= yield %>
-         </div>
+  <body>
+    <div class="row main-page">
+      <div class="small-12 columns">
+        <%= render partial: "/layouts/header" %>
+        <%= render partial: "/admin/modules/alert_notice" %>
+        ADMIN HOME
+        <%= yield %>
       </div>
-      <%= render :partial => "/layouts/footer" %>
-   </body>
+    </div>
+    <%= render :partial => "/layouts/footer" %>
+  </body>
 </html>
