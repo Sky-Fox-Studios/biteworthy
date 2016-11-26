@@ -25,6 +25,7 @@ gem 'mysql2', '~> 0.3.20'
 gem 'figaro'
 # gem 'carrierwave'                            # File uploads
 gem "paperclip", "~> 4.3"
+gem "fog"
 
 #Search
 gem "progress_bar"
