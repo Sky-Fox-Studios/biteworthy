@@ -13,8 +13,14 @@ a:visited{
 i{
   color: black;
 }
+.button{
+  font-size: 1rem;
+}
+a:visited.button {
+  color: white !important;
+}
 label{
-  // color: white !important;
+  color: white !important;
 }
 textarea, option,
 input[type] {
