@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'search', to: 'search#home'
   resources :reports
   resources :restaurants, :ingredients, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]

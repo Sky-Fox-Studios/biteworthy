@@ -4,8 +4,23 @@
       <li class="menu-text">
         <%= link_to "BWD", root_path %>
       </li>
-      <li><input type="search" placeholder="Search"></li>
-      <li><button type="button" class="button">Search</button></li>
+      <li>
+
+        <%= form_tag "/search", url: 'search', method: :get do |f| %>
+        <div class="row">
+        <div class="columns small-10">
+          <input type="search" placeholder="Restaurant, Food, tags">
+        </div>
+        <div class="columns small-2 pad">
+          <%= button_tag(class: "button") do %>
+            <i class="fi-magnifying-glass"></i>
+          <% end %>
+        </div>
+        </div>
+        <% end %>
+      </li>
+      <li>
+      </li>
     </ul>
   </div>
   <div class="top-bar-right">

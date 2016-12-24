@@ -27,6 +27,7 @@ class Food < ActiveRecord::Base
       tags.map { |tag| tag.name }
     end
   end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
