@@ -15,7 +15,7 @@ class Restaurant < ActiveRecord::Base
   scope :active, -> {where(active: true)}
 
   searchable do
-    text    :name,         boost: 11
+    text    :name
     text    :slogan
     text    :about
     text    :tags do

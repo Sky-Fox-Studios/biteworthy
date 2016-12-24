@@ -29,12 +29,11 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
 
   searchable do
-    text    :name,         boost: 11
+    text    :name
     text    :description
   end
 
   def to_param
     "#{id}-#{name.parameterize}"
   end
-
 end

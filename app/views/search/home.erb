@@ -1,7 +1,16 @@
 <div class="row">
   <div class="small-12 columns">
-    <p>You are looking for:</p>
+    <h2>You are looking for: <b><%= @search %></b></h2>
+  <div class="small-12 columns">
+    <h3>Restaurants: <%= @restaurants.results.count %></h3>
 
-    SEARCH
+  </div>
+  <div class="small-12 columns">
+    <h3>Items: <%= @items.results.count %></h3>
+
+  </div>
+  <div class="small-12 columns">
+    <h3>Foods: <%= @foods.results.count %></h3>
+
   </div>
 </div>
