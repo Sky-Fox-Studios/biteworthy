@@ -22,7 +22,8 @@
 /config/application.yml
 
 /public/**
-/solr/development/*
+/solr/default/**
+/solr/development/**
 /solr/staging/*
 /solr/production/*
 /solr/pids/*
