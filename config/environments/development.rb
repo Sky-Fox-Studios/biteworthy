@@ -10,7 +10,7 @@ Rails.application.configure do
    # }
    Paperclip.options[:command_path] = "/usr/bin/convert/"
    Paperclip::Attachment.default_options.merge!({
-     path: "bwd/images/dev/:class/:id/:attachment/:style/img_:fingerprint",
+     path: "images/dev/:class/:id/:attachment/:style/img_:fingerprint",
      storage: :fog,
      fog_credentials: {
        provider:           'Rackspace',

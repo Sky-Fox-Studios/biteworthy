@@ -3,10 +3,15 @@
     <h2>You are looking for: <b><%= @search %></b></h2>
   <div class="small-12 columns">
     <h3>Restaurants: <%= @restaurants.results.count %></h3>
-
+    <% @restaurants.results.each do |restaurant| %>
+      <%= render partial: "restaurants/basic", locals: {restaurant: restaurant} %>
+    <% end %>
   </div>
   <div class="small-12 columns">
     <h3>Items: <%= @items.results.count %></h3>
+    <% @items.results.each do |item| %>
+      <%= render partial: "items/show", locals: {item: item} %>
+    <% end %>
 
   </div>
   <div class="small-12 columns">
