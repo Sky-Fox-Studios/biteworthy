@@ -1,6 +1,7 @@
 Rails.application.configure do
   config.app_version = ".3"
 
+   Paperclip.options[:command_path] = "/usr/bin/convert/"
    Paperclip::Attachment.default_options.merge!({
      path: "images/production/:class/:id/:attachment/:style/img_:fingerprint",
      storage: :fog,
