@@ -29,7 +29,7 @@ set :bundle_gemfile, -> { release_path.join('Gemfile') }
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('public/system')
+# set :linked_dirs, fetch(:linked_dirs, []).push('public/system')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -70,34 +70,6 @@ namespace :figaro do
     end
   end
 end
-
-namespace :assets  do
-  namespace :symlinks do
-    desc "Setup shared folders for assets. Run ONCE."
-    task :setup do
-      on roles(:app) do
-        ['public/images'].each { |link| execute "mkdir -p #{shared_path}/#{link}" }
-      end
-    end
-
-    desc "Setup application symlinks for shared assets."
-    task :clear_dev do
-      on roles(:app) do
-        ['public/images'].each { |link| execute "rm -rf #{release_path}/#{link}" }
-      end
-    end
-
-    desc "Link assets for current deploy to the shared location"
-    task :update do
-      on roles(:app) do
-        ['public/images'].each { |link| execute "ln -nfs #{shared_path}/#{link} #{release_path}/#{link}" }
-      end
-    end
-  end
-end
-#
-# before "deploy:migrate", "assets:symlinks:clear_dev"
-# before "deploy:migrate", "assets:symlinks:update"
 
 before "deploy:migrate",       "figaro:setup"
 before "deploy:migrate",       "figaro:symlink"
