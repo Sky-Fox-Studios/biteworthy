@@ -6,6 +6,7 @@
       <th></th>
       <th>Name</th>
       <th>Slogan</th>
+      <th>Active</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_restaurant_path(restaurant) %></td>
         <td><%= restaurant.name %></td>
         <td><%= restaurant.slogan %></td>
+        <td><%= restaurant.active? ? "Yes" : "" %></td>
         <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_restaurant_path(restaurant) %></td>
         <% if current_user.is_admin? %>
           <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
