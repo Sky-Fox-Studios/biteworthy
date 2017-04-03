@@ -1,6 +1,6 @@
 class Admin::ExtrasController < AdminController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
-  before_action :just_set_extra, only: [:add_foods, :add_new_food, :remove_food, :add_new_price]
+  before_action :just_set_extra, only: [:add_foods, :add_new_food, :remove_food, :add_new_price, :remove_photo]
 
   respond_to :html
 
@@ -34,7 +34,10 @@ class Admin::ExtrasController < AdminController
 
   def update
     if @extra.update(extra_params)
-      redirect_to admin_restaurant_extras_path(@extra.restaurant), notice: "Extra updated"
+      if params[:image]
+        @extra.photos.new(user_id: current_user.id, photo_type: "Extra", image: params[:image]).save
+      end
+      redirect_to edit_admin_restaurant_extra_path(@restaurant, @extra), notice: "Extra updated"
     else
       render :edit
     end
@@ -69,6 +72,11 @@ class Admin::ExtrasController < AdminController
     redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
   end
 
+  def remove_photo
+    photo = Photo.find(params[:photo_id])
+    @extra.photos.delete(photo)
+    redirect_to edit_admin_restaurant_extra_path(@restaurant, @extra)
+  end
 
   private
   def just_set_extra

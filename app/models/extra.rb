@@ -5,6 +5,7 @@ class Extra < ActiveRecord::Base
 
   has_many :items, through: :items_extras
   has_many :items_extras
+  has_many :photos, :as => :photo
 
   has_many :prices, as: :priced
 

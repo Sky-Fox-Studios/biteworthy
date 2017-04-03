@@ -1,6 +1,17 @@
 class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :just_set_item, only: [:add_price, :add_food, :add_extra, :add_new_price, :add_new_food, :add_new_extra, :remove_menu_group, :remove_food, :remove_extra, :remove_photo]
+  before_action :just_set_item, only: [
+    :add_price,
+    :add_food,
+    :add_extra,
+    :add_new_price,
+    :add_new_food,
+    :add_new_extra,
+    :remove_menu_group,
+    :remove_food,
+    :remove_extra,
+    :remove_photo
+  ]
 
   respond_to :html
 

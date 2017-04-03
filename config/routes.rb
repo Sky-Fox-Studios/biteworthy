@@ -29,19 +29,20 @@ Rails.application.routes.draw do
         resources :prices
         post 'add_new_food',      to: 'items#add_new_food',      as: "add_new_food"
         post 'add_new_price',     to: 'items#add_new_price',     as: "add_new_price"
-        post 'add_new_extra',  to: 'items#add_new_extra',  as: "add_new_extra"
+        post 'add_new_extra',     to: 'items#add_new_extra',     as: "add_new_extra"
         post 'add_food',          to: 'items#add_food',          as: "add_food"
-        post 'add_extra',      to: 'items#add_extra',      as: "add_extra"
+        post 'add_extra',         to: 'items#add_extra',         as: "add_extra"
         post 'remove_menu_group', to: 'items#remove_menu_group', as: "remove_menu_group"
         post 'remove_food',       to: 'items#remove_food',       as: "remove_food"
-        post 'remove_extra',   to: 'items#remove_extra',   as: "remove_extra"
-        post 'remove_photo',   to: 'items#remove_photo',   as: "remove_photo"
+        post 'remove_extra',      to: 'items#remove_extra',      as: "remove_extra"
+        post 'remove_photo',      to: 'items#remove_photo',      as: "remove_photo"
 
       end
       resources :foods do
-        post 'add_ingredient', to: 'foods#add_ingredient', as: "add_ingredient"
+        post 'add_ingredient',         to: 'foods#add_ingredient',         as: "add_ingredient"
         post 'add_ingredient_by_name', to: 'foods#add_ingredient_by_name', as: "add_ingredient_by_name"
-        post 'remove_ingredient', to: 'foods#remove_ingredient', as: "remove_ingredient"
+        post 'remove_ingredient',      to: 'foods#remove_ingredient',      as: "remove_ingredient"
+        post 'remove_photo',           to: 'foods#remove_photo',           as: "remove_photo"
       end
       resources :extras do
         resources :prices
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
         post 'add_foods',     to: 'extras#add_foods',     as: "add_foods"
         post 'add_new_food',  to: 'extras#add_new_food',  as: "add_new_food"
         post 'remove_food',   to: 'extras#remove_food',   as: "remove_food"
+        post 'remove_photo',  to: 'extras#remove_photo',  as: "remove_photo"
       end
     end
     get 'menus',       to: 'menus#all',       as: "menus"

@@ -1,6 +1,6 @@
 class Admin::FoodsController < AdminController
   before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient]
-  before_action :set_food, only: [:show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient]
+  before_action :set_food, only: [:show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient, :remove_photo]
   before_action :set_foods, only: [:all, :index]
   respond_to :html
 
@@ -48,7 +48,10 @@ class Admin::FoodsController < AdminController
 
   def update
     if @food.update(food_params)
-       redirect_to admin_restaurant_foods_path(@food.restaurant)
+      if params[:image]
+        @food.photos.new(user_id: current_user.id, photo_type: "Food", image: params[:image]).save
+      end
+       redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
     else
        redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
     end
@@ -80,6 +83,12 @@ class Admin::FoodsController < AdminController
   def remove_ingredient
     ingredient = Ingredient.find(params[:ingredient_id])
     @food.ingredients.delete(ingredient)
+    redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
+  end
+
+  def remove_photo
+    photo = Photo.find(params[:photo_id])
+    @food.photos.delete(photo)
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
   end
 
