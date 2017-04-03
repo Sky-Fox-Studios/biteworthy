@@ -10,7 +10,7 @@
   <div class="small-12 columns">
     <h3>Items: <%= @items.results.count %></h3>
     <% @items.results.each do |item| %>
-      <% render partial: "items/show", locals: {item: item} %>
+      <%= render partial: "items/show", locals: {item: item} %>
     <% end %>
 
   </div>

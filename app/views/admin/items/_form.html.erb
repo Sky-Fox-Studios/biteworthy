@@ -16,7 +16,7 @@
         <% @item.photos.each do |photo| %>
           <div class="small-12 medium-4 large-3 columns p">
             <%= image_tag photo.image(:thumb) %>
-            <%= link_to 'x', admin_restaurant_item_remove_photo_path(@restaurant, @item, photo_id: photo.id), method: :post, style: 'color:red; position:absolute;', class: "close" %>
+            <%= link_to 'x', admin_restaurant_item_remove_photo_path(@restaurant, @item, photo_id: photo.id), method: :post, style: 'color:red; position:relative;', class: "close" %>
           </div>
         <% end %>
       <% end %>
