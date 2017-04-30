@@ -13,7 +13,7 @@
         <%= restaurant.cash_only ? "<span class='cash-only'>Cash ONLY</span>".html_safe : ""  %>
       <% else %>
         <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant, size: "120x100%", style: "margin: 5px 0px 5px 5px;", class: "right") %>
-        <%= restaurant.cash_only ? "Cash ONLY" : ""  %>
+        <%= restaurant.cash_only ? "<span class='cash-only'>Cash ONLY</span>".html_safe : ""  %>
       <% end %>
     </div>
   </div>
