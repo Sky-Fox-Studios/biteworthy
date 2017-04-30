@@ -41,6 +41,8 @@ $cursive: 'cookie ', cursive !important;
 }
 h1{
   @extend .font-cookie;
+  font-family: monospace;
+  font-style: italic;
   color: white !important;
 }
 h2{
