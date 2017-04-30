@@ -6,14 +6,14 @@
     <h3 style="float:left;">
       <%= link_to reviewed.name, edit_review_path(review) %>
     </h3>
-    <div class="small-12 columns">
-      <p align="none">
-        <% if review.review_type == "Item" %>
-          <%= Restaurant.find(reviewed.restaurant_id).name %>
-        <% else %>
-          <%= review.review_type %>
-        <% end %>
-      </p>
-    </div>
+  </div>
+  <div class="small-12 columns">
+    <p align="none">
+      <% if review.review_type == "Item" %>
+        <%= Restaurant.find(reviewed.restaurant_id).name %>
+      <% else %>
+        <%= review.review_type %>
+      <% end %>
+    </p>
   </div>
 </div>

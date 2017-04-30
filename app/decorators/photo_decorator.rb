@@ -2,17 +2,18 @@ class PhotoDecorator < Draper::Decorator
   include Draper::LazyHelpers
   delegate_all
 
-  def display
+  def display(ratio = "160x160", size = :medium)
     if photo.class == Photo::ActiveRecord_Associations_CollectionProxy
       unless photo.empty?
-        image_tag photo.sample.image(:medium), size: "160x160"
+        #TODO slick slider of images
+        image_tag photo.sample.image(size)
       else
-        image_tag "food_pic.png", size: "160x160"
+        image_tag "food_pic.png", ratio: ratio
       end
     elsif photo
-      image_tag photo.image(:medium), size: "160x160"
+      image_tag photo.image(size)
     else
-      image_tag "food_pic.png", size: "160x160"
+      image_tag "food_pic.png", ratio: ratio
     end
   end
 end

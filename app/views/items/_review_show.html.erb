@@ -1,15 +1,13 @@
 <div class="row">
-  <div class="small-4 columns">
+  <div class="small-4 medium-6 large-4 columns">
     <%= PhotoDecorator.decorate(item.photos).display %>
   </div>
-  <div class="small-4 columns">
-    <h3 style="float:left;">
+  <div class="small-12 medium-6 large-8 columns">
+    <h3 >
       <%= item.name %>
     </h3>
-    <div class="small-12 columns">
-      <p align="none">
-        <%= item.description %>
-      </p>
-    </div>
+    <p class="desc">
+      <%= item.description %>
+    </p>
   </div>
 </div>
