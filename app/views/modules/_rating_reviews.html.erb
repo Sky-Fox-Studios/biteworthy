@@ -5,7 +5,7 @@
       <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
         data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
     </div>
-    <div class="center">
+    <div class="small-8 columns center black">
       ?
     </div>
     <div class="small-2 columns">
@@ -20,7 +20,7 @@
         data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} if max <= 3 %>
       <span class="keep-size"></span>
     </div>
-    <div class="small-8 columns center">
+    <div class="small-8 columns center black">
       <%= Review.ratings.key(rating).humanize %>
     </div>
     <div class="small-2 columns">

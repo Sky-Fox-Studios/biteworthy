@@ -34,12 +34,12 @@ class ReviewsController < ApplicationController
     review_params[:rating] = review_params[:rating].to_i
     @review = @reviewable.reviews.new(review_params)
     @review.save
-    redirect_to session.delete(:return_to)
+    redirect_to session.delete(:return_to), notice: "Review updated"
   end
 
   def update
     @review.update(review_params)
-    redirect_to session.delete(:return_to)
+    redirect_to reviews_path
   end
 
   def destroy

@@ -20,7 +20,7 @@
   <div class="row">
     <div class="small-6 medium-4 large-3 columns">
       <!-- #TODO up arrow -->
-      <%= f.input :rating, collection: Review.ratings.map {|k, v| [k, k]}, include_blank: false, selected: Review.ratings[@review.rating], selected: @review.rating %>
+      <%= f.input :rating, collection: Review.ratings.to_a.reverse.map {|k, v| [k.humanize, k]}, include_blank: false, selected: Review.ratings[@review.rating], selected: @review.rating %>
       <!-- #TODO down arrow -->
     </div>
   </div>

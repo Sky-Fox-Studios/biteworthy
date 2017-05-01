@@ -1,6 +1,6 @@
 <div class="row" id="rating-reviews-<%=review.id%>" >
   <div class="small-4 columns image-wrapper">
-    <%= PhotoDecorator.decorate(reviewed.photos.sample).display %>
+    <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %>
   </div>
   <div class="small-8 columns">
     <h3 style="float:left;">
@@ -10,7 +10,7 @@
   <div class="small-12 columns">
     <p align="none">
       <% if review.review_type == "Item" %>
-        <%= Restaurant.find(reviewed.restaurant_id).name %>
+        <%= link_to Restaurant.find(reviewed.restaurant_id).name, restaurant_path(reviewed.restaurant_id) %>
       <% else %>
         <%= review.review_type %>
       <% end %>

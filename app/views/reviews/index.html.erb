@@ -9,13 +9,13 @@
           <div class="row">
             <% @review_class = review.rating %>
             <div class="small-12 columns">
-              <h3>
-                <%= @review_class.humanize %> <%= render partial: "/modules/rating_text", locals: {rating: review.rating} %>
-              </h3>
+              <h2>
+                <%= @review_class.humanize %>
+              </h2>
             </div>
           </div>
         <% end %>
-         <div class="small-6 columns">
+         <div class="small-12 medium-6 large-4 columns">
            <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
          </div>
        <% end %>
