@@ -4,12 +4,14 @@ $.admin_item = {
   },
 
   wireupListeners: function(){
-    $('.rating-review').click(function() {
+    $('.rating-review').click(function(event) {
+      event.preventDefault();
       var rating    = $(this).data('rating');
       var review_id   = $(this).data('review-id');
       var review_type = $(this).data('review-type');
       console.log("rating="+rating+" review_id="+review_id+" review_type="+review_type);
       $.admin_item.create_rating(rating, review_id, review_type);
+      return false;
     });
   },
 

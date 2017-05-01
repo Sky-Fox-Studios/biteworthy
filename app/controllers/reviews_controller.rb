@@ -46,7 +46,7 @@ class ReviewsController < ApplicationController
      @review.destroy
     respond_with(@review)
   end
- 
+
   private
     def set_review
       @review = Review.find(params[:id])

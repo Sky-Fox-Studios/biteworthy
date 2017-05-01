@@ -4,7 +4,8 @@ $.ratings = {
   },
 
   wireupListeners: function(){
-    $('.rating-review').click(function() {
+    $('.rating-review').click(function(event) {
+      event.preventDefault();
       var rating    = $(this).data('rating');
       var review_id   = $(this).data('review-id');
       var review_type = $(this).data('review-type');
