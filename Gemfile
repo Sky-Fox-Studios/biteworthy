@@ -42,7 +42,7 @@ gem 'faker'                                  # Creating fake seed data
 gem 'draper'                                 # Moving View logic out
 
 group :development do
-  gem 'capistrano', '~> 3.4.0', require: false
+  gem "capistrano", "~> 3.8.1", require: false
   gem 'capistrano-rvm'
   gem 'web-console', '~> 2.0'
   gem 'spring'
