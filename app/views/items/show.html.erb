@@ -1,18 +1,19 @@
-<%= render :partial => '/restaurants/restaurant_header', locals: {restaurant: @item.restaurant} %>
+<%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @item.restaurant} %>
 <div class="row">
   <div class="small-3 medium-3 large-3 columns">
     <div class="row">
       <div class="small-12 columns">
-        <%= render :partial => 'price', locals: {item: @item} %>
+        <%= render partial: 'price', locals: {item: @item} %>
       </div>
       <div class="small-12 columns">
-        <%= render :partial => 'image', locals: {item: @item} %>
+        <%= render partial: 'image', locals: {item: @item} %>
+        <%= render partial: 'review_vote', locals: {item: @item} %>
       </div>
     </div>
   </div>
   <div class="small-9 medium-9 large-9 columns">
     <div class="row">
-      <%= render :partial => 'name_desc_foods_extras', locals: {item: @item} %>
+      <%= render partial: 'name_desc_foods_extras', locals: {item: @item} %>
     </div>
   </div>
 </div>
