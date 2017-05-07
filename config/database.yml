@@ -1,9 +1,3 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 development: &default
   adapter: mysql2
   database: bwd_dev
@@ -20,6 +14,14 @@ test:
   adapter: mysql2
   encoding: utf8
   database: bwd_test
+  username: root
+  password:
+  host: 127.0.0.1
+  port: 3306
+
+staging:
+  adapter: mysql2
+  database: bwd_staging
   username: root
   password:
   host: 127.0.0.1
