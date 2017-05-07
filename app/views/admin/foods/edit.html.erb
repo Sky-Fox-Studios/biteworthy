@@ -2,4 +2,4 @@
 
 <%= render 'form' %>
 
-<%= render partial: "admin/restaurants/footer", locals: {left_button: (link_to "#{@restaurant.name} Foods", admin_restaurant_foods_path(@restaurant), class: "button tiny round") } %>
+<%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "#{@restaurant.name} Foods", admin_restaurant_foods_path(@restaurant), class: "button tiny round")] } %>

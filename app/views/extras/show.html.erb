@@ -11,7 +11,7 @@
   <% end %>
   <% if @extra.foods.present? %>
     <div class="small-12 medium-6 large-8 columns">
-      <%= render partial: "items/list", locals: {list_name: "Food #{@extra.extra_type}s ", list: @extra.foods} %>
+      <%= render partial: "extras/foods/list", locals: {list_name: "Food #{@extra.extra_type}s ", words_connector: @extra.extra_type == "choice" ? " or " : nil } %>
     </div>
   <% end %>
 </div>
