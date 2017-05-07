@@ -152,7 +152,6 @@ class Admin::ItemsController < AdminController
     end
   end
 
-
   def item_params
       params.require(:item).permit(:restaurant_id, :name, :description, menu_group_ids: [],
       food_attributes: [:restaurant_id, :name, :description])

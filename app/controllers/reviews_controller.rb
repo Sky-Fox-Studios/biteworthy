@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-     @reviews = Review.all.order(rating: :desc)
+    @reviews = Review.all.order(rating: :desc)
     respond_with(@reviews)
   end
 
