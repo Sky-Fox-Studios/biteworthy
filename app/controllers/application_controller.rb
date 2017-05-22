@@ -4,9 +4,25 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
   before_action :page_history, only: [:create, :update]
+  helper_method :my_review, :my_reviews
 
-   def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+  end
+
+  def my_reviews
+    if current_user
+      current_user.reviews
+    else
+      []
+    end
+  end
+  def my_review(reviewable)
+    if current_user
+      reviewable.reviews.where(user_id: current_user.id)
+    else
+      []
+    end
   end
 
   def page_history
