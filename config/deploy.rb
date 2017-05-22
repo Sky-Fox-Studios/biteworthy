@@ -14,7 +14,7 @@ set :bundle_gemfile, -> { release_path.join('Gemfile') }
 set :keep_releases, 3
 
 set :log_level, :debug
-set :linked_files, fetch(:linked_files, []).push('config/application.yml')
+# set :linked_files, fetch(:linked_files, []).push('config/application.yml')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push("public/system", "public/cache")
@@ -33,21 +33,21 @@ namespace :deploy do
   end
 end
 
-# namespace :figaro do
-#   desc "SCP transfer figaro configuration to the shared folder"
-#   task :setup do
-#     on roles(:app) do
-#       upload! "config/application.yml", "#{shared_path}/application.yml", via: :scp
-#     end
-#   end
+ namespace :figaro do
+   desc "SCP transfer figaro configuration to the shared folder"
+   task :setup do
+     on roles(:app) do
+       upload! "config/application.yml", "#{shared_path}/application.yml", via: :scp
+     end
+   end
 
-#   desc "Symlink application.yml to the release path"
-#   task :symlink do
-#     on roles(:app) do
-#       execute "ln -sf #{shared_path}/application.yml #{release_path}/config/application.yml"
-#     end
-#   end
-# end
+   desc "Symlink application.yml to the release path"
+   task :symlink do
+     on roles(:app) do
+       execute "ln -sf #{shared_path}/application.yml #{release_path}/config/application.yml"
+     end
+   end
+ end
 
 namespace :solr do
   desc "start solr"
