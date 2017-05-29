@@ -3,7 +3,7 @@
     <p>
       <strong class="food-list-title"><%= list_name.upcase %>:</strong>
       <%= list.map do |list_item|
-        link_to(list_item.name, polymorphic_path([list_item.restaurant, list_item]))
+        link_to(list_item.name, polymorphic_path([@restaurant, list_item]))
       end.to_sentence.html_safe %>
     </p>
   </div>
