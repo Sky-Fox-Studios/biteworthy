@@ -2,8 +2,8 @@ class Item < ActiveRecord::Base
   belongs_to :restaurant
 
   has_many :prices, as: :priced
-  has_many :reviews, :as => :review
-  has_many :photos, :as => :photo
+  has_many :reviews, as: :review
+  has_many :photos, as: :photo
 
   has_and_belongs_to_many :menu_groups
 
