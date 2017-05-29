@@ -282,7 +282,7 @@ GEM
       activesupport (>= 4.1.0)
     highline (1.7.8)
     holidays (5.4.0)
-    honeybadger (2.7.2)
+    honeybadger (3.1.2)
     i18n (0.8.1)
     inflecto (0.0.2)
     ipaddress (0.8.3)
@@ -490,7 +490,7 @@ DEPENDENCIES
   foundation-icons-sass-rails
   foundation-rails (= 6.2.4.0)
   holidays
-  honeybadger (~> 2.0)
+  honeybadger (~> 3.1)
   jbuilder (~> 2.0)
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
@@ -514,4 +514,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.14.3
+   1.14.6

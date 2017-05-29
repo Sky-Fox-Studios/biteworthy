@@ -16,7 +16,7 @@ gem "sunspot_rails", "2.2.4"
 gem "sunspot_solr", "2.2.7"
 
 #Error reporting
-gem 'honeybadger', '~> 2.0'
+gem 'honeybadger', '~> 3.1'
 
 #Magical additions
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
