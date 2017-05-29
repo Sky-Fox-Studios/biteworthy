@@ -1,17 +1,31 @@
 <br>
 <div class="row">
-  <% max = rating + 1 %>
-  <% min = rating - 1 %>
-  <div class="small-2 columns">
-    <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
-      data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} if max <= 4 %>
-    <span class="keep-size"></span>
-  </div>
-  <div class="small-8 columns center black">
-    <%= Review.ratings.key(rating).humanize %>
-  </div>
-  <div class="small-2 columns">
-    <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
-      data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} if min >= -4 %>
-  </div>
+  <% if rating == nil %>
+    <div class="small-2 columns">
+      <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
+        data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    </div>
+    <div class="small-8 columns center black">
+      -
+    </div>
+    <div class="small-2 columns">
+      <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
+        data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    </div>
+  <% else %>
+    <% max = rating + 1 %>
+    <% min = rating - 1 %>
+    <div class="small-2 columns">
+      <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
+        data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} if max <= 4 %>
+      <span class="keep-size"></span>
+    </div>
+    <div class="small-8 columns center black">
+      <%= Review.ratings.key(rating).humanize %>
+    </div>
+    <div class="small-2 columns">
+      <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
+        data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} if min >= -4 %>
+    </div>
+  <% end %>
 </div>
