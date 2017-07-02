@@ -13,8 +13,8 @@ class RestaurantsController < ApplicationController
 
   private
     def set_restaurant_know_how
-      @restaurant  = Restaurant.find(params[:id])
-      @menus       = Menu.includes(:menu_groups)
+      @restaurant = Restaurant.find(params[:id])
+      @menus      = Menu.includes(:menu_groups)
         .includes(menu_groups: [items: [:reviews, :prices, :photos]])
         .where(restaurant_id: @restaurant.id)
         .order("menu_groups.menu_order")

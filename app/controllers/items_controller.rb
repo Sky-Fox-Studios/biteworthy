@@ -12,8 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @review = Review
-      .where(review_type: "Item", review_id: @item.id).first
+    @review = Review.where(review_type: "Item", review_id: @item.id).first
   end
 
   private
