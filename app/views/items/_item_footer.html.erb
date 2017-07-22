@@ -1,10 +1,10 @@
 <div class="row">
   <div class="small-12 columns">
-    <%= link_to "Return to #{item.restaurant.name}", restaurant_path(item.restaurant) %>
+    <%= link_to "Return to #{@restaurant.name}", restaurant_path(@restaurant) %>
   </div>
   <% if current_user && current_user.is_admin? %>
     <div class="small-12 columns">
-      <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %>
+      <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(@restaurant, item)} %>
     </div>
   <% end %>
 </div>

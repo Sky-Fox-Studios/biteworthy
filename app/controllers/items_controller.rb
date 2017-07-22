@@ -17,7 +17,13 @@ class ItemsController < ApplicationController
 
   private
   def set_items
-    @item = Item.find(params[:id])
-    @restaurant = Restaurant.find(@item.restaurant_id)
+    @item = Item
+      .includes(:reviews, :prices, :photos, :foods, :ingredients)
+      .find(params[:id])
+    @item_extras_choice   = @item.extras.where(extra_type: Extra.extra_types[:choice])
+    @item_extras_addition = @item.extras.where(extra_type: Extra.extra_types[:addition])
+    @restaurant = Restaurant
+      .includes(:addresses, :photos)
+      .find(@item.restaurant_id)
     end
 end

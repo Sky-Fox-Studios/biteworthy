@@ -4,7 +4,7 @@ class Review < ActiveRecord::Base
 #    attr_accessible :user, :favoritable
    # http://snippets.aktagon.com/snippets/588-how-to-implement-reviews-in-rails-with-polymorphic-associations
    validates :rating, :user, :review, presence: true
-   enum rating: {possible_death: -4, revulsion: -3, terrible: -2, bad: -1, meh: 0, like: 1, delicious: 2, love: 3, heavenly: 4}
+   enum rating: {possible_death: -5, allergic: -4, disgust: -3, terrible: -2, dislike: -1, "-".to_sym => 0, like: 1, enjoy: 2, delicious: 3, love: 4, heavenly: 5}
 
    def get_rating
     Review.ratings[self.rating]

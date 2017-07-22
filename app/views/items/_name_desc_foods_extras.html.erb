@@ -3,12 +3,12 @@
     <h3>
       <%= item.name %>
     </h3>
-    <p align="none" class="white">
+    <p align="none" class="white-text">
       <%= item.description %>
     </p>
   </div>
   <%= render partial: "items/list", locals: {list_name: "foods", list: item.foods} %>
   <%= render partial: "items/list", locals: {list_name: "ingredients", list: item.ingredients} %>
-  <%= render partial: "items/list", locals: {list_name: "choices", list: item.extras.choice} %>
-  <%= render partial: "items/list", locals: {list_name: "additions", list: item.extras.addition} %>
+  <%= render partial: "items/list", locals: {list_name: "choices", list: @item_extras_choice} %>
+  <%= render partial: "items/list", locals: {list_name: "additions", list: @item_extras_addition} %>
 </div>

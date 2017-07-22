@@ -1,6 +1,6 @@
 <% if current_user %>
   <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
-    <% review = Review.find_by(user_id: current_user.id, review_type: "Item", review_id: item.id) %>
+    <% review = item.reviews.first %>
     <% if review %>
       <%= render partial: "/modules/rating_reviews", locals: { rating: Review.ratings[review.rating], reviewable: item } %>
     <% else %>

@@ -1,8 +1,8 @@
 class Food < ActiveRecord::Base
   belongs_to :restaurant
 
-  has_many :reviews, :as => :review
-  has_many :photos, :as => :photo
+  has_many :reviews, as: :review
+  has_many :photos, as: :photo
 
   has_many :tags, through: :foods_tags
   has_many :foods_tags
