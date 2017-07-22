@@ -9,7 +9,6 @@ Rails.application.routes.draw do
      end
    end
 
-
   resources :reviews, :tags
 
   namespace :admin do
