@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.app_version = ".3"
+  config.app_version = ".5"
 
    Paperclip.options[:command_path] = "/usr/bin/convert/"
    Paperclip::Attachment.default_options.merge!({
