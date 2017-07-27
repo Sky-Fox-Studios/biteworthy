@@ -17,10 +17,10 @@
         <td><%= user.is_editor ? 'Yes' : 'No' %></td>
 <!--     TODO strikes/warnings,      -->
       </tr>
-      <% end %>          
+      <% end %>
     </table>
   </div>
   <div class="small-2 columns">
-    <%= button_to('Logout', destroy_user_session_path, :method => :delete) %>
+    <%= button_to('Logout', destroy_user_session_path, method: :delete) %>
   </div>
 </div>

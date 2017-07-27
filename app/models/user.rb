@@ -20,11 +20,11 @@ class User < ActiveRecord::Base
 
 
   has_and_belongs_to_many :restaurant_users
-  has_many :photos, :as => :photo
+  has_many :photos, as: :photo
 
   has_many :reviews
-  has_many :review_food_items, :through =>  :reviews, :source => :favoritable , :source_type => "FoodItem"
-  has_many :review_restaurants, :through =>  :reviews, :source => :favoritable , :source_type => "Restaurant"
+  has_many :review_food_items, through: :reviews, source: :favoritable , source_type: "FoodItem"
+  has_many :review_restaurants, through: :reviews, source: :favoritable , source_type: "Restaurant"
    def active_for_authentication?
     super && approved?
   end

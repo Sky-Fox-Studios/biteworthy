@@ -26,7 +26,7 @@
    </div>
    <div class="small-3 columns" align="center">
       <p> Associations:</p>
-     <%= render :partial => 'tags/tag_list', :locals => { :object => @item, :label => false } %>
+     <%= render partial: 'tags/tag_list', locals: { object: @item, label: false } %>
    </div>
    <div class="small-6 columns left">
      <%= link_to "Back to #{@item.menu_group.restaurant.name}", restaurant_path(@item.menu_group.restaurant) %>

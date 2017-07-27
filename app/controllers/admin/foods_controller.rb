@@ -21,7 +21,7 @@ class Admin::FoodsController < AdminController
   def get_menu_groups_by_restaurant
      restaurant = Restaurant.find(params[:restaurant_id])
      menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
-     render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => restaurant}
+     render partial: 'admin/modules/menu_groups_select', locals: {menu_groups: menu_groups, restaurant: restaurant}
   end
 
   def new

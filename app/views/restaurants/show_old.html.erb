@@ -1,4 +1,4 @@
-<%= render :partial => 'restaurant_header', locals: {restaurant: @restaurant} %>
+<%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
 <% unless @menu_groups.empty? %>
 <div class="row">
   <% @menu_groups.each do |menu| %>
@@ -55,5 +55,5 @@
 <% end %>
 </div>
 <!-- <div class="small-3 columns">
-  <h5><%= link_to "Make Fav", new_restaurant_review_path(@restaurant), :class => "button tiny radius success right" %></h5>
+  <h5><%= link_to "Make Fav", new_restaurant_review_path(@restaurant), class: "button tiny radius success right" %></h5>
 </div> -->

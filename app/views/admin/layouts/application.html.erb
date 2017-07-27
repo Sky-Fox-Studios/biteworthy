@@ -12,7 +12,7 @@
     <link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <%= csrf_meta_tags %>
-    <%= render :partial => "/ga/tracking" %>
+    <%= render partial: "/ga/tracking" %>
   </head>
 
   <body>
@@ -24,6 +24,6 @@
         <%= yield %>
       </div>
     </div>
-    <%= render :partial => "/layouts/footer" %>
+    <%= render partial: "/layouts/footer" %>
   </body>
 </html>

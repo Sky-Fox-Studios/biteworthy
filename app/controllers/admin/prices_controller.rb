@@ -43,7 +43,7 @@ class Admin::PricesController < AdminController
     respond_to do |format|
        format.html { redirect_to :back }
        format.json { head :no_content }
-       format.js   { render :layout => false }
+       format.js   { render layout: false }
      end
   end
 

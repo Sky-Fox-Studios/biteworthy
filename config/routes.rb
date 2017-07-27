@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :users #, :path_prefix => 'admin'
+  devise_for :users
   get 'me', to: 'users#show', as: 'me'
 
 

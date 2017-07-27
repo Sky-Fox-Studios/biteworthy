@@ -31,13 +31,13 @@ class Admin::ItemsController < AdminController
   end
 
   def get_menu_groups_by_restaurant
-     menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
-     render partial: 'admin/modules/menu_groups_select', :locals => {:menu_groups => menu_groups, :restaurant => @restaurant}
+     menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
+     render partial: 'admin/modules/menu_groups_select', locals: {menu_groups: menu_groups, restaurant: @restaurant}
   end
 
   def new
     @item = Item.new
-    @menu_groups = MenuGroup.where('restaurant_id' => params[:restaurant_id])
+    @menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
     respond_with(@item)
   end
 
