@@ -129,10 +129,13 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 }
 
 .card {
-      padding:20px;
-        box-sizing:border-box;
+  padding:20px;
+  box-sizing:border-box;
   .col {
-      }
+  }
+}
+select {
+  display: block;
 }
 // .cards-container {
 //   column-break-inside: avoid;
