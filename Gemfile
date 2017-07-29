@@ -27,6 +27,9 @@ gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read
 # gem 'jquery-minicolors-rails'
 # gem 'sky-labels-rails'
 
+# Slider
+gem 'form_slider'
+
 # gem 'spring',        group: :development     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'foundation-rails', '6.2.4.0'
 gem 'aws-sdk'                                # Amazon Cloud Storage: S3
