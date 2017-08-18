@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%= render partial: "layouts/head" %>
+  <head>
+    <%= render partial: "layouts/head" %>
+  </head>
   <body>
     <div class="row">
       <%= render partial: "layouts/header" %>
@@ -8,7 +10,6 @@
         <%= render partial: "layouts/notice" %>
         <%= yield %>
         <%= render partial: "modules/search" %>
-        <%= javascript_include_tag "application" %>
       </div>
       <%= render partial: "/layouts/footer" %>
     </div>

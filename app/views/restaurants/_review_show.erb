@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="small-4 medium-6 large-4 columns">
+    <%= PhotoDecorator.decorate(item.photos).display %>
+  </div>
+  <div class="small-12 medium-6 large-8 columns">
+    <h2><%= link_to item.name, restaurant_path(item) %></h2>
+    <p class="desc">
+      <%= item.slogan %>
+    </p>
+  </div>
+</div>

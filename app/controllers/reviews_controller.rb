@@ -5,7 +5,12 @@ class ReviewsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @reviews = Review.all.order(rating: :desc)
+    if params[:filter_type].present?
+      @reviews = Review.where(review_type: params[:filter_type].singularize).order(rating: :desc)
+      @filter_type = params[:filter_type]
+    else
+      @reviews = Review.all.order(rating: :desc)
+    end
     respond_with(@reviews)
   end
 

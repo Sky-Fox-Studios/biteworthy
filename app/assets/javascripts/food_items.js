@@ -4,8 +4,7 @@ $.food_form = {
   },
 
   wireupListeners: function(){
-       //Update possible content for season based on show tag.
-    console.log("food_form");
+    //Update possible content for season based on show tag.
     $('#food_restaurant_id').change(function() {
       var restaurant_id  = $(this).val();
       $.food_form.reloadMenuSelect(restaurant_id);
