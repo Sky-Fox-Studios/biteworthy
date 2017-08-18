@@ -1,23 +1,35 @@
 <div class="row">
-   <div class="small-12 columns">
-      <h1 align="center">Your Bite Worthy Reviews</h1>
-   </div>
-    <div class="small-12 columns">
-       <% @reviews.each do |review| %>
-        <% if @review_class != review.rating %>
-        <hr>
-          <div class="row">
-            <% @review_class = review.rating %>
-            <div class="small-12 columns">
-              <h2>
-                <%= @review_class.humanize %>
-              </h2>
-            </div>
-          </div>
-        <% end %>
-         <div class="small-12 medium-6 large-4 columns">
-           <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
-         </div>
-       <% end %>
+  <div class="small-12 columns">
+    <h1 align="center" style="float:left">Your Bite Worthy Reviews</h1>
+    <div style="float:right; padding-top:.5em">
+      <span>Filter:</span>
+      <%= select_tag "review_filter", options_for_select([ "", "Restaurnts", "Items", "Foods", "Ingredients" ]) %>
     </div>
+  </div>
+  <div class="small-12 columns">
+    <% @reviews.each do |review| %>
+      <% if @review_class != review.rating %>
+        <hr>
+        <div class="row">
+          <% @review_class = review.rating %>
+          <div class="small-12 columns">
+            <h2>
+              <%= @review_class.humanize %>
+            </h2>
+          </div>
+        </div>
+      <% end %>
+      <div class="small-12 medium-6 large-4 columns">
+        <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
+      </div>
+    <% end %>
+  </div>
 </div>
+<script>
+  $("#review_filter").change(function(){
+    console.log("FILTERING");
+
+  });
+</script>
+
+
