@@ -56,7 +56,7 @@ namespace :solr do
       within release_path do
         puts "Starting solr"
         begin
-          execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:start"
+          # execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:start"
         rescue Exception => error
           puts "**Start solr error (could be already running)**"
           puts error
@@ -70,7 +70,7 @@ namespace :solr do
     on roles(:solr) do
       within release_path do
         puts "Reindex solr"
-        execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:reindex"
+        # execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:reindex"
       end
     end
   end
@@ -81,7 +81,7 @@ namespace :solr do
       within current_path do
         puts "Stopping solr"
         begin
-          execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:stop"
+          # execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:stop"
         rescue Exception => error
           puts "**Stop solr error (could have not been running)**"
           puts error
