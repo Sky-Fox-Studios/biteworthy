@@ -323,6 +323,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    materialize-sass (0.100.1)
+      sass (~> 3.3)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -503,6 +505,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   kaminari
+  materialize-sass
   meta_request
   mysql2 (~> 0.3.20)
   paperclip (~> 4.3)

@@ -1,53 +1,37 @@
 source 'https://rubygems.org'
-gem 'rake', '11.3.0'
-gem 'rails', '4.2.5'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'devise'                                 # User authentication
-gem 'cancan'                                 # Groups and roles for Devise
-gem 'kaminari'                               # Model pagination
 
-gem 'mysql2', '~> 0.3.20'
-gem 'figaro'
-gem "paperclip", "~> 4.3"
 gem "fog"
-
-#Search
+gem "font-awesome-rails"
+gem "paperclip", "~> 4.3"
 gem "progress_bar"
 gem "sunspot_rails", "2.2.4"
 gem "sunspot_solr", "2.2.7"
-
-#Error reporting
-gem 'honeybadger', '~> 3.1'
-
-#Magical additions
-gem 'jquery-rails'                           # Use jquery as the JavaScript library
-gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-
-# TODO sweet looks
-# gem 'jquery-minicolors-rails'
-# gem 'sky-labels-rails'
-
-# Slider
-gem 'form_slider'
-
-# gem 'spring',        group: :development     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'foundation-rails', '6.2.4.0'
 gem 'aws-sdk'                                # Amazon Cloud Storage: S3
-gem 'simple_form'
-gem 'jquery-datatables-rails', '~> 3.3.0'
-# Form handlers
-gem 'foundation-icons-sass-rails'            # More Icons!
-gem 'compass-rails'                          # you need this or you get an err
-gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
-gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
+gem 'cancan'                                 # Groups and roles for Devise
 gem 'coffee-rails', '~> 4.0.0'               # Use CoffeeScript for .js.coffee assets and views
-gem "font-awesome-rails"
-gem 'sprockets'
-gem 'holidays'
-# gem 'acts_as_paranoid'
-gem 'faker'                                  # Creating fake seed data
+gem 'compass-rails'                          # you need this or you get an err
+gem 'devise'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
-
+gem 'faker'                                  # Creating fake seed data
+gem 'figaro'
+gem 'form_slider'
+gem 'foundation-icons-sass-rails'            # More Icons!
+gem 'foundation-rails', '6.2.4.0'
+gem 'holidays'
+gem 'honeybadger', '~> 3.1'
+gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'jquery-rails'                           # Use jquery as the JavaScript library
+gem 'kaminari'                               # Model pagination
+gem 'materialize-sass'
+gem 'mysql2', '~> 0.3.20'
+gem 'rails', '4.2.5'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rake', '11.3.0'
+gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
+gem 'simple_form'
+gem 'sprockets'
+gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 group :development do
   gem "capistrano", "~> 3.8.1", require: false
   gem 'capistrano-rvm'
