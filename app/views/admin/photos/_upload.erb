@@ -1,4 +1,4 @@
-<%= form.file_field :image, name: "image", multiple: true  %>
+<%= form.file_field :image, name: "image[]", multiple: true  %>
 <% unless item.photos.empty? %>
   <% item.photos.each do |photo| %>
     <div class="small-12 medium-4 large-3 columns p">
