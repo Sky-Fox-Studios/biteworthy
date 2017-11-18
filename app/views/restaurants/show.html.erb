@@ -17,9 +17,9 @@
           <% menu.menu_groups.each_with_index do |menu_group, index| %>
             <div class="tabs-panel <%= index==0 ? 'is-active' : ''%>" id="menu_group-<%= menu_group.id %>">
               <div class="col s12 cards-container">
-                <div class="row" style="display:flex;flex-wrap:wrap">
+                <div class="row" style="display:flex;flex-wrap:wrap;justify-content:space-evenly">
                   <% menu_group.items.sort_by{ |i| [i.reviews.present? ? -Review.ratings[i.reviews.first.rating] : 0, i.name]}.each do |item| %>
-                    <div class="card col s12 m6 l4">
+                    <div class="card col s12 m6 l4" stlyle="flex-basis:20%">
                       <div class="card-content">
                         <h3 class="card-title"><%= link_to item.name, restaurant_item_path(@restaurant, item) %></h3>
                         <div class="center card-image">
