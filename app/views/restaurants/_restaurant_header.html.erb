@@ -2,7 +2,7 @@
   <div class="small-12 columns" >
     <div class="small-7 medium-8 large-9 columns" style="padding-left: 0 !important;">
       <div style="text-align:left;margin-top: auto; margin-bottom: auto;" class="restaurant-header-title">
-        <h1 class="restaurant-name"><%= restaurant.name %></h1>
+        <h1 class="restaurant-name"><%= link_to restaurant.name, restaurant_path(restaurant) %></h1>
         <p class="slogan"><%= restaurant.slogan %></p>
           <p><%= link_to restaurant.addresses.first.phone_number, "tel://+#{restaurant.addresses.first.phone_number}" if !restaurant.addresses.empty? %></p>
       </div>

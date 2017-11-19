@@ -1,16 +1,15 @@
 /*
- *= require_tree .
- *= require_self
  //= require foundation_and_overrides
 
 
  *= require foundation
  *= require dataTables/jquery.dataTables.foundation
  *= require foundation_and_overrides
+ *= require_tree .
+ *= require_self
 
  */
 @import 'foundation-icons';
-@import "materialize";
 /* @import "font-awesome-sprockets"; */
 @import "font-awesome";
 $cursive: 'cookie ', cursive !important;
@@ -132,7 +131,7 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 .card {
   padding:20px;
   box-sizing:border-box;
-  .col {
+  .columns {
   }
 }
 select {

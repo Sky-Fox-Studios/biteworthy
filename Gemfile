@@ -15,15 +15,14 @@ gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
 gem 'form_slider'
-gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'foundation-rails', '6.2.4.0'
+gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'
 gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
-gem 'materialize-sass'
 gem 'mysql2', '~> 0.3.20'
 gem 'rails', '4.2.5'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rake', '11.3.0'

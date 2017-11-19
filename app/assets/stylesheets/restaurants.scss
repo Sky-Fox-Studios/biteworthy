@@ -7,6 +7,10 @@
 }
 .restaurant-name{
   padding-top: 5px;
+  a {
+    color: white !important;
+    font-family: verdana, arial, helvetica, sans-serif;
+  }
 }
 .slogan{
   color:white;
@@ -41,6 +45,14 @@
 .tabs-title a{
   font-size: 22px;
 }
+.tabs-panel {
+  padding: 0rem !important;
+}
+.l4 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
 
 .item-image{
   padding: 4px 4px 4px 15px !important;
@@ -63,4 +75,29 @@
   top: 5px;
   // right: 8px !important;
   text-decoration-skip: spaces;
+}
+
+.restaurant-show {
+  .cards-container {
+
+    div {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-evenly
+    }
+    .card-content {
+      display: block;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 10px;
+      background-color: lightblue;
+      border-radius: 3%;
+      padding: 0 10px 0 10px;
+      .card-title {
+        padding-top: 10px;
+      }
+    }
+
+  }
 }

@@ -1,5 +1,5 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
-<div class="row">
+<div class="row restaurant-show">
   <% unless @menus.empty? %>
     <% @menus.each do |menu| %>
       <% if menu.name && !menu.name.empty? && !menu.name == "Default" %>
@@ -10,16 +10,18 @@
       <% unless menu.menu_groups.empty? %>
         <ul class="tabs" data-tabs id="menu-group-tabs-<%= menu.id %>">
           <% menu.menu_groups.each_with_index do |menu_group, index| %>
-            <li class="tabs-title <%= index==0 ? 'is-active' : ''%>" ><a href="#menu_group-<%= menu_group.id %>"><%= menu_group.name %></a></li>
+            <li class="tabs-title <%= 'is-active' if index==0 %>" >
+              <a href="#menu_group-<%= menu_group.id %>" data-tabs-target="#menu_group-<%= menu_group.id %>"><%= menu_group.name %></a>
+            </li>
           <% end %>
         </ul>
         <div class="tabs-content" data-tabs-content="menu-group-tabs-<%= menu.id %>">
           <% menu.menu_groups.each_with_index do |menu_group, index| %>
             <div class="tabs-panel <%= index==0 ? 'is-active' : ''%>" id="menu_group-<%= menu_group.id %>">
-              <div class="col s12 cards-container">
-                <div class="row" style="display:flex;flex-wrap:wrap;justify-content:space-evenly">
+              <div class="columns small-12 cards-container">
+                <div class="row">
                   <% menu_group.items.sort_by{ |i| [i.reviews.present? ? -Review.ratings[i.reviews.first.rating] : 0, i.name]}.each do |item| %>
-                    <div class="card col s12 m6 l4" stlyle="flex-basis:20%">
+                    <div class="card columns small-12 medium-6 large-4">
                       <div class="card-content">
                         <h3 class="card-title"><%= link_to item.name, restaurant_item_path(@restaurant, item) %></h3>
                         <div class="center card-image">
@@ -36,10 +38,8 @@
                           </div>
                         <% end %>
                         <p class="black-text"><%= item.description %></p>
-                        <% item.prices.each do |price_size| %>
-                          <div class="right-align">
-                            <span class="red-text"><%= price_to_s(price_size.value) %><%= "/#{price_size.size}" if price_size.size && !price_size.size.empty? %></span><br>
-                          </div>
+                        <% if item.prices.present? %>
+                          <%= render partial: 'items/price', locals: {item: item} %>
                         <% end %>
                       </div>
                     </div>
@@ -55,4 +55,3 @@
 <% end %>
 </div>
 <hr>
-<h5><%= link_to "Home", root_path, class: "button tiny radius success" %></h5>
