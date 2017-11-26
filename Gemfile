@@ -1,12 +1,10 @@
 source 'https://rubygems.org'
 
-gem "fog"
+
 gem "font-awesome-rails"
-gem "paperclip", "~> 4.3"
 gem "progress_bar"
 gem "sunspot_rails", "2.2.4"
 gem "sunspot_solr", "2.2.7"
-gem 'aws-sdk'                                # Amazon Cloud Storage: S3
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'coffee-rails', '~> 4.0.0'               # Use CoffeeScript for .js.coffee assets and views
 gem 'compass-rails'                          # you need this or you get an err
@@ -32,6 +30,9 @@ gem 'sprockets'
 gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 gem 'yelp'
+# File uploading
+gem 'paperclip', "5.1.0"
+gem 'aws-sdk', '2.10.75'
 group :development do
   gem "capistrano", "~> 3.8.1", require: false
   gem 'capistrano-rvm'
