@@ -12,7 +12,6 @@ gem 'devise'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
-gem 'form_slider'
 gem 'foundation-rails', '6.2.4.0'
 gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'holidays'
