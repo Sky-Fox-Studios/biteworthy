@@ -49,6 +49,9 @@ class Admin::ItemsController < AdminController
     # if params[:add_tags] && !params[:add_tags].empty?
     #   @item.tags = Tag.save_tags(params[:add_tags])
     # end
+    params[:image].each do |image|
+      @item.photos.new(user_id: current_user.id, photo_type: "Item", image: image).save
+    end
     if @item.save
       redirect_to admin_restaurant_items_path(@item.restaurant), notice: "Item: #{@item.name} created"
     else
@@ -59,7 +62,9 @@ class Admin::ItemsController < AdminController
   def update
     if @item.update(item_params)
       if params[:image]
-        @item.photos.new(user_id: current_user.id, photo_type: "Item", image: params[:image]).save
+        params[:image].each do |image|
+          @item.photos.new(user_id: current_user.id, photo_type: "Item", image: image).save
+        end
       end
       flash[:notice] = "Item updated"
       redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)

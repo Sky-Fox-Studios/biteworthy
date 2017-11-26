@@ -67,7 +67,10 @@
 }
 .review-rating-wrapper{
   position: relative;
-  bottom: 10px;
+  bottom: 0px;
+  padding-top: 8px;
+  flex-flow: column;
+  line-height: 11px;
   // right: 8px !important;
 }
 .review-rating-show{
