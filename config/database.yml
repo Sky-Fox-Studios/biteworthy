@@ -22,7 +22,7 @@ test:
 staging:
   adapter: mysql2
   database: <%= ENV["database_name"] %>
-  username: <%= ENV["database_user"] %>
+  username: <%= ENV["database_username"] %>
   password:
   host: 127.0.0.1
   port: 3306
@@ -30,7 +30,7 @@ staging:
 production:
   adapter: mysql2
   database: <%= ENV["database_name"] %>
-  username: <%= ENV["database_user"] %>
+  username: <%= ENV["database_username"] %>
   password: <%= ENV["database_password"] %>
   host: 127.0.0.1
   port: 3306
