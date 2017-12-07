@@ -2,14 +2,16 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   belongs_to :photo, polymorphic: true
   has_attached_file :image,
+    source_file_options: { all: "-auto-orient"},
     styles: {
-    icon: "32x32#",
-    thumb: "150x150#",
-    one_by_one: "500x500#",
-    sixteen_by_nine: "500x281#",
-    four_by_three: "500x375#",
-    large: "1000x1000#",
-  }
+      icon: "32x32#",
+      thumb: "150x150#",
+      one_by_one: "500x500#",
+      sixteen_by_nine: "500x281#",
+      four_by_three: "500x375#",
+      large: "1000x1000#",
+      original: ""
+    }
   #  default_url: ":rails_root/public/:style/missing.png",
   #  path: ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename"
 
