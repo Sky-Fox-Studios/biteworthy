@@ -1,9 +1,16 @@
 // Place all the styles related to the Restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass
+.restaurant-header {
+  display: flex;
+  border-bottom: 5px;
+  border-color: skyblue;
+}
 .restaurant-header-title{
-  position: relative;
-  min-height: 150px;
+  // max-height: 5rem;
+}
+.restaurant-head-image {
+  // margin: 0;
 }
 .restaurant-name{
   padding-top: 5px;
@@ -15,11 +22,14 @@
 .slogan{
   color:white;
   font-size: 1em;
-  position: absolute;
-  bottom: 0;
+  // position: absolute;
+  // bottom: 0;
   left: 0;
 }
 .cash-only{
+  width: 100%;
+  text-align: center;
+  float: right;
   color: red;
   font-size: 15px;
   font-weight: 600;
