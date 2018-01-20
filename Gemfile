@@ -21,7 +21,7 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
 gem 'mysql2', '~> 0.3.20'
-gem 'rails', '4.2.7.1'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.2.8'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rake', '11.3.0'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'simple_form'
