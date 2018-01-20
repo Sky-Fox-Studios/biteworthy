@@ -13,11 +13,11 @@
           <%= @food.description %>
         </p>
       </div>
-      <% unless @food.ingredients.empty? %>
-        <div class="small-6 columns">
-          Ingredients: <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
-        </div>
-      <% end %>
+      <%# <% unless @food.ingredients.empty? %1> %>
+      <%#   <div class="small-6 columns"> %>
+      <%#     Ingredients: <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %1> %>
+      <%#   </div> %>
+      <%# <% end %1> %>
       <% unless @food.tags.empty? %>
         <div class="small-6 columns">
           Tags: <%= @food.tags.map {|tag| link_to(tag.name, tag_path(tag)) }.to_sentence.html_safe %>
