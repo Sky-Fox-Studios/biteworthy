@@ -6,12 +6,13 @@ gem "progress_bar"
 gem "sunspot_rails", "2.2.4"
 gem "sunspot_solr", "2.2.7"
 gem 'cancan'                                 # Groups and roles for Devise
-gem 'coffee-rails', '~> 4.0.0'               # Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.2.1'               # Use CoffeeScript for .js.coffee assets and views
 gem 'compass-rails'                          # you need this or you get an err
 gem 'devise'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
+gem "font-awesome-sass", "~> 4.7.0"
 gem 'foundation-rails', '6.2.4.0'
 gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'holidays'
@@ -20,16 +21,16 @@ gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
-gem 'mysql2', '~> 0.3.20'
+gem 'mysql2', '~> 0.4.10'
+gem "nokogiri"
 gem 'rails', '4.2.8'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rake', '11.3.0'
+gem 'rake', '12.0.0'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'simple_form'
 gem 'sprockets'
-gem 'turbolinks'                             # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'therubyracer'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
-gem 'yelp'
+#
 # File uploading
 gem 'paperclip', "5.1.0"
 gem 'aws-sdk', '2.10.75'
