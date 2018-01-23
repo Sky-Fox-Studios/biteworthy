@@ -15,7 +15,6 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require foundation
-//= require turbolinks
 //= require_tree .
 $(function(){ $(document).foundation(); });
 $(function(){
