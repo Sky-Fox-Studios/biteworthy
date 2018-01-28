@@ -36,8 +36,8 @@ gem 'paperclip', "5.1.0"
 gem 'aws-sdk', '2.10.75'
 group :development do
   gem "capistrano", "~> 3.8.1", require: false
+  gem 'debug_inspector'
   gem 'capistrano-rvm'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'capistrano-rails', '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
