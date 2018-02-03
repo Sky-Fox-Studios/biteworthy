@@ -16,6 +16,7 @@
 //= require dataTables/jquery.dataTables.foundation
 //= require foundation
 //= require_tree .
+
 $(function(){ $(document).foundation(); });
 $(function(){
   // Foundation.global.namespace = ''
@@ -24,5 +25,3 @@ $(function(){
   $.ratings.init();
   setTimeout(function(){$('.alert-box').fadeOut();},11000);
 });
-
-
