@@ -80,17 +80,17 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_price
-    @item.prices.create(value: params[:price_value], size: params[:new_size])
+    @item.prices << Price.find_or_create_by(value: params[:price_value], size: params[:new_size])
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   def add_new_food
-    @item.foods.create(name: params[:food_name], description: params[:food_description], restaurant: @item.restaurant)
+    @item.foods << Food.find_or_create_by(name: params[:food_name], description: params[:food_description], restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   def add_new_extra
-    @item.extras.create(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type].to_i, restaurant: @item.restaurant)
+    @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type].to_i, restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
