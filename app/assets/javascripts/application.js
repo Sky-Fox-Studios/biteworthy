@@ -16,6 +16,7 @@
 //= require dataTables/jquery.dataTables.foundation
 //= require foundation
 //= require_tree .
+
 $(function(){ $(document).foundation(); });
 $(function(){
   // Foundation.global.namespace = ''
