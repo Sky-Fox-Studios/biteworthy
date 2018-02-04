@@ -26,7 +26,6 @@ class Admin::TagsController < AdminController
  end
 
  def update
-   binding.pry
    if @tag.update(tag_params)
      redirect_to admin_tags_path, notice: 'The tag was successfully updated.'
    else
@@ -48,6 +47,6 @@ class Admin::TagsController < AdminController
 
  # Only allow a trusted parameter "white list" through.
  def tag_params
-   params.require(:tag).permit(:name, :description, :type)
+   params.require(:tag).permit(:name, :description, :variety)
  end
 end

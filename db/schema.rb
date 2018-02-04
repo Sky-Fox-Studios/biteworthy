@@ -240,7 +240,7 @@ ActiveRecord::Schema.define(version: 20180204002531) do
   create_table "tags", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
-    t.integer  "type",        limit: 4
+    t.integer  "variety",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

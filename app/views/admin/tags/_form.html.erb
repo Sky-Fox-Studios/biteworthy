@@ -9,7 +9,7 @@
       <%= f.input :description %>
     </div>
     <div class="small-12 medium-4 columns">
-      <%= f.input :type, collection: Tag.types.map{|type| [type.first, type.first]} %
+      <%= f.input :variety, collection: Tag.varieties.map{|variety| [variety.first, variety.first]} %>
     </div>
   </div>
 
