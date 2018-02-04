@@ -11,6 +11,8 @@ class Tag < ActiveRecord::Base
 
    before_validation :normalize_tag_name
 
+   enum type: [ :ingredient, :restaurant, :diet ]
+
    def self.save_tags(tags)
       tags.split(',').map{ |tag_name|
          find_or_create_by(name: tag_name.parameterize)
