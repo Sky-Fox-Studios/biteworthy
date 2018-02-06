@@ -4,6 +4,10 @@ class Review < ActiveRecord::Base
 #    attr_accessible :user, :favoritable
    # http://snippets.aktagon.com/snippets/588-how-to-implement-reviews-in-rails-with-polymorphic-associations
    validates :rating, :user, :review, presence: true
+   scope :tag_reviews,  ->(user_id) { where(user_id: user_id, review_type: "Tag") }
+   scope :item_reviews, ->(user_id) { where(user_id: user_id, review_type: "Item") }
+   scope :restaurant_reviews, ->(user_id) { where(user_id: user_id, review_type: "Restaurant") }
+   scope :order_desc,   -> { order("rating desc") }
    enum rating: {possible_death: -5, vile: -4, disgust: -3, terrible: -2, dislike: -1,
                  "-".to_sym => 0,
                  like: 1, enjoy: 2, delicious: 3, love: 4, heavenly: 5}

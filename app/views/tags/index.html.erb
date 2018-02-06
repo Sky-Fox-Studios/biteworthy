@@ -1,24 +1,24 @@
 <div class="row">
-	<div class="small-12 medium-8 columns">
-		<h1>Manage Tags</h1>
-	</div>
-	<div class="small-12 medium-4 columns">
+  <div class="small-12 medium-8 columns">
+    <h1>Manage Tags</h1>
+  </div>
+  <div class="small-12 medium-4 columns">
     <%= link_to "New", new_tag_path %>
-	</div>
+  </div>
 </div>
 
 <div class="row">
-	<div class="small-12 columns">
-		<table class="small-12">
-		  <thead>
-		    <tr>
-		      <th></th>
-		      <th>Tag</th>
-		    </tr>
-		  </thead>
+  <div class="small-12 columns">
+    <table class="small-12">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Tag</th>
+        </tr>
+      </thead>
 
-		  <tbody>
-		    <% @tags.each do |tag| %>
+      <tbody>
+        <% @tags.each do |tag| %>
           <tr>
             <td>
               <%= link_to raw('<i class="fi-page-edit"></i>'), edit_tag_path(tag) %>

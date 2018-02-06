@@ -1,0 +1,10 @@
+<%= case review.review_type
+    when "Item", "Food"
+      link_to Restaurant.find(reviewed.restaurant_id).name, restaurant_path(reviewed.restaurant_id)
+    when "Ingredient"
+      link_to review.review_type, ingredient_path(reviewed)
+    when "Tag"
+      link_to review.review_type, tag_path(reviewed)
+    else
+      review.review_type
+    end %>

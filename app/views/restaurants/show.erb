@@ -1,5 +1,5 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
-<div class="row restaurant-show">
+<div class="restaurant-show">
   <% unless @menus.empty? %>
     <% @menus.each do |menu| %>
       <% if menu.name && !menu.name.empty? && !menu.name == "Default" %>

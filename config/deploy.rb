@@ -1,15 +1,15 @@
 # config valid only for current version of Capistrano
-lock '3.8.1'
-set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
+lock '3.8.2'
 
 set :application, 'bwd'
 set :repo_url, 'git@github.com:shadoath/bwd.git'
 set :rake, 'bundle exec rake'
+set :bundle_flags, "--deployment" # --quiet
 set :scm, :git
 set :log_level, :debug
 set :pty, true
 set :rvm_ruby_string, :local
-set :deploy_to, "/var/www/#{fetch(:application)}"
+set :deploy_to, "/data/#{fetch(:application)}"
 set :bundle_gemfile, -> { release_path.join('Gemfile') }
 set :keep_releases, 3
 

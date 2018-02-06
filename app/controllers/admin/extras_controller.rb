@@ -49,12 +49,12 @@ class Admin::ExtrasController < AdminController
   end
 
   def add_new_price
-    @extra.prices.create(value: params[:price_value], size: params[:new_size])
+    @extra.prices << Price.find_or_create_by(value: params[:price_value], size: params[:new_size])
     redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
   end
 
   def add_new_food
-    @extra.foods.create(name: params[:food_name], description: params[:food_description], restaurant: @extra.restaurant)
+    @extra.foods << Food.find_or_create_by(name: params[:food_name], description: params[:food_description], restaurant: @extra.restaurant)
     redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
   end
 

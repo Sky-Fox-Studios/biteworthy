@@ -1,5 +1,9 @@
-<div class="small-12">
+<div class="small-12 columns">
   <h1><%= "#{@restaurant.name} #{@item.name}" %></h1>
 </div>
-<%= render 'form' %>
-<%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "#{@restaurant.name} Items", admin_restaurant_items_path(@restaurant), class: "button tiny round")] } %>
+<div class="small-12 columns">
+  <%= render 'form' %>
+</div>
+<div class="small-12 columns">
+  <%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "#{@restaurant.name} Items", admin_restaurant_items_path(@restaurant), class: "button tiny round")] } %>
+</div>

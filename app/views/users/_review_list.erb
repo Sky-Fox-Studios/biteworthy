@@ -1,0 +1,11 @@
+<% review_class = nil %>
+<% reviews.each do |review| %>
+  <% if review_class != review.rating %>
+    <% review_class   = review.rating %>
+    <ul><%= review.rating.humanize %>
+  <% end %>
+  <li>
+    <%= render partial: "reviews/link",
+      locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
+    </li>
+  <% end %>

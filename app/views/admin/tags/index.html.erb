@@ -1,19 +1,21 @@
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 medium-8 columns">
     <h1>Manage Tags</h1>
+  </div>
+  <div class="small-12 medium-4 columns universal-flex-container">
+    <%= link_to "New", new_admin_tag_path, class: "universal-flex-button flex-button-natural" %>
   </div>
 </div>
 
 <div class="row">
   <div class="small-12 columns">
-    <%= link_to raw('<i class="fi-plus"></i> New Tag'), new_tag_path, class: "button tiny" %>
     <table class="small-12">
       <thead>
         <tr>
-          <th style="width: 56px;"></th>
-          <th>Tag</th>
           <th></th>
-          <th style="width: 28px;"></th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Variety</th>
         </tr>
       </thead>
 
@@ -21,18 +23,15 @@
         <% @tags.each do |tag| %>
           <tr>
             <td>
-              <%= link_to raw('<i class="fi-page-edit"></i>'), edit_tag_path(tag) %>
+              <%= link_to raw('<i class="far fa-edit"></i>'), edit_admin_tag_path(tag) %>
             </td>
             <td><%= tag.name %></td>
-            <td>
-              <%= resources_array.join(" | ").html_safe%>
-            </td>
-            <td><%= link_to raw('<i class="fi-trash"></i>'), tag_path(tag), method: :delete, data: { confirm: 'Are you sure you want to remove this tag?' } %></td>
+            <td><%= tag.description %></td>
+            <td><%= tag.variety %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
 
-    <%= paginate @tags %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="row">
   <%= simple_form_for([:admin, @restaurant, @item]) do |f| %>
     <%= hidden_field_tag 'item[restaurant_id]', @restaurant.id %>
-    <div class="row pad">
+    <div class="small-12 columns">
       <%= render partial: "admin/items/menu_groups/info_and_forms", locals: {f: f} %>
     </div>
     <div class="small-12 medium-4 columns">

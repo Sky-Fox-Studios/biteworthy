@@ -12,13 +12,5 @@ class SearchController < ApplicationController
       fulltext params[:query] if params[:query] != ""
       paginate(page: params[:page], per_page: Sunspot.config.pagination.default_per_page)
     end
-
-    @foods = Food.search do
-      fulltext params[:query] if params[:query] != ""
-      paginate(page: params[:page], per_page: Sunspot.config.pagination.default_per_page)
-    end
-
-    # binding.pry
-
   end
 end

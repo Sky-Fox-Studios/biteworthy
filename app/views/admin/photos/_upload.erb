@@ -1,5 +1,5 @@
-<%= form.file_field :image, name: "image[]", multiple: true  %>
-<% unless item.photos.empty? %>
+<%= form.file_field :image, name: "image[]", label: "Upload an image", multiple: true %>
+<% if item.photos.present? %>
   <% item.photos.each do |photo| %>
     <div class="small-12 medium-4 large-3 columns p">
       <%= image_tag photo.image(:thumb) %>
