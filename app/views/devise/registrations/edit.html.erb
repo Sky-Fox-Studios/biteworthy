@@ -1,42 +1,42 @@
 <div class="row">
-   <div class="small-12 columns">
-      <h2>Editing Bite Worthy Eater</h2>
+  <div class="small-12 columns">
+    <h2>Editing Bite Worthy Eater</h2>
+  </div>
 
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
-        <div class="row">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
 
-          <div class="small-12 medium-4 columns">
-            <%= f.input :email %>
-          </div>
+    <div class="small-12 medium-4 columns">
+      <%= f.input :email %>
+    </div>
 
-          <div class="small-12 medium-4 columns">
-            <%= f.input :user_name %>
-          </div>
+    <div class="small-12 medium-4 columns">
+      <%= f.input :user_name %>
+    </div>
 
-          <div class="small-12 medium-4 columns">
-            <%= f.input :current_password, autocomplete: "off" %>
-          </div>
+    <div class="small-12 medium-4 columns">
+      <%= f.input :current_password, autocomplete: "off" %>
+    </div>
 
-          <div class="small-12 medium-4 columns">
-          </div>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
+    <div class="small-12 medium-4 columns">
+    </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
 
 
-          <div class="small-12 columns">
-            <%= f.submit "Update", class: "button small success" %>
-          </div>
-        </div>
-      <% end %>
-      <% current_user.photos.each do |photo| %>
-        <div class="small-12 medium-4 large-3 columns">
-          <%= image_tag photo.image(:thumb) %><sup>X</sup>
-        </div>
-      <% end %>
-      <hr>
-      <p class="right">Unhappy?</p><br><br>
-      <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?  This will delete your reviews and prefrences." }, method: :delete, class: "alert button tiny right" %>
-   </div>
+    <div class="small-12 columns">
+      <%= f.submit "Update", class: "button small success" %>
+    </div>
+  <% end %>
+  <% current_user.photos.each do |photo| %>
+    <div class="small-12 medium-4 large-3 columns">
+      <%= image_tag photo.image(:thumb) %><sup>X</sup>
+    </div>
+  <% end %>
+  <hr>
+  <div class="small-12 medium-4 large-3 columns">
+    <p class="right">Unhappy?</p><br>
+    <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?  This will delete your reviews and prefrences." }, method: :delete, class: "alert button tiny right" %>
+  </div>
 </div>

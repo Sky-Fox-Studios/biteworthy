@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="small-12 medium-9 columns">
-    <h1><%=current_user.user_name%></h1>
+  <div class="small-12 medium-6 columns">
+    <h1><%= current_user.user_name %></h1>
   </div>
   <div class="small-12 medium-3 columns">
     <%= "Editor" if current_user.is_editor? %>
@@ -11,5 +11,17 @@
     <p>Photos: <%= current_user.photos.count %></p>
     <p>Reviews: <%= current_user.reviews.count %></p>
     <p>Strikes: <%= current_user.strikes %></p>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <b>Tags:</b>
+    <%= render partial: "users/review_list", locals: {reviews: @tag_reviews} %>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <b>Items:</b><br>
+    <%= render partial: "users/review_list", locals: {reviews: @item_reviews} %>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <b>Restaurants:</b>
+    <%= render partial: "users/review_list", locals: {reviews: @restaurant_reviews} %>
   </div>
 </div>
