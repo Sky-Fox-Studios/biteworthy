@@ -1,0 +1,38 @@
+<div class="row">
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <ul>
+        <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <hr>
+  <% unless @review.new_record? %>
+    <%= simple_form_for @review do |f| %>
+      <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+      <div class="small-12 columns">
+        <%= render partial: "/#{@review.review_type.downcase.pluralize}/review_show", locals: {item: @reviewable} %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= form_tag new_review_path, method: "get" do |f| %>
+      <%= select_tag "review_type", options_for_select(Review.review_types, @review_type), allow_blank: true, onChange: 'this.form.submit();' %>
+    <% end %>
+    <%= simple_form_for @review do |f| %>
+      <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+      <%= f.input :review_type, as: :hidden, input_html: {value: @review_type} %>
+      <div class="small-12 columns">
+        <%= f.input :review_id, collection: @options.map {|option| [option.name, option.id]}, include_blank: false %>
+      </div>
+      <div class="small-6 medium-4 large-3 columns">
+        <%= f.input :rating, collection: Review.ratings.to_a.reverse.map {|k, v| [k.humanize, k]}, include_blank: false, selected: Review.ratings[@review.rating], selected: @review.rating %>
+      </div>
+      <div class="small-12 columns">
+        <%= f.submit class: "button tiny radius success" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

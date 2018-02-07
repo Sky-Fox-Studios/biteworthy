@@ -5,9 +5,9 @@ class ReviewsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    if params[:filter_type].present?
-      @reviews = Review.where(review_type: params[:filter_type].singularize).order(rating: :desc)
-      @filter_type = params[:filter_type]
+    if params[:review_type].present?
+      @reviews = Review.where(review_type: params[:review_type].singularize).order(rating: :desc)
+      @review_type = params[:review_type]
     else
       @reviews = Review.all.order(rating: :desc)
     end
@@ -20,6 +20,22 @@ class ReviewsController < ApplicationController
 
   def new
     session[:return_to] ||= request.referer
+    @review_type = params[:review_type]
+
+    @options = case @review_type
+    when "Restaurant"
+      Restaurant.active
+    when "Item"
+      Item.active
+    when "Food"
+      Food.active
+    when "Ingredient"
+      Ingredient.all
+    when "Tag"
+      Tag.all
+    else
+      []
+    end
     @review = Review.new
     respond_with(@review)
   end
@@ -36,9 +52,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    review_params[:rating] = review_params[:rating].to_i
-    @review = @reviewable.reviews.new(review_params)
-    @review.save
+    @review = Review.find_or_initialize_by(user_id: review_params[:user_id], review_id: review_params[:review_id])
+    @review.update(review_params)
     redirect_to session.delete(:return_to), notice: "Review updated"
   end
 
@@ -78,5 +93,4 @@ class ReviewsController < ApplicationController
       end
       @reviewable
    end
-
 end

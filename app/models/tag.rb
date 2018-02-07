@@ -12,7 +12,7 @@ class Tag < ActiveRecord::Base
 
    before_validation :normalize_tag_name
 
-   enum variety: [ :ingredient, :restaurant, :diet ]
+   enum variety: [ :ingredient, :restaurant, :choice, :nature ]
 
    def self.save_tags(tags)
       tags.split(',').map{ |tag_name|

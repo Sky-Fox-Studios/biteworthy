@@ -1,13 +1,16 @@
 <div class="row">
   <div class="small-12 columns">
-    <h1 align="center" style="float:left">Your Bite Worthy Reviews</h1>
-    <div style="float:right; padding-top:.5em">
+    <h1>Your Bite Worthy Reviews</h1>
+  </div>
+    <div class="small-8 medium-9 large-10 columns">
       <span>Filter:</span>
       <%= form_tag reviews_path, method: "get" do |f| %>
-        <%= select_tag "filter_type", options_for_select([ "", "Restaurants", "Items", "Foods", "Ingredients" ], @filter_type), onChange: 'this.form.submit();' %>
+        <%= select_tag "review_type", options_for_select([ "", "Restaurants", "Items", "Foods", "Ingredients" ], @review_type), onChange: 'this.form.submit();' %>
       <% end %>
     </div>
-  </div>
+    <div class="small-12 medium-4 columns universal-flex-container">
+      <%= link_to "New", new_review_path, class: "universal-flex-button flex-button-natural" %>
+    </div>
   <div class="small-12 columns">
     <% if @reviews.present? %>
       <% @reviews.each do |review| %>
@@ -27,7 +30,7 @@
         </div>
       <% end %>
     <% else %>
-      <h5>Oh noos! You have no <%= "#{@filter_type} " %>reviews.</h5>
+      <h5>Oh noos! You have no <%= "#{@review_type} " %>reviews.</h5>
       <h6><%= current_user ? "Start reviewing!" : "Login and value" %></h6>
     <% end %>
   </div>

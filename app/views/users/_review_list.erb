@@ -6,6 +6,6 @@
   <% end %>
   <li>
     <%= render partial: "reviews/link",
-      locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
+      locals: {review: review, reviewed: review.review} %>
     </li>
   <% end %>

@@ -16,6 +16,10 @@ class Review < ActiveRecord::Base
     Review.ratings[self.rating]
    end
 
+   def self.review_types
+     ["Restaurant", "Item", "Food", "Ingredient" ]
+   end
+
    def to_param
      "#{id}-#{user.user_name}"
    end

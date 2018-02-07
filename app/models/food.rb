@@ -20,6 +20,8 @@ class Food < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: :restaurant_id
 
+  scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
+
   searchable do
     text    :name,         boost: 11
     text    :description
@@ -36,5 +38,4 @@ class Food < ActiveRecord::Base
   def trim_name
     self.name = self.name.strip.downcase unless self.name.nil?
   end
-
 end
