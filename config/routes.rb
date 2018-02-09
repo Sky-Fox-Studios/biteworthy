@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    end
 
   resources :reviews, :tags
+  get 'reviews/lookup', to: 'reviews#lookup', as: "lookup"
 
   namespace :admin do
     root 'layouts#home'

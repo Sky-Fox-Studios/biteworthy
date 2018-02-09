@@ -1,6 +1,8 @@
 <div class="row">
   <div class="small-12 columns">
-    <h1>Something new...</h1>
-    <%= render 'new_form' %>
+    <h1>Rate something new</h1>
+    <div id="new-review-form">
+      <%= render partial: 'new_form', locals: { review: @review, reviewable: @reviewable, review_type: @review_type, options: @options } %>
+    </div>
   </div>
 </div>

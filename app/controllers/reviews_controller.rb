@@ -18,6 +18,27 @@ class ReviewsController < ApplicationController
     respond_with(@review)
   end
 
+  def lookup
+    @review_type = params[:review_type]
+    @options = case @review_type
+    when "Restaurant"
+      Restaurant.active
+    when "Item"
+      Item.active
+    when "Food"
+      Food.active
+    when "Ingredient"
+      Ingredient.all
+    when "Tag"
+      Tag.all
+    else
+      []
+    end
+    @review = Review.new
+    binding.pry
+    render partial: 'reviews/new_form', locals: { review: @review, reviewable: @reviewable, review_type: @review_type, options: @options }
+  end
+
   def new
     session[:return_to] ||= request.referer
     @review_type = params[:review_type]
