@@ -9,20 +9,6 @@ Rails.application.configure do
    #    AWS_SECRET_ACCESS_KEY:   "+82hOkPePIKqSX4B23j8WJabOsd8YV/P0wsPnQfT"
    # }
    Paperclip.options[:command_path] = "/usr/bin/convert/"
-   Paperclip::Attachment.default_options.merge!({
-     path: "images/dev/:class/:id/:attachment/:style/img_:fingerprint",
-     storage: :fog,
-     fog_credentials: {
-       provider:           'Rackspace',
-       rackspace_username: ENV['rackspace_username'],
-       rackspace_api_key:  ENV['rackspace_api_key'],
-       rackspace_region:   :dfw,
-       persistent:         true
-     },
-     fog_directory: ENV['rackspace_cdn_dir'],
-     fog_public:    true,
-     fog_host:      ENV['rackspace_cdn_name']
-   })
 
    # In the development environment your application's code is reloaded on
    # every request. This slows down response time but is perfect for development

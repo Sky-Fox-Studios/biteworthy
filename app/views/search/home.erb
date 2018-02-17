@@ -4,14 +4,14 @@
   </div>
   <% if @restaurants.results.present? %>
     <div class="small-12 columns">
-      <h3 align="center">Restaurants:</h3>
+      <h3 align="center"><%= @restaurants.results.count %> restaurants:</h3>
     </div>
     <% @restaurants.results.each do |restaurant| %>
       <%= render partial: "restaurants/basic", locals: {restaurant: restaurant} if restaurant.active? %>
     <% end %>
   <% end %>
   <div class="small-12 columns">
-    <h3 align="center">Items: <%= @items.results.count %></h3>
+    <h3 align="center"><%= @items.results.count %> items:</h3>
   </div>
     <% @items.results.each do |item| %>
       <%= render partial: "items/show", locals: {item: item} %>
