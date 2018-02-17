@@ -1,21 +1,7 @@
 Rails.application.configure do
   config.app_version = ".6.0"
 
-   Paperclip.options[:command_path] = "/usr/bin/convert/"
-   Paperclip::Attachment.default_options.merge!({
-     path: "images/production/:class/:id/:attachment/:style/img_:fingerprint",
-     storage: :fog,
-     fog_credentials: {
-       provider:           'Rackspace',
-       rackspace_username: ENV['rackspace_username'],
-       rackspace_api_key:  ENV['rackspace_api_key'],
-       rackspace_region:   :dfw,
-       persistent:         true
-     },
-     fog_directory: ENV['rackspace_cdn_dir'],
-     fog_public:    true,
-     fog_host:      ENV['rackspace_cdn_name']
-   })
+  Paperclip.options[:command_path] = "/usr/bin/convert/"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
