@@ -2,13 +2,14 @@
   <div class="small-12 columns">
     <h2>You are looking for: <b><%= @search %></b></h2>
   </div>
-  <div class="small-12 columns">
-    <h3 align="center">Restaurants:</h3>
-  </div>
+  <% if @restaurants.results.present? %>
+    <div class="small-12 columns">
+      <h3 align="center">Restaurants:</h3>
+    </div>
     <% @restaurants.results.each do |restaurant| %>
       <%= render partial: "restaurants/basic", locals: {restaurant: restaurant} if restaurant.active? %>
     <% end %>
-  </div>
+  <% end %>
   <div class="small-12 columns">
     <h3 align="center">Items: <%= @items.results.count %></h3>
   </div>

@@ -1,4 +1,4 @@
-<h1>Editing <%= @restaurant.name %> Extra:</h1>
+<h1>Editing <%=link_to @restaurant.name, admin_restaurant_path(@restaurant) %> Extra:</h1>
 
 <%= render 'form' %>
 
