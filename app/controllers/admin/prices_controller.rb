@@ -1,5 +1,5 @@
 class Admin::PricesController < AdminController
-  before_action :set_price, only: [:show, :edit, :update, :destroy]
+  before_action :set_price, only: [:show, :edit, :update, :destroy, :add_new_price]
   before_action :find_priced, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
@@ -47,9 +47,18 @@ class Admin::PricesController < AdminController
      end
   end
 
+  def add_new_price
+    price = Price.find_or_initialize_by(value: params[:price_value], size: params[:new_size])
+    price.update(price_params)
+    redirect_to edit_polymorphic_path([:admin, @priced.restaurant, @priced])
+  end
+
   private
   def set_price
-    @price = Price.find(params[:id])
+    @price = Price.find(params[:id]) if params[:id].present?
+    if params[:price].present? && price_params[:priced_id].present? && price_params[:priced_type].present?
+      @priced = price_params[:priced_type].constantize.find(price_params[:priced_id])
+    end
   end
 
   def price_params

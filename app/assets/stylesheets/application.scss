@@ -21,9 +21,9 @@ $cursive: 'cookie ', cursive !important;
 .p {
   padding: 5px;
 }
-// .zpad {
-//   padding: 0px 0px 0px 0px;
-// }
+.row {
+  padding: 0px 5px 0px 5px;
+}
 // .pad {
 //   padding: 0px 15px 0px 15px;
 // }
@@ -139,26 +139,7 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 select {
   display: block;
 }
-// .cards-container {
-//   column-break-inside: avoid;
-//   .card {
-//     display: inline-block;
-//     overflow: visible;
-//   }
-// }
+.pagination a, .pagination button{
+  display: inline;
+}
 
-// @media #{$small-and-down} {
-//   .cards-container {
-//     @include column-count(1);
-//   }
-// }
-// @media #{$medium-and-up} {
-//   .cards-container {
-//     @include column-count(2);
-//   }
-// }
-// @media #{$large-and-up} {
-//   .cards-container {
-//     @include column-count(3);
-//   }
-// }

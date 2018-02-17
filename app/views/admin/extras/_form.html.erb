@@ -9,19 +9,16 @@
     </div>
     <div class="small-12 large-2 columns">
       <%= f.input :extra_type, as: :select, collection: Extra.extra_types.keys.to_a, include_blank: false %>
-      <!-- <% Extra.extra_types.each do |extra_type| %>
-      <%= "<input type='radio' name='extra[extra_type]' id='extra_type_#{extra_type.first}' value=#{extra_type.second}> #{extra_type.first} <br>".html_safe %>
-    <% end %> -->
-  </div>
-  <div class="small-12 medium-8 columns">
-    <%= render partial: "admin/photos/upload", locals: {form: f, item: @extra} %>
-  </div>
-  <div class="small-12 columns">
-    <%= f.submit class: "button tiny success radius" %>
-  </div>
-<% end %>
+    </div>
+    <div class="small-12 medium-8 columns">
+      <%= render partial: "admin/photos/upload", locals: {form: f, item: @extra} %>
+    </div>
+    <div class="small-12 columns">
+      <%= f.submit class: "button tiny success radius" %>
+    </div>
+  <% end %>
+</div>
 <% unless @extra.new_record? %>
   <%= render partial: "admin/extras/foods/info_and_forms" %>
   <%= render partial: "admin/extras/prices/info_and_forms" %>
 <% end %>
- </div>

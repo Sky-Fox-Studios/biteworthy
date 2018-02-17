@@ -1,10 +1,12 @@
-<%= simple_form_for(extra, url: admin_restaurant_extra_add_new_food_path(restaurant, extra), method: :post) do |f| %>
+<%= simple_form_for(extra.foods.new, url: admin_restaurant_extra_add_new_food_path(restaurant, extra), method: :post) do |f| %>
+  <%= f.hidden_field :restaurant_id, value: extra.restaurant.id %>
+  <%= hidden_field_tag 'extra_id', extra.id %>
   <div class="row">
     <div class="small-4 columns">
-      <input type="text" id="extra[food_name]" name="food_name" placeholder="Name" />
+      <%= f.input :name %>
     </div>
     <div class="small-5 columns">
-      <input type="text" id="extra[food_description]" name="food_description" placeholder="Description" />
+      <%= f.input :description %>
     </div>
     <div class="small-3 columns">
         <%= f.submit class: "button tiny radius success", value: 'Create' %>

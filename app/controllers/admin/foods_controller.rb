@@ -62,6 +62,21 @@ class Admin::FoodsController < AdminController
      redirect_to admin_foods_path
   end
 
+  def add_new_food
+    food = Food.find_or_create_by(name: food_params[:name], description: food_params[:description], restaurant_id: food_params[:restaurant_id])
+    if params[:extra_id].present?
+      @extra = Extra.find(params[:extra_id])
+      @extra.foods << food
+      redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
+    elsif params[:item_id].present?
+      @item = Item.find(params[:item_id])
+      @item.foods << food
+      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    else
+      redirect_to :back
+    end
+  end
+
   def add_ingredient
     unless params[:ingredient_id].empty?
       ingredient = Ingredient.find(params[:ingredient_id])

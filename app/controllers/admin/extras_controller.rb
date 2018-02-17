@@ -48,20 +48,13 @@ class Admin::ExtrasController < AdminController
     redirect_to admin_restaurant_extras_path(@restaurant), notice: "Extra removed"
   end
 
-  def add_new_price
-    @extra.prices << Price.find_or_create_by(value: params[:price_value], size: params[:new_size])
-    redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
-  end
-
-  def add_new_food
-    @extra.foods << Food.find_or_create_by(name: params[:food_name], description: params[:food_description], restaurant: @extra.restaurant)
-    redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
-  end
-
   def add_foods
-    unless (params[:extra].empty?)
-      foods = Food.where(id: params[:extra][:food_ids])
-      @extra.foods = foods
+    foods = Food.where(id: params[:extra][:food_ids])
+    if params[:extra_id].present?
+      @extra = Extra.find(params[:extra_id])
+      foods.each do |food|
+        @extra.foods << food unless @extra.foods.include? food
+      end
     end
     redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
   end
@@ -80,9 +73,9 @@ class Admin::ExtrasController < AdminController
 
   private
   def just_set_extra
-    if params[:id]
+    if params[:id].present?
       @extra = Extra.find(params[:id])
-    elsif params[:extra_id]
+    elsif params[:extra_id].present?
       @extra = Extra.find(params[:extra_id])
     end
   end
@@ -98,5 +91,5 @@ class Admin::ExtrasController < AdminController
 
   def extra_params
     params.require(:extra).permit(:restaurant_id, :name, :description, :extra_type)
-    end
+  end
 end

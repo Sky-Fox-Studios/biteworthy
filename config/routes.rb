@@ -46,9 +46,9 @@ Rails.application.routes.draw do
       end
       resources :extras do
         resources :prices
-        post 'add_new_price', to: 'extras#add_new_price', as: "add_new_price"
+        post 'add_new_price', to: 'prices#add_new_price', as: "add_new_price"
+        post 'add_new_food',  to: 'foods#add_new_food',   as: "add_new_food"
         post 'add_foods',     to: 'extras#add_foods',     as: "add_foods"
-        post 'add_new_food',  to: 'extras#add_new_food',  as: "add_new_food"
         post 'remove_food',   to: 'extras#remove_food',   as: "remove_food"
         post 'remove_photo',  to: 'extras#remove_photo',  as: "remove_photo"
       end
