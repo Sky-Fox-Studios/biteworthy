@@ -24,6 +24,7 @@
   <% end %><hr>
   <% unless @item.new_record? %>
     <%= render partial: "admin/items/foods/info_and_forms" %>
+    <%= render partial: "admin/items/tags/info_and_forms" %>
     <%= render partial: "admin/items/extras/info_and_forms" %>
     <%= render partial: "admin/items/prices/info_and_forms" %>
   <% end %>

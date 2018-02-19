@@ -8,16 +8,16 @@ class Review < ActiveRecord::Base
    scope :item_reviews, ->(user_id) { where(user_id: user_id, review_type: "Item") }
    scope :restaurant_reviews, ->(user_id) { where(user_id: user_id, review_type: "Restaurant") }
    scope :order_desc,   -> { order("rating desc") }
-   enum rating: {possible_death: -5, vile: -4, disgust: -3, terrible: -2, dislike: -1,
+   enum rating: {possible_death: -6, allergic: -5, vile: -4, disgust: -3, terrible: -2, dislike: -1,
                  "-".to_sym => 0,
-                 like: 1, enjoy: 2, delicious: 3, love: 4, heavenly: 5}
+                 like: 1, enjoy: 2, great: 3, delicious: 3, love: 4, heavenly: 5}
 
    def get_rating
     Review.ratings[self.rating]
    end
 
    def self.review_types
-     ["Restaurant", "Item", "Food", "Ingredient" ]
+     ["Restaurant", "Item", "Food", "Ingredient", "Tag"]
    end
 
    def to_param

@@ -1,5 +1,5 @@
 <div class="small-12 columns">
-  <h1><%= "#{@restaurant.name} #{@item.name}" %></h1>
+<h1><%= link_to @restaurant.name, admin_restaurant_path(@restaurant)%> <%= @item.name %></h1>
 </div>
 <div class="small-12 columns">
   <%= render 'form' %>

@@ -1,0 +1,15 @@
+<%= simple_form_for(item.tags.new, url: admin_restaurant_item_add_new_tag_path(restaurant, item), method: :post) do |f| %>
+  <%= f.hidden_field :restaurant_id, value: item.restaurant.id %>
+  <%= hidden_field_tag 'item_id', item.id %>
+  <div class="row">
+    <div class="small-4 columns">
+      <%= f.input :name %>
+    </div>
+    <div class="small-5 columns">
+      <%= f.input :description %>
+    </div>
+    <div class="small-3 columns">
+        <%= f.submit class: "button tiny radius success", value: 'Add' %>
+    </div>
+  </div>
+<% end %>

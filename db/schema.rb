@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204002531) do
+ActiveRecord::Schema.define(version: 20180219073041) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -111,6 +111,11 @@ ActiveRecord::Schema.define(version: 20180204002531) do
 
   add_index "items_menu_groups", ["item_id"], name: "index_items_menu_groups_on_item_id", using: :btree
   add_index "items_menu_groups", ["menu_group_id"], name: "index_items_menu_groups_on_menu_group_id", using: :btree
+
+  create_table "items_tags", force: :cascade do |t|
+    t.integer "item_id", limit: 4
+    t.integer "tag_id",  limit: 4
+  end
 
   create_table "menu_groups", force: :cascade do |t|
     t.integer  "restaurant_id", limit: 4

@@ -5,7 +5,7 @@
     <div class="small-8 medium-9 large-10 columns">
       <span>Filter:</span>
       <%= form_tag reviews_path, method: "get" do |f| %>
-        <%= select_tag "review_type", options_for_select([ "", "Restaurants", "Items", "Foods", "Ingredients" ], @review_type), onChange: 'this.form.submit();' %>
+        <%= select_tag "review_type", options_for_select(Review.review_types, @review_type), onChange: 'this.form.submit();' %>
       <% end %>
     </div>
     <div class="small-12 medium-4 columns universal-flex-container">

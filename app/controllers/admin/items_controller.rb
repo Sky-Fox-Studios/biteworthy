@@ -2,12 +2,15 @@ class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :just_set_item, only: [
     :add_price,
+    :add_tag,
     :add_food,
     :add_extra,
     :add_new_price,
     :add_new_food,
+    :add_new_tag,
     :add_new_extra,
     :remove_menu_group,
+    :remove_tag,
     :remove_food,
     :remove_extra,
     :remove_photo
@@ -46,9 +49,6 @@ class Admin::ItemsController < AdminController
 
   def create
     @item = Item.new(item_params)
-    # if params[:add_tags] && !params[:add_tags].empty?
-    #   @item.tags = Tag.save_tags(params[:add_tags])
-    # end
     params[:image].each do |image|
       @item.photos.new(user_id: current_user.id, photo_type: "Item", image: image).save
     end
@@ -84,6 +84,12 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
+  def add_new_tag
+    tag = Tag.find_or_initialize_by(name: params[:name], description: params[:description])
+    tag.update(tag_params)
+    @item.tags << tag unless @item.tags.include? tag
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+  end
   def add_new_food
     @item.foods << Food.find_or_create_by(name: params[:food_name], description: params[:food_description], restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
@@ -91,6 +97,14 @@ class Admin::ItemsController < AdminController
 
   def add_new_extra
     @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type].to_i, restaurant: @item.restaurant)
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+  end
+
+  def add_tag
+    unless (params[:tag_id].empty?)
+      tag = Tag.find(params[:tag_id])
+      @item.tags << tag unless @item.tags.include? tag
+    end
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
@@ -118,6 +132,11 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
   end
 
+  def remove_tag
+    tag = Tag.find(params[:tag_id])
+    @item.tags.delete(tag)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+  end
   def remove_food
     food = Food.find(params[:food_id])
     @item.foods.delete(food)
@@ -143,7 +162,8 @@ class Admin::ItemsController < AdminController
       @restaurant  = Restaurant.find(@item.restaurant_id)
       @menu_groups = MenuGroup.includes(:restaurant).where(restaurant: @restaurant).order(:name)
       @foods       = Food.where(restaurant: @restaurant).order(:name)
-      @extras   = Extra.where(restaurant: @restaurant).order(:name)
+      @extras      = Extra.where(restaurant: @restaurant).order(:name)
+      @tags        = Tag.order(:name)
     else
       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end
@@ -158,7 +178,11 @@ class Admin::ItemsController < AdminController
   end
 
   def item_params
-      params.require(:item).permit(:restaurant_id, :name, :description, menu_group_ids: [],
-      food_attributes: [:restaurant_id, :name, :description])
-    end
+    params.require(:item).permit(:restaurant_id, :name, :description, menu_group_ids: [],
+                                 food_attributes: [:restaurant_id, :name, :description])
+  end
+
+  def tag_params
+    params.require(:tag).permit(:name, :description)
+  end
 end
