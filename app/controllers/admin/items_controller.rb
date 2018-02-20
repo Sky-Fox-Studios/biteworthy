@@ -5,6 +5,7 @@ class Admin::ItemsController < AdminController
     :add_tag,
     :add_food,
     :add_extra,
+    :add_new,
     :add_new_price,
     :add_new_food,
     :add_new_tag,
@@ -77,6 +78,13 @@ class Admin::ItemsController < AdminController
   def destroy
     @item.destroy
     redirect_to admin_restaurant_items_path(@restaurant)
+  end
+
+  def add_new
+    # tag = Tag.find_or_initialize_by(name: params[:name], description: params[:description])
+    # tag.update(tag_params)
+    # @item.tags << tag unless @item.tags.include? tag
+    # redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
   def add_new_price

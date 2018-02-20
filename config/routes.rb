@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resources :addresses
       resources :items do
         resources :prices
+        post 'add_new',           to: 'items#add_new',           as: "add_new"
         post 'add_new_tag',       to: 'items#add_new_tag',       as: "add_new_tag"
         post 'add_new_food',      to: 'items#add_new_food',      as: "add_new_food"
         post 'add_new_price',     to: 'items#add_new_price',     as: "add_new_price"
