@@ -1,9 +1,12 @@
 <%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
 <div class="row">
-  <div class="small-3 columns">
-    <%= PhotoDecorator.decorate(@food.photos).display %>
+  <div class="small-12 medium-6 large-3 columns">
+    <div class="center">
+      <%= PhotoDecorator.decorate(@food.photos).display %>
+    </div>
+    <%= render partial: 'review_vote', locals: {food: @food} %>
   </div>
-  <div class="small-9 columns food-item-name">
+  <div class="small-12 medium-6 large-9 columns food-item-name">
     <div class="row">
       <div class="small-6 columns">
         <h3>
@@ -13,11 +16,6 @@
           <%= @food.description %>
         </p>
       </div>
-      <%# <% unless @food.ingredients.empty? %1> %>
-      <%#   <div class="small-6 columns"> %>
-      <%#     Ingredients: <%= @food.ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %1> %>
-      <%#   </div> %>
-      <%# <% end %1> %>
       <% unless @food.tags.empty? %>
         <div class="small-6 columns">
           Tags: <%= @food.tags.map {|tag| link_to(tag.name, tag_path(tag)) }.to_sentence.html_safe %>

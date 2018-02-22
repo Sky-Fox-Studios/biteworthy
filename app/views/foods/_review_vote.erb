@@ -1,0 +1,10 @@
+<% if current_user %>
+  <div id="rating-reviews-food-<%=food.id%>" class="review-rating-wrapper">
+    <% review = food.reviews.first %>
+    <% if review %>
+      <%= render partial: "/modules/rating_reviews", locals: { rating: Review.ratings[review.rating], reviewable: food } %>
+    <% else %>
+      <%= render partial: "/modules/rating_reviews", locals: { rating: nil, reviewable: food } %>
+    <% end %>
+  </div>
+<% end %>
