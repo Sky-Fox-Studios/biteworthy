@@ -25,3 +25,14 @@ $(function(){
   $.ratings.init();
   setTimeout(function(){$('.alert-box').fadeOut();},11000);
 });
+
+jQuery(window).scroll(function() {
+  var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+
+  if (scrollBottom < 150) {
+    $(".footer").slideUp('slow');
+  }
+  if (scrollBottom >= 150) {
+    $(".footer").slideDown('slow');
+  }
+});
