@@ -12,7 +12,7 @@
                 <div class="columns small-8">
                   <input type="search" name="query" placeholder="Restaurant, food..." autofocus>
                 </div>
-                <div class="columns small-4 pad">
+                <div class="columns small-4">
                   <%= button_tag(class: "button") do %>
                     <i class="fi-magnifying-glass"></i>
                   <% end %>
@@ -52,9 +52,9 @@
             <% end %>
           </ul>
         <% else %>
-          <ul class="menu">
-            <li><%= link_to "Login".html_safe, user_session_path %></li>
-          </ul>
+          <div class="universal-flex-container">
+            <%= link_to "Login".html_safe, user_session_path, class: "universal-flex-button", style: "margin:.5rem;" %>
+          </div>
         <% end %>
       </div>
     </div>

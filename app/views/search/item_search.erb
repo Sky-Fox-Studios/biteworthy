@@ -3,7 +3,7 @@
     <h2>
       <%= @items.count %>
       <%= link_to @restaurant.name, restaurant_path(@restaurant) if @restaurant %>
-      <%= "item".pluralize(@items.count) %> with the <%= search_type %> of:
+      <%= "item".pluralize(@items.count) %> containing <%= search_type %>:
       <b>
         <%= link_to(@search.name, polymorphic_path([@restaurant, @search])) if @restaurant.present? %>
         <%= link_to @search.name, polymorphic_path(@search) unless @restaurant.present? %>

@@ -1,0 +1,7 @@
+<% if !current_user.present? %>
+  <div class="row center">
+    <div class="small-12 columns">
+      <%= link_to "Sign up", new_user_registration_path %>
+    </div>
+  </div>
+<% end %>

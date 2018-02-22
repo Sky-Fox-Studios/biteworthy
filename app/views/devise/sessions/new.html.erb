@@ -1,36 +1,33 @@
 <div class="row">
-  <div class="small-12 medium-6  columns">
-    <h2  style="text-align:center;">Insert Credentials</h2>
-    <div class="small-12 medium-12">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
+  <div class="small-12 columns">
+    <h2 class="center">Insert Credentials</h2>
+  </div>
+  <div class="small-12 medium-12">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="small-12 medium-6 columns">
+        <%= f.input :email, autofocus: true %>
       </div>
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
+      <div class="small-12 medium-6 columns">
+        <%= f.input :password, autocomplete: "off" %>
       </div>
-      <div class="row">
-        <div class="small-6 columns">
-          <% if devise_mapping.rememberable? -%>
+      <div class="small-12 medium-6 columns">
+        <% if devise_mapping.rememberable? -%>
           <div class="field">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>
-          <% end %>
-        </div>
-        <div class="small-6 columns ">
-          <div class="actions" style="float:right;">
-            <%= f.submit "Log in", class: "button success" %>
-          </div>
+        <% end %>
+      </div>
+      <div class="small-12 medium-6 columns">
+        <div class="actions universal-flex-container" style="float:right;">
+          <%= f.submit "Log in", class: "button success universal-flex-button" %>
         </div>
       </div>
-      <% end %>
-      <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
     </div>
-  </div>
-  <div class="small-12 medium-6  columns" style="padding:11px;text-align:center;">
-    <h2 style="display:block;height: 200px;  line-height: 200px;"><%= link_to "<b>Create Account</b>".html_safe, new_registration_path(resource_name), class: "button round" %></h2>
-  </div>
+  <% end %>
+</div>
+<hr>
+<div class="universal-flex-container">
+  <%= link_to "<b>Create an account</b>".html_safe, new_registration_path(resource_name), class: "universal-flex-button flex-button-natural" %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "universal-flex-button flex-button-natural" %><br />
 </div>
