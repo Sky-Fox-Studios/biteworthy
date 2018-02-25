@@ -4,15 +4,16 @@
   </div>
   <% if @restaurants.results.present? %>
     <div class="small-12 columns">
-      <h3 align="center"><%= @restaurants.results.count %> restaurants:</h3>
+      <h2 align="center"><%= @restaurants.results.count %> restaurants:</h2>
     </div>
     <% @restaurants.results.each do |restaurant| %>
       <%= render partial: "restaurants/basic", locals: {restaurant: restaurant} if restaurant.active? %>
     <% end %>
   <% end %>
   <div class="small-12 columns">
-    <h3 align="center"><%= @items.results.count %> items:</h3>
+    <h2 align="center"><%= @items.results.count %> items:</h2>
   </div>
+  <div class="search-items-show">
     <% @items.results.each do |item| %>
       <%= render partial: "items/show", locals: {item: item} %>
     <% end %>

@@ -126,6 +126,6 @@ class Admin::FoodsController < AdminController
     end
 
     def food_params
-       params.require(:food).permit(:restaurant_id, :name, :description)
+       params.require(:food).permit(:restaurant_id, :name, :description, :food_group)
     end
 end

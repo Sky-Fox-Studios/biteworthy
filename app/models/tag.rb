@@ -14,6 +14,11 @@ class Tag < ActiveRecord::Base
 
    enum variety: [ :ingredient, :restaurant, :choice, :nature ]
 
+  searchable do
+    text    :name
+    text    :description
+    string  :variety
+  end
    def self.save_tags(tags)
       tags.split(',').map{ |tag_name|
          find_or_create_by(name: tag_name.parameterize)

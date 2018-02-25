@@ -15,4 +15,23 @@ p.desc {
 .white{
   color: white;
 }
+.search-items-show{
+  margin: .5rem;
+  padding: .5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .item-show{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
 
+    @media screen and (max-width: 39.9375rem) {
+      flex-basis: 50%;
+    }
+    @media screen and (min-width: 40rem) {
+      flex-basis: 30%;
+    }
+  }
+}

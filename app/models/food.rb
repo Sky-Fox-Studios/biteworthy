@@ -20,11 +20,13 @@ class Food < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: :restaurant_id
 
+  enum food_group: [:dairy, :oils_fats, :meat_poultry, :fish_seafood, :vegtables, :fruits, :breads_cereals_grains, :spices, :desserts_sweets, :water]
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
 
   searchable do
     text    :name,         boost: 11
     text    :description
+    string  :food_group
     text    :tags do
       tags.map { |tag| tag.name }
     end

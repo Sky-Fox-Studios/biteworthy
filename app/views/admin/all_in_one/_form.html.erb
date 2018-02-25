@@ -15,7 +15,7 @@
 
       <div class="small-12 columns" id="restaurant-select">
         <% if @restaurant %>
-        <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant , label_method: lambda { |restaurant| "#{restaurant.name}" } %>
+        <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, selected: @restaurant, label_method: lambda { |restaurant| "#{restaurant.name}" } %>
         <% else %>
         <%= f.association :restaurant, collection: Restaurant.all.order(:name), as: :select, label_method: lambda { |restaurant| "#{restaurant.name}" } %>
         <% end %>
