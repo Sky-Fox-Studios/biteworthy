@@ -93,7 +93,7 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_tag
-    tag = Tag.find_or_initialize_by(name: params[:name], description: params[:description])
+    tag = Tag.find_or_initialize_by(tag_params)
     tag.update(tag_params)
     @item.tags << tag unless @item.tags.include? tag
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)

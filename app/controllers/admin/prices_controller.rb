@@ -48,7 +48,7 @@ class Admin::PricesController < AdminController
   end
 
   def add_new_price
-    price = Price.find_or_initialize_by(value: params[:price_value], size: params[:new_size])
+    price = Price.find_or_initialize_by(price_params)
     price.update(price_params)
     redirect_to edit_polymorphic_path([:admin, @priced.restaurant, @priced])
   end
