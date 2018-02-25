@@ -7,37 +7,39 @@
       <div class="search">
         <%= form_tag "/search", url: 'search', method: :get do |f| %>
           <div class="universal-flex-container">
-            <input type="search" name="query" placeholder="Restaurant, food, diet..." autofocus class="universal-flex-element search-bar">
+            <input type="search" name="query" placeholder="Search for a restaurant, food, diet..." autofocus class="universal-flex-element search-bar">
             <%= button_tag("<i class='fi-magnifying-glass'></i>".html_safe, class: "universal-flex-button  search-go") %>
           </div>
         <% end %>
       </div>
       <% if current_user %>
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li><%= link_to "Reviews", reviews_path %></li>
-          <li>
+        <nav class="admin-nav">
+        <ul class="admin-nav-primary-list">
+          <li class="admin-nav-primary-item"><%= link_to "Reviews", reviews_path %></li>
+          <li class="admin-nav-primary-item">
             <%= link_to "Profile", me_path %>
-            <ul class="menu vertical">
-              <li><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
-              <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+            <ul class="admin-nav-secondary-list">
+              <li class="admin-nav-secondary-item"><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
             </ul>
           </li>
           <% if current_user.is_admin? %>
-            <li>
+            <li class="admin-nav-primary-item">
               <%= link_to "Admin", admin_root_path %>
-              <ul class="menu vertical">
-                <li><%= link_to "Users",       admin_users_path %></li>
-                <li><%= link_to "Restaurants", admin_restaurants_path %></li>
-                <li><%= link_to "Menus",       admin_menus_path %></li>
-                <li><%= link_to "MenuGroups",  admin_menu_groups_path %></li>
-                <li><%= link_to "Items",       admin_items_path %></li>
-                <li><%= link_to "Foods",       admin_foods_path %></li>
+              <ul class="admin-nav-secondary-list">
+                <li class="admin-nav-secondary-item"><%= link_to "Users",       admin_users_path %></li>
+                <li class="admin-nav-secondary-item"><%= link_to "Restaurants", admin_restaurants_path %></li>
+                <li class="admin-nav-secondary-item"><%= link_to "Menus",       admin_menus_path %></li>
+                <li class="admin-nav-secondary-item"><%= link_to "MenuGroups",  admin_menu_groups_path %></li>
+                <li class="admin-nav-secondary-item"><%= link_to "Items",       admin_items_path %></li>
+                <li class="admin-nav-secondary-item"><%= link_to "Foods",       admin_foods_path %></li>
                 <%# <li><%= link_to "Ingredients", admin_ingredients_path %1></li> %>
-                <li><%= link_to "Tags",        tags_path %></li>
+                <li class="admin-nav-secondary-item"><%= link_to "Tags",        admin_tags_path %></li>
               </ul>
+              <li class="admin-nav-primary-item log-out"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
             </li>
           <% end %>
         </ul>
+      </nav>
       <% else %>
         <div class="universal-flex-container">
           <%= link_to "Login".html_safe, user_session_path, class: "universal-flex-button", style: "margin:.5rem;" %>
