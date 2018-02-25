@@ -5,6 +5,7 @@
   width: 100%;
   margin-bottom: 1rem;
 
+
   .universal-flex-button, &input, &button {
     background-color: #e6e6e6;
     color: #333333;
@@ -37,6 +38,16 @@
 
       &:not(:last-child) {
         margin-right: .75rem;
+      }
+    }
+    &.flex-button-add, &input {
+      @extend .flex-button-natural;
+      margin-top: .5rem;
+      margin-left: 1rem;
+      padding: .2rem .5rem;
+      @media screen and (min-width: 40em){
+        padding: .3rem 1rem;
+
       }
     }
 
@@ -98,6 +109,11 @@
     margin-bottom: .75rem;
     border-style: none;
   }
+}
+.universal-flex-container-add {
+  @extend .universal-flex-container;
+  justify-content: left;
+  align-items: baseline;
 }
 #universal-fill{
   justify-content: space-between;

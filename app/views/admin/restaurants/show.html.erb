@@ -7,19 +7,11 @@
       <%= @restaurant.slogan %>
     </p>
   </div>
-  <div class="small-12 columns">
-    <p>
-      <strong>Addresses:</strong>
-    </p>
-    <% @restaurant.addresses.each do |address| %>
-      <%= render partial: "admin/addresses/show", locals: {address: address} %>
-    <% end %>
-  </div>
 </div>
 
 <hr>
 
-<div class="row">
+<div class="row admin-restaurant-show">
   <%= render partial: "admin/restaurants/sections/menus" %>
   <%= render partial: "admin/restaurants/sections/basic", locals: {name: "item", values: @items, } %>
   <%= render partial: "admin/restaurants/sections/basic", locals: {name: "food", values: @foods, } %>

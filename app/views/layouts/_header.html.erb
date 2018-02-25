@@ -28,12 +28,10 @@
               <ul class="admin-nav-secondary-list">
                 <li class="admin-nav-secondary-item"><%= link_to "Users",       admin_users_path %></li>
                 <li class="admin-nav-secondary-item"><%= link_to "Restaurants", admin_restaurants_path %></li>
-                <li class="admin-nav-secondary-item"><%= link_to "Menus",       admin_menus_path %></li>
-                <li class="admin-nav-secondary-item"><%= link_to "MenuGroups",  admin_menu_groups_path %></li>
                 <li class="admin-nav-secondary-item"><%= link_to "Items",       admin_items_path %></li>
                 <li class="admin-nav-secondary-item"><%= link_to "Foods",       admin_foods_path %></li>
-                <%# <li><%= link_to "Ingredients", admin_ingredients_path %1></li> %>
                 <li class="admin-nav-secondary-item"><%= link_to "Tags",        admin_tags_path %></li>
+                <li class="admin-nav-secondary-item"><%= link_to "*Ingredients*", admin_ingredients_path %></li>
               </ul>
               <li class="admin-nav-primary-item log-out"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
             </li>

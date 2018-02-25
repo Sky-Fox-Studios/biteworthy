@@ -1,0 +1,26 @@
+ .admin-restaurant-show{
+   display: flex;
+   flex-wrap: wrap;
+   .admin-show-section {
+     display: flex;
+     flex-wrap: wrap;
+     border-width: 0px;
+     border-style: solid;
+     border-bottom-width: 2px;
+
+     .admin-item{
+       margin: 0.3rem;
+       background-color: skyblue;
+       border-radius: 4px;
+       padding: 5px;
+       &:hover {
+         background-color: #666;
+       }
+       a:hover{
+
+         color: white;
+       }
+
+     }
+   }
+ }
