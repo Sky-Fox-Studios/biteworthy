@@ -50,6 +50,18 @@
 
       }
     }
+    &.flex-button-review, &input {
+      @extend .flex-button-natural;
+      // margin: 0rem;
+      padding: .2rem .5rem;
+      &:not(:last-child) {
+        // margin-right: .25rem;
+      }
+      @media screen and (min-width: 40em){
+        padding: .3rem 1rem;
+
+      }
+    }
 
     &.flex-button-full {
       flex-grow: 1;
