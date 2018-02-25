@@ -1,10 +1,10 @@
 <div class="small-12 medium-6 large-4 columns admin-show-section">
-    <div class="universal-flex-container-add">
-  <h2>
-    <%= link_to "Menus", admin_restaurant_menus_path(@restaurant) %>
-  </h2>
+  <div class="universal-flex-container-add">
+    <h2>
+      <%= link_to "Menus", admin_restaurant_menus_path(@restaurant) %>
+    </h2>
     <%= link_to '+', new_admin_restaurant_menu_path(@restaurant), class: "universal-flex-button flex-button-add" %>
-    </div>
+  </div>
 
   <% @menus.each do |menu| %>
     <div class="admin-item">
@@ -14,12 +14,12 @@
 </div>
 
 <div class="small-12 medium-6 large-8 columns admin-show-section">
-    <div class="universal-flex-container-add">
-      <h2>
-        <%= link_to "Menu Groups", admin_restaurant_menu_groups_path(@restaurant) %>
-      </h2>
-      <%= link_to '+', new_admin_restaurant_menu_group_path(@restaurant), class: "universal-flex-button flex-button-add" %>
-    </div>
+  <div class="universal-flex-container-add">
+    <h2>
+      <%= link_to "Menu Groups", admin_restaurant_menu_groups_path(@restaurant) %>
+    </h2>
+    <%= link_to '+', new_admin_restaurant_menu_group_path(@restaurant), class: "universal-flex-button flex-button-add" %>
+  </div>
   <% @menu_groups.each do |menu_group| %>
     <div class="admin-item">
       <%= link_to menu_group.name, edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %>

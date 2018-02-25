@@ -13,14 +13,15 @@
        background-color: skyblue;
        border-radius: 4px;
        padding: 5px;
+       a{
+         color: black;
+       }
        &:hover {
          background-color: #666;
        }
        a:hover{
-
          color: white;
        }
-
      }
    }
  }

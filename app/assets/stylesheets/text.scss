@@ -1,17 +1,17 @@
-$sky-blue: #008CBA !important;
+$sky-blue: #008CBA;
 a{
   color: $sky-blue;
 }
 a.button{
-  color: white !important;
+  color: white;
 }
 a:hover {
-  // background-color: transparent !important;
-  color: #3588CC !important;
+  // background-color: transparent;
+  color: #3588CC;
 }
 a:visited{
-  // background-color: transparent !important;
-  color: $sky-blue !important;
+  // background-color: transparent;
+  color: $sky-blue;
 }
 i{
   color: black;
@@ -20,14 +20,14 @@ i{
   font-size: 1rem;
 }
 a:visited.button {
-  color: white !important;
+  color: white;
 }
 label{
-  color: white !important;
+  color: white;
 }
 textarea, option,
 input[type] {
-  color: black !important;
+  color: black;
 }
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
   color: $sky-blue;

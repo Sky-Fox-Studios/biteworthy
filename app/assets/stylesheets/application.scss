@@ -12,7 +12,7 @@
 @import 'foundation-icons';
 /* @import "font-awesome-sprockets"; */
 @import "font-awesome";
-$cursive: 'cookie ', cursive !important;
+$cursive: 'cookie ', cursive;
 *{
   font-family: 'Handlee', cursive;
   // color: white;
@@ -43,20 +43,20 @@ h1{
   @extend .font-cookie;
   font-family: monospace;
   font-style: italic;
-  color: white !important;
+  color: white;
 }
 h2{
-  font-family: 'cookie', cursive !important;
-  color: white !important;
+  font-family: 'cookie', cursive;
+  color: white;
 }
 h3{
-  font-family: 'cookie', cursive !important;
-  line-height: 1.0 !important;
-  color: white !important;
+  font-family: 'cookie', cursive;
+  line-height: 1.0;
+  color: white;
 }
 h4{
-  font-family: 'cookie', cursive !important;
-  color: white !important;
+  font-family: 'cookie', cursive;
+  color: white;
 }
 
 .close{
@@ -65,8 +65,8 @@ h4{
 
 }
 .top-bar{
-  background-color: #2F2E2E !important;
-  opacity: 1 !important;
+  background-color: #2F2E2E;
+  opacity: 1;
   border-bottom-style: solid;
   border-width: medium;
   border-color: #207EA9;
@@ -93,10 +93,10 @@ h4{
   }
 }
 .font-cookie {
-  font-family: 'cookie ', cursive !important;
+  font-family: 'cookie ', cursive;
 }
 .font-handlee {
-  font-family: 'Handlee', cursive !important;
+  font-family: 'Handlee', cursive;
 }
 th{
   color: black;
