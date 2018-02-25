@@ -1,0 +1,46 @@
+.bw-top-bar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #2F2E2E;
+
+  .home-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: .5rem;
+    img{
+      width: auto;
+      height: auto;
+    }
+    @media screen and (max-width: 64.9375em) {
+    }
+    @media screen and (max-width: 39.9375em) {
+      margin-bottom: .5rem;
+      line-height: 1.25em;
+    }
+  }
+
+  .search {
+    form {
+      display: flex;
+    }
+    input {
+      display: flex;
+    }
+    .search-bar{
+      flex-grow: 4;
+          margin: .5rem;
+    }
+    .search-go{
+      flex-grow: 1;
+      margin: .5rem;
+    }
+    button {
+      padding: 0;
+    }
+  }
+
+  .top-bar-right{
+  }
+
+}

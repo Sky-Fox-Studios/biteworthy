@@ -87,6 +87,17 @@
   &.no-bottom-margin {
     margin-bottom: 0;
   }
+  .universal-flex-element {
+    text-align: center;
+    font-family: "proxima-nova", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.5rem;
+    padding: .3rem 1rem;
+    flex: 1 0 0;
+    margin-bottom: .75rem;
+    border-style: none;
+  }
 }
 #universal-fill{
   justify-content: space-between;
