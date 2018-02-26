@@ -1,11 +1,6 @@
 <%= PhotoDecorator.decorate(ingredient.photos).display %>
 <% if current_user %>
   <div id="rating-reviews-ingredient-<%=ingredient.id%>" class="review-rating-wrapper">
-    <% review = Review.where(user_id: current_user.id, review_type: "Ingredient", review_id: ingredient.id).first %>
-    <% if review %>
-      <%= render partial: "/modules/rating_reviews", locals: { rating: Review.ratings[review.rating], reviewable: ingredient } %>
-    <% else %>
-      <%= render partial: "/modules/rating_reviews", locals: { rating: 0, reviewable: ingredient } %>
-    <% end %>
+    <%= render partial: "/modules/rating_reviews", locals: { reviewable: ingredient } %>
   </div>
 <% end %>

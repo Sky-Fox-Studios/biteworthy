@@ -28,13 +28,8 @@
                           <%= link_to PhotoDecorator.decorate(item.photos).display, restaurant_item_path(@restaurant, item) %>
                         </div>
                         <% if current_user %>
-                        <% review = my_reviews.where(user: current_user, review_id: item.id, review_type: item.class.to_s).first %>
                           <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
-                            <% if review.present? %>
-                              <%= render partial: "/modules/rating_reviews", locals: { review: review, reviewable: item } %>
-                            <% else %>
-                              <%= render partial: "/modules/rating_reviews", locals: { review: nil, reviewable: item } %>
-                            <% end %>
+                            <%= render partial: "/modules/rating_reviews", locals: { reviewable: item } %>
                           </div>
                         <% end %>
                         <p class="black-text"><%= item.description %></p>

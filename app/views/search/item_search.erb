@@ -10,7 +10,7 @@
       </b>
     </h2>
   </div>
-  <div style="display:inline-flex;flex-wrap:wrap;">
+  <div class="search-items-show">
     <% @items.each do |item| %>
       <%= render partial: "items/show", locals: {item: item} %>
     <% end %>

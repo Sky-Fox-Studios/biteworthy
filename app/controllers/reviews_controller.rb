@@ -21,21 +21,20 @@ class ReviewsController < ApplicationController
   def lookup
     @review_type = params[:review_type]
     @options = case @review_type
-    when "Restaurant"
-      Restaurant.active
-    when "Item"
-      Item.active
-    when "Food"
-      Food.active
-    when "Ingredient"
-      Ingredient.all
-    when "Tag"
-      Tag.all
-    else
-      []
-    end
+               when "Restaurant"
+                 Restaurant.active
+               when "Item"
+                 Item.active
+               when "Food"
+                 Food.active
+               when "Ingredient"
+                 Ingredient.all
+               when "Tag"
+                 Tag.all
+               else
+                 []
+               end
     @review = Review.new
-    binding.pry
     render partial: 'reviews/new_form', locals: { review: @review, reviewable: @reviewable, review_type: @review_type, options: @options }
   end
 
@@ -44,28 +43,29 @@ class ReviewsController < ApplicationController
     @review_type = params[:review_type]
 
     @options = case @review_type
-    when "Restaurant"
-      Restaurant.active
-    when "Item"
-      Item.active
-    when "Food"
-      Food.active
-    when "Ingredient"
-      Ingredient.all
-    when "Tag"
-      Tag.all
-    else
-      []
-    end
+               when "Restaurant"
+                 Restaurant.active.order(:name)
+               when "Item"
+                 Item.active.order(:name)
+               when "Food"
+                 Food.active.order(:name)
+               when "Ingredient"
+                 Ingredient.all.order(:name)
+               when "Tag"
+                 Tag.all.order(:name)
+               else
+                 []
+               end
     @review = Review.new
-    respond_with(@review)
+    @review.review_type = params[:review_type]
+    @review.review_id   = params[:review_id]
   end
 
   def create_user_rating
     user_review = Review.find_or_create_by(review_id: params[:review_id], review_type: params[:review_type], user_id: current_user.id)
     user_review.update(rating: params[:rating].to_i)
     find_reviewable
-    render partial: "modules/rating_reviews", locals: { rating: params[:rating].to_i, reviewable: @reviewable}
+    render partial: "modules/rating_reviews", locals: { reviewable: @reviewable}
   end
 
   def edit
@@ -84,34 +84,34 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-     @review.destroy
+    @review.destroy
     respond_with(@review)
   end
 
   private
-    def set_review
-      @review = Review.find(params[:id])
-      @reviewable = find_reviewable
-    end
+  def set_review
+    @review = Review.find(params[:id])
+    @reviewable = find_reviewable
+  end
 
-    def review_params
-       params.require(:review).permit(:review_id, :review_type, :user_id, :rating)
-    end
+  def review_params
+    params.require(:review).permit(:review_id, :review_type, :user_id, :rating, :title, :description)
+  end
 
-   def find_reviewable
-     if params.include?(:review_type) && params.include?(:review_id)
-       @reviewable = params[:review_type].classify.constantize.find(params[:review_id])
-     else
-        params.each do |name, value|
-           if name =~ /(.+)_id$/
-             puts "name=#{name}, value=#{value}"
-              @reviewable = $1.classify.constantize.find(value)
-           end
+  def find_reviewable
+    if params.include?(:review_type) && params.include?(:review_id)
+      @reviewable = params[:review_type].classify.constantize.find(params[:review_id])
+    else
+      params.each do |name, value|
+        if name =~ /(.+)_id$/
+          puts "name=#{name}, value=#{value}"
+          @reviewable = $1.classify.constantize.find(value)
         end
       end
-      if !@reviewable && @review
-        @reviewable = @review.review_type.classify.constantize.find(@review.review_id)
-      end
-      @reviewable
-   end
+    end
+    if !@reviewable && @review
+      @reviewable = @review.review_type.classify.constantize.find(@review.review_id)
+    end
+    @reviewable
+  end
 end

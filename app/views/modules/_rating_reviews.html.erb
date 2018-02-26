@@ -1,3 +1,4 @@
+<% review = my_reviews.where(user: current_user, review_id: reviewable.id, review_type: reviewable.class.to_s).first %>
 <div id="universal-fill" class="universal-flex-container">
   <% if review.present? %>
     <% rating= Review.ratings[review.rating] %>
@@ -26,7 +27,7 @@
         data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
     </div>
     <div class="universal-flex-button flex-button-review">
-      <%= link_to "-", new_review_path(reviewable) %>
+      <%= link_to "-", new_review_path(reviewable, review_id: reviewable.id, review_type: reviewable.class.to_s) %>
     </div>
     <div class="universal-flex-button flex-button-review">
       <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
