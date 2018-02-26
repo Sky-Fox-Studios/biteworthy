@@ -12,7 +12,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @review = Review.where(review_type: "Item", review_id: @item.id).first
+    if current_user
+      @review = Review.where(user_id: current_user.id, review_type: "Item", review_id: @item.id).first
+    end
   end
 
   private

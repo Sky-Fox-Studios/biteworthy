@@ -6,10 +6,10 @@ class ReviewsController < ApplicationController
 
   def index
     if params[:review_type].present?
-      @reviews = Review.where(review_type: params[:review_type].singularize).order(rating: :desc)
+      @reviews = Review.where(user: current_user).where(review_type: params[:review_type].singularize).order(rating: :desc)
       @review_type = params[:review_type]
     else
-      @reviews = Review.all.order(rating: :desc)
+      @reviews = Review.where(user: current_user).order(rating: :desc)
     end
     respond_with(@reviews)
   end

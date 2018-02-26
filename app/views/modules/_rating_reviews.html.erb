@@ -1,17 +1,6 @@
 <div id="universal-fill" class="universal-flex-container">
-  <% if rating == nil %>
-    <div class="universal-flex-button flex-button-review">
-      <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
-        data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-    </div>
-    <div class="universal-flex-button flex-button-review">
-      -
-    </div>
-    <div class="universal-flex-button flex-button-review">
-      <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
-        data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-    </div>
-  <% else %>
+  <% if review.present? %>
+    <% rating= Review.ratings[review.rating] %>
     <% max = rating + 1 %>
     <% min = rating - 1 %>
     <% if max <= 4 %>
@@ -21,13 +10,27 @@
       </div>
     <% end %>
     <div class="universal-flex-button flex-button-review">
-      <%= Review.ratings.key(rating).humanize %>
+      <%= link_to Review.ratings.key(rating).humanize, edit_review_path(review) %>
     </div>
     <% if min >= -4 %>
       <div class="universal-flex-button flex-button-review">
         <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
           data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-        </div>
-      <% end %>
+      </div>
     <% end %>
-  </div>
+
+  <% else %>
+
+    <div class="universal-flex-button flex-button-review">
+      <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
+        data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    </div>
+    <div class="universal-flex-button flex-button-review">
+      <%= link_to "-", new_review_path(reviewable) %>
+    </div>
+    <div class="universal-flex-button flex-button-review">
+      <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
+        data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    </div>
+  <% end %>
+</div>

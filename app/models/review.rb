@@ -21,7 +21,7 @@ class Review < ActiveRecord::Base
    end
 
    def to_param
-     "#{id}-#{user.user_name}"
+     "#{id}-#{review.class.to_s}-#{review.id}"
    end
 
    def get_review_name
