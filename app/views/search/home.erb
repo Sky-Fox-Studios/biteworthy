@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="small-12 columns">
-    <h2>You are looking for: <b><%= @search %></b></h2>
-  </div>
+  <% if @search.present? %>
+    <div class="small-12 columns">
+      <h2>You are looking for: <b><%= @search %></b></h2>
+    </div>
+  <% end %>
   <div class="small-12 columns">
     <script>
       $( function() {

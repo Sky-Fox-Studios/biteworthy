@@ -41,12 +41,12 @@ class SearchController < ApplicationController
     if params[:include] && params[:exclude]
       @items = Item.active.joins(:tags).where("tags.id in (?)", params[:include]).where("tags.id not in (?)", params[:exclude])
     elsif params[:include]
-      @items = Item.joins(:tags).where("tags.id in (?)", params[:include])
+      @items = Item.active.joins(:tags).where("tags.id in (?)", params[:include])
     elsif params[:exclude]
-      @items = Item.joins(:tags).where("tags.id not in (?)", params[:exclude])
+      @items = Item.active.joins(:tags).where("tags.id not in (?)", params[:exclude])
     else
-      @items =Item.all
+      @items =Item.active.all
     end
-    render partial: "search/items_found", locals: {items: @items}
+    render partial: "search/items_found", locals: {items: @items.uniq}
   end
 end
