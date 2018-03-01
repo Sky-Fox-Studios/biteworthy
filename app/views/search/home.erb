@@ -2,20 +2,81 @@
   <div class="small-12 columns">
     <h2>You are looking for: <b><%= @search %></b></h2>
   </div>
-  <% if @restaurants.results.present? %>
-    <div class="small-12 columns">
-      <h2 align="center"><%= @restaurants.results.count %> restaurants:</h2>
-    </div>
-    <% @restaurants.results.each do |restaurant| %>
-      <%= render partial: "restaurants/basic", locals: {restaurant: restaurant} if restaurant.active? %>
-    <% end %>
-  <% end %>
   <div class="small-12 columns">
-    <h2 align="center"><%= @items.results.count %> items:</h2>
+    <script>
+      $( function() {
+        $( "#include, #exclude, #options" ).sortable({
+          connectWith: ".connectedSortable",
+          cursor: "-webkit-grabbing",
+          update: function(event, ui) {
+            advancedSearch(ui, $(this));
+          }
+        })
+
+        function advancedSearch(ui, object){
+          //var updating = $(object).attr("id");
+          //if (updating == "include" || updating == "exclude")
+          var include = $("#include").sortable('toArray').map(item => item.replace('tag_',''));
+          var exclude = $("#exclude").sortable('toArray').map(item => item.replace('tag_',''));
+          $.ajax({
+            type: 'post',
+            url: '/search/advanced',
+            data: {include: include, exclude: exclude}
+          }).done(function(response) {
+            console.log(response);
+            $("#items-found").html(response);
+
+          });
+        };
+        //.disableSelection();
+      } );
+    </script>
+    <style>
+      #include, #exclude, #options {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        min-height: 20px;
+        margin: 0;
+        padding: 5px 0 0 0;
+        margin-right: 10px;
+      }
+      #include span, #exclude span, #options span {
+        margin: 0 5px 5px 5px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 1.2em;
+      }
+    </style>
+
+      <div class="row">
+        <div class="small-12 medium-4 columns">
+          <span>Include</span>
+          <div id="include" class="connectedSortable ">
+          </div>
+        </div>
+        <div class="small-12 medium-4 columns">
+          <span>Prefrences</span>
+          <div id="options" class="connectedSortable ">
+            <% @tags.each do |tag| %>
+            <%= "<span class='tag' id='tag_#{tag.id}'>#{tag.name}</span>".html_safe %>
+          <% end %>
+          <% @foods.each do |food| %>
+            <% "<span class='food' id='food-#{food.id}'>#{food.name}</span>".html_safe %>
+          <% end %>
+        </div>
+      </div>
+      <div class="small-12 medium-4 columns">
+        <span>Exclude</span>
+        <div id="exclude" class="connectedSortable ">
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="search-items-show">
-    <% @items.results.each do |item| %>
-      <%= render partial: "items/show", locals: {item: item} %>
-    <% end %>
+  <div id="items-found">
+    <%= render partial: "search/items_found", locals: {items: @items.results} %>
   </div>
 </div>

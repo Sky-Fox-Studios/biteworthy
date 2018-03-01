@@ -18,6 +18,7 @@ class Restaurant < ActiveRecord::Base
     text    :name
     text    :slogan
     text    :about
+    boolean :active
     text    :tags do
       tags.map { |tag| tag.name }
     end

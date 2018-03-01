@@ -1,0 +1,8 @@
+<div class="small-12 columns">
+  <h2 align="center"><%= items.count %> items:</h2>
+</div>
+<div class="search-items-show">
+  <% items.each do |item| %>
+    <%= render partial: "items/show", locals: {item: item} %>
+  <% end %>
+</div>

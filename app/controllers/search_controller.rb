@@ -3,7 +3,10 @@ class SearchController < ApplicationController
   def home
     # search = Sunspot.search(Post, Comment)
     @search = params[:query]
+    @tags  = Tag.all.order(:name)
+    @foods = Food.all.order(:name)
     @restaurants = Restaurant.search do
+      with(:active, true)
       fulltext params[:query] if params[:query] != ""
       paginate(page: params[:page], per_page: Sunspot.config.pagination.default_per_page)
     end
@@ -32,5 +35,18 @@ class SearchController < ApplicationController
     @search = Ingredient.find(params[:ingredient_id])
     @items = Item.joins(:ingredients).where('ingredients.id IN (?)', params[:ingredient_id])
     render "search/item_search", locals: {search_type: "ingredient"}
+  end
+
+  def advanced
+    if params[:include] && params[:exclude]
+      @items = Item.active.joins(:tags).where("tags.id in (?)", params[:include]).where("tags.id not in (?)", params[:exclude])
+    elsif params[:include]
+      @items = Item.joins(:tags).where("tags.id in (?)", params[:include])
+    elsif params[:exclude]
+      @items = Item.joins(:tags).where("tags.id not in (?)", params[:exclude])
+    else
+      @items =Item.all
+    end
+    render partial: "search/items_found", locals: {items: @items}
   end
 end
