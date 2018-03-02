@@ -2,7 +2,7 @@
   <div class="small-12">
     <div class="bw-top-bar">
       <div class="home-logo">
-        <%= link_to image_tag("bw-1"), root_path %>
+        <%= link_to image_tag("bw-#{@num}"), root_path %>
       </div>
       <div class="search">
         <%= form_tag "/search", url: 'search', method: :get do |f| %>
