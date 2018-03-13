@@ -17,7 +17,8 @@ class Review < ActiveRecord::Base
    end
 
    def self.review_types
-     ["Restaurant", "Item", "Food", "Ingredient", "Tag"]
+     ["Restaurant", "Item", "Food", "Tag"]
+     # "Ingredient"
    end
 
    def to_param

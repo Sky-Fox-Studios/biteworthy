@@ -42,13 +42,25 @@ class ReviewsController < ApplicationController
     session[:return_to] ||= request.referer
     @review_type = params[:review_type]
 
+    if @review_type == "Item" || @review_type == "Food"
+      @restaurant  = Restaurant.find(params[:restaurant_id]) if params[:restaurant_id].present?
+      @restaurants = Restaurant.active
+    end
     @options = case @review_type
                when "Restaurant"
                  Restaurant.active.order(:name)
                when "Item"
-                 Item.active.order(:name)
+                 if @restaurant.present?
+                   Item.where(restaurant: @restaurant).active.order(:name)
+                 else
+                   Item.active.order(:name)
+                 end
                when "Food"
-                 Food.active.order(:name)
+                 if @restaurant.present?
+                   Food.where(restaurant: @restaurant).active.order(:name)
+                 else
+                   Food.active.order(:name)
+                 end
                when "Ingredient"
                  Ingredient.all.order(:name)
                when "Tag"

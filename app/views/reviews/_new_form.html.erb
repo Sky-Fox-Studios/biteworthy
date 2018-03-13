@@ -10,38 +10,48 @@
     </div>
   <% end %>
   <hr>
-  <% unless review.new_record? %>
-    <%= simple_form_for review do |f| %>
-      <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
-      <div class="small-12 columns">
-        <%= render partial: "/#{review.review_type.downcase.pluralize}/review_show", locals: {item: reviewable} %>
+  <% if review.new_record? %>
+    <%= form_tag new_review_path, method: "get" do |f| %>
+      <div class="small-12 medium-6 columns">
+        <%= label_tag "What was it?" %>
+        <%= select_tag "review_type", options_for_select(Review.review_types, @review_type), include_blank: true, onChange: 'this.form.submit();' %>
+      </div>
+      <div class="small-12 medium-6 columns">
+        <% if @review_type == "Item" || @review_type == "Food" %>
+          <%= label_tag "Restaurant" %>
+          <%= select_tag "restaurant_id",  options_for_select(@restaurants.map{|r| [r.name, r.id]}, @restaurant.present? ? @restaurant.id : nil), include_blank: true, onChange: 'this.form.submit();' %>
+        <% end %>
       </div>
     <% end %>
-  <% else %>
-      <div class="small-12 large-4 columns">
-      <%= form_tag new_review_path, method: "get" do |f| %>
-        <%= label_tag "Type" %>
-        <%= select_tag "review_type", options_for_select(Review.review_types, @review.review_type), include_blank: true, onChange: 'this.form.submit();' %>
-      <% end %>
-    </div>
     <%= simple_form_for review do |f| %>
       <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
-      <%= f.input :review_type, as: :hidden, input_html: {value: @review.review_type} %>
-      <div class="small-12 large-4 columns">
-        <%= f.input :review_id, collection: options.map {|option| [option.name, option.id]}, include_blank: false, selected: @review.review_id.present? ? @review.review_id : nil %>
-      </div>
-      <div class="small-12 medium-4 large-4 columns">
-        <%= f.input :rating, collection: Review.ratings.to_a.reverse.map {|k, v| [k.humanize, k]}, include_blank: false, selected: Review.ratings[review.rating], selected: review.rating %>
-      </div>
-      <div class="small-12 medium-6 columns">
-        <%= f.input :title %>
-      </div>
-      <div class="small-12 medium-6 columns">
-        <%= f.input :description %>
-      </div>
-      <div class="small-12 columns">
-        <%= f.submit class: "button tiny radius success" %>
-      </div>
+      <%= f.input :review_type, as: :hidden, input_html: {value: @review_type} %>
+      <% if @review_type.present? %>
+        <div class="small-12 medium-6 large-4 columns">
+          <% if (@review_type == "Food" || @review_type == "Item") %>
+            <% if @restaurant.present? %>
+              <%= f.input :review_id, collection: options.map {|option| [option.name, option.id]}, include_blank: true, selected: @review.review_id.present? ? @review.review_id : nil %>
+            <% end %>
+          <% else %>
+            <%= f.input :review_id, collection: options.map {|option| [option.name, option.id]}, include_blank: true, selected: @review.review_id.present? ? @review.review_id : nil %>
+          <% end %>
+        </div>
+        <% if (@review_type == "Food" || @review_type == "Item") && @restaurant.present?  || (@review_type != "Food" && @review_type != "Item")%>
+          <div class="small-12 medium-6 large-4 columns">
+            <%= f.input :rating, collection: Review.ratings.to_a.reverse.map {|k, v| [k.humanize, k]},
+              include_blank: false, selected: review.rating ? Review.ratings[review.rating] : "-" %>
+          </div>
+          <div class="small-12 medium-6 large-4 columns">
+            <%= f.input :title %>
+          </div>
+          <div class="small-12 medium-6 large-12 columns">
+            <%= f.input :description %>
+          </div>
+          <div class="small-12 columns">
+            <%= f.submit class: "button tiny radius success" %>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
