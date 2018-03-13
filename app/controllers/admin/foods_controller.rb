@@ -1,6 +1,10 @@
 class Admin::FoodsController < AdminController
   before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient]
-  before_action :set_food, only: [:show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient, :remove_photo]
+  before_action :set_food, only: [
+    :show, :edit, :update, :destroy,
+    :add_ingredient, :add_ingredient_by_name, :add_tag, :add_new_tag,
+    :remove_ingredient, :remove_photo
+  ]
   before_action :set_foods, only: [:all, :index]
   respond_to :html
 
@@ -35,6 +39,7 @@ class Admin::FoodsController < AdminController
   end
 
   def edit
+    @tags = Tag.all
   end
 
   def create
@@ -95,6 +100,21 @@ class Admin::FoodsController < AdminController
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
   end
 
+  def add_tag
+    unless (params[:tag_id].empty?)
+      tag = Tag.find(params[:tag_id])
+      @food.tags << tag unless @food.tags.include? tag
+    end
+    redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
+  end
+
+  def add_new_tag
+    tag = Tag.find_or_initialize_by(tag_params)
+    tag.update(tag_params)
+    @food.tags << tag unless @food.tags.include? tag
+    redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
+  end
+
   def remove_ingredient
     ingredient = Ingredient.find(params[:ingredient_id])
     @food.ingredients.delete(ingredient)
@@ -109,12 +129,11 @@ class Admin::FoodsController < AdminController
 
   private
     def set_food
-    if params[:id]
-      @food = Food.find(params[:id])
-    elsif params[:food_id]
-      @food = Food.find(params[:food_id])
-    end
-
+      if params[:id]
+        @food = Food.find(params[:id])
+      elsif params[:food_id]
+        @food = Food.find(params[:food_id])
+      end
     end
 
     def set_foods

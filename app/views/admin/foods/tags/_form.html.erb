@@ -1,0 +1,17 @@
+<%= simple_form_for(food.tags.new, url: admin_restaurant_food_add_new_tag_path(restaurant, food), method: :post) do |f| %>
+  <%= f.hidden_field :restaurant_id, value: food.restaurant.id %>
+  <%= hidden_field_tag 'food_id', food.id %>
+  <div class="row">
+    <div class="small-3 columns">
+      <%= f.input :name %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.input :description %>
+    </div>
+    <div class="small-3 columns">
+      <div style="padding-top:25px;" class="universal-button-container">
+        <%= f.submit class: "universal-flex-button flex-button-natural", value: 'Create' %>
+      </div>
+    </div>
+  </div>
+<% end %>

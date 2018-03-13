@@ -1,0 +1,13 @@
+<%= form_tag admin_restaurant_food_add_tag_path(restaurant, food), method: :post do %>
+  <div class="row">
+    <div class="small-10 columns">
+      <%= select_tag('tag_id', options_for_select(tags.map {|f| [ f.name, f.id ]}), prompt: "Add tag:") %>
+    </div>
+    <div class="small-2 columns">
+      <div class="universal-button-container">
+        <%= submit_tag "Add", class: "universal-flex-button flex-button-natural" %>
+      </div>
+      <%# <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %1> %>
+    </div>
+  </div>
+<% end %>

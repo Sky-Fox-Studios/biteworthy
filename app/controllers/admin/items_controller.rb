@@ -1,20 +1,9 @@
 class Admin::ItemsController < AdminController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :just_set_item, only: [
-    :add_price,
-    :add_tag,
-    :add_food,
-    :add_extra,
-    :add_new,
-    :add_new_price,
-    :add_new_food,
-    :add_new_tag,
-    :add_new_extra,
-    :remove_menu_group,
-    :remove_tag,
-    :remove_food,
-    :remove_extra,
-    :remove_photo
+    :add_price, :add_tag, :add_food, :add_extra, :add_new,
+    :add_new_price, :add_new_food, :add_new_tag, :add_new_extra,
+    :remove_menu_group, :remove_tag, :remove_food, :remove_extra, :remove_photo
   ]
 
   respond_to :html
@@ -98,6 +87,7 @@ class Admin::ItemsController < AdminController
     @item.tags << tag unless @item.tags.include? tag
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
+
   def add_new_food
     @item.foods << Food.find_or_create_by(name: params[:food_name], description: params[:food_description], restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
