@@ -45,8 +45,8 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '>= 3.0.0.beta'
-  gem 'factory_girl'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'meta_request'                      # Chrome inspector to view Rails load times
   gem 'pry'
 end
