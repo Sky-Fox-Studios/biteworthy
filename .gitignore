@@ -28,3 +28,4 @@
 /solr/production/*
 /solr/pids/*
 
+*.DS_store

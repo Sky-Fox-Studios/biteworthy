@@ -96,7 +96,7 @@
     div {
       display:flex;
       flex-wrap:wrap;
-      justify-content:space-evenly
+      justify-content:start
     }
     .card-content {
       display: block;
@@ -110,7 +110,14 @@
       .card-title {
         padding-top: 10px;
       }
+      .card-image  img{
+        // max-width: 200px;
+
+      }
     }
 
   }
+}
+#tag-list-display span{
+  margin: 1px;
 }

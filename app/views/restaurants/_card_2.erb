@@ -1,0 +1,19 @@
+<div class="row card-content">
+  <div class="columns small-6">
+    <h3 class="card-title"><%= link_to item.name, restaurant_item_path(@restaurant, item) %></h3>
+    <%= render partial: "tags/tag_list", locals: {object: item} %>
+    <% if item.prices.present? %>
+      <%= render partial: 'items/price', locals: {item: item} %>
+    <% end %>
+  </div>
+  <div class="columns small-6">
+    <div class="center card-image">
+      <%= link_to PhotoDecorator.decorate(item.photos).display, restaurant_item_path(@restaurant, item) %>
+    </div>
+    <% if current_user %>
+      <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
+        <%= render partial: "/modules/rating_reviews", locals: { reviewable: item } %>
+      </div>
+    <% end %>
+  </div>
+</div>
