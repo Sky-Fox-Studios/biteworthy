@@ -1,0 +1,6 @@
+<% words_connector ||= " and " %>
+<% last_word_connector ||= " #{words_connector}" %>
+<%= @extra.foods.map do |food|
+  "#{link_to(food.name, restaurant_food_path(@restaurant, food))}"
+end.to_sentence(two_words_connector: words_connector, last_word_connector: last_word_connector).html_safe %>
+
