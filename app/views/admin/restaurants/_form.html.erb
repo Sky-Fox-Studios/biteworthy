@@ -77,7 +77,7 @@
       <% end %>
     <% end %>
     <div class="small-12 columns">
-      <p>New:</p>
+      <h3>New Location:</h3>
       <%= f.simple_fields_for :addresses, @restaurant.addresses.build do |addresses_form| %>
         <%= render partial: 'admin/addresses/address_fields', locals: { a: addresses_form } %>
       <% end %>

@@ -8,7 +8,7 @@ class Restaurant < ActiveRecord::Base
   has_and_belongs_to_many :tags
   has_many :addresses, dependent: :destroy
 
-  accepts_nested_attributes_for :addresses, reject_if: lambda { |a| a[:street].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :addresses
 
   validates :name, presence: true
 
