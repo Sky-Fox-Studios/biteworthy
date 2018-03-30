@@ -13,6 +13,7 @@ staging:
     path: /solr/development
 
 development:
+  disabled: true
   solr:
     hostname: localhost
     port: 8974
