@@ -110,6 +110,9 @@
   &.no-bottom-margin {
     margin-bottom: 0;
   }
+  .no-right-margin i{
+    margin-right: 0;
+  }
   .universal-flex-element {
     text-align: center;
     font-family: "proxima-nova", Arial, sans-serif;
@@ -120,6 +123,10 @@
     flex: 1 0 0;
     margin-bottom: .75rem;
     border-style: none;
+  }
+  .vertical-center{
+    margin-top: auto;
+    margin-bottom: auto;
   }
 }
 .universal-flex-container-add {

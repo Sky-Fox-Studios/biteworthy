@@ -1,14 +1,12 @@
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 columns universal-flex-container">
     <h1>Manage Ingredients</h1>
+    <%= link_to '<i class="fi-plus"></i>'.html_safe, new_admin_ingredient_path, class: "universal-flex-button flex-button-natural vertical-center" %>
   </div>
 </div>
 
 <div class="row">
   <div class="small-12 columns">
-    <% if current_user && current_user.is_admin? %>
-      <%= link_to raw('<i class="fi-plus"></i> New ingredient'), new_admin_ingredient_path, class: "button tiny" %>
-    <% end %>
     <table class="small-12" id="admin-ingredients-index-table">
       <thead>
         <tr>

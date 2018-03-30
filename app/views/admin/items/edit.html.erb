@@ -5,5 +5,5 @@
   <%= render 'form' %>
 </div>
 <div class="small-12 columns">
-  <%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "#{@restaurant.name} Items", admin_restaurant_items_path(@restaurant), class: "button tiny round")] } %>
+  <%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "All items", admin_restaurant_items_path(@restaurant), class: "universal-flex-button flex-button-natural ")] } %>
 </div>

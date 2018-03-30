@@ -1,18 +1,18 @@
 <%= simple_form_for(item, url: admin_restaurant_item_add_new_extra_path(restaurant, item), method: :post) do |f| %>
-  <div class="row">
-    <div class="small-4 columns">
+  <div class="row universal-flex-container">
+    <div class="small-5 columns">
       <input type="text" id="item[extra_name]" name="extra_name" placeholder="Name" />
     </div>
-    <div class="small-4 columns">
+    <div class="small-7 columns">
       <input type="text" id="item[extra_description]" name="extra_description" placeholder="Description" />
     </div>
-    <div class="small-2 columns">
       <% Extra.extra_types.each do |extra_type| %>
-        <%= "<input type='radio' name='extra_type' id='extra_type_#{extra_type.first}' value=#{extra_type.first} #{'checked' if extra_type.first == 'addition'}> #{extra_type.first} <br>".html_safe %>
+        <div class="small-5 columns">
+          <%= "<input type='radio' name='extra_type' id='extra_type_#{extra_type.first}' value=#{extra_type.first} #{'checked' if extra_type.first == 'addition'}> #{extra_type.first} <br>".html_safe %>
+        </div>
       <% end %>
-    </div>
     <div class="small-2 columns">
-        <%= f.submit class: "button tiny radius success", value: 'Add' %>
+      <%= f.submit "Add", class: "universal-flex-button flex-button-natural vertical-center" %>
     </div>
   </div>
 <% end %>
