@@ -21,22 +21,8 @@
               <div class="columns small-12 cards-container">
                 <div class="row">
                   <% menu_group.items.sort_by{ |i| [i.reviews.present? ? -Review.ratings[i.reviews.first.rating] : 0, i.name]}.each do |item| %>
-                    <div class="card columns small-12 medium-6 large-4">
-                      <div class="card-content">
-                        <h3 class="card-title"><%= link_to item.name, restaurant_item_path(@restaurant, item) %></h3>
-                        <div class="center card-image">
-                          <%= link_to PhotoDecorator.decorate(item.photos).display, restaurant_item_path(@restaurant, item) %>
-                        </div>
-                        <% if current_user %>
-                          <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
-                            <%= render partial: "/modules/rating_reviews", locals: { reviewable: item } %>
-                          </div>
-                        <% end %>
-                        <p class="black-text"><%= item.description %></p>
-                        <% if item.prices.present? %>
-                          <%= render partial: 'items/price', locals: {item: item} %>
-                        <% end %>
-                      </div>
+                    <div class="card columns small-12 medium-6">
+                      <%= render partial: "restaurants/card_2", locals: {item: item} %>
                     </div>
                   <% end %>
                 </div>

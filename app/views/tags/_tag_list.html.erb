@@ -1,11 +1,7 @@
-<div class="small-12 columns tag-list" data-module="tag-list">
-	<div class="row">
-		<div class="small-12 columns">
-			<div id="tag-list-display">
-				<% object.tags.order(:name => :asc).each do |tag| %>
-					<span class="label tag radius secondary"><%= tag.name %> <a href="#" class="close" data-tag-id="<%= tag.id %>"><i class="fi-x"></i></a></span>
-				<% end %>
-			</div>
-		</div>
-	</div>
+<div class="small-12 tag-list" data-module="tag-list">
+  <div id="tag-list-display">
+    <% object.tags.order(:name => :asc).each do |tag| %>
+      <span class="label tag radius secondary"><%= tag.name %> <a href="#" class="close" data-tag-id="<%= tag.id %>"><i class="fi-x"></i></a></span>
+    <% end %>
+  </div>
 </div>
