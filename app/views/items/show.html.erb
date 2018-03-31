@@ -1,8 +1,7 @@
-<%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
+<%= render partial: 'header', locals: {item: @item} %>
   <div class="small-12 medium-6 large-3 columns">
     <div class="row">
       <div class="small-12 columns">
-        <%= render partial: 'image', locals: {item: @item} %>
         <%= render partial: 'review_vote', locals: {item: @item} %>
         <%= render partial: 'price', locals: {item: @item} %>
       </div>
