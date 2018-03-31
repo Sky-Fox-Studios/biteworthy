@@ -2,7 +2,7 @@
 <% reviews.each do |review| %>
   <% if review_class != review.rating %>
     <% review_class   = review.rating %>
-    <ul><%= review.rating.humanize %>
+    <ul><h4><%= review.rating.humanize %></h4>
   <% end %>
   <li>
     <%= render partial: "reviews/link",

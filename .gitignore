@@ -28,4 +28,5 @@
 /solr/production/*
 /solr/pids/*
 
-*.DS_store
+# Ignore the OSX image files
+*.DS_Store

@@ -1,15 +1,16 @@
 <%= simple_form_for(extra.foods.new, url: admin_restaurant_extra_add_new_food_path(restaurant, extra), method: :post) do |f| %>
   <%= f.hidden_field :restaurant_id, value: extra.restaurant.id %>
   <%= hidden_field_tag 'extra_id', extra.id %>
-  <div class="row">
+  <div class="row universal-flex-container no-bottom-margin">
     <div class="small-4 columns">
       <%= f.input :name %>
     </div>
-    <div class="small-5 columns">
+    <div class="small-6 columns">
       <%= f.input :description %>
     </div>
-    <div class="small-3 columns">
-        <%= f.submit class: "button tiny radius success", value: 'Create' %>
+    <div class="small-2 columns">
+      <label>&nbsp;</label>
+      <%= f.submit "Add", class: "universal-flex-button flex-button-natural vertical-center" %>
     </div>
   </div>
 <% end %>

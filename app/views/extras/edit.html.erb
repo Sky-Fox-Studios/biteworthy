@@ -1,5 +1,0 @@
-<h1>Editing <%= @restaurant.name %> Extra:</h1>
-
-<%= render 'form' %>
-
-<%= render partial: "admin/restaurants/footer", locals: {left_button: (link_to "#{@restaurant.name} Extras", admin_restaurant_extras_path(@restaurant), class: "button tiny")} %>

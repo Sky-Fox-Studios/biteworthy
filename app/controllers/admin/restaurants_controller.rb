@@ -35,7 +35,7 @@ class Admin::RestaurantsController < AdminController
 
   def update
     if @restaurant.update(restaurant_params)
-      redirect_to admin_restaurants_path
+      redirect_to edit_admin_restaurant_path(@restaurant), notice: "Updated"
     else
       redirect_to edit_admin_restaurant_path(@restaurant), alert: @restaurant.errors.full_messages
     end
@@ -50,7 +50,6 @@ class Admin::RestaurantsController < AdminController
   private
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
-      # @address = @restaurant.addresses.first
     end
 
     def create_address
@@ -58,7 +57,7 @@ class Admin::RestaurantsController < AdminController
     end
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :slogan, :about, :disclaimer, :inside_seating, :outside_seating, :cash_only, :delivers, :active,
-        addresses_attributes: [:restaurant_id, :phone_number, :street, :city, :state, :zip, :latitude, :longitude])
+      params.require(:restaurant).permit(:name, :slogan, :about, :disclaimer, :inside_seating, :outside_seating, :cash_only, :delivers, :active, :website,
+        addresses_attributes: [:restaurant_id, :phone_number, :street, :city, :state, :zip, :latitude, :longitude, :place_id])
     end
 end

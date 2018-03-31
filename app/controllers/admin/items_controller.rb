@@ -94,7 +94,7 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_extra
-    @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type].to_i, restaurant: @item.restaurant)
+    @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 

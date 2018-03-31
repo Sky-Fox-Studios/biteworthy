@@ -12,16 +12,20 @@
     <p>Reviews: <%= current_user.reviews.count %></p>
     <p>Strikes: <%= current_user.strikes %></p>
   </div>
+  <div class="small-12  columns">
+  <h2>Ratings</h2>
+  </div>
+  <hr>
   <div class="small-12 medium-4 columns">
-    <b>Tags:</b>
+    <h3>Tags:</h3>
     <%= render partial: "users/review_list", locals: {reviews: @tag_reviews} %>
   </div>
   <div class="small-12 medium-4 columns">
-    <b>Items:</b><br>
+    <h3>Items:</h3><br>
     <%= render partial: "users/review_list", locals: {reviews: @item_reviews} %>
   </div>
   <div class="small-12 medium-4 columns">
-    <b>Restaurants:</b>
+    <h3>Restaurants:</h3>
     <%= render partial: "users/review_list", locals: {reviews: @restaurant_reviews} %>
   </div>
 </div>

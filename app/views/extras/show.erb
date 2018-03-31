@@ -10,6 +10,7 @@
     </div>
   <% end %>
   <% if @extra.foods.present? %>
+    <h3>Foods:</h3>
     <div class="small-12 medium-6 large-8 columns">
       <%= render partial: "extras/foods/list", locals: {list_name: "Food #{@extra.extra_type}s ", words_connector: @extra.extra_type == "choice" ? " or " : nil } %>
     </div>
@@ -22,10 +23,3 @@
     <% end %>
   </div>
 </div>
-<% if current_user && current_user.is_admin? %>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_extra_path(@extra.restaurant, @extra)} %>
-    </div>
-  </div>
-<% end  %>

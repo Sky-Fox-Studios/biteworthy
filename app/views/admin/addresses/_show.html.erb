@@ -1,36 +1,33 @@
 <div class="row">
-  <div class="small-12 columns">
-    <strong>Phone #:</strong>
+  <div class="small-12 medium-4 columns">
     <%= link_to address.phone_number, "tel://+#{address.phone_number}" %>
   </div>
-  <div class="small-12 columns">
-    <strong>Street:</strong>
+  <div class="small-12 medium-4 columns">
     <%= address.street %>
   </div>
 
-  <div class="small-12 columns">
-    <strong>city:</strong>
+  <div class="small-6 medium-4 columns">
     <%= address.city %>
   </div>
 
-  <div class="small-12 columns">
-    <strong>state:</strong>
+  <div class="small-2 columns">
     <%= address.state %>
   </div>
 
-  <div class="small-12 columns">
-    <strong>zip:</strong>
+  <div class="small-4 medium-2 columns">
     <%= address.zip %>
   </div>
 
-  <div class="small-12 columns">
-    <strong>Latitude:</strong>
-    <%= address.latitude %>
-  </div>
-  <div class="small-12 columns">
-    <strong>Longitude:</strong>
-    <%= address.longitude %>
-  </div>
+  <% if address.latitude.present? && address.longitude.present?%>
+    <div class="small-6 medium-4 columns">
+      <strong>Lat:</strong>
+      <%= address.latitude %>
+    </div>
+    <div class="small-6 medium-4 columns">
+      <strong>Long:</strong>
+      <%= address.longitude %>
+    </div>
+  <% end %>
   <div class="small-12 columns">
     <%= render partial: 'admin/addresses/map', locals: { address: address } %>
   </div>
