@@ -21,7 +21,7 @@
         <% @tags.each do |tag| %>
           <tr>
             <td>
-              <%= link_to raw('<i class="fi-page-edit"></i>'), edit_tag_path(tag) %>
+              <%= link_to raw('<i class="fa fa-edit"></i>'), edit_tag_path(tag) %>
             </td>
             <td><%= tag.name %></td>
           </tr>

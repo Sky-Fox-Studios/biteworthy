@@ -25,13 +25,13 @@
       <tbody>
         <% @foods.each do |food| %>
           <tr>
-            <td><%= link_to "<i class='fi-eye'></i>".html_safe, restaurant_food_path(food.restaurant, food) %></td>
+            <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, restaurant_food_path(food.restaurant, food) %></td>
             <td><%= food.restaurant.name %></td>
             <td><%= food.name %></td>
             <td><%= food.description %></td>
-            <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_restaurant_food_path(food.restaurant, food) %></td>
+            <td><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_restaurant_food_path(food.restaurant, food) %></td>
             <% if current_user.is_admin? %>
-              <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_food_path(food.restaurant, food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_restaurant_food_path(food.restaurant, food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>

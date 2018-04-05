@@ -18,13 +18,13 @@
       <tbody>
         <% @restaurants.each do |restaurant| %>
           <tr>
-            <td><%= link_to "<i class='fi-eye'></i>".html_safe, admin_restaurant_path(restaurant) %></td>
+            <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, admin_restaurant_path(restaurant) %></td>
             <td><%= restaurant.name %></td>
             <td><%= restaurant.slogan %></td>
             <td><%= restaurant.active? ? "Yes" : "" %></td>
-            <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_restaurant_path(restaurant) %></td>
+            <td><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_restaurant_path(restaurant) %></td>
             <% if current_user.is_admin? %>
-              <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>
@@ -32,4 +32,3 @@
     </table>
   </div>
 </div>
-

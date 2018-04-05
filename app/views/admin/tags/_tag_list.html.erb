@@ -3,7 +3,7 @@
     <div class="small-12 columns">
       <div id="tag-list-display">
         <% object.tags.order(:name => :asc).each do |tag| %>
-          <span class="label tag radius secondary"><%= tag.name %> <a href="#" class="close" data-tag-id="<%= tag.id %>"><i class="fi-x"></i></a></span>
+          <span class="label tag radius secondary"><%= tag.name %> <a href="#" class="close" data-tag-id="<%= tag.id %>"><i class="fa fa-times"></i></a></span>
         <% end %>
       </div>
     </div>

@@ -4,7 +4,7 @@
       <%= select_tag('tag_id', options_for_select(tags.map {|f| [ f.name, f.id ]}), prompt: "Add tag:") %>
     </div>
     <div class="small-3 columns">
-      <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+      <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "tiny" %>
     </div>
   </div>
 <% end %>

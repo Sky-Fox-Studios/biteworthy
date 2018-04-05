@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('.listener-surround').click(function(){
-    if($('.aw-listener').hasClass('fi-minus')) {
+    if($('.aw-listener').hasClass('fa fa-minus')) {
       ga('send', 'event', 'choose-drawer', 'open', $(this).data('name'));
     }else{
       ga('send', 'event', 'choose-drawer', 'close', $(this).data('name'));

@@ -17,7 +17,7 @@
 		    <% @ingredients.each do |ingredient| %>
 		      <tr>
 		        <td>
-				       <%= link_to raw('<i class="fi-eye"></i>'), ingredient_path(ingredient) %>
+				       <%= link_to raw('<i class="fa fa-eye"></i>'), ingredient_path(ingredient) %>
             </td>
 						<td><%= ingredient.name %></td>
 						<td><%= ingredient.normalized_name %></td>

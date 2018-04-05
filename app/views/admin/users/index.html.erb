@@ -10,7 +10,7 @@
 
       <% @users.each do |user| %>
       <tr>
-        <td><%= link_to raw('<i class="fi-pencil small"></i>'), edit_admin_user_path(user)%>
+        <td><%= link_to raw('<i class="fa fa-edit small"></i>'), edit_admin_user_path(user)%>
         <td><%= user.user_name %></td>
         <td><%= user.email %></td>
         <td><%= user.approved? ? 'Yes' : 'No' %></td>

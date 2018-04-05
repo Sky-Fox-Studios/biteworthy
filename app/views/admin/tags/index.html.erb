@@ -31,7 +31,7 @@
             <td><%= tag.variety %></td>
             <% if current_user.is_admin? %>
               <td>
-                <%= link_to "<i class='fi-trash'></i>".html_safe, admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
             <% end %>
           </tr>

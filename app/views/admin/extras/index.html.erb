@@ -25,13 +25,13 @@
 		  <tbody>
 		    <% @extras.each do |extra| %>
 	      	<tr>
-						<td><%= link_to raw('<i class="fi-eye"></i>'), restaurant_extra_path(@restaurant, extra) %></td>
+						<td><%= link_to raw('<i class="fa fa-eye"></i>'), restaurant_extra_path(@restaurant, extra) %></td>
 						<td><%= @restaurant.name %></td>
 						<td><%= extra.name %></td>
 						<td><%= extra.description %></td>
 						<td><%= extra.extra_type %></td>
 						<td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_extra_path(@restaurant, extra)} %></td>
-		        <td><%= link_to raw('<i class="fi-trash"></i>'), admin_restaurant_extra_path(@restaurant, extra), method: :delete, data: { confirm: 'Are you sure you want to remove this extra?' } %></td>
+		        <td><%= link_to raw('<i class="fa fa-trash"></i>'), admin_restaurant_extra_path(@restaurant, extra), method: :delete, data: { confirm: 'Are you sure you want to remove this extra?' } %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>

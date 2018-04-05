@@ -21,12 +21,12 @@
 		    <% @addresses.each do |address| %>
 	      	<tr>
 		        <td>
-							<%= link_to raw('<i class="fi-page-edit"></i>'), edit_admin_address_path(address) %>
+							<%= link_to raw('<i class="fa fa-edit"></i>'), edit_admin_address_path(address) %>
 						</td>
 						<td><%= address.phone_number %></td>
 						<td><%= address.street %></td>
 						<td><%= address.city %></td>
-		        <td><%= link_to raw('<i class="fi-trash"></i>'), admin_address_path(address), method: :delete, data: { confirm: 'Are you sure you want to remove this address?' } %></td>
+		        <td><%= link_to raw('<i class="fa fa-trash"></i>'), admin_address_path(address), method: :delete, data: { confirm: 'Are you sure you want to remove this address?' } %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>

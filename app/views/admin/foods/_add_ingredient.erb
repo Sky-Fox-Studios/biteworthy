@@ -10,7 +10,7 @@
             <%= select_tag('ingredient_id', options_for_select(Ingredient.all.order(:name).map {|f| [ f.name, f.id ]}), prompt: "Add ingredient:") %>
           </div>
           <div class="small-3 columns">
-            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+            <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "tiny" %>
           </div>
         </div>
       <% end %>
@@ -22,7 +22,7 @@
             <%= text_field_tag('ingredient_name', nil, placeholder: "New ingredient") %>
           </div>
           <div class="small-3 columns">
-            <%= button_tag "<i class='fi-plus'></i>".html_safe, class: "tiny" %>
+            <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "tiny" %>
           </div>
         </div>
       <% end %>

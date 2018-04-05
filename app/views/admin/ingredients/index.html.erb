@@ -1,7 +1,7 @@
 <div class="row">
   <div class="small-12 columns universal-flex-container">
     <h1>Manage Ingredients</h1>
-    <%= link_to '<i class="fi-plus"></i>'.html_safe, new_admin_ingredient_path, class: "universal-flex-button flex-button-natural vertical-center" %>
+    <%= link_to '<i class="fa fa-plus"></i>'.html_safe, new_admin_ingredient_path, class: "universal-flex-button flex-button-natural vertical-center" %>
   </div>
 </div>
 
@@ -22,7 +22,7 @@
       <tbody>
         <% @ingredients.each do |ingredient| %>
           <tr>
-            <td><%= link_to "<i class='fi-eye'></i>".html_safe, ingredient_path(ingredient) %></td>
+            <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, ingredient_path(ingredient) %></td>
             <td><%= ingredient.name %></td>
             <td><%= ingredient.normalized_name %></td>
             <td>
@@ -30,9 +30,9 @@
                 <%= ingredient.tags.map(&:name).to_a.to_sentence %>
               <% end %>
             </td>
-            <td><%= link_to "<i class='fi-page-edit'></i>".html_safe, edit_admin_ingredient_path(ingredient) %></td>
+            <td><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_path(ingredient) %></td>
             <% if current_user.is_admin? %>
-              <td><%= link_to "<i class='fi-trash'></i>".html_safe, admin_ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>
