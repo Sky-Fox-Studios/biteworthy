@@ -1,21 +1,27 @@
 <% review = my_reviews.where(user: current_user, review_id: reviewable.id, review_type: reviewable.class.to_s).first %>
 <div id="universal-fill" class="universal-flex-container">
   <% if review.present? %>
-    <% rating= Review.ratings[review.rating] %>
-    <% max = rating + 1 %>
-    <% min = rating - 1 %>
-    <% if max <= 4 %>
-      <div class="universal-flex-button flex-button-review">
-        <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
-          data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-      </div>
-    <% end %>
+    <%
+        review = review.decorate
+      rating= Review.ratings[review.rating]
+      max = rating + 1
+      min = rating - 1
+      max_icon = review.icon(max)
+      min_icon = review.icon(min, false)
+    %>
+
+    <% if max <= 5 %>
+    <div class="universal-flex-button flex-button-review">
+      <%= link_to "<span class='fa-layers fa-fw'>#{max_icon}</span>".html_safe, "#", class: "rating-review",
+        data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
+    </div>
+  <% end %>
     <div class="universal-flex-button flex-button-review">
       <%= link_to Review.ratings.key(rating).humanize, edit_review_path(review) %>
     </div>
-    <% if min >= -4 %>
+    <% if min >= -5 %>
       <div class="universal-flex-button flex-button-review">
-        <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
+        <%= link_to "<span class='fa-layers fa-fw'>#{min_icon}</span>".html_safe, "#", class: "rating-review",
           data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
       </div>
     <% end %>
@@ -23,14 +29,14 @@
   <% else %>
 
     <div class="universal-flex-button flex-button-review">
-      <%= link_to "<i class='fi-upload-cloud'></i>".html_safe, "#", class: "rating-review",
+      <%= link_to "<i class='fa fa-chevron-up'></i>".html_safe, "#", class: "rating-review",
         data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
     </div>
     <div class="universal-flex-button flex-button-review">
       <%= link_to "-", new_review_path(reviewable, review_id: reviewable.id, review_type: reviewable.class.to_s) %>
     </div>
     <div class="universal-flex-button flex-button-review">
-      <%= link_to "<i class='fi-download'></i>".html_safe, "#", class: "rating-review",
+      <%= link_to "<i class='fa fa-chevron-down'></i>".html_safe, "#", class: "rating-review",
         data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
     </div>
   <% end %>

@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 
-gem "font-awesome-rails"
 gem "progress_bar"
 gem "sunspot_rails", "2.2.4"
 gem "sunspot_solr", "2.2.7"
@@ -14,7 +13,6 @@ gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
 gem "font-awesome-sass", "~> 4.7.0"
 gem 'foundation-rails', '6.2.4.0'
-gem 'foundation-icons-sass-rails'            # More Icons!
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'
 gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
