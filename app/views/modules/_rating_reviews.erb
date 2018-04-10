@@ -6,38 +6,35 @@
       rating= Review.ratings[review.rating]
       max = rating + 1
       min = rating - 1
-      max_icon = review.icon(max)
-      min_icon = review.icon(min, false)
+      the_icon = review.icon(rating)
+      max_icon = review.up_down(max)
+      min_icon = review.up_down(min, false)
     %>
 
     <% if max <= 5 %>
-    <div class="universal-flex-button flex-button-review">
-      <%= link_to "<span class='fa-layers fa-fw'>#{max_icon}</span>".html_safe, "#", class: "rating-review",
-        data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-    </div>
+      <%= link_to "#", class: "rating-review universal-flex-button flex-button-review", data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
+        <span class='fa-layers fa-fw'><%=max_icon.html_safe%></span>
+      <% end %>
   <% end %>
     <div class="universal-flex-button flex-button-review">
-      <%= link_to Review.ratings.key(rating).humanize, edit_review_path(review) %>
+      <%= link_to edit_review_path(review) do %>
+        <span class='fa-layers fa-fw'><%=the_icon.html_safe%></span>
+        <%= Review.ratings.key(rating).humanize %>
+        <span class='fa-layers fa-fw'><%=the_icon.html_safe%></span>
+      <% end %>
     </div>
     <% if min >= -5 %>
-      <div class="universal-flex-button flex-button-review">
-        <%= link_to "<span class='fa-layers fa-fw'>#{min_icon}</span>".html_safe, "#", class: "rating-review",
-          data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-      </div>
+      <%= link_to "#", class: "rating-review universal-flex-button flex-button-review", data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
+        <span class='fa-layers fa-fw'><%= min_icon.html_safe %></span>
+      <% end %>
     <% end %>
 
   <% else %>
-
-    <div class="universal-flex-button flex-button-review">
-      <%= link_to "<i class='fa fa-chevron-up'></i>".html_safe, "#", class: "rating-review",
-        data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-    </div>
-    <div class="universal-flex-button flex-button-review">
-      <%= link_to "-", new_review_path(reviewable, review_id: reviewable.id, review_type: reviewable.class.to_s) %>
-    </div>
-    <div class="universal-flex-button flex-button-review">
-      <%= link_to "<i class='fa fa-chevron-down'></i>".html_safe, "#", class: "rating-review",
-        data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} %>
-    </div>
+    <%= link_to "#", class: "rating-review universal-flex-button flex-button-review", data: {rating: 1, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
+      <i class='fa fa-chevron-up'></i>
+    <% end %>
+    <%= link_to "#", class: "rating-review universal-flex-button flex-button-review", data: {rating: -1, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
+        <i class='fa fa-chevron-down'></i>
+    <% end %>
   <% end %>
 </div>
