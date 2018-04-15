@@ -1,7 +1,7 @@
 <div class="footer">
   <div class="small-12 columns">
     <div class="small-10 columns">
-      <p class="white-text"><%= Rails.env.capitalize %> Version: <%= Rails.application.config.app_version %></p>
+      <p class="white-text"><%= Rails.env.capitalize %> Version: <%= ENV["version"] %></p>
     </div>
     <div class="small-2 columns">
       <p class="right white-text"><%= link_to "<i class='fa fa-lightbulb'></i>".html_safe, new_report_path %></p>

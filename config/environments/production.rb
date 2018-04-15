@@ -1,5 +1,4 @@
 Rails.application.configure do
-  config.app_version = ".6.0"
 
   Paperclip.options[:command_path] = "/usr/bin/convert/"
   # Settings specified here will take precedence over those in config/application.rb.

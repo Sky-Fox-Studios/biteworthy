@@ -1,5 +1,4 @@
 Rails.application.configure do
-  config.app_version = ".6"
 
   # Settings specified here will take precedence over those in config/application.rb.
    #Rails.configuration.s3[:s3_bucket]
