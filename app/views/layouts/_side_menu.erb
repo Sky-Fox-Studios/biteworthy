@@ -2,11 +2,9 @@
   <ul>
     <li><%= link_to "Home", root_path %></li>
     <% if current_user %>
-      <li class="nav-primary"><%= link_to "Reviews", reviews_path %></li>
-      <li class="nav-primary">
-        <%= link_to "Profile", me_path %>
-      </li>
+      <li class="nav-primary"><%= link_to "Profile", me_path %></li>
       <li class="nav-secondary"><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
+      <li class="nav-secondary"><%= link_to "Reviews", reviews_path %></li>
       <% if current_user.is_admin? %>
         <li class="nav-primary"><%= link_to "Admin", admin_root_path %></li>
         <li class="nav-secondary"><%= link_to "Users",       admin_users_path %></li>
