@@ -1,5 +1,5 @@
 <div class="row" style="padding: 0;">
-  <div class="small-12">
+  <div class="small-12 show-for-medium">
     <div class="bw-top-bar">
       <div class="home-logo">
         <%= link_to image_tag("bite-worthy-durango"), root_path %>
@@ -15,7 +15,7 @@
       <% if current_user %>
         <nav class="admin-nav">
         <ul class="admin-nav-primary-list">
-          <li class="admin-nav-primary-item"><%= link_to "Reviews", reviews_path %></li>
+          <li class="admin-nav-primary-item"><%= link_to "My reviews", reviews_path %></li>
           <li class="admin-nav-primary-item">
             <%= link_to "Profile", me_path %>
             <ul class="admin-nav-secondary-list">
@@ -44,5 +44,13 @@
         </div>
       <% end %>
     </div>
+  </div>
+  <div class="small-12 show-for-small-only">
+    <div class="home-logo">
+      <%= link_to image_tag("bite-worthy-durango"), root_path %>
+    </div>
+    <a href="#" class="slideout-menu-toggle left-header-btn">
+      <i class="fa fa-bars slideout-menu-icon"></i>
+    </a>
   </div>
 </div>

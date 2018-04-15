@@ -1,0 +1,42 @@
+<div class="slideout-menu hide-for-print">
+  <ul>
+    <li><%= link_to "Home", root_path %></li>
+    <% if current_user %>
+      <li class="nav-primary"><%= link_to "Reviews", reviews_path %></li>
+      <li class="nav-primary">
+        <%= link_to "Profile", me_path %>
+      </li>
+      <li class="nav-secondary"><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
+      <% if current_user.is_admin? %>
+        <li class="nav-primary"><%= link_to "Admin", admin_root_path %></li>
+        <li class="nav-secondary"><%= link_to "Users",       admin_users_path %></li>
+        <li class="nav-secondary"><%= link_to "Restaurants", admin_restaurants_path %></li>
+        <li class="nav-secondary"><%= link_to "Items",       admin_items_path %></li>
+        <li class="nav-secondary"><%= link_to "Foods",       admin_foods_path %></li>
+        <li class="nav-secondary"><%= link_to "Tags",        admin_tags_path %></li>
+        <li class="nav-secondary"><%= link_to "*Ingredients*", admin_ingredients_path %></li>
+      <% end %>
+      <li class="nav-primary"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+    <% else %>
+      <div class="universal-flex-container">
+        <%= link_to "Login".html_safe, user_session_path, class: "universal-flex-button", style: "margin:.5rem;" %>
+      </div>
+    <% end %>
+  </ul>
+</div>
+<script>
+  $(document).ready(function () {
+    $('.slideout-menu-toggle').on('click', function(event){
+      event.preventDefault();
+      openSlideOutMenu(!$('.slideout-menu').hasClass("open"));
+    });
+  });
+
+  function openSlideOutMenu(open){
+    $('.slideout-menu').animate({
+      left: open ? 0 : -$('.slideout-menu').width()
+    }, 250);
+    $('.slideout-menu').toggleClass("open");
+    $('.slideout-menu-icon').toggleClass("fi-list fi-x").animate();
+  }
+</script>
