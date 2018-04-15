@@ -1,4 +1,4 @@
-<div class="small-12 medium-6 large-6 columns" style="padding-bottom: 5px">
+<div class="small-12 medium-6 large-6 columns restaurant-home-container" style="padding: 5px 0 0 5px">
   <div class="row">
     <div class="small-12 medium-5 large-6 columns">
       <% if restaurant.main_image_url %>
@@ -8,8 +8,8 @@
       <% end %>
     </div>
     <div class="small-12 medium-7 large-6 columns">
-      <h4><%= link_to restaurant.name, restaurant %></h4>
-      <%= restaurant.slogan %>
+      <h2 class="small-center"><%= link_to restaurant.name, restaurant %></h2>
+      <p class="small-center"><%= restaurant.slogan %></p>
     </div>
   </div>
 </div>

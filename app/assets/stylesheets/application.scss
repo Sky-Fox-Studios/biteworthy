@@ -12,7 +12,6 @@
 /* @import "font-awesome-sprockets"; */
 @import "font-awesome";
 @import "variables";
-$cursive: 'cookie ', cursive;
 *{
   font-family: 'Amaranth';
   // color: white;
@@ -40,22 +39,30 @@ $cursive: 'cookie ', cursive;
 //   padding: 0px 55px 0px 55px;
 // }
 h1{
-  font-style: italic;
-  color: white;
+  font-family: 'Amaranth';
+  color: $color;
 }
 h2{
-  font-family: 'cookie', cursive;
-  color: white;
+  font-family: 'Amaranth';
+  color: $color;
 }
 h3{
-  font-family: 'cookie', cursive;
+  font-family: 'Amaranth';
   line-height: 1.0;
-  color: white;
+  color: $color;
   padding-bottom: .5rem;
 }
 h4{
-  font-family: 'cookie', cursive;
-  color: white;
+  font-family: 'Amaranth';
+  color: $color;
+}
+h5{
+  font-family: 'Amaranth';
+  color: $color;
+}
+h6{
+  font-family: 'Amaranth';
+  color: $color;
 }
 
 .close{
@@ -85,10 +92,10 @@ h4{
   // left: 50%;
   p {
     margin: 0px;
-    color: white;
+    color: black;
   }
   i{
-    color: white;
+    color: black;
   }
 }
 th{
@@ -139,7 +146,7 @@ select {
   display: inline;
 }
 li{
-    color: white;
+    color: black;
 }
 .alert-box {
   margin-top: .5rem;

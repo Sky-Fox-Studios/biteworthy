@@ -1,6 +1,6 @@
-// Place all the styles related to the Restaurants controller here.
-// They will automatically be included in application.css.
-// You can use Sass
+.restaurant-home-container{
+padding: 5px 0 0 5px
+}
 .restaurant-header {
   display: flex;
   border-bottom: 5px;
@@ -15,12 +15,12 @@
 .restaurant-name{
   padding-top: 5px;
   a {
-    color: white !important;
+    color: black !important;
     font-family: 'Amaranth';
   }
 }
 .slogan{
-  color:white;
+  color:black;
   font-size: 1em;
   // position: absolute;
   // bottom: 0;
