@@ -12,6 +12,8 @@
 /* @import "font-awesome-sprockets"; */
 @import "font-awesome";
 @import "variables";
+@import "media_query_mixins";
+
 *{
   font-family: 'Amaranth';
   // color: white;
@@ -107,6 +109,11 @@ th{
 }
 .white-text{
   color: white !important;
+}
+.small-center {
+  @media #{$break-small} {
+    text-align: center;
+  }
 }
 .center {
   text-align: center;

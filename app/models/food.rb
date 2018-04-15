@@ -36,7 +36,6 @@ class Food < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-
   def trim_name
     self.name = self.name.strip.downcase unless self.name.nil?
   end

@@ -4,11 +4,11 @@
       <strong class="food-list-title"><%= list_name.upcase %>:</strong>
       <%= list.map do |list_item|
         if list_name == "foods"
-          link_to(list_item.name, food_search_path(food_id: list_item.id))
+          link_to(list_item.name, food_search_path(food_id: list_item))
         elsif list_name == "ingredients"
-          link_to(list_item.name, ingredient_search_path(ingredient_id: list_item.id))
+          link_to(list_item.name, ingredient_search_path(ingredient_id: list_item))
         elsif list_name == "choices"
-          link_to(list_item.name, choice_search_path(choice_id: list_item.id))
+          link_to(list_item.name, choice_search_path(choice_id: list_item))
         else
           link_to(list_item.name, polymorphic_path([@restaurant, list_item]))
         end

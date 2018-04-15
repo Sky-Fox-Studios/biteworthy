@@ -15,7 +15,7 @@ class Extra < ActiveRecord::Base
   validates :restaurant_id, :name, :extra_type, presence: true
   validates_uniqueness_of :name, scope: [:restaurant_id, :extra_type]
 
-  # def to_param
-  #   "#{id}-#{name.parameterize}"
-  # end
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 end

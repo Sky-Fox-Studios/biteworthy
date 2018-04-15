@@ -18,9 +18,7 @@
   <% end %>
     <div class="universal-flex-button flex-button-review">
       <%= link_to edit_review_path(review) do %>
-        <span class='fa-layers fa-fw'><%=the_icon.html_safe%></span>
         <%= Review.ratings.key(rating).humanize %>
-        <span class='fa-layers fa-fw'><%=the_icon.html_safe%></span>
       <% end %>
     </div>
     <% if min >= -5 %>
