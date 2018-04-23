@@ -1,3 +1,5 @@
 <%= @item.foods.map do |food|
-  "#{link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food))} <sup>#{link_to 'x', admin_restaurant_item_remove_food_path(@restaurant, @item, food_id: food.id), method: :post, style: 'color:red'}</sup>"
+  ingredient = Ingredient.find_by_name(food.name)
+  "#{link_to("<sub>i</sub> ".html_safe, ingredient_path(ingredient)) if (ingredient)}#{link_to(food.name, edit_admin_restaurant_food_path(@restaurant, food))} #{link_to "<i class='fa fa-times' data-fa-transform='up-4 shrink-4' style='color:red'></i>".html_safe, admin_restaurant_item_remove_food_path(@restaurant, @item, food_id: food.id), method: :post}</sup>"
 end.to_sentence.html_safe %>
+

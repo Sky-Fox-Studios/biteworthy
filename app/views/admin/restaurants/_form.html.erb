@@ -52,12 +52,13 @@
     <div class="small-12 columns">
       <label>Restaurant Image
       <%= f.file_field :image, name: "image", multiple: true %>
+        test
       </label>
       <% unless @restaurant.photos.empty? %>
         <% @restaurant.photos.each do |photo| %>
           <div class="small-12 medium-4 large-3 columns">
             <%= image_tag photo.image(:thumb) %>
-            <%= link_to 'x', admin_restaurant_remove_photo_path(@restaurant, photo_id: photo.id), method: :post, style: 'color:red; position:absolute;', class: "close" %>
+            <%= link_to "<i class='fa fa-x'></i>", admin_restaurant_remove_photo_path(@restaurant, photo_id: photo.id), method: :post, style: 'color:red; position:absolute;', class: "close" %>
           </div>
         <% end %>
       <% end %>

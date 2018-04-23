@@ -1,6 +1,6 @@
 <div class="small-12 columns">
   <b>Tags:</b>
   <%= ingredient.tags.map do |tag|
-    "#{link_to(tag.name, admin_tag_path(tag))} <sup>#{link_to 'x', admin_ingredient_remove_tag_path(ingredient, tag_id: tag.id), method: :post, style: 'color:red'}</sup>"
+    "#{link_to(tag.name, admin_tag_path(tag))} <sup>#{link_to 'x', admin_ingredient_remove_tag_path(ingredient, tag_id: tag.id), method: :post}</sup>"
   end.to_sentence.html_safe %>
 </div>

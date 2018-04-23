@@ -8,7 +8,7 @@
   <div class="small-8 medium-6 large-8 columns">
     <h2 class="show-for-medium"><%= link_to item.restaurant.name, restaurant_path(item.restaurant) %></h2>
     <h3>
-      <%= item.name %>
+      <%= link_to item.name, restaurant_item_path(item.restaurant, item) %>
     </h3>
     <p class="desc">
       <%= item.description %>
