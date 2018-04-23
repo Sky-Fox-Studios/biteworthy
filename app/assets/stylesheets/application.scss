@@ -15,11 +15,11 @@
 @import "media_query_mixins";
 
 *{
-  font-family: 'Amaranth';
   // color: white;
   opacity: 1;
 }
 .p {
+  font-family: 'Amaranth';
   padding: 5px;
 }
 .row {
@@ -41,29 +41,29 @@
 //   padding: 0px 55px 0px 55px;
 // }
 h1{
-  font-family: 'Amaranth';
+  font-family: 'Bligh';
   color: $color;
 }
 h2{
-  font-family: 'Amaranth';
+  font-family: 'Bligh';
   color: $color;
 }
 h3{
-  font-family: 'Amaranth';
+  font-family: 'Bligh';
   line-height: 1.0;
   color: $color;
   padding-bottom: .5rem;
 }
 h4{
-  font-family: 'Amaranth';
+  font-family: 'Bligh';
   color: $color;
 }
 h5{
-  font-family: 'Amaranth';
+  font-family: 'Bligh';
   color: $color;
 }
 h6{
-  font-family: 'Amaranth';
+  font-family: 'Bligh';
   color: $color;
 }
 
