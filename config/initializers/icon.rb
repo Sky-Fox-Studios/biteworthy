@@ -4,7 +4,7 @@ class Icon
   end
 
   def self.sub_i
-
+    "<i class='fal fa-info-circle' data-fa-transform='down-4 shrink-4' style='color:blue'></i>"
   end
 
   def shit_show
