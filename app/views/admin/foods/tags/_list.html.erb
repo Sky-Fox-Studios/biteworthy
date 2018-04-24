@@ -1,3 +1,3 @@
 <%= @food.tags.map do |tag|
-  "#{link_to(tag.name, edit_admin_tag_path(tag))} <sup>#{link_to 'x', admin_restaurant_food_remove_tag_path(@restaurant, @food, tag_id: tag.id), method: :post}</sup>"
+  "#{link_to(tag.name, edit_admin_tag_path(tag))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_tag_path(@restaurant, @food, tag_id: tag.id), method: :post}"
 end.to_sentence.html_safe %>

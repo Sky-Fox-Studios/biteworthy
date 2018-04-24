@@ -8,7 +8,7 @@
         "admin_restaurant_#{item_class}_remove_photo_path",
         restaurant_id: @restaurant.id, "#{item_class}_id".to_sym => item.id, photo_id: photo.id
       ) %>
-      <%= link_to String.sup_x, delete_path, method: :post, style: 'color:red; position:relative;', class: "close" %>
+      <%= link_to Icon.sup_x.html_safe, delete_path, method: :post, style: 'color:red; position:relative;', class: "close" %>
     </div>
   <% end %>
 <% end %>
