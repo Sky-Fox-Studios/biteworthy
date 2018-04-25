@@ -26,3 +26,11 @@ div.food-item{
    margin-left: auto;
    margin-right: auto;
 }
+ul.food-list{
+  margin-left: 0;
+  li{
+    width: 50%;
+    float: left;
+    list-style-type: none;
+  }
+}
