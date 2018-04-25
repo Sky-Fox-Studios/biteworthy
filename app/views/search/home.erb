@@ -1,9 +1,11 @@
 <div class="row">
-  <% if @search.present? %>
-    <div class="small-12 columns">
+  <div class="small-12 columns">
+    <% if @search.present? %>
       <h2>You are looking for: <b><%= @search %></b></h2>
-    </div>
-  <% end %>
+    <% else %>
+      <h2>No search provided.</h2>
+    <% end %>
+  </div>
   <div class="small-12 columns">
     <script>
       $( function() {
@@ -80,5 +82,8 @@
   </div>
   <div id="items-found">
     <%= render partial: "search/items_found", locals: {items: @items.results} %>
+  </div>
+  <div id="restaurants-found">
+    <%# <%= render partial: "search/restaurants_found", locals: {restaurants: @restaurants.results} %1> %>
   </div>
 </div>

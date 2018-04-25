@@ -1,0 +1,8 @@
+<div class="small-12 columns">
+  <h2 align="center"><%= restaurants.count %> restaurants:</h2>
+</div>
+<div class="search-restaurants-show">
+  <% restaurants.each do |restaurant| %>
+    <%= render partial: "restaurants/basic", locals: {restaurant: restaurant} %>
+  <% end %>
+</div>
