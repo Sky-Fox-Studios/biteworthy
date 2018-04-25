@@ -83,8 +83,8 @@ class Admin::FoodsController < AdminController
   end
 
   def add_ingredient
-    unless params[:ingredient_id].empty?
-      ingredient = Ingredient.find(params[:ingredient_id])
+    if params[:ingredient].present?
+      ingredient = Ingredient.find(params[:ingredient][:id])
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
       redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
     else
@@ -93,8 +93,8 @@ class Admin::FoodsController < AdminController
   end
 
   def add_ingredient_by_name
-    unless params[:ingredient_name].empty?
-      ingredient = Ingredient.find_or_create_by(name: params[:ingredient_name])
+    if params[:ingredient].present?
+      ingredient = Ingredient.find_or_create_by(name: params[:ingredient][:name])
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
     end
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
