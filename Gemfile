@@ -11,7 +11,6 @@ gem 'devise'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
-gem "font-awesome-sass", "~> 4.7.0"
 gem 'foundation-rails', '6.2.4.0'
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'

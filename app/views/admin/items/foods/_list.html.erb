@@ -1,6 +1,6 @@
 <ul class="food-list">
   <% @item.foods.map do |food| %>
-    <% ingredient = Ingredient.find_by_name(food.name) %>
+    <% ingredient = food.ingredients.first %>
     <li>
       <%= link_to Icon.sub_i.html_safe, ingredient_path(ingredient) if (ingredient) %>
       <%= link_to food.name, edit_admin_restaurant_food_path(@restaurant, food) %>

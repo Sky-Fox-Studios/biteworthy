@@ -17,10 +17,10 @@ class Ingredient < ActiveRecord::Base
   has_many :reviews, as: :review
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    "#{id}-#{normalized_name}"
   end
 
   def set_normalized_name
-    self.normalized_name = self.name.parameterize
+    self.normalized_name = self.name.parameterize.singularize
   end
 end

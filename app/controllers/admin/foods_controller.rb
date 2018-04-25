@@ -83,8 +83,8 @@ class Admin::FoodsController < AdminController
   end
 
   def add_ingredient
-    if params[:ingredient].present?
-      ingredient = Ingredient.find(params[:ingredient][:id])
+    if params[:ingredient_id].present?
+      ingredient = Ingredient.find(params[:ingredient_id])
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
       redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
     else
