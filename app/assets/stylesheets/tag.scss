@@ -1,0 +1,11 @@
+.tag-flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.tag-block {
+  margin: 0 .5rem;
+  text-align:center;
+}

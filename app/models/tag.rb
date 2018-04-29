@@ -3,8 +3,18 @@ class Tag < ActiveRecord::Base
    has_and_belongs_to_many :menu_groups
    has_and_belongs_to_many :foods
    has_and_belongs_to_many :ingredients
-   has_many :photos, as: :photo
    has_many :reviews, as: :review
+   has_attached_file :icon,
+    source_file_options: { all: "-auto-orient"},
+    styles: {
+      tiny: "32x32#",
+      small: "50x50#",
+      medium: "75x75#",
+      large: "150x150#",
+      huge: "300x300#",
+      original: ""
+    }
+  validates_attachment_content_type :icon, content_type: /\Aimage\/.*\z/
 
    #TODO
    #has_and_belongs_to_many :tags, as: :parent_tag
@@ -27,8 +37,12 @@ class Tag < ActiveRecord::Base
       }.flatten.uniq
    end
 
+   def to_param
+     "#{id}-#{name}"
+   end
+
    private
    def normalize_tag_name
-      self.name = self.name.parameterize
-    end
+     self.name = self.name.parameterize
+   end
 end

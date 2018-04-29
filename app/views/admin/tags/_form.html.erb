@@ -10,7 +10,25 @@
     <div class="small-12 medium-4 columns">
       <%= f.input :variety, collection: Tag.varieties.map{|variety| [variety.first, variety.first]}, selected: @tag.variety %>
     </div>
+    <div class="small-12 medium-6 columns">
+      <%= f.input :icon, label: 'Upload an Icon' %>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <% if @tag.icon.present? %>
+      <%= image_tag(@tag.icon.url)  %>
+      <%= @tag.icon_file_name %>
+    <% end %>
+    </div>
+    <div class="small-12 columns">
+      <%# FOR TESTING %>
+      <% @tag.icon.options[:styles].keys.each do |style|  %>
+        <% image_tag(@tag.icon.url(style))  %>
+        <% style %>
+      <% end %>
+    </div>
+
   </div>
+  <br>
   <div class="row universal-flex-container">
     <%= f.submit class: "universal-flex-button flex-button-natural" %>
   </div>
