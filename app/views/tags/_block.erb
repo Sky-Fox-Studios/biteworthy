@@ -2,5 +2,8 @@
   <div class='tag-block'>
     <%= image_tag(tag.icon.url(:small), tooltip: tag.name, title: tag.name).html_safe%>
     <p><%= tag.name %></p>
+    <% if defined?(admin_edit) %>
+      <%= link_to Icon.sup_x.html_safe, '#', class: "item-remove-tag", data: {tag_id: tag.id} %>
+    <% end %>
   </div>
 <% end %>

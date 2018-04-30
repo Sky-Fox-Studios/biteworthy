@@ -1,12 +1,10 @@
-<%= item.tags.map do |tag|
-  "#{link_to(tag.name, edit_admin_tag_path(tag))}
-  #{link_to Icon.sup_x.html_safe, '#', class: "item-remove-tag", data: {tag_id: tag.id}}"
-end.to_sentence.html_safe %>
-
+<div class="tag-flex-container">
+  <% item.tags.map do |tag| %>
+    <%= render partial: "tags/block", locals: {tag: tag, admin_edit: true} %>
+  <% end %>
+  </div>
 <script>
   $(function() {
     itemRemoveTag();
   });
 </script>
-
-

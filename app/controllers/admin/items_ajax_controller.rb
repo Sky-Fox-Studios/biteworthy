@@ -1,9 +1,7 @@
 class Admin::ItemsAjaxController < Admin::ItemsController
 
   def add_new_tag
-    binding.pry
     tag = Tag.find_or_initialize_by(name: tag_params[:name])
-    binding.pry
     tag.update(tag_params)
     @item.tags << tag unless @item.tags.include? tag
     render partial: "admin/items/tags/list", locals: {item: @item }
