@@ -32,3 +32,19 @@ p.desc {
     }
   }
 }
+fieldset {
+  border: solid;
+  padding: .5rem;
+  margin: .25rem;
+  border-radius: 5px;
+  border-color: #b7d54d;
+
+  &.inner {
+    border-width: 2px;
+    border-color: #CEE3F6;
+  }
+  legend {
+    margin-bottom: 0rem;
+    padding: 0 .2rem;
+  }
+}

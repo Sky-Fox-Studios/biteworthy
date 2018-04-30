@@ -4,7 +4,12 @@
     <li>
       <%= link_to Icon.sub_i.html_safe, ingredient_path(ingredient) if (ingredient) %>
       <%= link_to food.name, edit_admin_restaurant_food_path(@restaurant, food) %>
-      <%= link_to Icon.sup_x.html_safe, admin_restaurant_item_remove_food_path(@restaurant, @item, food_id: food.id), method: :post %>
+      <%= link_to Icon.sup_x.html_safe, "#", class: "item-remove-food", data: {food_id: food.id} %>
     </li>
   <% end %>
 </ul>
+<script>
+  $(function() {
+    itemRemoveFood();
+  });
+</script>

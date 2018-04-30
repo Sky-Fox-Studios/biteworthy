@@ -4,12 +4,26 @@
       event.preventDefault();
       $.ajax({
         type: 'post',
-        url: '<%= admin_restaurant_item_remove_tag_path(restaurant, item)%>',
+        url: '<%= admin_restaurant_item_remove_tag_path(restaurant, item) %>',
         data: {
           tag_id: $(this).data("tag-id")
         }
       }).done(function(response) {
         $("#tags_list").html(response);
+      });
+    });
+  }
+  function itemRemoveFood(){
+    $('.item-remove-food').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_remove_food_path(restaurant, item) %>',
+        data: {
+          food_id: $(this).data("food-id")
+        }
+      }).done(function(response) {
+        $("#foods_list").html(response);
       });
     });
   }

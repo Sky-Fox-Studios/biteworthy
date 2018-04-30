@@ -21,4 +21,24 @@ class Admin::ItemsAjaxController < Admin::ItemsController
     render partial: "admin/items/tags/list", locals: {item: @item }
   end
 
+  def add_new_food
+    food = Food.find_or_initialize_by(name: food_params[:name], restaurant: @item.restaurant)
+    food.update(food_params)
+    @item.foods << food unless @item.foods.include? food
+    render partial: "admin/items/foods/list", locals: {item: @item }
+  end
+
+  def add_food
+    unless (params[:food_id].empty?)
+      food = Food.find(params[:food_id])
+      @item.foods << food unless @item.foods.include? food
+    end
+    render partial: "admin/items/foods/list", locals: {item: @item }
+  end
+
+  def remove_food
+    food = Food.find(params[:food_id])
+    @item.foods.delete(food)
+    render partial: "admin/items/foods/list", locals: {item: @item }
+  end
 end

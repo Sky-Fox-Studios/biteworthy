@@ -81,21 +81,8 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
-  def add_new_food
-    @item.foods << Food.find_or_create_by(name: params[:food_name], description: params[:food_description], restaurant: @item.restaurant)
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-  end
-
   def add_new_extra
     @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-  end
-
-  def add_food
-    unless (params[:food_id].empty?)
-      food = Food.find(params[:food_id])
-      @item.foods << food unless @item.foods.include? food
-    end
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
@@ -112,12 +99,6 @@ class Admin::ItemsController < AdminController
   def remove_menu_group
     menu_group = MenuGroup.find(params[:menu_group_id])
     @item.menu_groups.delete(menu_group)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
-  end
-
-  def remove_food
-    food = Food.find(params[:food_id])
-    @item.foods.delete(food)
     redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
   end
 
@@ -156,10 +137,12 @@ class Admin::ItemsController < AdminController
   end
 
   def item_params
-    params.require(:item).permit(:restaurant_id, :name, :description, menu_group_ids: [],
-                                 food_attributes: [:restaurant_id, :name, :description])
+    params.require(:item).permit(:restaurant_id, :name, :description, menu_group_ids: [])
   end
 
+  def food_params
+    params.require(:food).permit(:name, :description)
+  end
   def tag_params
     params.require(:tag).permit(:name, :description)
   end

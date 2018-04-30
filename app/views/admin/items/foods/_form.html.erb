@@ -1,13 +1,35 @@
-<%= simple_form_for(item, url: admin_restaurant_item_add_new_food_path(restaurant, item), method: :post) do |f| %>
-  <div class="row">
+<%= simple_form_for(item.foods.new, url: admin_restaurant_item_add_new_food_path(restaurant, item), method: :post) do |f| %>
+  <div class="row universal-flex-container no-bottom-margin">
     <div class="small-4 columns">
-      <input type="text" id="item[food_name]" name="food_name" placeholder="Name" />
+      <%= f.input :name, placeholder: "Name" %>
     </div>
     <div class="small-5 columns">
-      <input type="text" id="item[food_description]" name="food_description" placeholder="Description" />
+      <%= f.input :description, placeholder: "Description" %>
     </div>
     <div class="small-3 columns">
-        <%= f.submit class: "button tiny radius success", value: 'Add' %>
+      <label>&nbsp;</label>
+      <%= f.submit "Add", id: "item-add-new-food",  class: "universal-flex-button flex-button-natural vertical-center" %>
     </div>
   </div>
 <% end %>
+<script>
+  $(function() {
+    $('#item-add-new-food').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_add_new_food_path(restaurant, item) %>',
+        data: {
+          "food": {
+            name: $("#food_name").val(),
+            description: $("#food_description").val()
+          }
+        }
+      }).done(function(response) {
+        $("#food_name").val("");
+        $("#food_description").val("");
+        $("#foods_list").html(response);
+      });
+    });
+  });
+</script>
