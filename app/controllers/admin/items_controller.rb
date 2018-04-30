@@ -143,7 +143,8 @@ class Admin::ItemsController < AdminController
   def food_params
     params.require(:food).permit(:name, :description)
   end
+
   def tag_params
-    params.require(:tag).permit(:name, :description)
+    params.require(:tag).permit(:name, :description, :icon)
   end
 end
