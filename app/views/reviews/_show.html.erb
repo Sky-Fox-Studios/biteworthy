@@ -1,6 +1,13 @@
 <div class="row" id="rating-reviews-<%=review.id%>" >
   <div class="small-4 columns image-wrapper">
-    <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %>
+    <% if defined? reviewed.photos %>
+      <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %>
+    <% elsif reviewed.class.to_s == "Tag" %>
+
+      <div class="tag-flex-container">
+        <%= render partial: "tags/block", locals: {tag: reviewed, size: :medium} %>
+      </div>
+    <% end %>
   </div>
   <div class="small-8 columns">
     <h3 style="float:left;">
@@ -9,7 +16,7 @@
   </div>
   <div class="small-12 columns">
     <p align="none">
-      <%= render partial: "reviews/type_link", locals: {review: review, reviewed: review.review} %>
+    <%= render partial: "reviews/type_link", locals: {review: review, reviewed: review.review} %>
     </p>
   </div>
 </div>

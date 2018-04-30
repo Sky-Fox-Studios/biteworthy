@@ -4,7 +4,16 @@
     <p><b>Name:</b> <%= @tag.name.capitalize %></p>
     <p><b>Descrpition:</b> <%= @tag.description %></p>
     <p><b>Variety:</b> <%= @tag.variety %></p>
-    <p><b>Icon:</b> <%= image_tag @tag.icon.url %></p>
+    <p>
+      <b>Icon:</b>
+      <% if @tag.icon.present? %>
+        <div class="tag-flex-container">
+          <%= render partial: "tags/block", locals: {tag: @tag, size: :medium} %>
+        </div>
+      <% else %>
+        Missing
+      <% end %>
+    </p>
     <hr>
     <p>**In Development**</p>
   </div>

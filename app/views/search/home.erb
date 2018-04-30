@@ -35,25 +35,6 @@
         //.disableSelection();
       } );
     </script>
-    <style>
-      #include, #exclude, #options {
-        display: flex;
-        flex-wrap: wrap;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        min-height: 20px;
-        margin: 0;
-        padding: 5px 0 0 0;
-        margin-right: 10px;
-      }
-      #include span, #exclude span, #options span {
-        margin: 0 5px 5px 5px;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        padding: 5px;
-        font-size: 1.2em;
-      }
-    </style>
 
       <div class="row">
         <div class="small-12 medium-4 columns">
@@ -63,9 +44,9 @@
         </div>
         <div class="small-12 medium-4 columns">
           <span>Prefrences</span>
-          <div id="options" class="connectedSortable ">
+          <div id="options" class="connectedSortable tag-flex-container">
             <% @tags.each do |tag| %>
-            <%= "<span class='tag' id='tag_#{tag.id}'>#{tag.name}</span>".html_safe %>
+              <%= render partial: "tags/block", locals: {tag: tag, size: :small} %>
           <% end %>
           <% @foods.each do |food| %>
             <% "<span class='food' id='food-#{food.id}'>#{food.name}</span>".html_safe %>

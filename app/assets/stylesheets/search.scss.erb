@@ -5,3 +5,24 @@ li form {
 .top-bar-left{
   <%# width: 32% !important; %>
 }
+#include, #exclude, #options {
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid #bbb;
+  border-radius: 5px;
+  min-height: 4rem;
+  margin: 0;
+  padding: 5px 0 0 0;
+  margin-right: 10px;
+
+  .tag-block {
+    margin: .25rem;
+  }
+}
+#include span, #exclude span, #options span {
+  margin: 0 5px 5px 5px;
+  border: 2px solid #eee;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.2em;
+}
