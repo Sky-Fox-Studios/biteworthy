@@ -1,6 +1,21 @@
 <%= link_to tag_path(tag) do %>
+  <% size ||= :small %>
+  <% ratio = "75x75" %>
+  <% case(size)
+  when :small
+    ratio = "50x50"
+  when :medium
+    ratio = "75x75"
+  end
+  %>
+
   <div class='tag-block'>
-    <%= image_tag(tag.icon.url(:small), tooltip: tag.name, title: tag.name).html_safe%>
+    <% if tag.icon.present? %>
+      <%= image_tag(tag.icon.url(size), tooltip: tag.name, title: tag.name).html_safe %>
+    <% else %>
+      <%= image_tag "empty.png", size: ratio %>
+    <% end %>
+
     <p><%= tag.name %></p>
     <% if defined?(admin_edit) %>
       <%= link_to Icon.sup_x.html_safe, '#', class: "item-remove-tag", data: {tag_id: tag.id} %>

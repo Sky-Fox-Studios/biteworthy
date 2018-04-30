@@ -1,7 +1,7 @@
 <div class="small-12 columns">
   <div class="tag-flex-container">
     <% tags.map do |tag| %>
-      <%= render partial: "tags/block", locals: {tag: tag} %>
+      <%= render partial: "tags/block", locals: {tag: tag, size: :medium} %>
     <% end %>
   </div>
 </div>
