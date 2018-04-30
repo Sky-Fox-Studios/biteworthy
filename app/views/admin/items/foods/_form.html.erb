@@ -1,16 +1,19 @@
 <%= simple_form_for(item.foods.new, url: admin_restaurant_item_add_new_food_path(restaurant, item), method: :post) do |f| %>
-  <div class="row universal-flex-container no-bottom-margin">
-    <div class="small-4 columns">
-      <%= f.input :name, placeholder: "Name" %>
+  <fieldset class='inner'>
+    <legend>Create</legend>
+    <div class="row universal-flex-container no-bottom-margin">
+      <div class="small-4 columns">
+        <%= f.input :name, placeholder: "Name" %>
+      </div>
+      <div class="small-5 columns">
+        <%= f.input :description, placeholder: "Description" %>
+      </div>
+      <div class="small-3 columns">
+        <label>&nbsp;</label>
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "item-add-new-food", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+      </div>
     </div>
-    <div class="small-5 columns">
-      <%= f.input :description, placeholder: "Description" %>
-    </div>
-    <div class="small-3 columns">
-      <label>&nbsp;</label>
-      <%= f.submit "Add", id: "item-add-new-food",  class: "universal-flex-button flex-button-natural vertical-center" %>
-    </div>
-  </div>
+  </fieldset>
 <% end %>
 <script>
   $(function() {

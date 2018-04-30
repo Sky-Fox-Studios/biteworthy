@@ -1,18 +1,21 @@
 <%= simple_form_for(item, url: admin_restaurant_item_add_new_extra_path(restaurant, item), method: :post) do |f| %>
-  <div class="row universal-flex-container">
-    <div class="small-5 columns">
-      <input type="text" id="item[extra_name]" name="extra_name" placeholder="Name" />
-    </div>
-    <div class="small-7 columns">
-      <input type="text" id="item[extra_description]" name="extra_description" placeholder="Description" />
-    </div>
+  <fieldset class='inner'>
+    <legend>Create</legend>
+    <div class="row universal-flex-container no-bottom-margin">
+      <div class="small-5 columns">
+        <input type="text" id="item[extra_name]" name="extra_name" placeholder="Name" />
+      </div>
+      <div class="small-7 columns">
+        <input type="text" id="item[extra_description]" name="extra_description" placeholder="Description" />
+      </div>
       <% Extra.extra_types.each do |extra_type| %>
         <div class="small-5 columns">
           <%= "<input type='radio' name='extra_type' id='extra_type_#{extra_type.first}' value=#{extra_type.first} #{'checked' if extra_type.first == 'addition'}> #{extra_type.first} <br>".html_safe %>
         </div>
       <% end %>
-    <div class="small-2 columns">
-      <%= f.submit "Add", class: "universal-flex-button flex-button-natural vertical-center" %>
+      <div class="small-2 columns">
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "item-add-new-extra", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+      </div>
     </div>
-  </div>
+  </fieldset>
 <% end %>

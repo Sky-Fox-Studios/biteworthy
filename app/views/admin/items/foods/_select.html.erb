@@ -1,12 +1,15 @@
 <%= form_tag "#" do %>
-  <div class="row universal-flex-container no-bottom-margin">
-    <div class="small-9 columns">
-      <%= select_tag('food_id', options_for_select(foods.map {|f| [ f.name, f.id ]}), prompt: "Choose from known foods:") %>
+  <fieldset class='inner'>
+    <legend>Add</legend>
+    <div class="row universal-flex-container no-bottom-margin">
+      <div class="small-9 columns">
+        <%= select_tag('food_id', options_for_select(foods.map {|f| [ f.name, f.id ]}), prompt: "From known foods:") %>
+      </div>
+      <div class="small-3 columns ">
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "item-add-food", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+      </div>
     </div>
-    <div class="small-3 columns ">
-      <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "item-add-food", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
-    </div>
-  </div>
+  </fieldset>
 <% end %>
 <script>
   $(function() {

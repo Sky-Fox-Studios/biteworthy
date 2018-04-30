@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="small-4 columns">
+  <div class="small-5 columns">
     <h4>Price:</h4>
   </div>
   <div class="small-5 columns">
     <h4>Size:</h4>
   </div>
-  <div class="small-3 columns"> </div>
+  <div class="small-2 columns"> </div>
 </div>
 <% item.prices.map do |price| %>
   <div class="row item-price-<%=price.id%>">
@@ -19,7 +19,7 @@
       <i style="color:gray;">*Empty*</i>
       <% end %>
     </div>
-    <div class="small-2 columns">
+    <div class="small-2 columns"  style="padding: .25rem 0;">
       <!-- TODO change text to fields and edit to save with JS -->
       <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_price_path(item.restaurant, item, price)} %>
       <%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_restaurant_item_price_path(restaurant, item, price), method: :delete, remote: true %>

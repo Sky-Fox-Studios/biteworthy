@@ -1,13 +1,16 @@
-<%= form_tag admin_restaurant_item_add_extra_path(restaurant, item), method: :post do %>
-  <div class="row universal-flex-container no-bottom-margin">
-    <div class="small-5 columns">
-      <%= select_tag('extra_choice_id', options_for_select(extras.choice.map {|f| [ f.name, f.id ]}), prompt: "Find Choice:") %>
+<%= simple_form_for(item.extras.new, url: admin_restaurant_item_add_new_extra_path(restaurant, item), method: :post) do |f| %>
+  <fieldset class='inner'>
+    <legend>Add</legend>
+    <div class="row universal-flex-container no-bottom-margin">
+      <div class="small-5 columns">
+        <%= select_tag('extra_choice_id', options_for_select(extras.choice.map {|f| [ f.name, f.id ]}), prompt: "Choice:") %>
+      </div>
+      <div class="small-5 columns">
+        <%= select_tag('extra_addition_id', options_for_select(extras.addition.map {|f| [ f.name, f.id ]}), prompt: "Addition:") %>
+      </div>
+      <div class="small-2 columns">
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+      </div>
     </div>
-    <div class="small-5 columns">
-      <%= select_tag('extra_addition_id', options_for_select(extras.addition.map {|f| [ f.name, f.id ]}), prompt: "Find Addition:") %>
-    </div>
-    <div class="small-2 columns">
-      <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
-    </div>
-  </div>
+  </fieldset>
 <% end %>

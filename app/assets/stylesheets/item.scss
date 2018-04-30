@@ -34,7 +34,7 @@ p.desc {
 }
 fieldset {
   border: solid;
-  padding: .5rem;
+  padding: .25rem;
   margin: .25rem;
   border-radius: 5px;
   border-color: #b7d54d;
@@ -46,5 +46,6 @@ fieldset {
   legend {
     margin-bottom: 0rem;
     padding: 0 .2rem;
+    margin-left: .5rem;
   }
 }
