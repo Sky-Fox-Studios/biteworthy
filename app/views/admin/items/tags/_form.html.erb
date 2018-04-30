@@ -3,14 +3,35 @@
   <%= hidden_field_tag 'item_id', item.id %>
   <div class="row universal-flex-container no-bottom-margin">
     <div class="small-4 columns">
-      <%= f.input :name %>
+      <%= f.input :name, placeholder: "Name" %>
     </div>
     <div class="small-5 columns">
-      <%= f.input :description %>
+      <%= f.input :description, placeholder: "Description" %>
     </div>
     <div class="small-3 columns">
       <label>&nbsp;</label>
-      <%= f.submit "Add", class: "universal-flex-button flex-button-natural vertical-center" %>
+      <%= f.submit "Add", id: "item-add-new-tag",  class: "universal-flex-button flex-button-natural vertical-center" %>
     </div>
   </div>
 <% end %>
+<script>
+  $(function() {
+    $('#item-add-new-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_add_new_tag_path(restaurant, item) %>',
+        data: {
+          "tag": {
+            name: $("#tag_name").val(),
+            description: $("#tag_description").val()
+          }
+        }
+      }).done(function(response) {
+        $("#tag_name").val("");
+        $("#tag_description").val("");
+        $("#tags_list").html(response);
+      });
+    });
+  });
+</script>

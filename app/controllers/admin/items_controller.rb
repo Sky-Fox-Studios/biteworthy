@@ -81,13 +81,6 @@ class Admin::ItemsController < AdminController
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 
-  def add_new_tag
-    tag = Tag.find_or_initialize_by(tag_params)
-    tag.update(tag_params)
-    @item.tags << tag unless @item.tags.include? tag
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-  end
-
   def add_new_food
     @item.foods << Food.find_or_create_by(name: params[:food_name], description: params[:food_description], restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
@@ -96,14 +89,6 @@ class Admin::ItemsController < AdminController
   def add_new_extra
     @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
-  end
-
-  def add_tag
-    unless (params[:tag_id].empty?)
-      tag = Tag.find(params[:tag_id])
-      @item.tags << tag unless @item.tags.include? tag
-    end
-    render partial: "admin/items/tags/list", locals: {item: @item }
   end
 
   def add_food
@@ -128,12 +113,6 @@ class Admin::ItemsController < AdminController
     menu_group = MenuGroup.find(params[:menu_group_id])
     @item.menu_groups.delete(menu_group)
     redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
-  end
-
-  def remove_tag
-    tag = Tag.find(params[:tag_id])
-    @item.tags.delete(tag)
-    render partial: "admin/items/tags/list", locals: {item: @item }
   end
 
   def remove_food
