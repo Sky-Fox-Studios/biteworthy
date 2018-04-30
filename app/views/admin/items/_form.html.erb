@@ -29,3 +29,5 @@
     <%= render partial: "admin/items/prices/info_and_forms" %>
   <% end %>
 </div>
+<%= render partial: "admin/ajax/item", locals: {restaurant: @restaurant, item: @item} %>
+

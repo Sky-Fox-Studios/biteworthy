@@ -1,8 +1,9 @@
 <div class="small-12 columns">
   <h3>Tags:</h3>
 </div>
-<div class="small-12 medium-4 columns">
-  <%= render partial: "admin/items/tags/list", locals: {item: @item } %> </div>
+<div class="small-12 medium-4 columns" id="tags_list">
+  <%= render partial: "admin/items/tags/list", locals: {item: @item } %>
+</div>
 <div class="small-12 medium-8 columns">
   <%= render partial: "admin/items/tags/select", locals: {restaurant: @restaurant, item: @item, tags: @tags} %>
   <%= render partial: "admin/items/tags/form",   locals: {restaurant: @restaurant, item: @item} %>

@@ -1,0 +1,16 @@
+<script>
+  function itemRemoveTag(){
+    $('.item-remove-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_remove_tag_path(restaurant, item)%>',
+        data: {
+          tag_id: $(this).data("tag-id")
+        }
+      }).done(function(response) {
+        $("#tags_list").html(response);
+      });
+    });
+  }
+</script>

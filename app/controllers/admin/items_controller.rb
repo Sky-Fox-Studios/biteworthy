@@ -103,7 +103,7 @@ class Admin::ItemsController < AdminController
       tag = Tag.find(params[:tag_id])
       @item.tags << tag unless @item.tags.include? tag
     end
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    render partial: "admin/items/tags/list", locals: {item: @item }
   end
 
   def add_food
@@ -133,8 +133,9 @@ class Admin::ItemsController < AdminController
   def remove_tag
     tag = Tag.find(params[:tag_id])
     @item.tags.delete(tag)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+    render partial: "admin/items/tags/list", locals: {item: @item }
   end
+
   def remove_food
     food = Food.find(params[:food_id])
     @item.foods.delete(food)

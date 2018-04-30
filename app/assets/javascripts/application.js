@@ -15,7 +15,13 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require foundation
-//= require_tree .
+//= require admin_item
+//= require fontawesome-all
+//= require food_items
+//= require google_tracking_event
+//= require ingredients
+//= require ratings
+//= require restaurant_menu_groups
 
 $(function(){ $(document).foundation(); });
 $(function(){

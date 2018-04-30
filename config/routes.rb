@@ -69,6 +69,10 @@ Rails.application.routes.draw do
     get 'items',       to: 'items#all',       as: "items"
     get 'foods',       to: 'foods#all',       as: "foods"
 
+    namespace :ajax do
+      # Is this a wise route?
+
+    end
   end
 
 

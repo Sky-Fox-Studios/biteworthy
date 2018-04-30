@@ -4,8 +4,16 @@
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 1rem;
-}
-.tag-block {
-  margin: 0 .5rem;
-  text-align:center;
+
+  .tag-block {
+    margin-right: .5rem;
+    text-align:center;
+    border: solid black;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 2px;
+  }
+  p {
+    margin-bottom: 0px;
+  }
 }

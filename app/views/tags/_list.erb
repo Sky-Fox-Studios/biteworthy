@@ -1,11 +1,7 @@
-<div class="small-12 medium-6 columns">
+<div class="small-12 columns">
   <div class="tag-flex-container">
-    <strong class="food-list-title">TAGS:</strong>
     <% tags.map do |tag| %>
-      <div class='tag-block'>
-        <%= link_to(image_tag(tag.icon.url(:small), tooltip: tag.name, title: tag.name).html_safe, tag_path(tag)) %>
-        <p> <%= tag.name %></p>
-      </div>
+      <%= render partial: "tags/block", locals: {tag: tag} %>
     <% end %>
   </div>
 </div>
