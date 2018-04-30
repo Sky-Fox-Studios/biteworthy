@@ -16,6 +16,7 @@
           <th>Name</th>
           <th>Description</th>
           <th>Variety</th>
+          <th>Icon?</th>
           <th></th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@
             <td><%= tag.name %></td>
             <td><%= tag.description %></td>
             <td><%= tag.variety %></td>
+            <td><%= tag.icon_file_name %></td>
             <% if current_user.is_admin? %>
               <td>
                 <%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %>
