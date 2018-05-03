@@ -15,14 +15,22 @@
       <%= link_to "#", class: "rating-review universal-flex-button flex-button-review", data: {rating: max, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
         <span class='fa-layers fa-fw'><%=max_icon.html_safe%></span>
       <% end %>
+    <% else %>
+      <%= link_to "#", class: "vis-hidden universal-flex-button flex-button-review", data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
+        <span class='fa-layers fa-fw'><%=max_icon.html_safe%></span>
+      <% end %>
   <% end %>
-    <div class="universal-flex-button flex-button-review">
+    <div class="universal-flex-button flex-button-review review-button-text">
       <%= link_to edit_review_path(review) do %>
         <%= Review.ratings.key(rating).humanize %>
       <% end %>
     </div>
     <% if min >= -5 %>
       <%= link_to "#", class: "rating-review universal-flex-button flex-button-review", data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
+        <span class='fa-layers fa-fw'><%= min_icon.html_safe %></span>
+      <% end %>
+    <% else %>
+      <%= link_to "#", class: "vis-hidden universal-flex-button flex-button-review", data: {rating: min, review_type: reviewable.class.to_s, review_id: reviewable.id} do %>
         <span class='fa-layers fa-fw'><%= min_icon.html_safe %></span>
       <% end %>
     <% end %>
