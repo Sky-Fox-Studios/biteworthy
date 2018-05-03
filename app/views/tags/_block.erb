@@ -1,4 +1,6 @@
 <%= link_to tag_path(tag) do %>
+  <% hide_text  ||= false %>
+  <% admin_edit ||= false %>
   <% size ||= :small %>
   <% ratio = "75x75" %>
   <% case(size)
@@ -15,11 +17,13 @@
     <% if tag.icon.present? %>
       <%= image_tag(tag.icon.url(size), tooltip: tag.name, title: tag.name).html_safe %>
     <% else %>
-      <%= image_tag "empty.png", size: ratio %>
+      <%= image_tag "empty.png", size: ratio, class: "icon-size-#{size.to_s}" %>
     <% end %>
 
-    <p><%= tag.name %></p>
-    <% if defined?(admin_edit) %>
+    <% unless hide_text %>
+      <p><%= tag.name %></p>
+    <% end %>
+    <% if admin_edit %>
       <%= link_to Icon.sup_x.html_safe, '#', class: "food-remove-tag item-remove-tag", data: {tag_id: tag.id} %>
     <% end %>
   </div>

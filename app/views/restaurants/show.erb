@@ -33,6 +33,11 @@
                           </div>
                         <% end %>
                         <p class="black-text"><%= item.description %></p>
+                        <div class="tag-flex-container">
+                          <% item.tags.map do |tag| %>
+                            <%= render partial: "tags/block", locals: {tag: tag, size: :small, hide_text: true} %>
+                          <% end %>
+                        </div>
                         <% if item.prices.present? %>
                           <%= render partial: 'items/price', locals: {item: item} %>
                         <% end %>
