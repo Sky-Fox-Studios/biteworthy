@@ -31,6 +31,12 @@ class SearchController < ApplicationController
     render "search/item_search", locals: {search_type: "food"}
   end
 
+  def tag_search
+    @search  = Tag.find(params[:tag_id])
+    @items = Item.joins(:tags).where('tags.id IN (?)', params[:tag_id])
+    render "search/item_search", locals: {search_type: "tag"}
+  end
+
   def ingredient_search
     @search = Ingredient.find(params[:ingredient_id])
     @items = Item.joins(:ingredients).where('ingredients.id IN (?)', params[:ingredient_id])
