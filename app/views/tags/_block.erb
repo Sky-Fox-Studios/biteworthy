@@ -20,7 +20,7 @@
 
     <p><%= tag.name %></p>
     <% if defined?(admin_edit) %>
-      <%= link_to Icon.sup_x.html_safe, '#', class: "item-remove-tag", data: {tag_id: tag.id} %>
+      <%= link_to Icon.sup_x.html_safe, '#', class: "food-remove-tag item-remove-tag", data: {tag_id: tag.id} %>
     <% end %>
   </div>
 <% end %>

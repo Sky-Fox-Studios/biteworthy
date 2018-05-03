@@ -2,7 +2,7 @@ class Admin::FoodsController < AdminController
   before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient]
   before_action :set_food, only: [
     :show, :edit, :update, :destroy,
-    :add_ingredient, :add_ingredient_by_name, :add_tag, :add_new_tag,
+    :add_ingredient, :add_ingredient_by_name,
     :remove_ingredient, :remove_photo
   ]
   before_action :set_foods, only: [:all, :index]
@@ -94,7 +94,7 @@ class Admin::FoodsController < AdminController
 
   def add_ingredient_by_name
     if params[:ingredient].present?
-      ingredient = Ingredient.find_or_create_by(name: params[:ingredient][:name])
+      ingredient = Ingredient.find_or_create_by(normalized_name: params[:ingredient][:name].parameterize.singularize)
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
     end
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
@@ -109,7 +109,7 @@ class Admin::FoodsController < AdminController
   end
 
   def add_new_tag
-    tag = Tag.find_or_initialize_by(name: params[:tag])
+    tag = Tag.find_or_initialize_by(name: params[:tag][:name])
     tag.update(description: params[:tag][:description])
     @food.tags << tag unless @food.tags.include? tag
     redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)

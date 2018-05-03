@@ -1,3 +1,10 @@
-<%= @food.tags.map do |tag|
-  "#{link_to(tag.name, edit_admin_tag_path(tag))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_tag_path(@restaurant, @food, tag_id: tag.id), method: :post}"
-end.to_sentence.html_safe %>
+<div class="tag-flex-container">
+  <% food.tags.map do |tag| %>
+    <%= render partial: "tags/block", locals: {tag: tag, admin_edit: true} %>
+  <% end %>
+</div>
+<script>
+  $(function() {
+    foodRemoveTag();
+  });
+</script>

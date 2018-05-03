@@ -2,7 +2,7 @@
   <% item.tags.map do |tag| %>
     <%= render partial: "tags/block", locals: {tag: tag, admin_edit: true} %>
   <% end %>
-  </div>
+</div>
 <script>
   $(function() {
     itemRemoveTag();

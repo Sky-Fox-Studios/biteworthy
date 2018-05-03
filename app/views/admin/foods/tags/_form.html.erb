@@ -1,17 +1,41 @@
 <%= simple_form_for(food.tags.new, url: admin_restaurant_food_add_new_tag_path(restaurant, food), method: :post) do |f| %>
-  <%= f.hidden_field :restaurant_id, value: food.restaurant.id %>
-  <%= hidden_field_tag 'food_id', food.id %>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.input :name %>
-    </div>
-    <div class="small-6 columns">
-      <%= f.input :description %>
-    </div>
-    <div class="small-3 columns">
-      <div style="padding-top:25px;" class="universal-button-container">
-        <%= f.submit class: "universal-flex-button flex-button-natural", value: 'Create' %>
+  <fieldset class='inner'>
+    <legend>Create</legend>
+    <div class="row universal-flex-container no-bottom-margin">
+      <div class="small-12 medium-4 columns">
+        <%= f.input :name, placeholder: "Name" %>
+      </div>
+      <div class="small-10 medium-6 columns">
+        <%= f.input :description, placeholder: "Description" %>
+      </div>
+      <div class="small-2 columns">
+        <label>&nbsp;</label>
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "food-add-new-tag", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+      </div>
+      <div class="small-12 columns">
+        <%= f.input :icon %>
       </div>
     </div>
-  </div>
+  </fieldset>
 <% end %>
+<script>
+  $(function() {
+    $('#food-add-new-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_food_add_new_tag_path(restaurant, food) %>',
+        data: {
+          "tag": {
+            name: $("#tag_name").val(),
+            description: $("#tag_description").val()
+          }
+        }
+      }).done(function(response) {
+        $("#tag_name").val("");
+        $("#tag_description").val("");
+        $("#tags_list").html(response);
+      });
+    });
+  });
+</script>
