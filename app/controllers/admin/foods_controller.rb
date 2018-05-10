@@ -39,7 +39,7 @@ class Admin::FoodsController < AdminController
   end
 
   def edit
-    @tags = Tag.all
+    @tags = Tag.all.order(:variety, :name)
   end
 
   def create
