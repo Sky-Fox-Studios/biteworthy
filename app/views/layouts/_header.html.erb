@@ -4,14 +4,14 @@
       <div class="home-logo">
         <%= link_to image_tag("bite-worthy-durango"), root_path %>
       </div>
-      <div class="search">
-        <%= form_tag "/search", url: 'search', method: :get do |f| %>
-          <div class="universal-flex-container">
-            <input type="search" name="query" placeholder="Search for a restaurant, food, diet..." autofocus class="universal-flex-element search-bar">
-            <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %>
-          </div>
-        <% end %>
-      </div>
+      <%# <div class="search"> %>
+      <%#   <%= form_tag "/search", url: 'search', method: :get do |f| %1> %>
+      <%#     <div class="universal-flex-container"> %>
+      <%#       <input type="search" name="query" placeholder="Search for a restaurant, food, diet..." autofocus class="universal-flex-element search-bar"> %>
+      <%#       <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %1> %>
+      <%#     </div> %>
+      <%#   <% end %1> %>
+      <%# </div> %>
       <% if current_user %>
         <nav class="admin-nav">
         <ul class="admin-nav-primary-list">
