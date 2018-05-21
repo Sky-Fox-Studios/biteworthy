@@ -64,6 +64,7 @@ Rails.application.routes.draw do
         post 'remove_food',   to: 'extras#remove_food',   as: "remove_food"
         post 'remove_photo',  to: 'extras#remove_photo',  as: "remove_photo"
       end
+      get "tag_magic", to: 'restaurants#tag_magic'
     end
     get 'menus',       to: 'menus#all',       as: "menus"
     get 'menu_groups', to: 'menu_groups#all', as: "menu_groups"

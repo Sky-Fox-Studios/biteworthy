@@ -22,6 +22,9 @@
 //= require ingredients
 //= require ratings
 //= require restaurant_menu_groups
+//= require web-animations.min.js
+//= require hammer.min.js
+//= require muuri-0.5.4.js
 
 $(function(){ $(document).foundation(); });
 $(function(){
