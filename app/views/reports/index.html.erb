@@ -16,7 +16,7 @@
           <th>Page url</th>
           <th>Report type</th>
           <% if current_user && current_user.is_admin? %>
-            <th colspan="2"></th>
+            <th colspan="3"></th>
           <% end %>
         </tr>
       </thead>
@@ -29,8 +29,9 @@
             <td><%= report.page_url %></td>
             <td><%= report.report_type %></td>
             <% if current_user && current_user.is_admin? %>
-              <td><%= link_to 'Show', report %></td>
-              <td><%= link_to 'Edit', edit_report_path(report) %></td>
+              <td><%= link_to raw("<i class='fa fa-eye'></i>"), report %></td>
+              <td><%= link_to raw('<i class="far fa-edit"></i>'), edit_report_path(report) %></td>
+              <td><%= link_to raw('<i class="fa fa-trash"></i>'), report_path(report), method: :delete, data: { confirm: 'Are you sure you want to delete this report?' } %></td>
             <% end %>
           </tr>
         <% end %>
