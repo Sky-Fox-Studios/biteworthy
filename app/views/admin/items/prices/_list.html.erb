@@ -13,10 +13,10 @@
       <%= price_to_s price.value %>
     </div>
     <div class="small-5 columns">
-      <% if price.size != "" %>
+      <% if price.size.present? %>
       <%= price.size %>
       <% else %>
-      <i style="color:gray;">*Empty*</i>
+      <i style="color:gray;">*blank*</i>
       <% end %>
     </div>
     <div class="small-2 columns"  style="padding: .25rem 0;">
