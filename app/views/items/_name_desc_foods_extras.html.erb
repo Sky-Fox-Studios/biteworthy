@@ -11,5 +11,7 @@
   <%# <%= render partial: "items/list", locals: {list_name: "ingredients", list: item.ingredients} %1> %>
   <%= render partial: "items/list", locals: {list_name: "choices", list: @item_extras_choice} %>
   <%= render partial: "items/list", locals: {list_name: "additions", list: @item_extras_addition} %>
-  <%= render partial: 'tags/list', locals: {tags: @item.tags} %>
+  <% food_tags = item.foods.select{|food| food.tags if food.tags.present?}.map(&:tags).flatten %>
+  <% tags = (food_tags + item.tags).flatten.uniq %>
+  <%= render partial: 'tags/list', locals: {tags: tags} %>
 </div>

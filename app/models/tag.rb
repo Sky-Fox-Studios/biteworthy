@@ -22,7 +22,7 @@ class Tag < ActiveRecord::Base
 
    before_validation :normalize_tag_name
 
-   enum variety: [ :ingredient, :restaurant, :choice, :nature ]
+   enum variety: [ :ingredient, :cooking, :choice, :nature, :restaurant,]
    # TODO change variety to String
    # self.varieties
 
