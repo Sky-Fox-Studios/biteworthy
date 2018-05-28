@@ -91,27 +91,25 @@
   text-decoration-skip: spaces;
 }
 
-.restaurant-show {
-  .cards-container {
+.cards-container {
 
-    div {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:space-evenly
-    }
-    .card-content {
-      display: block;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-      border: black solid;
-      // background-color: lightblue;
-      border-radius: 3%;
-      padding: 0 10px 5px 10px;
-      .card-title {
-        padding-top: 10px;
-      }
-    }
-
+  div {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-evenly
   }
+  .card-content {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid;
+    // background-color: lightblue;
+    border-radius: 3%;
+    padding: 0 10px 5px 10px;
+    .card-title {
+      padding-top: 10px;
+    }
+  }
+
 }
