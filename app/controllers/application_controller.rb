@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :random_bw
-  before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
+  before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
   before_action :page_history, only: [:create, :update]
   helper_method :my_review, :my_reviews
 
@@ -110,5 +110,9 @@ class ApplicationController < ActionController::Base
         @items = Item.where(restaurant: @restaurant).page(page).per(per_page_count)
       end
     end
+  end
+
+  def set_tags
+   @tags ||= Tag.order(name: :asc)
   end
 end

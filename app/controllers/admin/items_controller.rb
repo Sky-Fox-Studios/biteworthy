@@ -15,6 +15,12 @@ class Admin::ItemsController < AdminController
     end
   end
 
+  def add_tags
+    unless @items
+      @items = Item.page(page).per(per_page_count)
+    end
+  end
+
   def index
     @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
 

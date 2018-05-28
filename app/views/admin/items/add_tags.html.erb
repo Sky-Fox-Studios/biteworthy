@@ -1,0 +1,94 @@
+<h1>Listing Bite Worthy Items TO ADD TAGS</h1>
+<div class="row">
+  <%= form_tag 'add_tags', method: :get, class: "universal-flex-container-add" do %>
+    <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+    <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
+    <div class="small-12 medium-3 large-3 columns ">
+      <span class="update-status"><br></span>
+      <%= button_to 'Save', "#", class: "universal-flex-button flex-button-natural save-all-item-tags" %>
+    </div>
+  <% end %>
+  <div class="small-12 columns">
+    <ul class="tags-list">
+      <% @tags.each do |tag| %>
+        <li>
+          <label>
+            <%= check_box_tag("tag_ids[]", tag.id, false, id: "tag-#{tag.id}", class: "tag_ids")  %>
+            <%= tag.name %>
+          </label>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% if @items.present? %>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= paginate @items %>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Menu Group</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td>
+            <%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %>
+            <%= item.menu_groups.map(&:name).to_sentence %>
+          </td>
+          <td>
+            <label>
+              <%= check_box_tag("item_ids[]", item.id, false, id: "item-#{item.id}", class: "item_ids")  %>
+              <%= item.name %>
+            </label>
+          </td>
+          <td><%= item.description.truncate(111) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>All Checked?
+        </td>
+        <td class="universal-flex-container-add">
+          <%= button_to 'Save', admin_add_tags_path, class: "universal-flex-button flex-button-natural save-all-item-tags" %>
+        </td>
+        <td class="update-status">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= paginate @items %>
+    </div>
+  </div>
+  <script>
+    $(".save-all-item-tags").on("click", function(event){
+      event.preventDefault();
+      tags  = $(".tag_ids:checkbox:checked").map(function(){
+        return this.value;
+      }).get().join();
+      items = $(".item_ids:checkbox:checked").map(function(){
+        return this.value;
+      }).get().join();
+      console.log(tags);
+      console.log(items);
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_add_tags_to_items_path %>',
+        data: {
+          tag_ids: tags,
+          item_ids: items
+        }
+      }).done(function(response) {
+        $(".update-status").html(response);
+      });
+    });
+  </script>
+<% end %>

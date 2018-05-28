@@ -41,4 +41,17 @@ class Admin::ItemsAjaxController < Admin::ItemsController
     @item.foods.delete(food)
     render partial: "admin/items/foods/list", locals: {item: @item }
   end
+
+  def add_tags_to_items
+    tags  = Tag.where(id: params[:tag_ids].split(","))
+    items = Item.where(id: params[:item_ids].split(","))
+    items.each do |item|
+      tags.each do |tag|
+        unless item.tags.include? tag
+          item.tags << tag
+        end
+      end
+    end
+    render html: "Updated: #{items.map(&:name).to_sentence} with tags: #{tags.map(&:name).to_sentence}"
+  end
 end

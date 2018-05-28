@@ -1,0 +1,16 @@
+@import "media_query_mixins";
+
+ul.tags-list{
+  margin-left: 0;
+  li{
+    @media #{$break-medium} {
+      width: 25%;
+    }
+    @media #{$break-large} {
+      width: 16%;
+    }
+    width: 33%;
+    float: left;
+    list-style-type: none;
+  }
+}
