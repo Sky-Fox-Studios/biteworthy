@@ -58,7 +58,9 @@
         <td class="universal-flex-container-add">
           <%= button_to 'Save', admin_add_tags_path, class: "universal-flex-button flex-button-natural save-all-item-tags" %>
         </td>
-        <td class="update-status">
+        <td>
+          <div class="update-status">
+          </div>
         </td>
       </tr>
     </tbody>
@@ -88,6 +90,17 @@
         }
       }).done(function(response) {
         $(".update-status").html(response);
+        $(".tag_ids:checkbox:checked").map(function(){
+          $(this).prop('checked', false);
+        });
+        $(".item_ids:checkbox:checked").map(function(){
+          $(this).prop('checked', false);
+        });
+        $(".save-all-item-tags").val("Saved!")
+        setTimeout(function(){
+          $(".save-all-item-tags").val("Save");
+        }, 5000);
+
       });
     });
   </script>
