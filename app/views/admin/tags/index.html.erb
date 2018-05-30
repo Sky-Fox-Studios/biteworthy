@@ -9,44 +9,6 @@
 
 <div class="row">
   <div class="small-12 columns">
-    <table class="small-12">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Variety</th>
-          <th>Icon?</th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @tags.each do |tag| %>
-          <tr>
-            <td>
-              <%= link_to raw('<i class="far fa-edit"></i>'), edit_admin_tag_path(tag) %>
-            </td>
-            <td><%= tag.name %></td>
-            <td><%= tag.description %></td>
-            <td><%= tag.variety %></td>
-            <td>
-              <% if tag.icon.present? %>
-                <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
-              <% else %>
-                <%= image_tag "empty.png", size: "25x25", class: "icon-size-tiny" %>
-              <% end %>
-              <%= tag.icon_file_name %>
-            </td>
-            <% if current_user.is_admin? %>
-              <td>
-                <%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
+    <%= render partial: 'partials/tags/datatable' %>
   </div>
 </div>
