@@ -8,20 +8,30 @@
       <span class="update-status"><br></span>
     </div>
   <% end %>
-  <div class="small-12 columns">
-    <ul class="tags-list">
-      <% @tags.each do |tag| %>
-        <li>
-          <label>
-            <%= check_box_tag("tag_ids[]", tag.id, false, id: "tag-#{tag.id}", class: "tag_ids")  %>
-            <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe if tag.icon.present? %>
-            <%= tag.name %>
-          </label>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <% Tag.varieties.keys.each do |tag_variety| %>
+    <% if @tags.send(tag_variety).present? %>
+      <div class="small-12 columns">
+        <fieldset>
+          <legend>
+            <h4><%= tag_variety.capitalize %></h4>
+          </legend>
+          <ul class="tags-list" id="tag-<%= tag_variety %>">
+            <% @tags.send(tag_variety).each do |tag| %>
+              <li class="tag-<%= tag_variety %>">
+                <label>
+                  <%= check_box_tag("tag_ids[]", tag.id, false, id: "tag-#{tag.id}", class: "tag_ids")  %>
+                  <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe if tag.icon.present? %>
+                  <%= tag.name %>
+                </label>
+              </li>
+            <% end %>
+          </ul>
+        </fieldset>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+<br>
 <% if @items.present? %>
   <div class="row">
     <div class="small-12 columns">
