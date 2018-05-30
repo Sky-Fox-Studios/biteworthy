@@ -121,6 +121,8 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 .card {
   padding:20px;
   box-sizing:border-box;
+  margin-bottom: 0rem !important;
+  border: 0px solid #e6e6e6 !important;
   .columns {
   }
 }
