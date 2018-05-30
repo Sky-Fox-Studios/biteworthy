@@ -70,8 +70,10 @@ Rails.application.routes.draw do
     get 'items',       to: 'items#all',       as: "items"
     get 'foods',       to: 'foods#all',       as: "foods"
 
-    get 'add_tags',       to: 'items#add_tags',       as: "add_tags"
-    post 'add_tags_to_items',       to: 'items_ajax#add_tags_to_items',       as: "add_tags_to_items"
+    scope "items" do
+      get 'add_tags',  to: 'items#add_tags',       as: "add_tags"
+      post 'add_tags', to: 'items_ajax#add_tags',  as: "ajax_add_tags"
+    end
     namespace :ajax do
       # Is this a wise route?
     end

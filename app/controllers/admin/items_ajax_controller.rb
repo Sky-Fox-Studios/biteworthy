@@ -42,7 +42,7 @@ class Admin::ItemsAjaxController < Admin::ItemsController
     render partial: "admin/items/foods/list", locals: {item: @item }
   end
 
-  def add_tags_to_items
+  def add_tags
     tags  = Tag.where(id: params[:tag_ids].split(","))
     items = Item.where(id: params[:item_ids].split(","))
     items.each do |item|

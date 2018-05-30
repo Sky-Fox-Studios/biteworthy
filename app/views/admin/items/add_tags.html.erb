@@ -3,9 +3,9 @@
   <%= form_tag 'add_tags', method: :get, class: "universal-flex-container-add" do %>
     <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
     <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
-    <div class="small-12 medium-3 large-3 columns ">
-      <span class="update-status"><br></span>
+    <div class="small-12 medium-6 large-6 columns ">
       <%= button_to 'Save', "#", class: "universal-flex-button flex-button-natural save-all-item-tags" %>
+      <span class="update-status"><br></span>
     </div>
   <% end %>
   <div class="small-12 columns">
@@ -14,6 +14,7 @@
         <li>
           <label>
             <%= check_box_tag("tag_ids[]", tag.id, false, id: "tag-#{tag.id}", class: "tag_ids")  %>
+            <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe if tag.icon.present? %>
             <%= tag.name %>
           </label>
         </li>
@@ -49,7 +50,7 @@
               <%= item.name %>
             </label>
           </td>
-          <td><%= item.description.truncate(111) %></td>
+          <td><%= item.description.truncate(111) if item.description %></td>
         </tr>
       <% end %>
       <tr>
@@ -79,29 +80,32 @@
       items = $(".item_ids:checkbox:checked").map(function(){
         return this.value;
       }).get().join();
-      console.log(tags);
-      console.log(items);
-      $.ajax({
-        type: 'post',
-        url: '<%= admin_add_tags_to_items_path %>',
-        data: {
-          tag_ids: tags,
-          item_ids: items
-        }
-      }).done(function(response) {
-        $(".update-status").html(response);
-        $(".tag_ids:checkbox:checked").map(function(){
-          $(this).prop('checked', false);
-        });
-        $(".item_ids:checkbox:checked").map(function(){
-          $(this).prop('checked', false);
-        });
-        $(".save-all-item-tags").val("Saved!")
-        setTimeout(function(){
-          $(".save-all-item-tags").val("Save");
-        }, 5000);
+      if(tags != "" && items != ""){
 
-      });
+        $.ajax({
+          type: 'post',
+          url: '<%= admin_ajax_add_tags_path %>',
+          data: {
+            tag_ids: tags,
+            item_ids: items
+          }
+        }).done(function(response) {
+          $(".update-status").html(response);
+          $(".tag_ids:checkbox:checked").map(function(){
+            $(this).prop('checked', false);
+          });
+          $(".item_ids:checkbox:checked").map(function(){
+            $(this).prop('checked', false);
+          });
+          $(".save-all-item-tags").val("Saved!")
+          setTimeout(function(){
+            $(".save-all-item-tags").val("Save");
+          }, 5000);
+
+        });
+      }else{
+        $(".update-status").html("You must choose at least 1 tag and 1 item");
+      }
     });
   </script>
 <% end %>

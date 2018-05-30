@@ -16,9 +16,7 @@ class Admin::ItemsController < AdminController
   end
 
   def add_tags
-    unless @items
-      @items = Item.page(page).per(per_page_count)
-    end
+    # Uses ajax magic
   end
 
   def index

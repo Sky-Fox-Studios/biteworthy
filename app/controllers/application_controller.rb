@@ -113,6 +113,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_tags
-   @tags ||= Tag.order(name: :asc)
+   @tags ||= Tag.order(variety: :asc, name: :asc)
   end
 end
