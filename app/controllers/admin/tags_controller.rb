@@ -3,6 +3,10 @@ class Admin::TagsController < AdminController
 
   def index
     @tags = Tag.order(name: :asc)
+    respond_to do |format|
+      format.html
+      format.json { render json: TagDatatable.new(view_context) }
+    end
   end
 
   def new

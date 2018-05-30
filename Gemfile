@@ -17,6 +17,7 @@ gem 'holidays'
 gem 'honeybadger', '~> 3.1'
 gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'ajax-datatables-rails'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
 gem 'mysql2', '~> 0.4.10'
