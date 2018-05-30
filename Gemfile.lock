@@ -51,6 +51,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
+    browser (2.5.3)
     builder (3.2.3)
     callsite (0.0.11)
     cancan (1.6.10)
@@ -311,6 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (= 2.10.75)
+  browser
   cancan
   capistrano (~> 3.8.1)
   capistrano-bundler (~> 1.1)
