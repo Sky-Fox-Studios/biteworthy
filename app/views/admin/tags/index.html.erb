@@ -30,7 +30,14 @@
             <td><%= tag.name %></td>
             <td><%= tag.description %></td>
             <td><%= tag.variety %></td>
-            <td><%= tag.icon_file_name %></td>
+            <td>
+              <% if tag.icon.present? %>
+                <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
+              <% else %>
+                <%= image_tag "empty.png", size: "25x25", class: "icon-size-tiny" %>
+              <% end %>
+              <%= tag.icon_file_name %>
+            </td>
             <% if current_user.is_admin? %>
               <td>
                 <%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %>
