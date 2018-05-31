@@ -7,36 +7,6 @@
 
 <div class="row">
   <div class="small-12 columns">
-    <table class="small-12" id="admin-ingredients-index-table">
-      <thead>
-        <tr>
-          <th colspan="1"></th>
-          <th>Name</th>
-          <th>Normalized name</th>
-          <th>Tags</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @ingredients.each do |ingredient| %>
-          <tr>
-            <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, ingredient_path(ingredient) %></td>
-            <td><%= ingredient.name %></td>
-            <td><%= ingredient.normalized_name %></td>
-            <td>
-              <% unless ingredient.tags.empty? %>
-                <%= ingredient.tags.map(&:name).to_a.to_sentence %>
-              <% end %>
-            </td>
-            <td><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_path(ingredient) %></td>
-            <% if current_user.is_admin? %>
-              <td><%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_ingredient_path(ingredient), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render partial: 'partials/ingredients/datatable' %>
   </div>
 </div>

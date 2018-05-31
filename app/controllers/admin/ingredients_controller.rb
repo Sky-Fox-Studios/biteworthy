@@ -5,6 +5,10 @@ class Admin::IngredientsController < AdminController
   def index
     @ingredients = Ingredient.all.includes(:tags)
     # respond_with(@ingredients)
+    respond_to do |format|
+      format.html
+      format.json { render json: IngredientDatatable.new(view_context) }
+    end
   end
 
   def show
