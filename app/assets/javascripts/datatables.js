@@ -11,12 +11,11 @@ $(document).ready(function () {
     },
     "pagingType": "full_numbers",
     "columns": [
-      {"data": "edit", "sortable": false},
       {"data": "name"},
       {"data": "description"},
       {"data": "variety"},
       {"data": "icon", "sortable": false},
-      {"data": "delete", "sortable": false}
+      {"data": "actions", "sortable": false, "className": "nowrap"}
     ]
   });
 

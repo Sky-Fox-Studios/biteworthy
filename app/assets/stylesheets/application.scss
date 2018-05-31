@@ -119,6 +119,9 @@ th{
 .nowrap {
   white-space: nowrap;
 }
+.action-icon:not(:last-child) {
+  margin-right: 0.5rem;
+}
 
 
 // Media Query Ranges

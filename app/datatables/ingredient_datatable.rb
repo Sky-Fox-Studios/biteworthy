@@ -18,8 +18,8 @@ class IngredientDatatable < AjaxDatatablesRails::Base
         name:            link_to(record.name, ingredient_path(record)),
         normalized_name: record.normalized_name,
         tags:            record.tags.map(&:name).to_a.to_sentence,
-        actions:         link_to('<i class="far fa-edit"></i>'.html_safe, edit_admin_ingredient_path(record)) +
-                         link_to('<i class="far fa-trash"></i>'.html_safe, admin_ingredient_path(record), method: :delete, data: { confirm: 'Are you sure?' })
+        actions:         link_to('<i class="far fa-edit"></i>'.html_safe, edit_admin_ingredient_path(record), class: "action-icon") +
+                         link_to('<i class="far fa-trash"></i>'.html_safe, admin_ingredient_path(record), class: "action-icon", method: :delete, data: { confirm: 'Are you sure?' })
       }
     end
   end
