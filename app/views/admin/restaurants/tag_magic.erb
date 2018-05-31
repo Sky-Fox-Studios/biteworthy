@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="small-5 medium-4 large-3 columns custom-tags float-left">
+    <h3>In Development!</h3>
+    <h5>TAGS</h5>
+    <div class="grid">
+      <% @tags.each do |tag| %>
+        <div class="item">
+          <div class="item-content">
+            <% if tag.icon.present? %>
+              <%= image_tag(tag.icon.url("tiny"), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
+            <% else %>
+              <%= image_tag "empty.png", size: ratio, class: "icon-size-tiny" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="small-7 medium-8 large-9 columns cards-container">
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="card columns column-block small-12 medium-6 large-4">
+          <div class="card-content">
+            <h3 class="card-title"><%= link_to item.name, restaurant_item_path(@restaurant, item) %></h3>
+            <div class="center card-image">
+              <%= link_to PhotoDecorator.decorate(item.photos).display, restaurant_item_path(@restaurant, item) %>
+            </div>
+            <p class="black-text"><%= item.description %></p>
+            <div class="tag-flex-container" style="border:solid black 1px;min-height:40px;">
+              <% item.tags.map do |tag| %>
+                <%= render partial: "tags/block", locals: {tag: tag, size: :tiny, hide_text: true} %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="options" class="connectedSortable tag-flex-container">
+</div>
+<script>
+  // https://github.com/haltu/muuri
+  var grid = new Muuri('.grid', {dragEnabled: true, dragSort: true});
+</script>

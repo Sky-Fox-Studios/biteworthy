@@ -1,5 +1,5 @@
 class Admin::RestaurantsController < AdminController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :tag_magic]
 
   respond_to :html
 
@@ -14,6 +14,11 @@ class Admin::RestaurantsController < AdminController
     @items       = Item.where(restaurant: @restaurant).order(:name)
     @foods       = Food.where(restaurant: @restaurant).order(:name)
     @extras      = Extra.where(restaurant: @restaurant).order(:name)
+  end
+
+  def tag_magic
+    @items = Item.where(restaurant: @restaurant).order(:name)
+    @tags  = Tag.order(variety: :asc, name: :asc)
   end
 
   def new
@@ -49,7 +54,11 @@ class Admin::RestaurantsController < AdminController
 
   private
     def set_restaurant
-      @restaurant = Restaurant.find(params[:id])
+      if params[:id]
+        @restaurant = Restaurant.find(params[:id])
+      elsif params[:restaurant_id]
+        @restaurant = Restaurant.find(params[:restaurant_id])
+      end
     end
 
     def create_address

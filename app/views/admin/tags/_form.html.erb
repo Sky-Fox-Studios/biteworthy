@@ -8,7 +8,7 @@
       <%= f.input :description %>
     </div>
     <div class="small-12 medium-4 columns">
-      <%= f.input :variety, collection: Tag.varieties.map{|variety| [variety.first, variety.first]}, selected: @tag.variety %>
+      <% f.input :variety, collection: Tag.varieties.map{|variety| [variety.first, variety.first]}, selected: @tag.variety %>
     </div>
     <div class="small-12 medium-6 columns">
       <%= f.input :icon, label: 'Upload an Icon' %>

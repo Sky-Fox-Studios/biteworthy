@@ -18,7 +18,10 @@
       <tbody>
         <% @restaurants.each do |restaurant| %>
           <tr>
-            <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, admin_restaurant_path(restaurant) %></td>
+            <td>
+              <%= link_to "<i class='fa fa-eye'></i>".html_safe, admin_restaurant_path(restaurant) %> |
+              <%= link_to "<i class='far fa-magic'></i>".html_safe, admin_restaurant_tag_magic_path(restaurant) %>
+            </td>
             <td><%= restaurant.name %></td>
             <td><%= restaurant.slogan %></td>
             <td><%= restaurant.active? ? "Yes" : "" %></td>
