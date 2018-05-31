@@ -22,7 +22,7 @@ class TagDatatable < AjaxDatatablesRails::Base
         description: record.description,
         variety:     record.variety,
         icon:        image_tag(record.icon.url(:tiny), tooltip: record.name.tr("-", " ").capitalize, title: record.name.tr("-", " ").capitalize).html_safe,
-        delete:      link_to('<i class="fa fa-trash"></i>'.html_safe, admin_tag_path(record), method: :delete, data: { confirm: 'Are you sure?' })
+        delete:      link_to('<i class="far fa-trash"></i>'.html_safe, admin_tag_path(record), method: :delete, data: { confirm: 'Are you sure?' })
       }
     end
   end

@@ -19,4 +19,23 @@ $(document).ready(function () {
       {"data": "delete", "sortable": false}
     ]
   });
+
+  $('#admin-ingredients-table').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#admin-ingredients-table').data('source'),
+      "type": "GET",
+      "complete": function() {
+        console.log("dataTable loaded.");
+      }
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "name"},
+      {"data": "normalized_name"},
+      {"data": "tags", "sortable": false},
+      {"data": "actions", "sortable": false, "className": "nowrap"}
+    ]
+  });
 });
