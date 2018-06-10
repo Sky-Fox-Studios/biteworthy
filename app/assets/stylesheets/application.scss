@@ -18,31 +18,34 @@
   font-family: 'Amaranth';
   padding: 5px;
 }
-h1{
-  font-family: 'Bligh';
-  color: $color;
-}
-h2{
-  font-family: 'Bligh';
-  color: $color;
-}
-h3{
-  font-family: 'Bligh';
-  line-height: 1.0;
-  color: $color;
-  padding-bottom: .5rem;
-}
-h4{
-  font-family: 'Bligh';
-  color: $color;
-}
-h5{
-  font-family: 'Bligh';
-  color: $color;
-}
-h6{
-  font-family: 'Bligh';
-  color: $color;
+
+.main-page{
+  h1{
+    font-family: 'Bligh';
+    color: $color;
+  }
+  h2{
+    font-family: 'Bligh';
+    color: $color;
+  }
+  h3{
+    font-family: 'Bligh';
+    line-height: 1.0;
+    color: $color;
+    padding-bottom: .5rem;
+  }
+  h4{
+    font-family: 'Bligh';
+    color: $color;
+  }
+  h5{
+    font-family: 'Bligh';
+    color: $color;
+  }
+  h6{
+    font-family: 'Bligh';
+    color: $color;
+  }
 }
 
 .close{
