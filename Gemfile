@@ -12,7 +12,7 @@ gem 'devise'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
-gem 'foundation-rails', '6.2.4.0'
+gem 'foundation-rails', '6.4.3.0'
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'
 gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

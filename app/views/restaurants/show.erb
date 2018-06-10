@@ -11,7 +11,7 @@
         <ul class="tabs" data-tabs id="menu-group-tabs-<%= menu.id %>">
           <% menu.menu_groups.each_with_index do |menu_group, index| %>
             <li class="tabs-title <%= 'is-active' if index==0 %>" >
-              <a href="#menu_group-<%= menu_group.id %>" data-tabs-target="#menu_group-<%= menu_group.id %>"><%= menu_group.name %></a>
+              <a href="#menu_group-<%= menu_group.id %>" data-tabs-target="menu_group-<%= menu_group.id %>"><%= menu_group.name %></a>
             </li>
           <% end %>
         </ul>
