@@ -33,7 +33,7 @@ gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for Ja
 gem 'paperclip', "5.1.0"
 gem 'aws-sdk', '2.10.75'
 group :development do
-  gem "capistrano", "~> 3.8.1", require: false
+  gem "capistrano", "~> 3.10.2", require: false
   gem 'debug_inspector'
   gem 'capistrano-rvm'
   gem 'spring'
