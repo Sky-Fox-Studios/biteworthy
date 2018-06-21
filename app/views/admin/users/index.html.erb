@@ -1,26 +1,12 @@
 <div class="row">
-  <div class="small-10 columns">
-    <h1>Welcome <%=current_user.user_name%></h1>
-    <table>
-      <th></th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Approved?</th>
-      <th>Editor?</th>
-
-      <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to raw('<i class="fa fa-edit small"></i>'), edit_admin_user_path(user)%>
-        <td><%= user.user_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.approved? ? 'Yes' : 'No' %></td>
-        <td><%= user.is_editor ? 'Yes' : 'No' %></td>
-<!--     TODO strikes/warnings,      -->
-      </tr>
-      <% end %>
-    </table>
+  <div class="small-12 columns universal-flex-container">
+    <h1>Manage Users</h1>
+    <%= link_to 'Logout <i class="fas fa-sign-out"></i>'.html_safe, destroy_user_session_path, method: :delete, class: "universal-flex-button flex-button-natural vertical-center" %>
   </div>
-  <div class="small-2 columns">
-    <%= button_to('Logout', destroy_user_session_path, method: :delete) %>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <%= render partial: 'partials/users/datatable' %>
   </div>
 </div>
