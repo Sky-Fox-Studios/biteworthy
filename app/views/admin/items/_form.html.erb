@@ -15,19 +15,19 @@
       <%= render partial: "admin/photos/upload", locals: {form: f, item: @item} %>
     </div>
     <br>
-    <div class="row">
-      <div class="small-12 columns">
-        <div class="universal-flex-container">
-          <%= f.submit class: "universal-flex-button flex-button-natural" %>
-        </div>
+    <div class="small-12 columns">
+      <div class="universal-flex-container">
+        <%= f.submit class: "universal-flex-button flex-button-natural" %>
       </div>
     </div>
-  <% end %><hr>
-  <% unless @item.new_record? %>
-    <%= render partial: "admin/items/foods/info_and_forms" %>
-    <%= render partial: "admin/items/tags/info_and_forms" %>
-    <%= render partial: "admin/items/extras/info_and_forms" %>
-    <%= render partial: "admin/items/prices/info_and_forms" %>
   <% end %>
+  <div class="small-12 columns">
+    <% unless @item.new_record? %>
+      <%= render partial: "admin/items/foods/info_and_forms" %>
+      <%= render partial: "admin/items/tags/info_and_forms" %>
+      <%= render partial: "admin/items/extras/info_and_forms" %>
+      <%= render partial: "admin/items/prices/info_and_forms" %>
+    <% end %>
+  </div>
 </div>
 
