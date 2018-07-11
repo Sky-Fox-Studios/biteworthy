@@ -7,11 +7,6 @@ class ReportsController < ApplicationController
     @reports = Report.all
   end
 
-  # GET /reports/1
-  # GET /reports/1.json
-  def show
-  end
-
   # GET /reports/new
   def new
     @report = Report.new
@@ -28,11 +23,9 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @report, notice: 'Report was successfully created.' }
-        format.json { render :show, status: :created, location: @report }
+        format.html { redirect_to root_path, notice: 'Report was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
   end

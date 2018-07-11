@@ -1,5 +1,6 @@
 class Admin::LayoutsController < ApplicationController
-   def home
-      @restaurants = Restaurant.all.order(:name)
-   end
+  before_filter :authenticate_user!
+  def home
+    @restaurants = Restaurant.all.order(:name)
+  end
 end

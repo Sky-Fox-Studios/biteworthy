@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'tag_search', to: 'search#tag_search'
   get 'choice_search', to: 'search#choice_search'
   post 'search/advanced', to: 'search#advanced'
-  resources :reports
+  resources :reports, only: [:new, :create]
   resources :restaurants, :ingredients, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
     resources :items, only: [:index, :show] do
