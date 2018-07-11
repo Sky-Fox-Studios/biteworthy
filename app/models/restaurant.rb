@@ -2,6 +2,7 @@ class Restaurant < ActiveRecord::Base
   has_many :users, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :menu_groups, dependent: :destroy
+  has_many :items, dependent: :destroy
   has_many :foods, dependent: :destroy
   has_many :reviews, as: :review
   has_many :photos, as: :photo

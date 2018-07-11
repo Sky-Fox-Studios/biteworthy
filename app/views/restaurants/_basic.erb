@@ -2,13 +2,13 @@
   <div class="row">
     <div class="small-12 medium-5 large-6 columns">
       <% if restaurant.main_image_url %>
-        <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant) %>
+        <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
       <% else %>
-        <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant) %>
+        <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
       <% end %>
     </div>
     <div class="small-12 medium-7 large-6 columns">
-      <h2 class="small-center"><%= link_to restaurant.name, restaurant %></h2>
+      <h2 class="small-center"><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
       <p class="small-center"><%= restaurant.slogan %></p>
     </div>
   </div>
