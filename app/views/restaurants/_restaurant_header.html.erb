@@ -1,5 +1,6 @@
-<div class="restaurant-header">
-  <div class="small-7 medium-8 large-9 columns" class="restaurant-header-title">
+<% if request.path == restaurant_path(restaurant) %>
+  <div class="restaurant-header">
+    <div class="small-7 medium-8 large-9 columns" class="restaurant-header-title">
       <h1 class="restaurant-name"><%= link_to restaurant.name, restaurant_path(restaurant) %></h1>
       <p class="slogan"><%= restaurant.slogan %></p>
       <p>
@@ -8,14 +9,22 @@
       <% end %>
       <%= " Seating: #{restaurant.inside_seating.to_i + restaurant.outside_seating.to_i}" if restaurant.outside_seating.present? || restaurant.inside_seating.present? %>
       </p>
+    </div>
+    <div class="small-5 medium-4 large-3 columns restaurant-head-image">
+      <% if restaurant.main_image_url %>
+        <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
+        <%= restaurant.cash_only ? "<span class='cash-only'>Cash ONLY</span>".html_safe : ""  %>
+      <% else %>
+        <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
+        <%= restaurant.cash_only ? "<span class='cash-only'>Cash ONLY</span>".html_safe : ""  %>
+      <% end %>
+    </div>
   </div>
-  <div class="small-5 medium-4 large-3 columns restaurant-head-image">
-    <% if restaurant.main_image_url %>
-      <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
-      <%= restaurant.cash_only ? "<span class='cash-only'>Cash ONLY</span>".html_safe : ""  %>
-    <% else %>
-      <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
-      <%= restaurant.cash_only ? "<span class='cash-only'>Cash ONLY</span>".html_safe : ""  %>
-    <% end %>
+<% else %>
+  <div class="restaurant-header simple">
+    <div class="small-12 columns" class="restaurant-header-title">
+      <h1 class="restaurant-name"><%= link_to restaurant.name, restaurant_path(restaurant) %></h1>
+    </div>
   </div>
-</div>
+
+<% end %>
