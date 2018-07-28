@@ -37,4 +37,25 @@ $(document).ready(function () {
       {"data": "actions", "sortable": false, "className": "nowrap"}
     ]
   });
+
+  $('#admin-users-table').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#admin-users-table').data('source'),
+      "type": "GET",
+      "complete": function() {
+        console.log("dataTable loaded.");
+      }
+    },
+    "pagingType": "full_numbers",
+    "order": [[ 4, "desc" ]],
+    "columns": [
+      {"data": "user_name"},
+      {"data": "email"},
+      {"data": "approved"},
+      {"data": "editor"},
+      {"data": "actions", "sortable": false, "className": "nowrap"}
+    ]
+  });
 });
