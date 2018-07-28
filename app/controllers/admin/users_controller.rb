@@ -29,7 +29,7 @@ class Admin::UsersController < ApplicationController
 
    def set_user
       @user = User.find(params[:id])
-    end
+   end
 
    def check_account_type
       if current_user && !current_user.is_admin
@@ -38,6 +38,6 @@ class Admin::UsersController < ApplicationController
    end
 
    def user_params
-     params.require(:user).permit(:user_name, :name, :email, :password, :is_manager, :is_admin, :is_editor, :approved)
-    end
+     params.require(:user).permit(:user_name, :name, :email, :level, :password, :is_manager, :is_admin, :is_editor, :approved)
+   end
 end
