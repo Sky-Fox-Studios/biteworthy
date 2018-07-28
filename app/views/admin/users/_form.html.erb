@@ -24,8 +24,7 @@
           <%= f.input :is_admin %>
         </div>
         <div class="small-12 medium-6 columns">
-          <%= f.input :level, collection: User.levels.to_a.collect{|c| [c[0].titleize, c[0]]}
- %>
+          <%= f.input :level, collection: User.levels.to_a.collect{|c| [c[0].titleize, c[0]]} %>
         </div>
         <div class="small-12 medium-6 columns">
           <%= f.input :strikes, placeholder: "0..3" %>

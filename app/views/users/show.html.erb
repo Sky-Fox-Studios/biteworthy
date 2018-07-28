@@ -1,31 +1,22 @@
 <div class="row">
-  <div class="small-12 medium-6 columns">
+  <div class="small-4 medium-6 columns">
     <h1><%= current_user.user_name %></h1>
   </div>
-  <div class="small-12 medium-3 columns">
+  <div class="small-4 medium-3 columns">
+    <h4>
     <%= "Editor" if current_user.is_editor? %>
     <%= "Admin" if current_user.is_admin? %>
+    </h4>
     <p>Level: <%= current_user.level %></p>
   </div>
-  <div class="small-12 medium-3 columns">
+  <div class="small-4 medium-3 columns">
     <p>Photos: <%= current_user.photos.count %></p>
     <p>Reviews: <%= current_user.reviews.count %></p>
-    <p>Strikes: <%= current_user.strikes %></p>
+    <p>Strikes: <%= current_user.strikes.to_i %></p>
   </div>
-  <div class="small-12  columns">
-  <h2>Ratings</h2>
-  </div>
-  <hr>
-  <div class="small-12 medium-4 columns">
-    <h3>Tags:</h3>
-    <%= render partial: "users/review_list", locals: {reviews: @tag_reviews} %>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <h3>Items:</h3><br>
-    <%= render partial: "users/review_list", locals: {reviews: @item_reviews} %>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <h3>Restaurants:</h3>
-    <%= render partial: "users/review_list", locals: {reviews: @restaurant_reviews} %>
-  </div>
+
+  <%= render partial: "users/preferences" %>
+
+  <%= render partial: "users/ratings", locals: { tag_reviews: @tag_reviews, item_reviews: @item_reviews, restaurant_reviews: @restaurant_reviews} %>
+
 </div>
