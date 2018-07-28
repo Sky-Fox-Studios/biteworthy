@@ -53,8 +53,10 @@ $(document).ready(function () {
     "columns": [
       {"data": "user_name"},
       {"data": "email"},
+      {"data": "level"},
       {"data": "approved"},
       {"data": "editor"},
+      {"data": "admin"},
       {"data": "actions", "sortable": false, "className": "nowrap"}
     ]
   });
