@@ -1,33 +1,32 @@
-<div class="row">
-  <div class="small-12 columns">
-    <h2 class="center">Insert Credentials</h2>
-  </div>
-  <div class="small-12 medium-12">
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="small-12 medium-6 columns">
-        <%= f.input :email, autofocus: true %>
-      </div>
-      <div class="small-12 medium-6 columns">
-        <%= f.input :password, autocomplete: "off" %>
-      </div>
-      <div class="small-12 medium-6 columns">
-        <% if devise_mapping.rememberable? -%>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
-      </div>
-      <div class="small-12 medium-6 columns">
-        <div class="actions universal-flex-container" style="float:right;">
-          <%= f.submit "Log in", class: "button success universal-flex-button" %>
+<div class="small-12 columns">
+  <h2 class="center">Insert Credentials</h2>
+</div>
+<div class="small-12 columns">
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: "row") do |f| %>
+    <div class="small-12 medium-6 large-4 columns">
+      <%= f.input :email, autofocus: true %>
+    </div>
+    <div class="small-12 medium-6 large-4 columns">
+      <%= f.input :password, autocomplete: "off" %>
+    </div>
+    <div class="small-12 medium-6 large-4 columns">
+      <% if devise_mapping.rememberable? -%>
+        <label>&nbsp;</label>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
         </div>
+      <% end %>
+    </div>
+    <div class="small-12 columns">
+      <div class="actions universal-flex-container" style="float:right;">
+        <%= f.submit "Log in", class: "button success universal-flex-button" %>
       </div>
     </div>
   <% end %>
 </div>
-<hr>
-<div class="universal-flex-container">
-  <%= link_to "<b>Create an account</b>".html_safe, new_registration_path(resource_name), class: "universal-flex-button flex-button-natural" %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "universal-flex-button flex-button-natural" %><br />
+<div class="small-12 columns universal-flex-container">
+  <%= link_to "Create an account".html_safe, new_registration_path(resource_name), class: "universal-flex-button flex-button-half" %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "universal-flex-button flex-button-half" %><br />
 </div>
+<hr>

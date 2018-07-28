@@ -9,6 +9,7 @@ class UserDatatable < AjaxDatatablesRails::Base
       email:     { source: "User.email" },
       approved:  { source: "User.approved", searchable: false },
       editor:    { source: "User.is_editor", searchable: false },
+      admin:    { source: "User.is_admin", searchable: false },
       actions:   { source: "User.id", orderable: false, cond: :eq }
     }
   end
@@ -20,6 +21,7 @@ class UserDatatable < AjaxDatatablesRails::Base
         email:     record.email,
         approved:  record.approved? ? '<i class="far fa-check"></i>'.html_safe : '',
         editor:    record.is_editor ? '<i class="far fa-check"></i>'.html_safe : '',
+        admin:     record.is_admin ? '<i class="far fa-check"></i>'.html_safe : '',
         actions:   link_to('<i class="far fa-edit"></i>'.html_safe, edit_admin_user_path(record), class: "action-icon")
       }
     end

@@ -51,6 +51,7 @@
       }
     }
     &.flex-button-review, &input {
+      margin-bottom: 0;
       @extend .flex-button-natural;
       // margin: 0rem;
       padding: .2rem .5rem;
@@ -58,7 +59,7 @@
         // margin-right: .25rem;
       }
       @media screen and (min-width: 40em){
-        padding: .3rem 1rem;
+        padding: .3rem .5rem;
 
       }
     }
