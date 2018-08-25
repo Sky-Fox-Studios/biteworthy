@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @photos_taken = Photo.photos_taken(current_user)
 
   end
 end
