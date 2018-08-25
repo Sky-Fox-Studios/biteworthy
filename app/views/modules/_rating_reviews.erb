@@ -1,4 +1,4 @@
-<% review = my_reviews.where(user: current_user, review_id: reviewable.id, review_type: reviewable.class.to_s).first %>
+<% review = @all_reviews.select{|r| r.review_id == reviewable.id && r.review_type == reviewable.class.to_s}.first %>
 <div id="universal-fill" class="universal-flex-container">
   <% if review.present? %>
     <%
@@ -6,7 +6,7 @@
       rating= Review.ratings[review.rating]
       max = rating + 1
       min = rating - 1
-      the_icon = review.icon(rating)
+      #the_icon = review.icon(rating)
       max_icon = review.up_down(max)
       min_icon = review.up_down(min, false)
     %>
