@@ -11,10 +11,12 @@ class ApplicationController < ActionController::Base
   end
 
   def player_reviews
-    @all_reviews  = current_user.reviews
-    @bad_reviews  = @all_reviews.where('rating < 0')
-    @good_reviews = @all_reviews.where('rating > 0')
-    @neg_reviews  = @all_reviews.where('rating = 0')
+    if current_user
+      @all_reviews  = current_user.reviews
+      @bad_reviews  = @all_reviews.where('rating < 0')
+      @good_reviews = @all_reviews.where('rating > 0')
+      @neg_reviews  = @all_reviews.where('rating = 0')
+    end
   end
 
   def page_history
