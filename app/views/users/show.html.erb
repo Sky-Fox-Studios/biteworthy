@@ -1,6 +1,7 @@
 <div class="row">
   <div class="small-4 medium-6 columns">
     <h1><%= current_user.user_name %></h1>
+    <p><%= current_user.email %></p>
   </div>
   <div class="small-4 medium-3 columns">
     <h4>
@@ -33,7 +34,4 @@
   </div>
 
   <%= render partial: "users/preferences" %>
-
-  <%= render partial: "users/ratings", locals: { tag_reviews: @tag_reviews, item_reviews: @item_reviews, restaurant_reviews: @restaurant_reviews} %>
-
 </div>

@@ -1,13 +1,13 @@
 <div class="small-12  columns">
   <hr>
-  <h2>Ratings</h2>
+  <h2>Reviews</h2>
 </div>
 <%# TODO Tab based %>
-<div class="small-12 medium-6 columns">
-  <h3>Tags:</h3>
-  <%= render partial: "users/review_list", locals: {reviews: tag_reviews} %>
-</div>
-<div class="small-12 medium-6 columns">
+<%# <div class="small-12 medium-6 columns"> %>
+<%#   <h3>Tags:</h3> %>
+<%#   <%= render partial: "users/review_list", locals: {reviews: tag_reviews} %1> %>
+<%# </div> %>
+<div class="small-12 columns">
   <h3>Items:</h3><br>
   <%= render partial: "users/review_list", locals: {reviews: item_reviews} %>
 </div>
