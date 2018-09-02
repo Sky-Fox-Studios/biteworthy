@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :ingredients do
       post 'add_tag', to: 'ingredients#add_tag', as: 'add_tag'
       post 'remove_tag', to: 'ingredients#remove_tag', as: 'remove_tag'
+      resources :varieties
     end
     resources :restaurants do
       resources :menus

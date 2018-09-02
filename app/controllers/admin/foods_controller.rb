@@ -95,6 +95,10 @@ class Admin::FoodsController < AdminController
   def add_ingredient_by_name
     if params[:ingredient].present?
       ingredient = Ingredient.find_or_create_by(normalized_name: params[:ingredient][:name].parameterize.singularize)
+      if params[:ingredient][:variety].present?
+        binding.pry
+        Variety.find_or_create_by(food: @food, ingredient: ingredient, name: params[:ingredient][:variety])
+      end
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
     end
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
