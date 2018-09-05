@@ -7,9 +7,11 @@
     <div class="small-12 medium-4 large-5 columns">
       <div class="row">
         <div class="small-12 columns">
+          <label for="user_email">Email</label>
           <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
         </div>
         <div class="small-12 columns">
+          <label for="user_password">Password</label>
           <% if @validatable %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
@@ -17,6 +19,7 @@
         </div>
 
         <div class="small-12 columns">
+          <label for="user_password_confirmation">Password Confirmation</label>
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation" %>
         </div>
       </div>
@@ -28,11 +31,8 @@
       <br><br>
       Thank you and happy eating.
       <br><br>
-    </div>
-
-    <div class="small-12 columns">
-      <div class=" universal-flex-container">
-        <%= f.submit "I agree.  Sign me up!", class: "universal-flex-button" %>
+      <div class="wb-flex">
+        <%= f.submit "I agree.  Sign me up!", class: "btn-bw-green btn-bw-block" %>
       </div>
     </div>
   <% end %>
