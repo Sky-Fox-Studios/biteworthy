@@ -11,7 +11,12 @@
       <%= f.submit class: "button tiny success round" %>
     </div>
   <% end %>
-
+  <ul>
+    <b>Varieties:</b>
+    <% @varieties.each do |variety| %>
+      <li><%= link_to variety.name, admin_ingredient_variety_path(@ingredient, variety) %></li>
+    <% end %>
+  </ul>
   <% if !@ingredient.new_record? %>
     <%= render partial: "admin/ingredients/tags/info_and_forms" %>
   <% end %>
