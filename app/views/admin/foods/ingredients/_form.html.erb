@@ -2,12 +2,12 @@
   <%= f.hidden_field :restaurant_id, value: food.restaurant.id %>
   <%= hidden_field_tag 'food_id', food.id %>
   <div class="row">
-    <div class="small-9 columns">
-      <%= f.input :name %>
+    <div class="small-12 medium-6 columns">
+      <%= f.input :variety, placeholder: "Honeycrisp"%>
     </div>
-    <%# <div class="small-6 columns"> %>
-    <%#   <%= f.input :description %1> %>
-    <%# </div> %>
+    <div class="small-12 medium-6 columns">
+      <%= f.input :name, placeholder: "Apple" %>
+    </div>
     <div class="small-3 columns">
       <div style="padding-top:25px;" class="universal-button-container">
         <%= f.submit class: "universal-flex-button flex-button-natural", value: 'Create' %>

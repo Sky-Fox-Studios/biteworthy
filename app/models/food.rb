@@ -13,6 +13,7 @@ class Food < ActiveRecord::Base
   has_many :ingredients, through: :foods_ingredients
   has_many :foods_ingredients
 
+  has_many :varieties
 
   before_validation :trim_name
 

@@ -12,9 +12,13 @@ class Ingredient < ActiveRecord::Base
   has_many :tags, through: :ingredients_tags
   has_many :ingredients_tags
 
+  has_many :varieties, dependent: :destroy
+
   validates :name, :normalized_name, presence: true
   validates :normalized_name, uniqueness: true
   has_many :reviews, as: :review
+     attr_accessor :variety
+
 
   def to_param
     "#{id}-#{normalized_name}"
