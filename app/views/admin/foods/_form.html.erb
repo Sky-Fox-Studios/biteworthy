@@ -1,7 +1,10 @@
-<%= render partial: "admin/ajax/food", locals: {restaurant: @restaurant, food: @food} %>
+<% unless @food.new_record? %>
+  <%= render partial: "admin/ajax/food", locals: {restaurant: @restaurant, food: @food} %>
+<% end %>
 <div class="row">
   <div class="small-12 medium-8 columns">
     <%= simple_form_for([:admin, @restaurant, @food]) do |f| %>
+      <%= hidden_field_tag 'food[user_id]', current_user.id %>
       <%= render partial: "modules/form_errors", locals: {current_model: @food} %>
       <%= render partial: "admin/foods/basic_fields_and_submit", locals: {f: f} %>
     <% end %>

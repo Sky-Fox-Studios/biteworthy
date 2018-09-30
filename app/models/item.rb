@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   belongs_to :restaurant
+  belongs_to :user
 
   has_many :prices, as: :priced
   has_many :reviews, as: :review
@@ -29,6 +30,7 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
 
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
+  scope :items_created, ->(user) { where(user: user).count }
 
   searchable do
     text    :name
