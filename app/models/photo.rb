@@ -22,6 +22,7 @@ class Photo < ActiveRecord::Base
     :banner,
     :icon]
 
+  scope :photos_taken, ->(user) { where(user: user).count }
   def to_param
     "#{id}-#{name.parameterize}"
   end

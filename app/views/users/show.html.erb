@@ -1,6 +1,7 @@
 <div class="row">
   <div class="small-4 medium-6 columns">
     <h1><%= current_user.user_name %></h1>
+    <p><%= current_user.email %></p>
   </div>
   <div class="small-4 medium-3 columns">
     <h4>
@@ -10,13 +11,27 @@
     <p>Level: <%= current_user.level %></p>
   </div>
   <div class="small-4 medium-3 columns">
-    <p>Photos: <%= current_user.photos.count %></p>
-    <p>Reviews: <%= current_user.reviews.count %></p>
-    <p>Strikes: <%= current_user.strikes.to_i %></p>
+    <table>
+      <thead>
+        <td>Stats</td>
+        <td></td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Photos:</td>
+          <td><%= @photos_taken %></td>
+        </tr>
+        <tr>
+          <td>Reviews:</td>
+          <td><%= @current_user.reviews.count %></td>
+        </tr>
+        <tr>
+          <td>Strikes:</td>
+          <td><%= @current_user.strikes.to_i %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <%= render partial: "users/preferences" %>
-
-  <%= render partial: "users/ratings", locals: { tag_reviews: @tag_reviews, item_reviews: @item_reviews, restaurant_reviews: @restaurant_reviews} %>
-
 </div>

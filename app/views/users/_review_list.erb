@@ -1,11 +1,13 @@
-<% review_class = nil %>
-<% reviews.each do |review| %>
-  <% if review_class != review.rating %>
-    <% review_class   = review.rating %>
-    <ul><h4><%= review.rating.humanize %></h4>
-  <% end %>
-  <li>
-    <%= render partial: "reviews/link",
-      locals: {review: review, reviewed: review.review} %>
+<ul>
+  <% review_class = nil %>
+  <% reviews.each do |review| %>
+    <% if review_class != review.rating %>
+      <% review_class   = review.rating %>
+      <h4><%= review.rating.humanize %></h4>
+    <% end %>
+    <li>
+      <%= render partial: "reviews/link",
+        locals: {review: review, reviewed: review.review} %>
     </li>
   <% end %>
+</ul>
