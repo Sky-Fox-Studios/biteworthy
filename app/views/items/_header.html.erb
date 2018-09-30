@@ -1,0 +1,11 @@
+  <div class="small-12  medium-6 columns item-header-image">
+    <%= render partial: 'image', locals: {item: item} %>
+    <p class="item-name"><%= item.name %></p>
+  </div>
+  <br>
+  <div class="small-12 medium-6 columns item-header-title">
+    <p>
+      <span class="restaurant-name"><%= link_to item.restaurant.name, restaurant_path(item.restaurant) %></span>
+      <span class="restaurant-match">(% Match)</span>
+    </p>
+  </div>
