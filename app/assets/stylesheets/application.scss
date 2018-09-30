@@ -138,8 +138,11 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 select {
   display: block;
 }
-.pagination a, .pagination button{
-  display: inline;
+.pagination{
+  display: flex;
+  a,  button{
+    display: inline;
+  }
 }
 li{
     color: black;
