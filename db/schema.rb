@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180901233612) do
+ActiveRecord::Schema.define(version: 20180930025147) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20180901233612) do
     t.integer  "restaurant_id", limit: 4
     t.string   "name",          limit: 255
     t.string   "description",   limit: 255
+    t.integer  "user_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "food_group",    limit: 4
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20180901233612) do
   create_table "ingredients", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.string   "normalized_name", limit: 255
+    t.integer  "user_id",         limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 20180901233612) do
     t.integer  "restaurant_id", limit: 4
     t.string   "name",          limit: 255
     t.string   "description",   limit: 255
+    t.integer  "user_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -239,6 +242,7 @@ ActiveRecord::Schema.define(version: 20180901233612) do
     t.string   "name",              limit: 255
     t.string   "description",       limit: 255
     t.integer  "variety",           limit: 4
+    t.integer  "user_id",           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "icon_file_name",    limit: 255

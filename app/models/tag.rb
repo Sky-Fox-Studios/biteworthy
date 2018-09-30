@@ -1,10 +1,11 @@
 class Tag < ActiveRecord::Base
-   has_and_belongs_to_many :restaurants
-   has_and_belongs_to_many :menu_groups
-   has_and_belongs_to_many :foods
-   has_and_belongs_to_many :ingredients
-   has_many :reviews, as: :review
-   has_attached_file :icon,
+  belongs_to :user
+  has_and_belongs_to_many :restaurants
+  has_and_belongs_to_many :menu_groups
+  has_and_belongs_to_many :foods
+  has_and_belongs_to_many :ingredients
+  has_many :reviews, as: :review
+  has_attached_file :icon,
     source_file_options: { all: "-auto-orient"},
     styles: {
       tiny: "32x32#",
@@ -16,15 +17,16 @@ class Tag < ActiveRecord::Base
     }
   validates_attachment_content_type :icon, content_type: /\Aimage\/.*\z/
 
-   #TODO
-   #has_and_belongs_to_many :tags, as: :parent_tag
-   validates :name, presence: true
+  #TODO
+  #has_and_belongs_to_many :tags, as: :parent_tag
+  validates :name, presence: true
 
-   before_validation :normalize_tag_name
+  before_validation :normalize_tag_name
 
-   enum variety: [ :ingredient, :cooking, :choice, :nature, :restaurant,]
-   # TODO change variety to String
-   # self.varieties
+  enum variety: [ :ingredient, :cooking, :choice, :nature, :restaurant,]
+  # TODO change variety to String
+  # self.varieties
+  scope :tags_created, ->(user) { where(user: user).count }
 
   searchable do
     text    :name

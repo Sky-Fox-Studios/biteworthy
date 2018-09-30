@@ -9,26 +9,32 @@
     <%= "Admin" if current_user.is_admin? %>
     </h4>
     <p>Level: <%= current_user.level %></p>
+    <p>Strikes: <%= @current_user.strikes.to_i %></p>
   </div>
   <div class="small-4 medium-3 columns">
+    <h5>BiteWorthy Stats</h5>
     <table>
       <thead>
-        <td>Stats</td>
-        <td></td>
+        <td>Type</td>
+        <td style="text-align:right">
+        </td>
       </thead>
+      <% ego_points = [
+        [20, "Items", @items_created],
+        [15, "Photos", @photos_taken],
+        [10, "Foods", @foods_created],
+        [5, "Tags", @tags_created],
+        [2, "Ingredients", @ingredients_created],
+        [1, "Reviews", @reviews_created],
+        [" * count + 42", "Points", @points]
+      ] %>
       <tbody>
-        <tr>
-          <td>Photos:</td>
-          <td><%= @photos_taken %></td>
-        </tr>
-        <tr>
-          <td>Reviews:</td>
-          <td><%= @current_user.reviews.count %></td>
-        </tr>
-        <tr>
-          <td>Strikes:</td>
-          <td><%= @current_user.strikes.to_i %></td>
-        </tr>
+        <% ego_points.each do |worth_name_count| %>
+          <tr>
+            <td title="Worth <%= worth_name_count[0] %>"><%= worth_name_count[1] %>:</td>
+            <td align="right"><%= worth_name_count[2] %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
