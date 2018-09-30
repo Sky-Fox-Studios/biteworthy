@@ -1,5 +1,6 @@
 class Ingredient < ActiveRecord::Base
   before_validation :set_normalized_name
+  belongs_to :user
 
   has_many :photos, as: :photo
 
@@ -12,9 +13,14 @@ class Ingredient < ActiveRecord::Base
   has_many :tags, through: :ingredients_tags
   has_many :ingredients_tags
 
+  has_many :varieties, dependent: :destroy
+
   validates :name, :normalized_name, presence: true
   validates :normalized_name, uniqueness: true
   has_many :reviews, as: :review
+  attr_accessor :variety
+
+  scope :ingredients_created, ->(user) { where(user: user).count }
 
   def to_param
     "#{id}-#{normalized_name}"

@@ -1,5 +1,6 @@
 <div class="row">
   <%= simple_form_for([:admin, @ingredient]) do |f| %>
+    <%= hidden_field_tag 'ingredient[user_id]', current_user.id %>
     <div class="small-6 medium-4 columns">
       <%= f.input :name %>
     </div>
@@ -11,7 +12,14 @@
       <%= f.submit class: "button tiny success round" %>
     </div>
   <% end %>
-
+  <ul>
+    <% if @varieties.present? %>
+      <b>Varieties:</b>
+      <% @varieties.each do |variety| %>
+        <li><%= link_to variety.name, admin_ingredient_variety_path(@ingredient, variety) %></li>
+      <% end %>
+    <% end %>
+  </ul>
   <% if !@ingredient.new_record? %>
     <%= render partial: "admin/ingredients/tags/info_and_forms" %>
   <% end %>

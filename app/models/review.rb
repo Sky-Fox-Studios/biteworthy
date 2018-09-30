@@ -4,6 +4,7 @@ class Review < ActiveRecord::Base
 #    attr_accessible :user, :favoritable
    # http://snippets.aktagon.com/snippets/588-how-to-implement-reviews-in-rails-with-polymorphic-associations
    validates :rating, :user, :review, presence: true
+   scope :reviews_created, ->(user) { where(user: user).count }
    scope :tag_reviews,  ->(user_id) { where(user_id: user_id, review_type: "Tag") }
    scope :item_reviews, ->(user_id) { where(user_id: user_id, review_type: "Item") }
    scope :restaurant_reviews, ->(user_id) { where(user_id: user_id, review_type: "Restaurant") }

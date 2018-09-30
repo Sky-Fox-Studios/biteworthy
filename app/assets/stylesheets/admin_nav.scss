@@ -1,5 +1,5 @@
 nav.admin-nav {
-  background: #e6e6e6;
+  // background: #e6e6e6;
   margin: .5rem .5rem;
   padding: 0;
   border-radius: 4px;
@@ -9,7 +9,7 @@ nav.admin-nav {
 ul.admin-nav-primary-list {
   display: inline;
   list-style: none;
-  background: #e6e6e6;
+  // background: #e6e6e6;
   margin: 0;
 
   li.admin-nav-primary-item {
@@ -65,6 +65,7 @@ ul.admin-nav-primary-list {
     li.admin-nav-secondary-item {
       display: block;
       float: none;
+      padding: 10px;
 
 
       &:first-of-type {
@@ -95,7 +96,7 @@ ul.admin-nav-primary-list {
 
   .admin-nav-primary-item, .admin-nav-secondary-item {
     &:hover {
-      background: #333;
+      background: #b7d54d;
       color: #fff;
 
       > a {
@@ -104,7 +105,12 @@ ul.admin-nav-primary-list {
     }
   }
   .log-out {
-    background-color: slategray;
+    background-color: #ff5722;
     float: right;
+    border-radius: 4px;
+
+    a {
+      color: #fff !important;
+    }
   }
 }

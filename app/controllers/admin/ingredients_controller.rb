@@ -29,9 +29,9 @@ class Admin::IngredientsController < AdminController
   end
 
   def create
-    @ingredient = Ingredient.find_or_create_by(normalized_name: ingredient_params[:name].parameterize.singularize)
+    @ingredient = Ingredient.find_or_create_by(name: ingredient_params[:name].singularize.downcase)
     @ingredient.update(ingredient_params)
-    binding.pry
+    @ingredient.update(user: current_user)
     if params[:ingredient][:food_id]
       @food = Food.find(params[:ingredient][:food_id])
       @ingredient.foods << @food
@@ -76,10 +76,11 @@ class Admin::IngredientsController < AdminController
     elsif params[:ingredient_id]
       @ingredient = Ingredient.find(params[:ingredient_id])
     end
-    @tags        = Tag.all
+    @tags      = Tag.all
+    @varieties = Variety.where(ingredient: @ingredient)
   end
 
   def ingredient_params
-    params.require(:ingredient).permit(:name)
-    end
+    params.require(:ingredient).permit(:name, :user_id)
+  end
 end

@@ -1,5 +1,6 @@
 class Food < ActiveRecord::Base
   belongs_to :restaurant
+  belongs_to :user
 
   has_many :reviews, as: :review
   has_many :photos, as: :photo
@@ -13,6 +14,7 @@ class Food < ActiveRecord::Base
   has_many :ingredients, through: :foods_ingredients
   has_many :foods_ingredients
 
+  has_many :varieties
 
   before_validation :trim_name
 
@@ -22,6 +24,7 @@ class Food < ActiveRecord::Base
 
   enum food_group: [:dairy, :oils_fats, :meat_poultry, :fish_seafood, :vegtables, :fruits, :breads_cereals_grains, :spices, :desserts_sweets, :water]
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
+  scope :foods_created, ->(user) { where(user: user).count }
 
   searchable do
     text    :name,         boost: 11

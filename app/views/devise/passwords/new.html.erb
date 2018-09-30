@@ -1,15 +1,15 @@
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 medium-6 medium-centered columns">
     <h2>Forgot your password?</h2>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= devise_error_messages! %>
     <div class="row">
-      <div class="small-12 medium-6 columns">
+      <div class="small-12 columns">
         <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
       </div>
-      <div class="small-12 medium-6 columns ">
-        <div class="actions universal-flex-container">
-          <%= f.submit "Reset password", class: "universal-flex-button" %>
+      <div class="small-12 columns ">
+        <div class="actions wb-flex">
+          <%= f.submit "Reset password", class: "btn-bw-green btn-bw-block" %>
         </div>
       </div>
       <% end %>

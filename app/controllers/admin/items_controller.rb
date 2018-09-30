@@ -43,8 +43,10 @@ class Admin::ItemsController < AdminController
 
   def create
     @item = Item.new(item_params)
-    params[:image].each do |image|
-      @item.photos.new(user_id: current_user.id, photo_type: "Item", image: image).save
+    if params[:image]
+      params[:image].each do |image|
+        @item.photos.new(user_id: current_user.id, photo_type: "Item", image: image).save
+      end
     end
     if @item.save
       redirect_to admin_restaurant_items_path(@item.restaurant), notice: "Item: #{@item.name} created"
@@ -141,7 +143,7 @@ class Admin::ItemsController < AdminController
   end
 
   def item_params
-    params.require(:item).permit(:restaurant_id, :name, :description, menu_group_ids: [])
+    params.require(:item).permit(:restaurant_id, :name, :description, :user_id, menu_group_ids: [])
   end
 
   def food_params
