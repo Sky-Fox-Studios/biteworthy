@@ -12,14 +12,16 @@
   </thead>
 
   <tbody>
-    <% @varieties.each do |variety| %>
-      <tr>
-        <td><%= variety.name %></td>
-        <td><%= variety.ingredient_id %></td>
-        <td><%= link_to 'Show', variety %></td>
-        <td><%= link_to 'Edit', edit_variety_path(variety) %></td>
-        <td><%= link_to 'Destroy', variety, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% if @varieties.present? %>
+      <% @varieties.each do |variety| %>
+        <tr>
+          <td><%= variety.name %></td>
+          <td><%= variety.ingredient_id %></td>
+          <td><%= link_to 'Show', variety %></td>
+          <td><%= link_to 'Edit', edit_variety_path(variety) %></td>
+          <td><%= link_to 'Destroy', variety, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

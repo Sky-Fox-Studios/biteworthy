@@ -5,6 +5,7 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :foods
   has_and_belongs_to_many :ingredients
   has_many :reviews, as: :review
+
   has_attached_file :icon,
     source_file_options: { all: "-auto-orient"},
     styles: {
