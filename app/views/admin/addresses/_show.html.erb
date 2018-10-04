@@ -30,6 +30,7 @@
   <% end %>
   <div class="small-12 columns">
     <%= render partial: 'admin/addresses/map', locals: { address: address } %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_key'] %>&callback=initMap&libraries=places" async defer></script>
   </div>
 
   <div class="small-12 columns">
