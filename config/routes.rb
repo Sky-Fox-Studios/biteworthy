@@ -83,6 +83,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'me', to: 'users#show', as: 'me'
+  get 'choose_wisely', to: 'users#choose_wisely', as: 'choose_wisely'
 
 
   get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"

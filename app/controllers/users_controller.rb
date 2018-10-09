@@ -35,4 +35,9 @@ class UsersController < ApplicationController
     @disliked_foods = disliked_foods - liked_foods
 
   end
+
+  def choose_wisely
+    @tags = Tag.all
+    @reviews = Review.ratings
+  end
 end

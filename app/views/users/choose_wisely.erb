@@ -1,0 +1,33 @@
+
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Choose wisely</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+
+    <div class="sliders">
+      <% min = @reviews.values.first %>
+      <% max = @reviews.values.last %>
+      <% @tags.each do |tag| %>
+        <div class="slidercontainer">
+          <span class="name"><%= tag.name %><br>
+          <input type="range" min="<%= min %>" max="<%= max %>" value="0" class="slider">
+          <span class="value"></span>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+<script>
+  $(function(){
+    $('input').on('input change', function(){
+      $
+
+  });
+
+</script>
