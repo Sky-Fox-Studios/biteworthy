@@ -39,5 +39,6 @@ class UsersController < ApplicationController
   def choose_wisely
     @tags = Tag.all
     @reviews = Review.ratings
+
   end
 end

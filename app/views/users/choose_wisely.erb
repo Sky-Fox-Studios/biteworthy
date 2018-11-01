@@ -14,8 +14,9 @@
       <% @tags.each do |tag| %>
         <div class="slidercontainer">
           <span class="name"><%= tag.name %><br>
-          <input type="range" min="<%= min %>" max="<%= max %>" value="0" class="slider">
-          <span class="value"></span>
+          <input type="range" id="<%= tag.id %>" min="<%= min %>" max="<%= max %>" value="0" class="slider">
+          <br>
+          <span class="value" id="tag-span-<%= tag.id %>">?</span>
         </div>
         <hr>
       <% end %>
@@ -24,10 +25,16 @@
   </div>
 </div>
 <script>
+  var ratings_values = <%= @reviews.values %>;
+  var ratings_names = <%= @reviews.keys.map(&:humanize).to_s.html_safe %>;
   $(function(){
-    $('input').on('input change', function(){
-      $
+    $('input').on('change', function(event){
+      console.log($(this).val());
+      var rating_name = ratings_names[parseInt($(this).val())+6];
+      console.log(rating_name);
+      $("#tag-span-"+$(this).attr('id')).html(rating_name);
 
+    });
   });
 
 </script>
