@@ -6,23 +6,22 @@
 </div>
 
 <div class="row">
-  <div class="small-12 columns">
+  <% min = @reviews.values.first %>
+  <% max = @reviews.values.last %>
+  <% @tags.each do |tag| %>
+    <div class="small-12 medium-6 large-4 columns">
 
-    <div class="sliders">
-      <% min = @reviews.values.first %>
-      <% max = @reviews.values.last %>
-      <% @tags.each do |tag| %>
+      <div class="sliders">
         <div class="slidercontainer">
-          <span class="name"><%= tag.name %><br>
+          <span class="name"><%= tag.name %><br></span>
           <input type="range" id="<%= tag.id %>" min="<%= min %>" max="<%= max %>" value="0" class="slider">
           <br>
           <span class="value" id="tag-span-<%= tag.id %>">?</span>
         </div>
         <hr>
-      <% end %>
+      </div>
     </div>
-
-  </div>
+  <% end %>
 </div>
 <script>
   var ratings_values = <%= @reviews.values %>;
