@@ -36,9 +36,13 @@ class UsersController < ApplicationController
 
   end
 
-  def choose_wisely
-    @tags = Tag.all
-    @reviews = Review.ratings
+  def choose_tags
+    ingredient_tags = @tags.where(variety: 0).order(:name)
+    choice_tags = @tags.where(variety: 2).order(:name)
+    nature_tags = @tags.where(variety: 3).order(:name)
+    @tags = [choice_tags, nature_tags, ingredient_tags]
+    @ratings = Review.ratings
+    @reviews = Review.tag_reviews(current_user.id)
 
   end
 end
