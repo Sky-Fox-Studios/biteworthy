@@ -20,6 +20,7 @@
             <%= link_to "Profile", me_path %>
             <ul class="admin-nav-secondary-list">
               <li class="admin-nav-secondary-item"><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
+              <li class="admin-nav-secondary-item"><%= link_to "Tag Choices", choose_tags_path(current_user) %></li>
             </ul>
           </li>
           <% if current_user.is_admin? %>

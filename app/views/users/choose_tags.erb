@@ -1,0 +1,64 @@
+<% min = @ratings.values.first %>
+<% max = @ratings.values.last %>
+<% user_tag_reviews = @reviews.map(&:review_id) %>
+<% @tags.each do |tag_group| %>
+  <div class="row">
+    <div class="small-12 columns">
+      <h3 class="choose-tags-title"><%= tag_group.first.variety.capitalize %> tags</h3>
+    </div>
+    <% tag_group.each do |tag| %>
+      <div class="small-12 medium-6 large-4 columns">
+        <% value = user_tag_reviews.include?(tag.id) ? @reviews.select{|review| review.review_id == tag.id}.first.rating : '-' %>
+        <div class="sliders">
+          <div class="slidercontainer">
+            <fieldset>
+              <legend>
+              <span class="name"><%= tag.name %></span>
+              </legend>
+              <input type="range" id="<%= tag.id %>" min="<%= min %>" max="<%= max %>" value="<%= @ratings[value] %>" class="slider">
+              </br>
+                <span class="value" id="tag-span-<%= tag.id %>"><%= value %></span>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<script>
+  var ratings_values = <%= @ratings.values %>;
+  var ratings_names = <%= @ratings.keys.map(&:humanize).to_s.html_safe %>;
+  $(function(){
+    $('input').on('change', function(event){
+      var rating = parseInt($(this).val());
+      var rating_name = ratings_names[rating+6];
+      var id = $(this).attr('id');
+      $("#tag-span-"+id).html(rating_name);
+      create_rating(rating, id, "Tag");
+
+
+    });
+  });
+
+  function create_rating(rating, review_id, review_type) {
+    if(review_id != ""){
+      $.ajax({
+        url: "/create_user_rating",
+        cache: false,
+        dataType: "html",
+        type: "GET",
+        data: { rating: rating, review_id: review_id, review_type: review_type },
+        success: function(new_rating_reviews){
+          var rating_reviews_div = '#rating-reviews-'+review_type.toLowerCase()+'-'+review_id;
+          console.log("success, updating="+rating_reviews_div.toString());
+          $(rating_reviews_div.toString()).html(new_rating_reviews);
+          $.ratings.wireupListeners();
+        },
+        error: function(error) {
+          console.log("create ajax error: ");
+          console.log(error);
+        }
+      });
+    };
+  }
+</script>
