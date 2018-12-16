@@ -1,6 +1,6 @@
 .restaurant-home-container{
   padding: 0;
-  margin: 10px;
+  padding: 10px;
 
   .restaurant-home-image-small {
     height: 175px;
@@ -80,7 +80,7 @@
   padding: 0rem !important;
 }
 
-.tabs-title > a:focus, 
+.tabs-title > a:focus,
 .tabs-title > a[aria-selected='true'] {
   background: #b7d54d;
   color: #000;
