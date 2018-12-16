@@ -12,7 +12,7 @@
     // border: solid black;
     border-radius: 5px;
     border-width: 1px;
-    padding: 2px;
+    padding: 3px;
     display: block;
     img{
       &.icon-size-tiny {
@@ -36,4 +36,18 @@
 }
 .tag-float-right {
   float: right;
+}
+
+.tag-flex-container.filter-button-group{
+  margin: .5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  .tag-block {
+    border: solid 1px black;
+    button {
+      text-align: center;
+      vertical-align: sub;
+    }
+  }
 }

@@ -2,30 +2,20 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :random_bw
+  before_action :player_reviews
   before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
   before_action :page_history, only: [:create, :update]
-  helper_method :my_review, :my_reviews
 
-  def random_bw
-    @num = rand(1..4)
-  end
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
-  def my_reviews
+  def player_reviews
     if current_user
-      current_user.reviews
-    else
-      []
-    end
-  end
-  def my_review(reviewable)
-    if current_user
-      reviewable.reviews.where(user_id: current_user.id)
-    else
-      []
+      @all_reviews  = current_user.reviews
+      @bad_reviews  = @all_reviews.where('rating < 0')
+      @good_reviews = @all_reviews.where('rating > 0')
+      @neg_reviews  = @all_reviews.where('rating = 0')
     end
   end
 

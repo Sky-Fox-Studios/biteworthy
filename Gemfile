@@ -12,7 +12,7 @@ gem 'devise'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
-gem 'foundation-rails', '6.2.4.0'
+gem 'foundation-rails', '6.4.3.0'
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'
 gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -33,7 +33,7 @@ gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for Ja
 gem 'paperclip', "5.1.0"
 gem 'aws-sdk', '2.10.75'
 group :development do
-  gem "capistrano", "~> 3.8.1", require: false
+  gem "capistrano", "~> 3.10.2", require: false
   gem 'debug_inspector'
   gem 'capistrano-rvm'
   gem 'spring'

@@ -1,5 +1,5 @@
 <div class="row" id="rating-reviews-<%=review.id%>" >
-  <div class="small-4 columns image-wrapper">
+  <div class="small-6 columns image-wrapper">
     <% if defined? reviewed.photos %>
       <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %>
     <% elsif reviewed.class.to_s == "Tag" %>
@@ -8,15 +8,15 @@
         <%= render partial: "tags/block", locals: {tag: reviewed, size: :medium} %>
       </div>
     <% end %>
+    <p align="none">
+      <%= render partial: "reviews/type_link", locals: {review: review, reviewed: review.review} %>
+    </p>
   </div>
-  <div class="small-8 columns">
+  <div class="small-6 columns">
     <h3 style="float:left;">
       <%= link_to reviewed.name, edit_review_path(review) %>
     </h3>
   </div>
   <div class="small-12 columns">
-    <p align="none">
-    <%= render partial: "reviews/type_link", locals: {review: review, reviewed: review.review} %>
-    </p>
   </div>
 </div>

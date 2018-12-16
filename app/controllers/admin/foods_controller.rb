@@ -69,6 +69,7 @@ class Admin::FoodsController < AdminController
 
   def add_new_food
     food = Food.find_or_create_by(name: food_params[:name], description: food_params[:description], restaurant_id: food_params[:restaurant_id])
+    food.update(user: current_user)
     if params[:extra_id].present?
       @extra = Extra.find(params[:extra_id])
       @extra.foods << food
@@ -94,7 +95,11 @@ class Admin::FoodsController < AdminController
 
   def add_ingredient_by_name
     if params[:ingredient].present?
-      ingredient = Ingredient.find_or_create_by(normalized_name: params[:ingredient][:name].parameterize.singularize)
+      ingredient = Ingredient.find_or_create_by(name: params[:ingredient][:name].singularize.downcase)
+      ingredient.update(user: current_user)
+      if params[:ingredient][:variety].present?
+        Variety.find_or_create_by(food: @food, ingredient: ingredient, name: params[:ingredient][:variety].singularize.downcase)
+      end
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
     end
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
@@ -111,6 +116,7 @@ class Admin::FoodsController < AdminController
   def add_new_tag
     tag = Tag.find_or_initialize_by(name: params[:tag][:name])
     tag.update(description: params[:tag][:description])
+    tag.update(user: current_user)
     @food.tags << tag unless @food.tags.include? tag
     redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
   end
@@ -145,6 +151,6 @@ class Admin::FoodsController < AdminController
     end
 
     def food_params
-       params.require(:food).permit(:restaurant_id, :name, :description, :food_group)
+       params.require(:food).permit(:restaurant_id, :name, :description, :food_group, :user_id)
     end
 end

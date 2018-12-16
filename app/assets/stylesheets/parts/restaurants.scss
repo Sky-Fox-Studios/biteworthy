@@ -1,43 +1,56 @@
 .restaurant-home-container{
-  padding: 5px 0 0 5px;
+  padding: 0;
+  padding: 10px;
+
+  .restaurant-home-image-small {
+    height: 175px;
+    width: 100%;
+  }
 }
 .restaurant-header {
   display: flex;
   border-bottom: 5px;
   border-color: skyblue;
-}
-.restaurant-header-title{
-  // max-height: 5rem;
-}
-.restaurant-head-image {
-  // margin: 0;
-}
-.restaurant-name{
-  padding-top: 5px;
-  a {
-    color: black !important;
-    font-family: 'Amaranth';
+  padding: 10px 0;
+  &.simple{
+    .restaurant-name{
+      text-align: center;
+    }
+
   }
-}
-.slogan{
-  color:black;
-  font-size: 1em;
-  // position: absolute;
-  // bottom: 0;
-  left: 0;
-}
-.cash-only{
-  width: 100%;
-  text-align: center;
-  float: right;
-  color: red;
-  font-size: 15px;
-  font-weight: 600;
-}
-.restaurant-home-image-small{
-  min-width: 69px;
-  width: 100%;
-  height: auto;
+  .restaurant-header-title{
+    // max-height: 5rem;
+  }
+  .restaurant-head-image {
+    // margin: 0;
+  }
+  .restaurant-name{
+    padding-top: 5px;
+    a {
+      color: black !important;
+      font-family: 'Amaranth';
+    }
+    .slogan{
+      color:black;
+      font-size: 1em;
+      // position: absolute;
+      // bottom: 0;
+      left: 0;
+    }
+  }
+  .cash-only{
+    width: 100%;
+    text-align: center;
+    float: right;
+    color: red;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .restaurant-home-image-small{
+    min-width: 69px;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .menu-group-head{
@@ -52,12 +65,27 @@
   font-size: 16px;
   font-family: 'Amaranth';
 }
+
+.tabs .tabs-title,
+.tabs .tabs-title:hover,
+.tabs .tabs-title:focus {
+  outline: none;
+}
+
 .tabs-title a{
   font-size: 22px;
 }
+
 .tabs-panel {
   padding: 0rem !important;
 }
+
+.tabs-title > a:focus,
+.tabs-title > a[aria-selected='true'] {
+  background: #b7d54d;
+  color: #000;
+}
+
 .l4 {
   margin-left: auto;
   margin-right: auto;
@@ -100,13 +128,16 @@
       justify-content:space-evenly
     }
     .card-content {
-      display: block;
+      display: flex;
+      flex-grow: 1;
       text-align: center;
       margin-left: auto;
       margin-right: auto;
-      border: black solid;
+      // border: black solid;
       // background-color: lightblue;
-      border-radius: 3%;
+      // border-radius: 3%;
+      border: 1px solid rgba(0,0,0,.25);
+      border-radius: .25rem;
       padding: 0 10px 5px 10px;
       .card-title {
         padding-top: 10px;

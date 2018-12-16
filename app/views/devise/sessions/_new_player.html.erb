@@ -1,4 +1,4 @@
-<div class="row ">
+<div class="row">
   <div class="small-12 columns">
     <h2>Become a Bite Worthy member</h2>
   </div>
@@ -7,9 +7,11 @@
     <div class="small-12 medium-4 large-5 columns">
       <div class="row">
         <div class="small-12 columns">
+          <label for="user_email">Email</label>
           <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
         </div>
         <div class="small-12 columns">
+          <label for="user_password">Password</label>
           <% if @validatable %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
@@ -17,24 +19,21 @@
         </div>
 
         <div class="small-12 columns">
+          <label for="user_password_confirmation">Password Confirmation</label>
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation" %>
         </div>
       </div>
     </div>
-    <div class="small-12 medium-8 large-7 columns">
+    <div class="small-12 medium-8 large-7 columns agree-text">
       By signing up you agree to not hold BiteWorthy accountable to for any information in this app that might be WRONG, mis-labeled, incomplete or out of date.
       <br><br>
       Always talk to your server if you have dietary restrictions or allergies.
       <br><br>
       Thank you and happy eating.
       <br><br>
-    </div>
-
-    <div class="small-12 columns">
-      <div class=" universal-flex-container">
-      <%= f.submit "Sign up", class: "universal-flex-button" %>
-    </div>
+      <div class="wb-flex">
+        <%= f.submit "I agree.  Sign me up!", class: "btn-bw-green btn-bw-block" %>
+      </div>
     </div>
   <% end %>
-</div>
 </div>

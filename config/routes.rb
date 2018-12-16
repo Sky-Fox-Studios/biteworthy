@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'tag_search', to: 'search#tag_search'
   get 'choice_search', to: 'search#choice_search'
   post 'search/advanced', to: 'search#advanced'
-  resources :reports
+  resources :reports, only: [:new, :create]
   resources :restaurants, :ingredients, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
     resources :items, only: [:index, :show] do
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :ingredients do
       post 'add_tag', to: 'ingredients#add_tag', as: 'add_tag'
       post 'remove_tag', to: 'ingredients#remove_tag', as: 'remove_tag'
+      resources :varieties
     end
     resources :restaurants do
       resources :menus
@@ -82,6 +83,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'me', to: 'users#show', as: 'me'
+  get 'choose_tags', to: 'users#choose_tags', as: 'choose_tags'
 
 
   get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"

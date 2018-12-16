@@ -1,7 +1,7 @@
 <h1>Listing Bite Worthy Foods</h1>
 <div class="row">
-    <%= form_tag 'foods', method: :get do %>
-      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+  <%= form_tag 'foods', method: :get do %>
+    <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
   <% end %>
   <div class="small-12 medium-6 large-4 columns">
     <% if @restaurant %>

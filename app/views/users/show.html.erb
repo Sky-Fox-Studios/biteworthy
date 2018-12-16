@@ -1,31 +1,43 @@
 <div class="row">
-  <div class="small-12 medium-6 columns">
+  <div class="small-4 medium-6 columns">
     <h1><%= current_user.user_name %></h1>
+    <p><%= current_user.email %></p>
   </div>
-  <div class="small-12 medium-3 columns">
+  <div class="small-4 medium-3 columns">
+    <h4>
     <%= "Editor" if current_user.is_editor? %>
     <%= "Admin" if current_user.is_admin? %>
+    </h4>
     <p>Level: <%= current_user.level %></p>
+    <p>Strikes: <%= current_user.strikes.to_i %></p>
   </div>
-  <div class="small-12 medium-3 columns">
-    <p>Photos: <%= current_user.photos.count %></p>
-    <p>Reviews: <%= current_user.reviews.count %></p>
-    <p>Strikes: <%= current_user.strikes %></p>
+  <div class="small-4 medium-3 columns">
+    <h5>BiteWorthy Stats</h5>
+    <table>
+      <thead>
+        <td>Type</td>
+        <td style="text-align:right">
+        </td>
+      </thead>
+      <% ego_points = [
+        [20, "Items", @items_created],
+        [15, "Photos", @photos_taken],
+        [10, "Foods", @foods_created],
+        [5, "Tags", @tags_created],
+        [2, "Ingredients", @ingredients_created],
+        [1, "Reviews", @reviews_created],
+        [" * count + 42", "Points", @points]
+      ] %>
+      <tbody>
+        <% ego_points.each do |worth_name_count| %>
+          <tr>
+            <td title="Worth <%= worth_name_count[0] %>"><%= worth_name_count[1] %>:</td>
+            <td align="right"><%= worth_name_count[2] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  <div class="small-12  columns">
-  <h2>Ratings</h2>
-  </div>
-  <hr>
-  <div class="small-12 medium-4 columns">
-    <h3>Tags:</h3>
-    <%= render partial: "users/review_list", locals: {reviews: @tag_reviews} %>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <h3>Items:</h3><br>
-    <%= render partial: "users/review_list", locals: {reviews: @item_reviews} %>
-  </div>
-  <div class="small-12 medium-4 columns">
-    <h3>Restaurants:</h3>
-    <%= render partial: "users/review_list", locals: {reviews: @restaurant_reviews} %>
-  </div>
+
+  <%= render partial: "users/preferences" %>
 </div>

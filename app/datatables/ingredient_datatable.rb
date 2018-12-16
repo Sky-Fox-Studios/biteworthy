@@ -15,7 +15,7 @@ class IngredientDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |record|
       {
-        name:            link_to(record.name, ingredient_path(record)),
+        name:            link_to(admin_ingredient_path(record.name), ingredient_path(record)),
         normalized_name: record.normalized_name,
         tags:            record.tags.map(&:name).to_a.to_sentence,
         actions:         link_to('<i class="far fa-edit"></i>'.html_safe, edit_admin_ingredient_path(record), class: "action-icon") +
@@ -29,5 +29,4 @@ class IngredientDatatable < AjaxDatatablesRails::Base
   def get_raw_records
     Ingredient.all
   end
-
 end

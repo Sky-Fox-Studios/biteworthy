@@ -1,9 +1,9 @@
 <div class="row" style="padding: 0;">
   <div class="small-12 show-for-medium">
+    <div class="home-logo">
+      <%= link_to image_tag("bite-worthy-durango"), root_path %>
+    </div>
     <div class="bw-top-bar">
-      <div class="home-logo">
-        <%= link_to image_tag("bite-worthy-durango"), root_path %>
-      </div>
       <%# <div class="search"> %>
       <%#   <%= form_tag "/search", url: 'search', method: :get do |f| %1> %>
       <%#     <div class="universal-flex-container"> %>
@@ -20,6 +20,7 @@
             <%= link_to "Profile", me_path %>
             <ul class="admin-nav-secondary-list">
               <li class="admin-nav-secondary-item"><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
+              <li class="admin-nav-secondary-item"><%= link_to "Tag Choices", choose_tags_path(current_user) %></li>
             </ul>
           </li>
           <% if current_user.is_admin? %>
@@ -39,8 +40,8 @@
         </ul>
       </nav>
       <% else %>
-        <div class="universal-flex-container">
-          <%= link_to "Login".html_safe, user_session_path, class: "universal-flex-button", style: "margin:.5rem;" %>
+        <div class="wb-flex flex-end">
+          <%= link_to "Login".html_safe, user_session_path, class: "btn-bw-green", style: "margin:.5rem;" %>
         </div>
       <% end %>
     </div>
