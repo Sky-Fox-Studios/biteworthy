@@ -154,3 +154,10 @@ li{
 .agree-text{
   line-height: 26px;
 }
+.grid-content {
+  width: grid-column(1 of 9);
+}
+.zero-padding {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}

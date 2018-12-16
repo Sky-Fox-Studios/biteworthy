@@ -9,18 +9,20 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
 //= require jquery
 //= require jquery_ujs
+//
+//= require admin_item
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require datatables
-//= require foundation
-//= require admin_item
 //= require fontawesome-all
 //= require food_items
+//= require foundation
 //= require google_tracking_event
 //= require ingredients
+//= require images_loaded
+//= require isotope_3.0.6
 //= require ratings
 //= require restaurant_menu_groups
 
