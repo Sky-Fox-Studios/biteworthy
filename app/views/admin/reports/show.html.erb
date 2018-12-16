@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @report.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @report.description %>
+</p>
+
+<p>
+  <strong>Page url:</strong>
+  <%= @report.page_url %>
+</p>
+
+<p>
+  <strong>Report type:</strong>
+  <%= @report.report_type.humanize %>
+</p>
+
+<%= link_to 'Edit', edit_admin_report_path(@report) %> |
+<%= link_to 'Delete', admin_report_path(@report), method: :delete if current_user && current_user.is_admin? %>
