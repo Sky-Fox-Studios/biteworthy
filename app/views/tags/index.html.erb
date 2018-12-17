@@ -1,33 +1,59 @@
 <div class="row">
   <div class="small-12 medium-8 columns">
-    <h1>Manage Tags</h1>
+    <h1>BiteWorthy Tags</h1>
   </div>
-  <div class="small-12 medium-4 columns">
-    <%= link_to "New", new_tag_path %>
-  </div>
+  <% if current_user && current_user.is_admin? %>
+    <div class="small-12 medium-4 columns">
+      <%= link_to "New", new_tag_path %>
+    </div>
+  <% end %>
 </div>
 
 <div class="row">
   <div class="small-12 columns">
-    <table class="small-12">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Tag</th>
-        </tr>
-      </thead>
+    Sort by:
+  </div>
+  <div class="small-12 columns button-group sort-by-button-group tag-flex-container">
+    <div class='tag-block'>
+      <button data-sort-by=".original-order">original order</button>
+    </div>
+    <div class='tag-block'>
+      <button data-sort-by=".name">name</button>
+    </div>
+    <div class='tag-block'>
+      <button data-sort-by=".category">category</button>
+    </div>
+  </div>
 
-      <tbody>
-        <% @tags.each do |tag| %>
-          <tr>
-            <td>
-              <%= link_to raw('<i class="fa fa-edit"></i>'), edit_tag_path(tag) %>
-            </td>
-            <td><%= tag.name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="small-12 columns">
+    <div class="grid">
+      <% @tags.map do |tag| %>
+        <div class="tag-card columns small-3 medium-2 large-1" data-category="<%= tag.variety %>">
+          <%= render partial: "tags/block", locals: {tag: tag, size: :medium} %>
+        </div>
+      <% end %>
+    </div>
 
   </div>
 </div>
+<script>
+
+  var $grid;
+  $(function(){
+    $grid = $('.grid').imagesLoaded(function(){
+      $grid.isotope({
+        itemSelector: '.tag-card',
+        layoutMode: 'fitRows',
+        getSortData: {
+          name: '.name',
+          category: '[data-category]'
+        }
+      });
+    });
+    $('.sort-by-button-group').on( 'click', 'button', function() {
+      var sortByValue = $(this).attr('data-sort-by');
+      $grid.isotope({ sortBy: sortByValue });
+      console.log("Sort by " +sortByValue);
+    });
+  });
+</script>

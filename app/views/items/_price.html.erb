@@ -1,5 +1,5 @@
-<% unless item.prices.empty? %>
-  <% item.prices.each do |price| %>
+<% unless prices.empty? %>
+  <% prices.each do |price| %>
     <p class="margin-none item-price"><%= price_to_s(price.value) %> <%= price.size %></p>
   <% end %>
 <% end %>

@@ -38,16 +38,18 @@
   float: right;
 }
 
-.tag-flex-container.filter-button-group{
-  margin: .5rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  .tag-block {
-    border: solid 1px black;
-    button {
-      text-align: center;
-      vertical-align: sub;
+.tag-flex-container, {
+  &.filter-button-group, &.sort-by-button-group {
+    margin: .5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    .tag-block, .tag-card {
+      border: solid 1px black;
+      button {
+        text-align: center;
+        vertical-align: sub;
+      }
     }
   }
 }

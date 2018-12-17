@@ -1,4 +1,4 @@
-<%= link_to tag_search_path(tag_id: tag) do %>
+<%= link_to tag_search_path(tag_id: tag), class: 'tag-block' do %>
   <% hide_text  ||= false %>
   <% admin_edit ||= false %>
   <% size ||= :small %>
@@ -11,20 +11,18 @@
   when :medium
     ratio = "75x75"
   end
-  %>
+%>
 
-  <div class='tag-block'>
-    <% if tag.icon.present? %>
-      <%= image_tag(tag.icon.url(size), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
-    <% else %>
-      <%= image_tag "empty.png", size: ratio, class: "icon-size-#{size.to_s}" %>
-    <% end %>
+  <% if tag.icon.present? %>
+    <%= image_tag(tag.icon.url(size), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
+  <% else %>
+    <%= image_tag "empty.png", size: ratio, class: "icon-size-#{size.to_s}" %>
+  <% end %>
 
-    <% unless hide_text %>
-      <p><%= tag.name.tr("-", " ").capitalize %></p>
-    <% end %>
-    <% if admin_edit %>
-      <%= link_to Icon.sup_x.html_safe, '#', class: "food-remove-tag item-remove-tag", data: {tag_id: tag.id} %>
-    <% end %>
-  </div>
+  <% unless hide_text %>
+    <p class="name"><%= tag.name.tr("-", " ").capitalize %></p>
+  <% end %>
+  <% if admin_edit %>
+    <%= link_to Icon.sup_x.html_safe, '#', class: "food-remove-tag item-remove-tag", data: {tag_id: tag.id} %>
+  <% end %>
 <% end %>

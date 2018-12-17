@@ -3,7 +3,7 @@
   <div class="row">
     <div class="small-12 columns">
       Filter by:
-      <%= link_to "Tags", "#", class: "universal-flex-button flex-button-review" %>
+      <%= link_to "Tags", tags_path, class: "universal-flex-button flex-button-review" %>
     </div>
     <div class="small-12 columns">
       <%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
@@ -27,7 +27,7 @@
           <% end %>
           <p class="black-text"><%= item.description %></p>
           <% if item.prices.present? %>
-            <%= render partial: 'items/price', locals: {item: item} %>
+            <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %>
           <% end %>
         </div>
       </div>

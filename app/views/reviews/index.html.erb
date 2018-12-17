@@ -2,36 +2,36 @@
   <div class="small-12 columns">
     <h1>Your Bite Worthy Reviews</h1>
   </div>
-    <div class="small-8 medium-9 large-10 columns">
-      <span>Filter:</span>
-      <%= form_tag reviews_path, method: "get" do |f| %>
-        <%= select_tag "review_type", options_for_select(Review.review_types, @review_type), onChange: 'this.form.submit();' %>
-      <% end %>
-    </div>
-    <div class="small-12 medium-4 columns universal-flex-container">
-      <%= link_to "New", new_review_path, class: "universal-flex-button flex-button-natural" %>
-    </div>
+  <div class="small-8 medium-9 large-10 columns">
+    <span>Filter:</span>
+    <%= form_tag reviews_path, method: "get" do |f| %>
+      <%= select_tag "review_type", options_for_select(Review.review_types, @review_type), onChange: 'this.form.submit();' %>
+    <% end %>
+  </div>
+  <div class="small-12 medium-4 columns universal-flex-container">
+    <%= link_to "New", new_review_path, class: "universal-flex-button flex-button-natural" %>
+  </div>
   <div class="small-12 columns">
-    <% if @reviews.present? %>
-      <% @reviews.each do |review| %>
-        <% if @review_class != review.rating %>
-          <hr>
-          <div class="row">
+    <div class="row grid cards-container">
+      <% if @reviews.present? %>
+        <% @reviews.each do |review| %>
+          <% if @review_class != review.rating %>
+            <hr>
             <% @review_class = review.rating %>
             <div class="small-12 columns">
               <h2>
                 <%= @review_class.humanize %>
               </h2>
             </div>
+          <% end %>
+          <div class="review-card small-12 medium-6 large-4 columns">
+            <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
           </div>
         <% end %>
-        <div class="small-12 medium-6 large-4 columns">
-          <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
-        </div>
+      <% else %>
+        <h5>Oh noos! You have no <%= "#{@review_type} " %>reviews.</h5>
+        <h6><%= current_user ? "Start reviewing!" : "Login and value" %></h6>
       <% end %>
-    <% else %>
-      <h5>Oh noos! You have no <%= "#{@review_type} " %>reviews.</h5>
-      <h6><%= current_user ? "Start reviewing!" : "Login and value" %></h6>
-    <% end %>
+    </div>
   </div>
 </div>
