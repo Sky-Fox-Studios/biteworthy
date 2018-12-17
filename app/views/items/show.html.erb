@@ -1,15 +1,17 @@
 <%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
+<div class="row item-container">
   <div class="small-12 medium-6 large-3 columns">
     <div class="row">
       <div class="small-12 columns">
         <%= render partial: 'image', locals: {item: @item} %>
         <%= render partial: 'review_vote', locals: {item: @item} %>
-        <%= render partial: 'price', locals: {item: @item} %>
+        <%= render partial: 'price', locals: {prices: @item.prices} %>
       </div>
     </div>
   </div>
   <div class="small-12 medium-6 large-9 columns">
     <%= render partial: 'name_desc_foods_extras', locals: {item: @item} %>
   </div>
-<br>
-<%= render partial: 'item_footer', locals: {item: @item, review: @review} %>
+  <br>
+  <%= render partial: 'item_footer', locals: {item: @item, review: @review} %>
+</div>
