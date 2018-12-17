@@ -27,7 +27,7 @@
           <% end %>
           <p class="black-text"><%= item.description %></p>
           <% if item.prices.present? %>
-            <%= render partial: 'items/price', locals: {item: item} %>
+            <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %>
           <% end %>
         </div>
       </div>

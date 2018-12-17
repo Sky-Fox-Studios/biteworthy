@@ -1,14 +1,14 @@
 /*
- *= require_self
- *= require foundation_and_overrides
- *= require foundation
+ *= require _foundation/foundation_and_overrides
  *= require dataTables/jquery.dataTables.foundation
  *= require_tree .
+ *= require_self
 
 
  */
-@import "variables";
-@import "media_query_mixins";
+@import "foundation";
+@import "_var_and_mix/_variables";
+@import "_var_and_mix/media_query_mixins";
 
 *{
   // color: white;
@@ -132,7 +132,11 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
   box-sizing:border-box;
   margin-bottom: 0rem !important;
   border: 0px solid #e6e6e6 !important;
-  .columns {
+  background: none;
+  .card-content {
+    background: white;
+  border-radius: .25em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 1), 0 5px 10px 0 rgba(0, 0, 0, .5);
   }
 }
 select {

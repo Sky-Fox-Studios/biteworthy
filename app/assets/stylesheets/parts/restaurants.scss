@@ -22,7 +22,10 @@
     // max-height: 5rem;
   }
   .restaurant-head-image {
-    // margin: 0;
+    img {
+      border-radius: .25em;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 1), 0 5px 10px 0 rgba(0, 0, 0, .5);
+    }
   }
   .restaurant-name{
     padding-top: 5px;
