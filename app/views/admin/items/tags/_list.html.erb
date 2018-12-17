@@ -3,8 +3,15 @@
     <%= render partial: "tags/block", locals: {tag: tag, admin_edit: true} %>
   <% end %>
 </div>
+<div class="tag-actions">
+  <%= link_to "Tag Up", '#', id: "item-tag-up" %>
+  <br>
+  <%= link_to "Clear tags", '#', id: "item-remove-tags" %>
+</div>
 <script>
   $(function() {
     itemRemoveTag();
+    itemRemoveTags();
+    itemTagUp();
   });
 </script>

@@ -27,4 +27,26 @@
       });
     });
   }
+  function itemRemoveTags(){
+    $('#item-remove-tags').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_remove_tags_path(restaurant, item) %>',
+      }).done(function(response) {
+        $("#tags_list").html(response);
+      });
+    });
+  }
+  function itemTagUp(){
+    $('#item-tag-up').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_tag_up_path(restaurant, item) %>',
+      }).done(function(response) {
+        $("#tags_list").html(response);
+      });
+    });
+  }
 </script>

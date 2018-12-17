@@ -1,4 +1,9 @@
 class Admin::ItemsAjaxController < Admin::ItemsController
+  before_action :just_set_item, only: [
+    :add_tag, :add_food,
+    :add_new_food, :add_new_tag,
+    :remove_tag, :remove_tags, :remove_food,
+    :tag_up]
 
   def add_new_tag
     tag = Tag.find_or_initialize_by(name: tag_params[:name])
@@ -18,6 +23,25 @@ class Admin::ItemsAjaxController < Admin::ItemsController
   def remove_tag
     tag = Tag.find(params[:tag_id])
     @item.tags.delete(tag)
+    render partial: "admin/items/tags/list", locals: {item: @item }
+  end
+
+  def remove_tags
+    @item.tags.clear
+    render partial: "admin/items/tags/list", locals: {item: @item }
+  end
+
+  def tag_up
+    @item.foods.each do |food|
+      food.tags.each do |tag|
+        @item.tags << tag unless @item.tags.include? tag
+      end
+    end
+    @item.ingredients.each do |ingredient|
+      ingredient.tags.each do |tag|
+        @item.tags << tag unless @item.tags.include? tag
+      end
+    end
     render partial: "admin/items/tags/list", locals: {item: @item }
   end
 
