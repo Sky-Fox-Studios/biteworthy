@@ -66,6 +66,7 @@ Rails.application.routes.draw do
         post 'remove_photo',  to: 'extras#remove_photo',  as: "remove_photo"
       end
     end
+    resources :reports
     get 'menus',       to: 'menus#all',       as: "menus"
     get 'menu_groups', to: 'menu_groups#all', as: "menu_groups"
     get 'items',       to: 'items#all',       as: "items"
