@@ -52,7 +52,6 @@
     <div class="small-12 columns">
       <label>Restaurant Image
       <%= f.file_field :image, name: "image", multiple: true %>
-        test
       </label>
       <% unless @restaurant.photos.empty? %>
         <% @restaurant.photos.each do |photo| %>
