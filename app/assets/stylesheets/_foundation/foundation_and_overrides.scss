@@ -1,6 +1,7 @@
 @charset 'utf-8';
 
 @import '_settings';
+@import '../_var_and_mix/_variables';
 @import 'foundation';
 
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
@@ -63,4 +64,9 @@ form #error_explanation {
 }
 .card-section {
   background: white;
+}
+fieldset {
+  border: 1px solid $bw_blue;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
 }

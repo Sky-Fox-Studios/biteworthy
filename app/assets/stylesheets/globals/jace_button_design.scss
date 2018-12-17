@@ -1,3 +1,4 @@
+@import '../_var_and_mix/_variables';
 .universal-flex-container {
   display: flex;
   flex-flow: row wrap;
@@ -164,7 +165,7 @@
 
     &:hover {
       color: #fff;
-      background-color: #97af3f;
+      background-color: $color;
       transition: all ease-in-out 0.25s;
     }
   }

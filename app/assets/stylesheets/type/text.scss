@@ -1,6 +1,6 @@
-$sky-blue: #008CBA;
+@import '../_var_and_mix/_variables';
 a{
-  color: $sky-blue;
+  color: $bw_blue;
 }
 a.button{
   color: black;
@@ -11,7 +11,7 @@ a:hover {
 }
 a:visited{
   // background-color: transparent;
-  color: $sky-blue;
+  color: $bw_blue;
 }
 i{
   color: black;
@@ -30,16 +30,16 @@ input[type] {
   color: black;
 }
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-  color: $sky-blue;
+  color: $bw_blue;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color:    $sky-blue;
+  color:    $bw_blue;
   opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color:    $sky-blue;
+  color:    $bw_blue;
   opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color:    $sky-blue;
+  color:    $bw_blue;
 }
