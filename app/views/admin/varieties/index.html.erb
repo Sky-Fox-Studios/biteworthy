@@ -5,9 +5,11 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Ingredient</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -15,17 +17,13 @@
     <% if @varieties.present? %>
       <% @varieties.each do |variety| %>
         <tr>
+          <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, admin_ingredient_variety_path(variety.ingredient, variety) %></td>
           <td><%= variety.name %></td>
-          <td><%= variety.ingredient_id %></td>
-          <td><%= link_to 'Show', variety %></td>
-          <td><%= link_to 'Edit', edit_variety_path(variety) %></td>
-          <td><%= link_to 'Destroy', variety, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to variety.ingredient.name, ingredient_path(variety.ingredient) %></td>
+          <td><%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_variety_path(variety.ingredient, variety) %></td>
+          <td><%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_ingredient_variety_path(variety.ingredient, variety), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Variety', new_variety_path %>
