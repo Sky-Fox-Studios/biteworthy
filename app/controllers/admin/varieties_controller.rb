@@ -2,7 +2,7 @@ class Admin::VarietiesController < AdminController
   before_action :set_variety, only: [:show, :edit, :update, :destroy]
 
   def index
-    @varieties = Variety.all
+    @varieties = Variety.joins(:ingredient).order('ingredients.name').order('name')
   end
 
   def show
