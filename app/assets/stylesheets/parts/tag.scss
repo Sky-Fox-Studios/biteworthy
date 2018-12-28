@@ -50,6 +50,9 @@
         text-align: center;
         vertical-align: sub;
       }
+      &.active{
+        background: grey;
+      }
     }
   }
 }
