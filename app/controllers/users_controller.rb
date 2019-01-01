@@ -37,9 +37,9 @@ class UsersController < ApplicationController
   end
 
   def choose_tags
-    ingredient_tags = @tags.where(variety: 0).order(:name)
-    choice_tags = @tags.where(variety: 2).order(:name)
-    nature_tags = @tags.where(variety: 3).order(:name)
+    ingredient_tags = @tags.joins(:items).where(variety: 0).uniq.order(:name)
+    choice_tags     = @tags.joins(:items).where(variety: 2).uniq.order(:name)
+    nature_tags     = @tags.joins(:items).where(variety: 3).uniq.order(:name)
     @tags = [choice_tags, nature_tags, ingredient_tags]
     @ratings = Review.ratings
     @reviews = Review.tag_reviews(current_user.id)
