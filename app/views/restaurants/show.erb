@@ -11,42 +11,7 @@
 <div class="restaurant-show">
   <div class="grid cards-container">
     <% @items.each do |item| %>
-      <div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>">
-        <div class="row card-content">
-          <div class="small-7 medium-12 columns">
-            <h3 class="card-title"><%= link_to item.name, restaurant_item_path(@restaurant, item) %></h3>
-            <div class="hide-for-medium">
-
-              <p class="black-text"><%= item.description.truncate(80, separator: ", ").html_safe %></p><br>
-
-              <% if item.prices.present? %>
-                <%# <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %1> %>
-              <% end %>
-
-              <% item.tags.each do |tag| %>
-                <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize, class: "tag-size-tiny").html_safe %>
-              <% end %>
-            </div>
-
-          </div>
-          <div class="small-5 medium-12 columns">
-            <div class="center card-image">
-              <%= link_to PhotoDecorator.decorate(item.photos).display(size: :one_by_one), restaurant_item_path(@restaurant, item) %>
-            </div>
-            <div class="show-for-medium">
-              <p class="black-text"><%= item.description.html_safe %></p>
-
-              <% if item.prices.present? %>
-                <%# <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %1> %>
-              <% end %>
-
-              <% item.tags.each do |tag| %>
-                <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize, class: "tag-size-tiny").html_safe %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render partial: "items/card", locals: {restaurant: @restaurant, item: item} %>
     <% end %>
   </div>
 </div>
