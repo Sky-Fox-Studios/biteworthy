@@ -1,11 +1,11 @@
 @import '../_var_and_mix/_variables';
+
 .universal-flex-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 1rem;
-
 
   .universal-flex-button, &input, &button {
     background-color: #e6e6e6;
@@ -41,6 +41,7 @@
         margin-right: .75rem;
       }
     }
+
     &.flex-button-add, &input {
       @extend .flex-button-natural;
       margin-top: .5rem;
@@ -51,6 +52,7 @@
 
       }
     }
+
     &.flex-button-review, &input {
       margin-bottom: 0;
       @extend .flex-button-natural;
@@ -112,9 +114,11 @@
   &.no-bottom-margin {
     margin-bottom: 0;
   }
+
   .no-right-margin i{
     margin-right: 0;
   }
+
   .universal-flex-element {
     text-align: center;
     font-family: 'Amaranth';
@@ -126,16 +130,19 @@
     margin-bottom: .75rem;
     border-style: none;
   }
+
   .vertical-center{
     margin-top: auto;
     margin-bottom: auto;
   }
 }
+
 .universal-flex-container-add {
   @extend .universal-flex-container;
   justify-content: left;
   align-items: baseline;
 }
+
 #universal-fill{
   justify-content: center;
 }
@@ -186,4 +193,3 @@
     }
   }
 }
-
