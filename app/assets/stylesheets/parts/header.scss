@@ -1,23 +1,38 @@
-.home-logo {
-  // background-color: white;
-  display: flex;
-  justify-content: center;
-  // margin-bottom: .5rem;
-  padding-top: .5rem;
-  img{
-    width: auto;
-    height: auto;
-  }
-  @media screen and (max-width: 64.9375em) {
-  }
-  @media screen and (max-width: 39.9375em) {
-    margin-bottom: .5rem;
-    line-height: 1.25em;
-    img {
-      max-height: 100px;
+@import "../_var_and_mix/*";
+@import "../_foundation/_settings";
+
+.header-container {
+  @include bg-dkGrey;
+  position: relative;
+
+  .home-logo {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+    margin: 0 auto;
+    img{
+      width: auto;
+      height: auto;
+    }
+    @include breakpoint(small only) {
+      width: 300px;
+      line-height: 1.25em;
+      img {
+        max-height: 100px;
+      }
     }
   }
+
+  a.slideout-menu-toggle {
+    position: absolute;
+    margin: auto;
+    top: 0; left: 0; bottom: 0;
+    height: 1.5rem;
+    padding: 0 1rem;
+  }
 }
+
+
 
 .bw-top-bar {
   display: flex;

@@ -7,8 +7,7 @@
 
  */
 @import "foundation";
-@import "_var_and_mix/_variables";
-@import "_var_and_mix/media_query_mixins";
+@import "_var_and_mix/*";
 
 *{
   // color: white;

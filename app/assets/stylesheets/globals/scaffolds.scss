@@ -1,5 +1,7 @@
+@import "../_var_and_mix/*";
+
 body {
-  background-color: #CEE3F6;
+  @include bg-blk;
   color: black;
   font-family: 'Amaranth';
   font-size: 1.3rem;
