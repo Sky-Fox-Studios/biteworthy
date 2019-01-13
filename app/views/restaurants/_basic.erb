@@ -1,7 +1,7 @@
 <div class="small-12 medium-4 large-4 columns restaurant-home-container">
   <div class="row">
     <div class="small-12 columns">
-      <div class="radius bordered shadow card" style="padding: 0">
+      <div class="bordered shadow card" style="padding: 0">
         <% if restaurant.main_image_url %>
           <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
         <% else %>
