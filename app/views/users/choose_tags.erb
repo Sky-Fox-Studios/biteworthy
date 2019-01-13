@@ -7,7 +7,7 @@
       <h3 class="choose-tags-title"><%= tag_group.first.variety.capitalize %> tags</h3>
     </div>
     <% tag_group.each do |tag| %>
-      <div class="small-12 medium-6 large-4 columns">
+      <div class="small-6 medium-3 large-2 columns">
         <% value = user_tag_reviews.include?(tag.id) ? @reviews.select{|review| review.review_id == tag.id}.first.rating : '-' %>
         <div class="sliders">
           <div class="slidercontainer">
@@ -15,9 +15,16 @@
               <legend>
               <span class="name"><%= tag.name %></span>
               </legend>
-              <input type="range" id="<%= tag.id %>" min="<%= min %>" max="<%= max %>" value="<%= @ratings[value] %>" class="slider">
+              <span class="icon" id="tag-icon-<%= tag.id %>">
+                <% if tag.icon.present? %>
+                  <%= image_tag(tag.icon.url(:small), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
+                <% else %>
+                  <%= image_tag "empty.png", size: "50x50", class: "icon-size-small" %>
+                <% end %>
+              </span>
+              <input type="range" id="<%= tag.id %>" min="<%= min %>" max="<%= max %>" value="<%= @ratings[value] %>" class="slider" orient="vertical">
               </br>
-                <span class="value" id="tag-span-<%= tag.id %>"><%= value %></span>
+              <span class="value" id="tag-span-<%= tag.id %>"><%= value %></span>
             </fieldset>
           </div>
         </div>
@@ -62,3 +69,18 @@
     };
   }
 </script>
+<style>
+input[type=range][orient=vertical]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 100px;
+    padding: 0 5px;
+}
+
+.slidercontainer .icon {
+  float: left;
+  padding-top: 35px;
+}
+</style>
