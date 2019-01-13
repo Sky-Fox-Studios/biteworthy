@@ -7,10 +7,8 @@
     <%= render partial: "layouts/header" %>
     <%= render partial: "layouts/side_menu" %>
     <div class="row main-page">
-      <div class="columns">
-        <%= render partial: "layouts/notice" %>
-        <%= yield %>
-      </div>
+      <%= render partial: "layouts/notice" %>
+      <%= yield %>
     </div>
     <%= render partial: "modules/search" %>
     <%= render partial: "layouts/footer" %>
