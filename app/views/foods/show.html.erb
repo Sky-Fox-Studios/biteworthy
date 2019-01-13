@@ -16,11 +16,16 @@
           <%= @food.description %>
         </p>
       </div>
-      <% unless @food.tags.empty? %>
-        <div class="small-6 columns">
+      <div class="small-6 columns">
+        <% if @food.tags.present? %>
           Tags: <%= @food.tags.map {|tag| link_to(tag.name, tag_path(tag)) }.to_sentence.html_safe %>
-        </div>
-      <% end %>
+        <% end %>
+        </br>
+        <%# TODO show varieties of ingredients %>
+        <% if @ingredients.present? %>
+          Ingredients: <%= @ingredients.map {|ingredient| link_to(ingredient.name, ingredient_path(ingredient)) }.to_sentence.html_safe %>
+        <% end %>
+      </div>
     </div>
   </div>
   <% if current_user && current_user.is_admin? %>

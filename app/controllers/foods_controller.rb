@@ -10,6 +10,7 @@ class FoodsController < ApplicationController
   end
 
   def show
+    @ingredients = Ingredient.joins(:foods).where('foods.id in (?)', @food.id)
     respond_with(@food)
   end
 

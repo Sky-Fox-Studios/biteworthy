@@ -15,27 +15,23 @@
       </b>
     </h2>
   </div>
-  <div class="restaurant-show">
-    <div class="grid cards-container">
-      <% @items.each do |item| %>
-        <div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>">
-          <div class="card-content">
-            <h3 class="card-title"><%= link_to item.name, restaurant_item_path(item.restaurant, item) %></h3>
-            <div class="center card-image">
-              <%= link_to PhotoDecorator.decorate(item.photos).display, restaurant_item_path(item.restaurant, item) %>
-            </div>
-            <% if current_user %>
-              <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
-                <%= render partial: "/modules/rating_reviews", locals: { reviewable: item } %>
-              </div>
-            <% end %>
-            <p class="black-text"><%= item.description %></p>
-            <% if item.prices.present? %>
-              <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
 </div>
+  <div class="grid cards-container">
+    <% @items.each do |item| %>
+      <%= render partial: "items/card", locals: {restaurant: item.restaurant, item: item} %>
+    <% end %>
+  </div>
+<script>
+
+  var filters = [];
+  var $grid;
+  $(function(){
+    $grid = $('.grid').imagesLoaded(function(){
+
+      $grid.isotope({
+        itemSelector: '.card',
+        layoutMode: 'fitRows'
+      });
+    });
+  });
+</script>

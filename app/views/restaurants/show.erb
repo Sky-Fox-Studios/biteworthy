@@ -1,5 +1,5 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
-<div class=" restaurant-filter universal-flex-container">
+<div class="restaurant-filter universal-flex-container">
   <div class="row">
     <div class="small-12 columns">
       Tag Filter: <span id="filter-count"></span>
@@ -11,23 +11,7 @@
 <div class="restaurant-show">
   <div class="grid cards-container">
     <% @items.each do |item| %>
-      <div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>">
-        <div class="card-content">
-          <h3 class="card-title"><%= link_to item.name, restaurant_item_path(@restaurant, item) %></h3>
-          <div class="center card-image">
-            <%= link_to PhotoDecorator.decorate(item.photos).display, restaurant_item_path(@restaurant, item) %>
-          </div>
-          <% if current_user %>
-            <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
-              <%= render partial: "/modules/rating_reviews", locals: { reviewable: item } %>
-            </div>
-          <% end %>
-          <p class="black-text"><%= item.description %></p>
-          <% if item.prices.present? %>
-            <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: "items/card", locals: {restaurant: @restaurant, item: item} %>
     <% end %>
   </div>
 </div>

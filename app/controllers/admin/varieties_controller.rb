@@ -6,6 +6,7 @@ class Admin::VarietiesController < AdminController
   end
 
   def show
+    @foods = Food.joins(:ingredients).where('ingredients.id in (?)', @variety.ingredient).includes(:restaurant)
   end
 
   def new
@@ -20,8 +21,8 @@ class Admin::VarietiesController < AdminController
 
     respond_to do |format|
       if @variety.save
-        format.html { redirect_to @variety, notice: 'Variety was successfully created.' }
-        format.json { render :show, status: :created, location: @variety }
+        format.html { redirect_to admin_ingredient_variety_path(@variety.ingredient, @variety), notice: 'Variety was successfully created.' }
+        format.json { render :show, status: :created, location: admin_ingredient_variety_path(@variety.ingredient, @variety) }
       else
         format.html { render :new }
         format.json { render json: @variety.errors, status: :unprocessable_entity }
@@ -32,8 +33,8 @@ class Admin::VarietiesController < AdminController
   def update
     respond_to do |format|
       if @variety.update(variety_params)
-        format.html { redirect_to @variety, notice: 'Variety was successfully updated.' }
-        format.json { render :show, status: :ok, location: @variety }
+        format.html { redirect_to admin_ingredient_variety_path(@variety.ingredient, @variety), notice: 'Variety was successfully updated.' }
+        format.json { render :show, status: :ok, location: admin_ingredient_variety_path(@variety.ingredient, @variety) }
       else
         format.html { render :edit }
         format.json { render json: @variety.errors, status: :unprocessable_entity }
@@ -44,7 +45,7 @@ class Admin::VarietiesController < AdminController
   def destroy
     @variety.destroy
     respond_to do |format|
-      format.html { redirect_to varieties_url, notice: 'Variety was successfully destroyed.' }
+      format.html { redirect_to admin_varieties_url, notice: 'Variety was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -55,6 +56,6 @@ class Admin::VarietiesController < AdminController
     end
 
     def variety_params
-      params.require(:variety).permit(:name, :food_id, :ingredient_id)
+      params.require(:variety).permit(:name, :food_id, :ingredient_id, :ingredient_first)
     end
 end

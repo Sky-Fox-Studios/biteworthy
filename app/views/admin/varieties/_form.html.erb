@@ -3,7 +3,12 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :ingredient_id %>
+    <% if current_user && current_user.level == "nom" %>
+      <%= f.input :ingredient_id %>
+    <% elsif @vaiety.ingredient.present? %>
+      <span><%= @variety.ingredient.name %></span>
+    <% end %>
+    <%= f.input :ingredient_first %>
   </div>
 
   <div class="form-actions">
