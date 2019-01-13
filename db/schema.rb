@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180930025147) do
+ActiveRecord::Schema.define(version: 20190113223043) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20180930025147) do
     t.string  "city",          limit: 255,                          default: "Durango"
     t.string  "state",         limit: 255,                          default: "CO"
     t.integer "zip",           limit: 4,                            default: 81301
-    t.string  "place_id",      limit: 255
     t.decimal "latitude",                  precision: 10, scale: 6
     t.decimal "longitude",                 precision: 10, scale: 6
+    t.string  "place_id",      limit: 255
   end
 
   create_table "extras", force: :cascade do |t|
@@ -152,8 +152,6 @@ ActiveRecord::Schema.define(version: 20180930025147) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string   "title",              limit: 255
-    t.string   "caption",            limit: 255
     t.integer  "user_id",            limit: 4
     t.integer  "photo_id",           limit: 4
     t.string   "photo_type",         limit: 255
@@ -194,9 +192,9 @@ ActiveRecord::Schema.define(version: 20180930025147) do
     t.boolean  "cash_only"
     t.boolean  "delivers"
     t.boolean  "wifi"
-    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
   end
 
   create_table "restaurants_tags", force: :cascade do |t|
@@ -207,7 +205,6 @@ ActiveRecord::Schema.define(version: 20180930025147) do
   create_table "restaurants_users", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
     t.integer "user_id",       limit: 4
-    t.integer "role_id",       limit: 4
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -221,19 +218,12 @@ ActiveRecord::Schema.define(version: 20180930025147) do
     t.datetime "updated_at"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.integer  "role_type",   limit: 4
-    t.string   "name",        limit: 255
-    t.string   "description", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "seasons", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "single_day"
+    t.integer  "season_id",   limit: 4
     t.string   "season_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -268,6 +258,18 @@ ActiveRecord::Schema.define(version: 20180930025147) do
     t.datetime "updated_at"
   end
 
+  create_table "tags_groups_relations", force: :cascade do |t|
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.string   "key",        limit: 255
+    t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_roles", ["key"], name: "index_user_roles_on_key", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "user_name",              limit: 255, default: "", null: false
     t.string   "first_name",             limit: 255, default: "", null: false
@@ -278,11 +280,10 @@ ActiveRecord::Schema.define(version: 20180930025147) do
     t.boolean  "is_admin"
     t.boolean  "is_editor"
     t.boolean  "is_staff"
-    t.integer  "level",                  limit: 4,   default: 0
-    t.integer  "strikes",                limit: 4,   default: 0
+    t.integer  "level",                  limit: 4
+    t.integer  "strikes",                limit: 4
     t.boolean  "banned"
     t.datetime "banned_at"
-    t.string   "ban_reason",             limit: 255
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -307,12 +308,20 @@ ActiveRecord::Schema.define(version: 20180930025147) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  create_table "users_roles", force: :cascade do |t|
+    t.string   "user_id",    limit: 255
+    t.string   "role_id",    limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "varieties", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.integer  "food_id",       limit: 4
-    t.integer  "ingredient_id", limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",             limit: 255
+    t.integer  "food_id",          limit: 4
+    t.integer  "ingredient_id",    limit: 4
+    t.boolean  "ingredient_first",             default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
 end

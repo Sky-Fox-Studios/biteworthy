@@ -8,8 +8,21 @@
 
 <p>
   <strong>Ingredient:</strong>
-  <%= @variety.ingredient_id %>
+  <%= @variety.ingredient.name if @variety.ingredient.present? %>
 </p>
+
+<p>
+  <strong>Ingredient First:</strong>
+  <%= @variety.ingredient_first ? "Yes" : "Nope"  %>
+</p>
+
+<p>
+  <strong>Used in:</strong>
+  <% @foods.map do |food|  %>
+    <%= link_to "#{food.restaurant.name} #{food.name}", restaurant_food_path(food.restaurant, food) %>
+  <% end %>
+</p>
+
 
 <%= link_to 'Edit', edit_admin_ingredient_variety_path(@variety.ingredient_id, @variety) %> |
 <%= link_to 'Back', admin_ingredient_varieties_path(@variety.ingredient_id) %>
