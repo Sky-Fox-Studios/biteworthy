@@ -2,10 +2,7 @@
 <div class=" restaurant-filter universal-flex-container">
   <div class="row">
     <div class="small-12 columns">
-      Filter by:
-      <%= link_to "Tags", tags_path, class: "universal-flex-button flex-button-review" %>
-    </div>
-    <div class="small-12 columns">
+      Tag Filter: <span id="filter-count"></span>
       <%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
     </div>
   </div>
@@ -46,11 +43,17 @@
         layoutMode: 'fitRows'
       });
     })
+
     $('.filter-button-group').on( 'click', 'button', function() {
       var filterValue = $(this).attr('data-filter');
       console.log("Filtering by: " +filterValue);
       if (filterValue == "*"){
-        filters - [];
+        filters = [];
+        $(".tag-block").removeClass("active");
+        $("#show-all-tags").addClass("active");
+      } else {
+        $("#show-all-tags").removeClass("active");
+
       }
 
       if($.inArray(filterValue, filters) == -1){
@@ -67,6 +70,11 @@
 
       console.log("filters = " + filters.join(", "));
       $grid.isotope({ filter: filters.join("") });
+      updateFilterCount();
     });
   });
+
+  function updateFilterCount() {
+    $('#filter-count').text( $grid.data('isotope').filteredItems.length + ' items' );
+  }
 </script>
