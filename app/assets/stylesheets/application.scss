@@ -69,7 +69,6 @@
 .close{
   position: absolute;
   top: 0px;
-
 }
 .top-bar{
   background-color: #2F2E2E;
@@ -145,6 +144,16 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
   column-count: $ct;
 }
 
+form #error_explanation {
+  background-color: white;
+}
+fieldset {
+  border: 2px solid $bw_blue;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+  border-radius: .5rem;
+}
+
 .card {
   padding:20px;
   box-sizing:border-box;
@@ -157,6 +166,10 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 1), 0 5px 10px 0 rgba(0, 0, 0, .5);
   }
 }
+.card-section {
+  background: white;
+}
+
 select {
   display: block;
 }
