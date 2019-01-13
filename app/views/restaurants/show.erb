@@ -1,5 +1,5 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
-<div class=" restaurant-filter universal-flex-container">
+<div class="restaurant-filter universal-flex-container">
   <div class="row">
     <div class="small-12 columns">
       Tag Filter: <span id="filter-count"></span>
@@ -37,7 +37,7 @@
               <p class="black-text"><%= item.description.html_safe %></p>
 
               <% if item.prices.present? %>
-                <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %>
+                <%# <%= render partial: 'items/price', locals: {prices: [item.prices.first]} %1> %>
               <% end %>
 
               <% item.tags.each do |tag| %>
