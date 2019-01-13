@@ -29,10 +29,10 @@ class UsersController < ApplicationController
     meh_foods      = @item_reviews.where('rating = 0').map{|item| item.review.foods}.flatten.uniq
     disliked_foods = @item_reviews.where('rating < 0').map{|item| item.review.foods}.flatten.uniq
 
-    @huh_foods      = liked_foods & meh_foods & disliked_foods
-    @meh_foods      = liked_foods & disliked_foods
-    @liked_foods    = liked_foods - disliked_foods
-    @disliked_foods = disliked_foods - liked_foods
+    @huh_foods      = (liked_foods & meh_foods & disliked_foods).sort_by(&:name)
+    @meh_foods      = (liked_foods & disliked_foods).sort_by(&:name)
+    @liked_foods    = (liked_foods - disliked_foods).sort_by(&:name)
+    @disliked_foods = (disliked_foods - liked_foods).sort_by(&:name)
 
   end
 
