@@ -1,7 +1,7 @@
 <% size ||= :tiny %>
 <% ratio = "32x32" %>
 <div class="tag-flex-container button-group filter-button-group">
-  <div class='tag-block'>
+  <div class='tag-block' id="show-all-tags">
     <button data-filter="*">Show all</button>
   </div>
   <% tags.each do |tag| %>

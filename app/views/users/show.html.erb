@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="small-4 medium-6 columns">
+  <div class="small-6 medium-6 columns">
     <h1><%= current_user.user_name %></h1>
     <p><%= current_user.email %></p>
   </div>
-  <div class="small-4 medium-3 columns">
+  <div class="small-6 medium-3 columns">
     <h4>
     <%= "Editor" if current_user.is_editor? %>
     <%= "Admin" if current_user.is_admin? %>
@@ -11,7 +11,7 @@
     <p>Level: <%= current_user.level %></p>
     <p>Strikes: <%= current_user.strikes.to_i %></p>
   </div>
-  <div class="small-4 medium-3 columns">
+  <div class="small-12 medium-3 columns">
     <h5>BiteWorthy Stats</h5>
     <table>
       <thead>

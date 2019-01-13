@@ -3,10 +3,10 @@
     <%= render partial: "tags/block", locals: {tag: tag, admin_edit: true} %>
   <% end %>
 </div>
-<div class="tag-actions">
-  <%= link_to "Tag Up", '#', id: "item-tag-up" %>
+<div class="tag-actions universal-flex-container">
+  <%= link_to "Tag Up", '#', id: "item-tag-up", class: "universal-flex-button flex-button-natural" %>
   <br>
-  <%= link_to "Clear tags", '#', id: "item-remove-tags" %>
+  <%= link_to "Clear tags", '#', id: "item-remove-tags", class: "universal-flex-button flex-button-natural" %>
 </div>
 <script>
   $(function() {

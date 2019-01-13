@@ -2,10 +2,7 @@
 <div class=" restaurant-filter universal-flex-container">
   <div class="row">
     <div class="small-12 columns">
-      Filter by:
-      <%= link_to "Tags", tags_path, class: "universal-flex-button flex-button-review" %>
-    </div>
-    <div class="small-12 columns">
+      Tag Filter: <span id="filter-count"></span>
       <%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
     </div>
   </div>
@@ -36,6 +33,7 @@
 </div>
 <script>
 
+  var filters = [];
   var $grid;
   $(function(){
     $grid = $('.grid').imagesLoaded(function(){
@@ -45,11 +43,38 @@
         layoutMode: 'fitRows'
       });
     })
+
     $('.filter-button-group').on( 'click', 'button', function() {
       var filterValue = $(this).attr('data-filter');
-      console.log("Filtering by" +filterValue);
-      console.log("grid = " + $grid);
-      $grid.isotope({ filter: filterValue });
+      console.log("Filtering by: " +filterValue);
+      if (filterValue == "*"){
+        filters = [];
+        $(".tag-block").removeClass("active");
+        $("#show-all-tags").addClass("active");
+      } else {
+        $("#show-all-tags").removeClass("active");
+
+      }
+
+      if($.inArray(filterValue, filters) == -1){
+        console.log("pushing");
+        $(this).parent().addClass("active");
+        filters.push(filterValue);
+      } else{
+        console.log("Found, removing");
+        $(this).parent().removeClass("active");
+        filters = $.grep(filters, function(value) {
+          return value != filterValue;
+        });
+      }
+
+      console.log("filters = " + filters.join(", "));
+      $grid.isotope({ filter: filters.join("") });
+      updateFilterCount();
     });
   });
+
+  function updateFilterCount() {
+    $('#filter-count').text( $grid.data('isotope').filteredItems.length + ' items' );
+  }
 </script>
