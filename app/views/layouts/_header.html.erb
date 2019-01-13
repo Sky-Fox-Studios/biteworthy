@@ -1,8 +1,14 @@
 <div class="row" style="padding: 0;">
   <div class="small-12 show-for-medium">
-    <div class="home-logo">
-      <%= link_to image_tag("bite-worthy-durango"), root_path %>
-    </div>
+    <% if @restaurant && false %>
+      <div class="home-logo">
+        <%= link_to image_tag(@restaurant.main_image_url), restaurant_path(@restaurant) %>
+      </div>
+    <% else %>
+      <div class="home-logo">
+        <%= link_to image_tag("bite-worthy-durango"), root_path %>
+      </div>
+    <% end %>
     <div class="bw-top-bar">
       <%# <div class="search"> %>
       <%#   <%= form_tag "/search", url: 'search', method: :get do |f| %1> %>
@@ -47,9 +53,15 @@
     </div>
   </div>
   <div class="small-12 show-for-small-only">
+    <% if @restaurant && false  %>
+      <div class="home-logo">
+        <%= link_to image_tag(@restaurant.main_image_url), restaurant_path(@restaurant) %>
+      </div>
+    <% else %>
     <div class="home-logo">
       <%= link_to image_tag("bite-worthy-durango"), root_path %>
     </div>
+  <% end %>
     <a href="#" class="slideout-menu-toggle left-header-btn">
       <i class="fa fa-bars slideout-menu-icon"></i>
     </a>

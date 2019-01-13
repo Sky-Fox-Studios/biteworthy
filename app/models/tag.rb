@@ -4,6 +4,7 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :menu_groups
   has_and_belongs_to_many :foods
   has_and_belongs_to_many :ingredients
+  has_and_belongs_to_many :items
   has_many :reviews, as: :review
 
   has_attached_file :icon,

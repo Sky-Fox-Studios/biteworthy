@@ -13,6 +13,9 @@
   @media screen and (max-width: 39.9375em) {
     margin-bottom: .5rem;
     line-height: 1.25em;
+    img {
+      max-height: 100px;
+    }
   }
 }
 
