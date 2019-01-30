@@ -21,24 +21,42 @@
       <% if current_user %>
         <nav class="admin-nav">
         <ul class="admin-nav-primary-list">
-          <li class="admin-nav-primary-item"><%= link_to "My reviews", reviews_path %></li>
+          <%= link_to reviews_path do %>
+            <li class="admin-nav-primary-item">My reviews</li>
+          <% end %>
           <li class="admin-nav-primary-item">
             <%= link_to "Profile", me_path %>
             <ul class="admin-nav-secondary-list">
-              <li class="admin-nav-secondary-item"><%= link_to "Edit", edit_user_registration_path(current_user) %></li>
-              <li class="admin-nav-secondary-item"><%= link_to "Tag Choices", choose_tags_path(current_user) %></li>
+              <%= link_to edit_user_registration_path do %>
+                <li class="admin-nav-secondary-item">Edit</li>
+              <% end %>
+              <%= link_to choose_tags_path do %>
+                <li class="admin-nav-secondary-item">Tag Choices</li>
+              <% end %>
             </ul>
           </li>
           <% if current_user.is_admin? %>
             <li class="admin-nav-primary-item">
               <%= link_to "Admin", admin_root_path %>
               <ul class="admin-nav-secondary-list">
-                <li class="admin-nav-secondary-item"><%= link_to "Users",       admin_users_path %></li>
-                <li class="admin-nav-secondary-item"><%= link_to "Restaurants", admin_restaurants_path %></li>
-                <li class="admin-nav-secondary-item"><%= link_to "Items",       admin_items_path %></li>
-                <li class="admin-nav-secondary-item"><%= link_to "Foods",       admin_foods_path %></li>
-                <li class="admin-nav-secondary-item"><%= link_to "Tags",        admin_tags_path %></li>
-                <li class="admin-nav-secondary-item"><%= link_to "*Ingredients*", admin_ingredients_path %></li>
+              <%= link_to admin_users_path do %>
+                <li class="admin-nav-secondary-item">Users</li>
+              <% end %>
+              <%= link_to admin_restaurants_path do %>
+                <li class="admin-nav-secondary-item">Restaurants</li>
+              <% end %>
+              <%= link_to admin_items_path do %>
+                <li class="admin-nav-secondary-item">Items</li>
+              <% end %>
+              <%= link_to admin_foods_path do %>
+                <li class="admin-nav-secondary-item">Foods</li>
+              <% end %>
+              <%= link_to admin_tags_path do %>
+                <li class="admin-nav-secondary-item">Tags</li>
+              <% end %>
+              <%= link_to admin_ingredients_path do %>
+                <li class="admin-nav-secondary-item">Ingredients*</li>
+              <% end %>
               </ul>
             </li>
           <% end %>

@@ -1,12 +1,6 @@
 Rails.application.configure do
 
   # Settings specified here will take precedence over those in config/application.rb.
-   #Rails.configuration.s3[:s3_bucket]
-   # config.s3 = {
-   #    s3_bucket:               "biteworthydurangodev",
-   #    AWS_ACCESS_KEY_ID:       "AKIAJ7XZ6BKJXGFDGDMA",
-   #    AWS_SECRET_ACCESS_KEY:   "+82hOkPePIKqSX4B23j8WJabOsd8YV/P0wsPnQfT"
-   # }
    Paperclip.options[:command_path] = "/usr/bin/convert/"
 
    # In the development environment your application's code is reloaded on
