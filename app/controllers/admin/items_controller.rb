@@ -11,7 +11,7 @@ class Admin::ItemsController < AdminController
 
   def all
     unless @items
-      @items = Item.page(page).per(per_page_count)
+      @items = Item.page(params[:page]).per(per_page_count)
     end
   end
 
