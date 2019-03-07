@@ -42,6 +42,11 @@ class Admin::ItemsAjaxController < Admin::ItemsController
         @item.tags << tag unless @item.tags.include? tag
       end
     end
+    @item.extras.each do |extra|
+      extra.tags.each do |tag|
+        @item.tags << tag unless @item.tags.include? tag
+      end
+    end
     render partial: "admin/items/tags/list", locals: {item: @item }
   end
 
