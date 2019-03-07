@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def show
-
     @items_created = Item.items_created(current_user)
     @photos_taken = Photo.photos_taken(current_user)
     @foods_created = Food.foods_created(current_user)
@@ -33,7 +32,6 @@ class UsersController < ApplicationController
     @meh_foods      = (liked_foods & disliked_foods).sort_by(&:name)
     @liked_foods    = (liked_foods - disliked_foods).sort_by(&:name)
     @disliked_foods = (disliked_foods - liked_foods).sort_by(&:name)
-
   end
 
   def choose_tags

@@ -49,9 +49,8 @@
               </ul>
             </li>
           <% end %>
-          <li class="admin-nav-primary-item nav-right log-out"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
           <li class="admin-nav-primary-item nav-right">
-            <%= link_to "Profile", me_path %>
+            <%= link_to "#{current_user.name} (Profile)", me_path %>
             <ul class="admin-nav-secondary-list">
               <%= link_to edit_user_registration_path do %>
                 <li class="admin-nav-secondary-item">Edit</li>
@@ -59,6 +58,7 @@
               <%= link_to choose_tags_path do %>
                 <li class="admin-nav-secondary-item">Tag Choices</li>
               <% end %>
+              <li class="admin-nav-primary-item nav-right log-out"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
             </ul>
           </li>
         </ul>

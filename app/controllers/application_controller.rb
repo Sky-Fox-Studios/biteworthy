@@ -33,7 +33,6 @@ class ApplicationController < ActionController::Base
     else
       klass.constantize.page(params[:page]).per(per_page_count)
     end
-
   end
 
   def page
