@@ -21,7 +21,6 @@ class Admin::ItemsController < AdminController
 
   def index
     @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
-
   end
 
   def restaurant_item_filter
