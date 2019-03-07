@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :player_points
 
   def set_user
     @tag_reviews = Review.tag_reviews(current_user).order_desc
