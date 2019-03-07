@@ -104,9 +104,11 @@ ul.admin-nav-primary-list {
       }
     }
   }
+  .nav-right {
+    float: right;
+  }
   .log-out {
     background-color: #ff5722;
-    float: right;
     border-radius: 4px;
 
     a {

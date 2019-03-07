@@ -24,17 +24,6 @@
           <%= link_to reviews_path do %>
             <li class="admin-nav-primary-item">My reviews</li>
           <% end %>
-          <li class="admin-nav-primary-item">
-            <%= link_to "Profile", me_path %>
-            <ul class="admin-nav-secondary-list">
-              <%= link_to edit_user_registration_path do %>
-                <li class="admin-nav-secondary-item">Edit</li>
-              <% end %>
-              <%= link_to choose_tags_path do %>
-                <li class="admin-nav-secondary-item">Tag Choices</li>
-              <% end %>
-            </ul>
-          </li>
           <% if current_user.is_admin? %>
             <li class="admin-nav-primary-item">
               <%= link_to "Admin", admin_root_path %>
@@ -60,7 +49,18 @@
               </ul>
             </li>
           <% end %>
-          <li class="admin-nav-primary-item log-out"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+          <li class="admin-nav-primary-item nav-right log-out"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+          <li class="admin-nav-primary-item nav-right">
+            <%= link_to "Profile", me_path %>
+            <ul class="admin-nav-secondary-list">
+              <%= link_to edit_user_registration_path do %>
+                <li class="admin-nav-secondary-item">Edit</li>
+              <% end %>
+              <%= link_to choose_tags_path do %>
+                <li class="admin-nav-secondary-item">Tag Choices</li>
+              <% end %>
+            </ul>
+          </li>
         </ul>
       </nav>
       <% else %>
