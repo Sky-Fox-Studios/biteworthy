@@ -50,7 +50,7 @@
             </li>
           <% end %>
           <li class="admin-nav-primary-item nav-right">
-            <%= link_to "[#{@points}] #{current_user.name} (Profile)", me_path %>
+            <%= link_to "<span class='player-points'>[#{@points}]</span> #{current_user.user_name}".html_safe, me_path %>
             <ul class="admin-nav-secondary-list">
               <%= link_to edit_user_registration_path do %>
                 <li class="admin-nav-secondary-item">Edit</li>
@@ -58,7 +58,9 @@
               <%= link_to choose_tags_path do %>
                 <li class="admin-nav-secondary-item">Tag Choices</li>
               <% end %>
-              <li class="admin-nav-primary-item nav-right log-out"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+              <%= link_to(destroy_user_session_path, method: :delete) do %>
+                <li class="admin-nav-secondary-item log-out">Logout</li>
+              <% end %>
             </ul>
           </li>
         </ul>
