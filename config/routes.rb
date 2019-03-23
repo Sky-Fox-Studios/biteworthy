@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :addresses
       resources :items do
         resources :prices
+        #add new X
         post 'add_new',           to: 'items#add_new',           as: "add_new"
         post 'add_new_tag',       to: 'items_ajax#add_new_tag',  as: "add_new_tag"
         post 'add_new_food',      to: 'items_ajax#add_new_food', as: "add_new_food"
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
         post 'add_tag',           to: 'items_ajax#add_tag',      as: "add_tag"
         post 'add_food',          to: 'items_ajax#add_food',     as: "add_food"
         post 'add_extra',         to: 'items#add_extra',         as: "add_extra"
+        #remove new X
         post 'remove_menu_group', to: 'items#remove_menu_group', as: "remove_menu_group"
         post 'remove_tag',        to: 'items_ajax#remove_tag',   as: "remove_tag"
         post 'remove_tags',       to: 'items_ajax#remove_tags',  as: "remove_tags"
@@ -60,12 +62,21 @@ Rails.application.routes.draw do
         post 'remove_tag',             to: 'foods_ajax#remove_tag',             as: "remove_tag"
       end
       resources :extras do
+        #price
         resources :prices
         post 'add_new_price', to: 'prices#add_new_price', as: "add_new_price"
+        #food
         post 'add_new_food',  to: 'foods#add_new_food',   as: "add_new_food"
         post 'add_foods',     to: 'extras#add_foods',     as: "add_foods"
         post 'remove_food',   to: 'extras#remove_food',   as: "remove_food"
+        #photo
         post 'remove_photo',  to: 'extras#remove_photo',  as: "remove_photo"
+        #Tag actions
+        post 'add_new_tag',       to: 'extras_ajax#add_new_tag',  as: "add_new_tag"
+        post 'add_tag',           to: 'extras_ajax#add_tag',      as: "add_tag"
+        post 'remove_tag',        to: 'extras_ajax#remove_tag',   as: "remove_tag"
+        post 'remove_tags',       to: 'extras_ajax#remove_tags',  as: "remove_tags"
+        post 'tag_up',            to: 'extras_ajax#tag_up',       as: "tag_up"
       end
     end
     resources :reports

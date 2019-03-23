@@ -1,6 +1,13 @@
-<div class="row">
-  <div class="small-12 medium-6 columns">
-    <%= render partial: "admin/extras/prices/list", locals: {restaurant: @restaurant, extra: @extra} %>
-    <%= render partial: "admin/extras/prices/form", locals: {restaurant: @restaurant, extra: @extra} %>
+<fieldset>
+  <legend>
+    <h4>Prices:</h4>
+  </legend>
+  <div class="row padded">
+    <div class="small-12 medium-6 large-4 columns">
+      <%= render partial: "admin/extras/prices/list", locals: {restaurant: @restaurant, extra: @extra} %>
+    </div>
+    <div class="small-12 medium-6 large-8 columns">
+      <%= render partial: "admin/extras/prices/form", locals: {restaurant: @restaurant, extra: @extra} %>
+    </div>
   </div>
-</div>
+</fieldset>

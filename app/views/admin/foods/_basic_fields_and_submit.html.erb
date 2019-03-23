@@ -10,7 +10,7 @@
     <%= f.input :food_group, collection: Food.food_groups.map{|food_group| [food_group.first.humanize, food_group.first]}, selected: @food.food_group, include_blank: true %>
   </div>
   <div class="small-12 columns">
-    <%= render partial: "admin/photos/upload", locals: {form: f, item: @food} %>
+    <%= render partial: "admin/photos/upload", locals: {form: f, object: @food} %>
   </div>
 </div>
 <div class="small-12 columns actions">

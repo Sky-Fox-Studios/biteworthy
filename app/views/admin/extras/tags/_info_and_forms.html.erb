@@ -1,0 +1,12 @@
+<fieldset>
+  <legend>
+    <h4>Tags:</h4>
+  </legend>
+  <div class="small-12 medium-4 columns" id="tags_list">
+    <%= render partial: "admin/extras/tags/list", locals: {extra: @extra } %>
+  </div>
+  <div class="small-12 medium-8 columns">
+    <%= render partial: "admin/extras/tags/select", locals: {restaurant: @restaurant, extra: @extra, tags: @tags} %>
+    <%= render partial: "admin/extras/tags/form",   locals: {restaurant: @restaurant, extra: @extra} %>
+  </div>
+</fieldset>

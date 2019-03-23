@@ -1,0 +1,30 @@
+<%= form_tag "#" do %>
+  <fieldset class='inner'>
+    <legend>Add </legend>
+    <div class="row universal-flex-container no-bottom-margin">
+      <div class="small-10 columns">
+        <%= select_tag('tag_id', options_for_select(tags.map {|f| [ f.name, f.id ]}), multiple: true) %>
+      </div>
+      <div class="small-2 columns">
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "extra-add-tag", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+
+<script>
+  $(function() {
+    $('#extra-add-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_extra_add_tag_path(restaurant, extra) %>',
+        data: {
+          tag_id: $("#tag_id").val()
+        }
+      }).done(function(response) {
+        $("#tags_list").html(response);
+      });
+    });
+  });
+</script>
