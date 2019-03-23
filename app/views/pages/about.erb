@@ -11,11 +11,11 @@
 
 </div>
 <div class="small-12 columns">
-  <% if !current_user %>
-    <%= link_to "Create an Accout".html_safe, new_user_registration_path, class: "btn-bw-green", style: "margin:.5rem;" %>
-    or
-    <%= link_to "Login".html_safe, user_session_path, class: "btn-bw-green", style: "margin:.5rem;" %>
-  <% end %>
+  <div class="actions wb-flex">
+    <% if !current_user %>
+      <%= link_to "Create an Accout".html_safe, new_user_registration_path, class: "btn-bw-green", style: "margin:.5rem;" %>
+    <% end %>
+  </div>
 </div>
 
 
