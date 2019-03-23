@@ -15,7 +15,10 @@ class Admin::FoodsController < AdminController
 
   def index
     @foods = Food.where(restaurant: @restaurant)
-    respond_with(@foods)
+    respond_to do |format|
+      format.html
+      format.json { render json: FoodDatatable.new(params, view_context: view_context) }
+    end
   end
 
   def show

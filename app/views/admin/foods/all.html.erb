@@ -1,11 +1,11 @@
 <h1>Listing BiteWorthy Foods</h1>
 <div class="row">
-  <%= form_tag 'foods', method: :get do %>
+  <%= form_tag 'foods', method: :get, class: "universal-flex-container-add" do %>
     <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
   <% end %>
   <div class="small-12 medium-6 large-4 columns">
     <% if @restaurant %>
-      <%= link_to 'New Food...', new_admin_restaurant_food_path(@restaurant), class: "button tiny radius success" %>
+      <%= link_to 'New Food', new_admin_restaurant_food_path(@restaurant), class: "button tiny radius success" %>
     <% end %>
   </div>
 </div>

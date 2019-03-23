@@ -5,7 +5,7 @@ class Admin::TagsController < AdminController
     @tags = Tag.order_variety_then_name
     respond_to do |format|
       format.html
-      format.json { render json: TagDatatable.new(view_context) }
+      format.json { render json: TagDatatable.new(params, view_context: view_context) }
     end
   end
 

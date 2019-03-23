@@ -1,6 +1,6 @@
 include Rails.application.routes.url_helpers
 
-class IngredientDatatable < AjaxDatatablesRails::Base
+class IngredientDatatable < ApplicationDatatable
   def_delegator :@view, :link_to
 
   def view_columns

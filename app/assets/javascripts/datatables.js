@@ -1,4 +1,40 @@
 $(document).ready(function () {
+  $('#admin-items-table').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#admin-items-table').data('source'),
+      "type": "GET",
+      "complete": function() {
+        console.log("dataTable loaded.");
+      }
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "restaurant"},
+      {"data": "name"},
+      {"data": "description"},
+      {"data": "actions", "sortable": false, "className": "nowrap"}
+    ]
+  });
+  $('#admin-foods-table').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#admin-foods-table').data('source'),
+      "type": "GET",
+      "complete": function() {
+        console.log("dataTable loaded.");
+      }
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "restaurant"},
+      {"data": "name"},
+      {"data": "description"},
+      {"data": "actions", "sortable": false, "className": "nowrap"}
+    ]
+  });
   $('#admin-tags-table').dataTable({
     "processing": true,
     "serverSide": true,
