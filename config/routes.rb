@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'search', to: 'search#home'
-  get 'ingredient_search', to: 'search#ingredient_search'
-  get 'food_search', to: 'search#food_search'
-  get 'tag_search', to: 'search#tag_search'
-  get 'choice_search', to: 'search#choice_search'
-  post 'search/advanced', to: 'search#advanced'
+  get 'about', to: 'pages#about'
   resources :reports, only: [:new, :create]
   resources :restaurants, :ingredients, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
@@ -13,6 +8,14 @@ Rails.application.routes.draw do
        resources :prices, only: [:index, :show]
      end
    end
+
+  #Search
+  get 'search', to: 'search#home'
+  get 'ingredient_search', to: 'search#ingredient_search'
+  get 'food_search', to: 'search#food_search'
+  get 'tag_search', to: 'search#tag_search'
+  get 'choice_search', to: 'search#choice_search'
+  post 'search/advanced', to: 'search#advanced'
 
   resources :reviews, :tags
   get 'reviews/lookup', to: 'reviews#lookup', as: "lookup"
