@@ -1,6 +1,6 @@
 include Rails.application.routes.url_helpers
 
-class TagDatatable < AjaxDatatablesRails::Base
+class TagDatatable < ApplicationDatatable
   def_delegators :@view, :link_to, :image_tag
 
   def view_columns

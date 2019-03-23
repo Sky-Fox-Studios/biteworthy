@@ -21,6 +21,10 @@ class Admin::ItemsController < AdminController
 
   def index
     @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
+    respond_to do |format|
+      format.html
+      format.json { render json: ItemDatatable.new(params, view_context: view_context) }
+    end
   end
 
   def restaurant_item_filter
