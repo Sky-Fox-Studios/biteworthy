@@ -11,20 +11,3 @@
     </div>
   </fieldset>
 <% end %>
-
-<script>
-  $(function() {
-    $('#extra-add-tag').click(function(event) {
-      event.preventDefault();
-      $.ajax({
-        type: 'post',
-        url: '<%= admin_restaurant_extra_add_tag_path(restaurant, extra) %>',
-        data: {
-          tag_id: $("#tag_id").val()
-        }
-      }).done(function(response) {
-        $("#tags_list").html(response);
-      });
-    });
-  });
-</script>
