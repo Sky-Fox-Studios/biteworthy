@@ -1,0 +1,41 @@
+<%= simple_form_for(extra.tags.new, url: admin_restaurant_extra_add_new_tag_path(restaurant, extra), method: :post) do |f| %>
+  <fieldset class='inner'>
+    <legend>Create</legend>
+    <div class="row universal-flex-container no-bottom-margin">
+      <div class="small-12 medium-4 columns">
+        <%= f.input :name, placeholder: "Name" %>
+      </div>
+      <div class="small-10 medium-6 columns">
+        <%= f.input :description, placeholder: "Description" %>
+      </div>
+      <div class="small-2 columns">
+        <label>&nbsp;</label>
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "extra-add-new-tag", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+      </div>
+      <div class="small-12 columns">
+        <%= f.input :icon %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+<script>
+  $(function() {
+    $('#extra-add-new-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_extra_add_new_tag_path(restaurant, extra) %>',
+        data: {
+          "tag": {
+            name: $("#tag_name").val(),
+            description: $("#tag_description").val()
+          }
+        }
+      }).done(function(response) {
+        $("#tag_name").val("");
+        $("#tag_description").val("");
+        $("#tags_list").html(response);
+      });
+    });
+  });
+</script>

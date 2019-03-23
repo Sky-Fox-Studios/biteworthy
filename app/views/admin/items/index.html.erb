@@ -7,39 +7,7 @@
   <div class="small-12 columns">
     <%= paginate @items %>
   </div>
-</div>
-<table>
-  <thead>
-    <tr>
-      <th colspan="1"></th>
-      <th>Restaurant</th>
-      <th>Menu Groups</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %></td>
-        <td><%= item.restaurant.name %></td>
-        <td><%= item.menu_groups.map(&:name).to_sentence %></td>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %></td>
-        <% if current_user.is_admin? %>
-          <td><%= render partial: "partials/forms/delete", locals: {path: admin_restaurant_item_path(item.restaurant, item)} %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="row">
   <div class="small-12 columns">
-    <%= paginate @items %>
+    <%= render partial: 'partials/items/datatable' %>
   </div>
 </div>
-<%= render partial: "admin/restaurants/footer" %>
-
