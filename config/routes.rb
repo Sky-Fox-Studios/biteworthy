@@ -72,11 +72,11 @@ Rails.application.routes.draw do
         #photo
         post 'remove_photo',  to: 'extras#remove_photo',  as: "remove_photo"
         #Tag actions
-        post 'add_new_tag',       to: 'extras_ajax#add_new_tag',  as: "add_new_tag"
-        post 'add_tag',           to: 'extras_ajax#add_tag',      as: "add_tag"
-        post 'remove_tag',        to: 'extras_ajax#remove_tag',   as: "remove_tag"
-        post 'remove_tags',       to: 'extras_ajax#remove_tags',  as: "remove_tags"
-        post 'tag_up',            to: 'extras_ajax#tag_up',       as: "tag_up"
+        post 'add_new_tag',   to: 'extras_ajax#add_new_tag',  as: "add_new_tag"
+        post 'add_tag',       to: 'extras_ajax#add_tag',      as: "add_tag"
+        post 'remove_tag',    to: 'extras_ajax#remove_tag',   as: "remove_tag"
+        post 'remove_tags',   to: 'extras_ajax#remove_tags',  as: "remove_tags"
+        post 'tag_up',        to: 'extras_ajax#tag_up',       as: "tag_up"
       end
     end
     resources :reports

@@ -36,10 +36,10 @@ class Admin::ItemsAjaxController < Admin::ItemsController
       food.tags.each do |tag|
         @item.tags << tag unless @item.tags.include? tag
       end
-    end
-    @item.ingredients.each do |ingredient|
-      ingredient.tags.each do |tag|
-        @item.tags << tag unless @item.tags.include? tag
+      food.ingredients.each do |ingredient|
+        ingredient.tags.each do |tag|
+          @item.tags << tag unless @item.tags.include? tag
+        end
       end
     end
     @item.extras.each do |extra|
