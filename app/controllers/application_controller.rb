@@ -121,6 +121,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_tags
-   @tags ||= Tag.order(variety: :asc, name: :asc)
+   @tags ||= Tag.order_variety_then_name
   end
 end

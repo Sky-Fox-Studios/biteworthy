@@ -30,6 +30,8 @@ class Tag < ActiveRecord::Base
   # TODO change variety to String
   # self.varieties
   scope :tags_created, ->(user) { where(user: user).count }
+  scope :order_variety_then_name, ->{ Tag.order(variety: :asc, name: :asc)}
+  scope :order_name, ->{ Tag.order(name: :asc)}
 
   searchable do
     text    :name

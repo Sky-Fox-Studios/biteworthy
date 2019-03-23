@@ -127,7 +127,7 @@ class Admin::ItemsController < AdminController
       @menu_groups = MenuGroup.includes(:restaurant).where(restaurant: @restaurant).order(:name)
       @foods       = Food.where(restaurant: @restaurant).order(:name)
       @extras      = Extra.where(restaurant: @restaurant).order(:name)
-      @tags        = Tag.order(:name)
+      @tags        = Tag.order_variety_then_name
     else
       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end
