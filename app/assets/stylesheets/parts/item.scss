@@ -12,8 +12,9 @@
     }
   }
   .item-image {
-    img {
+    a img, img {
       max-height: 250px;
+      border-radius: 10px;
     }
 
   }
@@ -73,6 +74,7 @@
 .review-card {
   padding: 0;
   .row{
+    width: 100%;
     background: white;
     margin: 5px;
     border-radius: .25em;

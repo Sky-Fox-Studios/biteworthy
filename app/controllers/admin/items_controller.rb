@@ -11,7 +11,7 @@ class Admin::ItemsController < AdminController
 
   def all
     unless @items
-      @items = Item.page(page).per(per_page_count)
+      @items = Item.page(params[:page]).per(per_page_count)
     end
   end
 
@@ -21,7 +21,6 @@ class Admin::ItemsController < AdminController
 
   def index
     @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
-
   end
 
   def restaurant_item_filter
@@ -128,7 +127,7 @@ class Admin::ItemsController < AdminController
       @menu_groups = MenuGroup.includes(:restaurant).where(restaurant: @restaurant).order(:name)
       @foods       = Food.where(restaurant: @restaurant).order(:name)
       @extras      = Extra.where(restaurant: @restaurant).order(:name)
-      @tags        = Tag.order(:name)
+      @tags        = Tag.order_variety_then_name
     else
       @menu_groups = MenuGroup.includes(:restaurant).all.order('restaurants.name').order(:name)
     end

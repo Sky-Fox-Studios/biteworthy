@@ -18,24 +18,3 @@
     </div>
   </fieldset>
 <% end %>
-<script>
-  $(function() {
-    $('#item-add-new-tag').click(function(event) {
-      event.preventDefault();
-      $.ajax({
-        type: 'post',
-        url: '<%= admin_restaurant_item_add_new_tag_path(restaurant, item) %>',
-        data: {
-          "tag": {
-            name: $("#tag_name").val(),
-            description: $("#tag_description").val()
-          }
-        }
-      }).done(function(response) {
-        $("#tag_name").val("");
-        $("#tag_description").val("");
-        $("#tags_list").html(response);
-      });
-    });
-  });
-</script>

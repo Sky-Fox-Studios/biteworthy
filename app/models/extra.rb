@@ -12,6 +12,9 @@ class Extra < ActiveRecord::Base
   has_many :foods, through: :extras_foods
   has_many :extras_foods
 
+  has_many :tags, through: :extras_tags
+  has_many :extras_tags
+
   validates :restaurant_id, :name, :extra_type, presence: true
   validates_uniqueness_of :name, scope: [:restaurant_id, :extra_type]
 

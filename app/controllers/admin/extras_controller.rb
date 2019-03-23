@@ -86,6 +86,7 @@ class Admin::ExtrasController < AdminController
       @restaurant = @extra.restaurant
       @foods = Food.where(restaurant: @restaurant).order(:name)
       @extra_foods = Food.joins(:extras).where(restaurant: @restaurant).order(:name)
+      @tags        = Tag.order_variety_then_name
     end
   end
 

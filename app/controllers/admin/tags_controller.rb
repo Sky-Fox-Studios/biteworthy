@@ -2,7 +2,7 @@ class Admin::TagsController < AdminController
   before_action :set_tag, only: [:edit, :update, :destroy]
 
   def index
-    @tags = Tag.order(name: :asc)
+    @tags = Tag.order_variety_then_name
     respond_to do |format|
       format.html
       format.json { render json: TagDatatable.new(view_context) }

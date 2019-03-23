@@ -1,3 +1,6 @@
+<% unless @extra.new_record? %>
+  <%= render partial: "admin/ajax/extra", locals: {restaurant: @restaurant, extra: @extra} %>
+<% end %>
 <div class="row">
   <%= simple_form_for([:admin, @restaurant, @extra]) do |f| %>
     <%= hidden_field_tag 'extra[restaurant_id]', @restaurant.id %>
@@ -11,7 +14,7 @@
       <%= f.input :extra_type, as: :select, collection: Extra.extra_types.keys.to_a, include_blank: false %>
     </div>
     <div class="small-12 medium-8 columns">
-      <%= render partial: "admin/photos/upload", locals: {form: f, item: @extra} %>
+      <%= render partial: "admin/photos/upload", locals: {form: f, object: @extra} %>
     </div>
     <div class="small-12 columns universal-flex-container">
       <%= f.submit class: "universal-flex-button flex-button-natural" %>
@@ -20,5 +23,6 @@
 </div>
 <% unless @extra.new_record? %>
   <%= render partial: "admin/extras/foods/info_and_forms" %>
+  <%= render partial: "admin/extras/tags/info_and_forms" %>
   <%= render partial: "admin/extras/prices/info_and_forms" %>
 <% end %>
