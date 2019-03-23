@@ -33,21 +33,21 @@ namespace :deploy do
   end
 end
 
- namespace :figaro do
-   desc "SCP transfer figaro configuration to the shared folder"
-   task :setup do
-     on roles(:app) do
-       upload! "config/application.yml", "#{shared_path}/application.yml", via: :scp
-     end
-   end
+namespace :figaro do
+  desc "SCP transfer figaro configuration to the shared folder"
+  task :setup do
+    on roles(:app) do
+      upload! "config/application.yml", "#{shared_path}/application.yml", via: :scp
+    end
+  end
 
-   desc "Symlink application.yml to the release path"
-   task :symlink do
-     on roles(:app) do
-       execute "ln -sf #{shared_path}/application.yml #{release_path}/config/application.yml"
-     end
-   end
- end
+  desc "Symlink application.yml to the release path"
+  task :symlink do
+    on roles(:app) do
+      execute "ln -sf #{shared_path}/application.yml #{release_path}/config/application.yml"
+    end
+  end
+end
 
 namespace :solr do
   desc "start solr"
@@ -104,10 +104,10 @@ namespace :solr do
   end
 end
 
-before "deploy:migrate",       "figaro:setup"
-before "deploy:migrate",       "figaro:symlink"
-before "deploy:finished",      "solr:stop"
-after  "deploy:finished",      "solr:symlink"
-after  "deploy:finished",      "solr:start"
+before "bundler:install",      "figaro:setup"
+before "bundler:install",      "figaro:symlink"
+# before "deploy:finished",      "solr:stop"
+# after  "deploy:finished",      "solr:symlink"
+# after  "deploy:finished",      "solr:start"
 after  "deploy:finishing",     "deploy:restart_nginx"
 # after  "deploy:finishing",     "deploy:restart_nginx"
