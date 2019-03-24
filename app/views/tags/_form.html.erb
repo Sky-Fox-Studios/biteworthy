@@ -1,19 +1,14 @@
 <%= form_for(@tag) do |f| %>
-<%= render partial: "modules/form_errors", locals: {current_model: @tag} %>
+  <%= render partial: "modules/form_errors", locals: {current_model: @tag} %>
 
-<div class="row">
   <div class="small-12 medium-2 large-2 columns">
     <%= f.label :first_name, "Name", class: "right inline" %>
   </div>
   <div class="small-12 medium-10 large-10 columns">
     <%= f.text_field :name, placeholder: "Tag name"  %>
   </div>
-</div>
 
-
-<div class="row">
   <div class="small-12 medium-12 large-12 columns">
     <%= f.submit class: "button small radius" %>
   </div>
-</div>
 <% end %>
