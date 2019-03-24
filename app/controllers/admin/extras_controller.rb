@@ -52,8 +52,7 @@ class Admin::ExtrasController < AdminController
 
   def add_foods
     foods = Food.where(id: params[:extra][:food_ids])
-    if params[:extra_id].present?
-      @extra = Extra.find(params[:extra_id])
+    if foods.present?
       foods.each do |food|
         @extra.foods << food unless @extra.foods.include? food
       end

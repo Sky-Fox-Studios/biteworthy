@@ -1,5 +1,5 @@
-<%= simple_form_for(extra, url: admin_restaurant_extra_add_foods_path(restaurant, extra), method: "POST") do |f| %>
-  <%= hidden_field_tag 'extra_id', extra.id %>
+<%= simple_form_for(object, url: send("admin_restaurant_#{object_class}_add_foods_path", restaurant, object), method: "POST") do |f| %>
+  <%= hidden_field_tag "#{object_class}_id", object.id %>
   <div class="row universal-flex-container">
     <div class="small-10 columns">
       <%= f.association :foods, collection: foods, as: :select, label: "Select Multiple"%>

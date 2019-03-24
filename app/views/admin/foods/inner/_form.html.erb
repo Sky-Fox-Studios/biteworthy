@@ -1,6 +1,6 @@
-<%= simple_form_for(extra.foods.new, url: admin_restaurant_extra_add_new_food_path(restaurant, extra), method: :post) do |f| %>
-  <%= f.hidden_field :restaurant_id, value: extra.restaurant.id %>
-  <%= hidden_field_tag 'extra_id', extra.id %>
+<%= simple_form_for(object.foods.new, url: send("admin_restaurant_#{object_class}_add_new_food_path", restaurant, object), method: :post) do |f| %>
+  <%= f.hidden_field :restaurant_id, value: object.restaurant.id %>
+  <%= hidden_field_tag "#{object_class}_id", object.id %>
   <div class="row universal-flex-container no-bottom-margin">
     <div class="small-4 columns">
       <%= f.input :name %>

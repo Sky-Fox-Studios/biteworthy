@@ -1,6 +1,6 @@
 class Admin::ItemsAjaxController < Admin::ItemsController
   before_action :just_set_item, only: [
-    :add_tag, :add_food,
+    :add_tag, :add_foods,
     :add_new_food, :add_new_tag,
     :remove_tag, :remove_tags, :remove_food,
     :tag_up]
@@ -54,21 +54,26 @@ class Admin::ItemsAjaxController < Admin::ItemsController
     food = Food.find_or_initialize_by(name: food_params[:name], restaurant: @item.restaurant)
     food.update(food_params)
     @item.foods << food unless @item.foods.include? food
-    render partial: "admin/items/foods/list", locals: {item: @item }
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    # render partial: "admin/items/foods/list", locals: {item: @item }
   end
 
-  def add_food
-    unless (params[:food_id].empty?)
-      food = Food.find(params[:food_id])
-      @item.foods << food unless @item.foods.include? food
+  def add_foods
+    foods = Food.where(id: params[:item][:food_ids])
+    if foods.present?
+      foods.each do |food|
+        @item.foods << food unless @item.foods.include? food
+      end
     end
-    render partial: "admin/items/foods/list", locals: {item: @item }
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    # render partial: "admin/items/foods/list", locals: {item: @item }
   end
 
   def remove_food
     food = Food.find(params[:food_id])
     @item.foods.delete(food)
-    render partial: "admin/items/foods/list", locals: {item: @item }
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    # render partial: "admin/items/foods/list", locals: {item: @item }
   end
 
   def add_tags
