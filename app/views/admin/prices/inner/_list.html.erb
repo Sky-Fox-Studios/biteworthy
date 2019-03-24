@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="small-5 medium-4 columns">
+    <h4>Price:</h4>
+  </div>
+  <div class="small-5 medium-5 columns">
+    <h4>Size:</h4>
+  </div>
+  <div class="small-2 medium-2 columns">
+  </div>
+</div>
+<% object.prices.map do |price| %>
+  <div class="row <%= object.class.to_s.downcase %>-price-<%=price.id%>">
+    <div class="small-5 medium-4 columns">
+      <%= price_to_s price.value %>
+    </div>
+    <div class="small-5 medium-5 columns">
+      <% if price.size != "" %>
+      <%= price.size %>
+      <% else %>
+      <i style="color:gray;">*blank*</i>
+      <% end %>
+    </div>
+    <div class="small-2 medium-3 columns">
+      <!-- TODO change text to fields and edit to save with JS -->
+      <%= render partial: "partials/forms/edit", locals: {path: send("edit_admin_restaurant_#{object.class.to_s.downcase}_price_path", object.restaurant, object, price)} %>
+      <%= link_to "<i class='fa fa-trash'></i>".html_safe, send("admin_restaurant_#{object.class.to_s.downcase}_price_path", restaurant, object, price), method: :delete, remote: true %>
+    </div>
+  </div>
+<% end %>

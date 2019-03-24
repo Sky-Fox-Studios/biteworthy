@@ -1,4 +1,5 @@
 <script>
+  //Buttons
   function extraTagUp(){
     $('#extra-tag-up').click(function(event) {
       event.preventDefault();
@@ -7,9 +8,24 @@
         url: '<%= admin_restaurant_extra_tag_up_path(restaurant, extra) %>',
       }).done(function(response) {
         $("#tags_list").html(response);
+        extraRemoveTag();
       });
     });
   }
+  function extraRemoveTags(){
+    $('#extra-remove-tags').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_extra_remove_tags_path(restaurant, extra) %>',
+      }).done(function(response) {
+        $("#tags_list").html(response);
+        extraRemoveTag();
+      });
+    });
+  }
+
+  //Forms
   function extraAddTag(){
     $('#extra-add-tag').click(function(event) {
       event.preventDefault();
@@ -21,6 +37,7 @@
         }
       }).done(function(response) {
         $("#tags_list").html(response);
+        extraRemoveTag();
       });
     });
   }
@@ -40,6 +57,7 @@
         $("#tag_name").val("");
         $("#tag_description").val("");
         $("#tags_list").html(response);
+        extraRemoveTag();
       });
     });
   }
@@ -54,17 +72,27 @@
         }
       }).done(function(response) {
         $("#tags_list").html(response);
+        extraRemoveTag();
       });
     });
   }
-  function extraRemoveTags(){
-    $('#extra-remove-tags').click(function(event) {
+  function extraAddNewFood(){
+    $('#extra-add-new-food').click(function(event) {
       event.preventDefault();
       $.ajax({
         type: 'post',
-        url: '<%= admin_restaurant_extra_remove_tags_path(restaurant, extra) %>',
+        url: '<%= admin_restaurant_extra_add_new_food_path(restaurant, extra) %>',
+        data: {
+          "food": {
+            name: $("#food_name").val(),
+            description: $("#food_description").val()
+          }
+        }
       }).done(function(response) {
-        $("#tags_list").html(response);
+        $("#food_name").val("");
+        $("#food_description").val("");
+        $("#foods_list").html(response);
+        extraRemoveFood();
       });
     });
   }
@@ -79,6 +107,22 @@
         }
       }).done(function(response) {
         $("#foods_list").html(response);
+        extraRemoveFood();
+      });
+    });
+  }
+  function extraAddFoods(){
+    $('#extra-add-foods').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_extra_add_foods_path(restaurant, extra) %>',
+        data: {
+          food_ids: $("#extra_food_ids").val()
+        }
+      }).done(function(response) {
+        $("#foods_list").html(response);
+        extraRemoveFood();
       });
     });
   }
@@ -89,6 +133,9 @@
     extraAddNewTag();
     extraRemoveTag();
     extraRemoveTags();
+
+    extraAddFoods();
+    extraAddNewFood()
     extraRemoveFood();
   });
 </script>

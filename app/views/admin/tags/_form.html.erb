@@ -1,7 +1,6 @@
 <%= simple_form_for([:admin, @tag]) do |f| %>
   <%= render partial: "modules/form_errors", locals: {current_model: @tag} %>
   <%= hidden_field_tag 'tag[user_id]', current_user.id %>
-  <div class="row">
     <div class="small-12 medium-4 columns">
       <%= f.input :name %>
     </div>
@@ -27,10 +26,9 @@
         <% style %>
       <% end %>
     </div>
-
   </div>
   <br>
-  <div class="row universal-flex-container">
+  <div class="universal-flex-container">
     <%= f.submit class: "universal-flex-button flex-button-natural" %>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
 <div class="tag-flex-container">
-  <% item.tags.map do |tag| %>
+  <% object.tags.map do |tag| %>
     <%= render partial: "tags/block", locals: {tag: tag, admin_edit: true} %>
   <% end %>
 </div>

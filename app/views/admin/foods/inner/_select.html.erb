@@ -1,0 +1,12 @@
+<% object_class = object.class.to_s.downcase %>
+<%= form_tag "#" do %>
+  <div class="row universal-flex-container">
+    <div class="small-10 columns">
+      <%= select_tag 'item_food_ids', options_for_select(foods.map {|f| [ f.name, f.id ]}), multiple: true, label: "Select Multiple"%>
+    </div>
+    <div class="small-2 columns">
+      <label>&nbsp;</label>
+      <%= button_tag "<i class='fa fa-list'></i> <i class='fa fa-plus'></i>".html_safe, id: "#{object_class}-add-foods", class: "universal-flex-button flex-button-natural vertical-center", title: "Add multiple" %>
+    </div>
+  </div>
+<% end %>

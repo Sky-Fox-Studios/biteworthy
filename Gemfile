@@ -8,7 +8,7 @@ gem "sunspot_solr", "2.2.7"
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'coffee-rails', '~> 4.2.1'               # Use CoffeeScript for .js.coffee assets and views
 gem 'compass-rails'                          # you need this or you get an err
-gem 'devise'                                 # User authentication
+gem 'devise', '4.6.0'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
@@ -23,7 +23,7 @@ gem 'ajax-datatables-rails'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
 gem 'mysql2', '~> 0.4.10'
-gem 'rails', '4.2.8'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.2.11'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rake', '12.0.0'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'simple_form'
@@ -32,7 +32,7 @@ gem 'mini_racer'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 #
 # File uploading
-gem 'paperclip', "5.1.0"
+gem 'paperclip', "5.2.0"
 gem 'aws-sdk', '2.10.75'
 group :development do
   gem "capistrano", "~> 3.10.2", require: false

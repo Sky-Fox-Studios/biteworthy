@@ -6,10 +6,10 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
     :tag_up]
 
   def add_new_tag
-    tag = Tag.find_or_initialize_by(name: tag_params[:name])
-    tag.update(tag_params)
+    tag = Tag.find_or_initialize_by(name: params[:tag][:name].downcase)
+    tag.update(description: params[:tag][:description])
     @extra.tags << tag unless @extra.tags.include? tag
-    render partial: "admin/extras/tags/list", locals: {extra: @extra }
+    render partial: "admin/tags/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def add_tag
@@ -17,18 +17,18 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
       tag = Tag.find(params[:tag_id])
       @extra.tags << tag unless @extra.tags.include? tag
     end
-    render partial: "admin/extras/tags/list", locals: {extra: @extra }
+    render partial: "admin/tags/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def remove_tag
     tag = Tag.find(params[:tag_id])
     @extra.tags.delete(tag)
-    render partial: "admin/extras/tags/list", locals: {extra: @extra }
+    render partial: "admin/tags/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def remove_tags
     @extra.tags.clear
-    render partial: "admin/extras/tags/list", locals: {extra: @extra }
+    render partial: "admin/tags/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def tag_up
@@ -37,28 +37,30 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
         @extra.tags << tag unless @extra.tags.include? tag
       end
     end
-    render partial: "admin/extras/tags/list", locals: {extra: @extra }
+    render partial: "admin/tags/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def add_new_food
     food = Food.find_or_initialize_by(name: food_params[:name], restaurant: @extra.restaurant)
     food.update(food_params)
     @extra.foods << food unless @extra.foods.include? food
-    render partial: "admin/extras/foods/list", locals: {extra: @extra }
+    render partial: "admin/foods/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def add_food
-    unless (params[:food_id].empty?)
-      food = Food.find(params[:food_id])
-      @extra.foods << food unless @extra.foods.include? food
+    foods = Food.where(id: params[:food_ids])
+    if foods.present?
+      foods.each do |food|
+        @extra.foods << food unless @extra.foods.include? food
+      end
     end
-    render partial: "admin/extras/foods/list", locals: {extra: @extra }
+    render partial: "admin/foods/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def remove_food
     food = Food.find(params[:food_id])
     @extra.foods.delete(food)
-    render partial: "admin/extras/foods/list", locals: {extra: @extra }
+    render partial: "admin/foods/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def add_tags
@@ -72,5 +74,9 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
       end
     end
     render html: "Updated: #{extras.map(&:name).to_sentence} with tags: #{tags.map(&:name).to_sentence}"
+  end
+
+  def tag_params
+    params.require(:tag).permit(:name, :description, :variety, :icon, :user_id)
   end
 end
