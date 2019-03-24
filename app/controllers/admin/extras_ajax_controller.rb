@@ -6,8 +6,8 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
     :tag_up]
 
   def add_new_tag
-    tag = Tag.find_or_initialize_by(name: tag_params[:name])
-    tag.update(tag_params)
+    tag = Tag.find_or_initialize_by(name: params[:tag][:name].downcase)
+    tag.update(description: params[:tag][:description])
     @extra.tags << tag unless @extra.tags.include? tag
     render partial: "admin/extras/tags/list", locals: {extra: @extra }
   end
@@ -72,5 +72,9 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
       end
     end
     render html: "Updated: #{extras.map(&:name).to_sentence} with tags: #{tags.map(&:name).to_sentence}"
+  end
+
+  def tag_params
+    params.require(:tag).permit(:name, :description, :variety, :icon, :user_id)
   end
 end

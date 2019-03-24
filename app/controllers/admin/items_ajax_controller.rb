@@ -6,8 +6,8 @@ class Admin::ItemsAjaxController < Admin::ItemsController
     :tag_up]
 
   def add_new_tag
-    tag = Tag.find_or_initialize_by(name: tag_params[:name])
-    tag.update(tag_params)
+    tag = Tag.find_or_initialize_by(name: params[:tag][:name].downcase)
+    tag.update(description: params[:tag][:description])
     @item.tags << tag unless @item.tags.include? tag
     render partial: "admin/items/tags/list", locals: {item: @item }
   end

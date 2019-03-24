@@ -1,4 +1,4 @@
-<%= simple_form_for(extra.tags.new, url: admin_restaurant_extra_add_new_tag_path(restaurant, extra), method: :post) do |f| %>
+<%= simple_form_for(object.tags.new, url: send("admin_restaurant_#{object_class}_add_new_tag_path", restaurant, object), method: :post) do |f| %>
   <fieldset class='inner'>
     <legend>Create</legend>
     <div class="row universal-flex-container no-bottom-margin">
@@ -10,7 +10,7 @@
       </div>
       <div class="small-2 columns">
         <label>&nbsp;</label>
-        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "extra-add-new-tag", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "#{object_class}-add-new-tag", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
       </div>
       <div class="small-12 columns">
         <%= f.input :icon %>
@@ -20,11 +20,11 @@
 <% end %>
 <script>
   $(function() {
-    $('#extra-add-new-tag').click(function(event) {
+    $('#<%=object_class%>-add-new-tag').click(function(event) {
       event.preventDefault();
       $.ajax({
         type: 'post',
-        url: '<%= admin_restaurant_extra_add_new_tag_path(restaurant, extra) %>',
+        url: '<%= send("admin_restaurant_#{object_class}_add_new_tag_path", restaurant, object) %>',
         data: {
           "tag": {
             name: $("#tag_name").val(),

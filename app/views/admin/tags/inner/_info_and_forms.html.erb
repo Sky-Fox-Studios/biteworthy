@@ -1,0 +1,19 @@
+<% object_class = object.class.to_s.downcase %>
+<fieldset>
+  <legend>
+    <h4>Tags:</h4>
+  </legend>
+  <div class="small-12 medium-4 columns">
+    <div id="tags_list">
+      <%= render partial: "admin/tags/inner/list", locals: {object: object } %>
+    </div>
+    <div class="tag-actions universal-flex-container">
+      <%= link_to "Tag Up", '#tag-up', id: "#{object_class}-tag-up", class: "universal-flex-button flex-button-natural" %>
+      <%= link_to "Clear tags", '#clear-tags', id: "#{object_class}-remove-tags", class: "universal-flex-button flex-button-natural" %>
+    </div>
+  </div>
+  <div class="small-12 medium-8 columns">
+    <%= render partial: "admin/tags/inner/select", locals: {restaurant: restaurant, object: object, object_class: object_class, tags: tags} %>
+    <%= render partial: "admin/tags/inner/form",   locals: {restaurant: restaurant, object: object, object_class: object_class} %>
+  </div>
+</fieldset>
