@@ -1,12 +1,12 @@
-<%= simple_form_for(object, url: send("admin_restaurant_#{object_class}_add_foods_path", restaurant, object), method: "POST") do |f| %>
-  <%= hidden_field_tag "#{object_class}_id", object.id %>
+<% object_class = object.class.to_s.downcase %>
+<%= form_tag "#" do %>
   <div class="row universal-flex-container">
     <div class="small-10 columns">
-      <%= f.association :foods, collection: foods, as: :select, label: "Select Multiple"%>
+      <%= select_tag 'item_food_ids', options_for_select(foods.map {|f| [ f.name, f.id ]}), multiple: true, label: "Select Multiple"%>
     </div>
     <div class="small-2 columns">
       <label>&nbsp;</label>
-      <%= button_tag "<i class='fa fa-list'></i> <i class='fa fa-plus'></i>".html_safe, class: "universal-flex-button flex-button-natural vertical-center", title: "Add multiple" %>
+      <%= button_tag "<i class='fa fa-list'></i> <i class='fa fa-plus'></i>".html_safe, id: "#{object_class}-add-foods", class: "universal-flex-button flex-button-natural vertical-center", title: "Add multiple" %>
     </div>
   </div>
 <% end %>

@@ -1,13 +1,14 @@
-<% object_class = object.class.to_s.downcase %>
 <fieldset>
   <legend>
     <h3>Foods:</h3>
   </legend>
   <div class="small-12 medium-4 columns">
-    <%= render partial: "admin/foods/inner/list", locals: {restaurant: restaurant, object: object, object_class: object_class} %>
+    <div id="foods_list">
+      <%= render partial: "admin/foods/inner/list", locals: {restaurant: restaurant, object: object} %>
+    </div>
   </div>
   <div class="small-12 medium-8 columns">
-    <%= render partial: "admin/foods/inner/select", locals: {restaurant: restaurant, object: object, object_class: object_class, foods: foods} %>
-    <%= render partial: "admin/foods/inner/form",   locals: {restaurant: restaurant, object: object, object_class: object_class} %>
+    <%= render partial: "admin/foods/inner/select", locals: {object: object, foods: foods} %>
+    <%= render partial: "admin/foods/inner/form",   locals: {restaurant: restaurant, object: object} %>
   </div><hr>
 </fieldset>

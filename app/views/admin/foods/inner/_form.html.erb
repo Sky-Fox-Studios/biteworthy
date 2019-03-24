@@ -1,6 +1,5 @@
+<% object_class = object.class.to_s.downcase %>
 <%= simple_form_for(object.foods.new, url: send("admin_restaurant_#{object_class}_add_new_food_path", restaurant, object), method: :post) do |f| %>
-  <%= f.hidden_field :restaurant_id, value: object.restaurant.id %>
-  <%= hidden_field_tag "#{object_class}_id", object.id %>
   <div class="row universal-flex-container no-bottom-margin">
     <div class="small-4 columns">
       <%= f.input :name %>
@@ -10,7 +9,7 @@
     </div>
     <div class="small-2 columns">
       <label>&nbsp;</label>
-      <%= f.submit "Add", class: "universal-flex-button flex-button-natural vertical-center" %>
+      <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "#{object_class}-add-new-food", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
     </div>
   </div>
 <% end %>

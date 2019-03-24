@@ -10,6 +10,7 @@
       });
     });
   }
+
   function itemAddTag(){
     $('#item-add-tag').click(function(event) {
       event.preventDefault();
@@ -21,6 +22,7 @@
         }
       }).done(function(response) {
         $("#tags_list").html(response);
+        itemRemoveTag();
       });
     });
   }
@@ -40,6 +42,7 @@
         $("#tag_name").val("");
         $("#tag_description").val("");
         $("#tags_list").html(response);
+        itemRemoveTag();
       });
     });
   }
@@ -54,6 +57,7 @@
         }
       }).done(function(response) {
         $("#tags_list").html(response);
+        itemRemoveTag();
       });
     });
   }
@@ -65,12 +69,34 @@
         url: '<%= admin_restaurant_item_remove_tags_path(restaurant, item) %>',
       }).done(function(response) {
         $("#tags_list").html(response);
+        itemRemoveTag();
+      });
+    });
+  }
+  function itemAddNewFood(){
+    $('#item-add-new-food').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_add_new_food_path(restaurant, item) %>',
+        data: {
+          "food": {
+            name: $("#food_name").val(),
+            description: $("#food_description").val()
+          }
+        }
+      }).done(function(response) {
+        $("#food_name").val("");
+        $("#food_description").val("");
+        $("#foods_list").html(response);
+        itemRemoveFood();
       });
     });
   }
   function itemRemoveFood(){
     $('.item-remove-food').click(function(event) {
       event.preventDefault();
+      console.log($(this));
       $.ajax({
         type: 'post',
         url: '<%= admin_restaurant_item_remove_food_path(restaurant, item) %>',
@@ -79,6 +105,22 @@
         }
       }).done(function(response) {
         $("#foods_list").html(response);
+        itemRemoveFood();
+      });
+    });
+  }
+  function itemAddFoods(){
+    $('#item-add-foods').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_item_add_foods_path(restaurant, item) %>',
+        data: {
+          food_ids: $("#item_food_ids").val()
+        }
+      }).done(function(response) {
+        $("#foods_list").html(response);
+        itemRemoveFoods();
       });
     });
   }
@@ -89,6 +131,9 @@
     itemAddNewTag();
     itemRemoveTag();
     itemRemoveTags();
+
+    itemAddFoods();
+    itemAddNewFood()
     itemRemoveFood();
   });
 </script>
