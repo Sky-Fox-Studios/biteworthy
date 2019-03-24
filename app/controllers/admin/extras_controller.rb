@@ -35,7 +35,9 @@ class Admin::ExtrasController < AdminController
   def update
     if @extra.update(extra_params)
       if params[:image]
-        @extra.photos.new(user_id: current_user.id, photo_type: "Extra", image: params[:image]).save
+        params[:image].each do |image|
+          @extra.photos.new(user_id: current_user.id, photo_type: "Extra", image: image).save
+        end
       end
       redirect_to edit_admin_restaurant_extra_path(@restaurant, @extra), notice: "Extra updated"
     else
@@ -46,23 +48,6 @@ class Admin::ExtrasController < AdminController
   def destroy
     @extra.destroy
     redirect_to admin_restaurant_extras_path(@restaurant), notice: "Extra removed"
-  end
-
-  def add_foods
-    foods = Food.where(id: params[:extra][:food_ids])
-    if params[:extra_id].present?
-      @extra = Extra.find(params[:extra_id])
-      foods.each do |food|
-        @extra.foods << food unless @extra.foods.include? food
-      end
-    end
-    redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
-  end
-
-  def remove_food
-    food = Food.find(params[:food_id])
-    @extra.foods.delete(food)
-    redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
   end
 
   def remove_photo

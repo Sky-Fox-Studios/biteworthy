@@ -1,0 +1,5 @@
+<% object_class = object.class.to_s.downcase %>
+<%= object.foods.map do |food|
+  "#{link_to(food.name, edit_admin_restaurant_food_path(restaurant, food))}
+    #{link_to Icon.sup_x.html_safe, "##{object_class}-remove-food", class: "#{object_class}-remove-food", data: {food_id: food.id}}"
+end.to_sentence(last_word_connector: " and ").html_safe %>
