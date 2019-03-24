@@ -23,6 +23,6 @@
     <p class="name"><%= tag.name.tr("-", " ").capitalize %></p>
   <% end %>
   <% if admin_edit %>
-    <%= link_to Icon.sup_x.html_safe, '#', class: "food-remove-tag item-remove-tag", data: {tag_id: tag.id} %>
+    <%= link_to Icon.sup_x.html_safe, '#', class: "food-remove-tag item-remove-tag extra-remove-tag", data: {tag_id: tag.id} %>
   <% end %>
 <% end %>

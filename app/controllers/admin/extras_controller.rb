@@ -50,22 +50,6 @@ class Admin::ExtrasController < AdminController
     redirect_to admin_restaurant_extras_path(@restaurant), notice: "Extra removed"
   end
 
-  def add_foods
-    foods = Food.where(id: params[:extra][:food_ids])
-    if foods.present?
-      foods.each do |food|
-        @extra.foods << food unless @extra.foods.include? food
-      end
-    end
-    redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
-  end
-
-  def remove_food
-    food = Food.find(params[:food_id])
-    @extra.foods.delete(food)
-    redirect_to edit_admin_restaurant_extra_path(@extra.restaurant, @extra)
-  end
-
   def remove_photo
     photo = Photo.find(params[:photo_id])
     @extra.photos.delete(photo)
