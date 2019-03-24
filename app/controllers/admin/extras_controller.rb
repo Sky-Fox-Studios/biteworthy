@@ -35,7 +35,9 @@ class Admin::ExtrasController < AdminController
   def update
     if @extra.update(extra_params)
       if params[:image]
-        @extra.photos.new(user_id: current_user.id, photo_type: "Extra", image: params[:image]).save
+        params[:image].each do |image|
+          @extra.photos.new(user_id: current_user.id, photo_type: "Extra", image: image).save
+        end
       end
       redirect_to edit_admin_restaurant_extra_path(@restaurant, @extra), notice: "Extra updated"
     else

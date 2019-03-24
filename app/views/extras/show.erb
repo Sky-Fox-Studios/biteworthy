@@ -1,5 +1,5 @@
 <%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
-<div class="row extra-@extra-<%=@extra.id%>">
+<div class="row extra-<%= @extra.extra_type%>-<%= @extra.id %>">
   <div class="small-12 medium-6 large-4 columns">
     <h3><%= @extra.extra_type.capitalize %> of: <%= @extra.name %></h3>
   </div>
@@ -15,11 +15,10 @@
       <%= render partial: "extras/foods/list", locals: {list_name: "Food #{@extra.extra_type}s ", words_connector: @extra.extra_type == "choice" ? " or " : nil } %>
     </div>
   <% end %>
-</div>
-<div class="row">
   <div class="small-12 medium-6 large-4 columns">
     <% @extra.photos.each do |photo| %>
       <%= PhotoDecorator.decorate(photo).display %>
     <% end %>
   </div>
+  <%= render partial: 'footer', locals: {extra: @extra} %>
 </div>

@@ -1,0 +1,5 @@
+<% if current_user && current_user.is_admin? %>
+  <div class="small-12 columns">
+    <%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_extra_path(@restaurant, extra)} %>
+  </div>
+<% end %>
