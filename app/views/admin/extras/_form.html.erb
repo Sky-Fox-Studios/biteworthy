@@ -24,5 +24,5 @@
 <% unless @extra.new_record? %>
   <%= render partial: "admin/extras/foods/info_and_forms" %>
   <%= render partial: "admin/extras/tags/info_and_forms" %>
-  <%= render partial: "admin/extras/prices/info_and_forms" %>
+  <%= render partial: "admin/prices/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra} %>
 <% end %>
