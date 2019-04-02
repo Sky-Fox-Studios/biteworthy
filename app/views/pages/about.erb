@@ -8,15 +8,11 @@
     <li>Allowing contributions from everyone with restaurant verification</li>
     <li><%= link_to "Get nerdy", "https://github.com/shadoath/bwd" %></li>
   </ul>
-
 </div>
 <div class="small-12 columns">
   <div class="actions wb-flex">
     <% if !current_user %>
-      <%= link_to "Create an Accout".html_safe, new_user_registration_path, class: "btn-bw-green", style: "margin:.5rem;" %>
+      <%= link_to "Create an Account".html_safe, new_user_registration_path, class: "btn-bw-green", style: "margin:.5rem;" %>
     <% end %>
   </div>
 </div>
-
-
-

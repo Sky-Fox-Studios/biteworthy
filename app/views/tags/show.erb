@@ -15,7 +15,6 @@
       <% end %>
     </p>
     <hr>
-    <p>**In Development**</p>
     <% if current_user && current_user.is_admin? %>
       <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_tag_path(@tag) %>
     <% end %>

@@ -32,7 +32,7 @@
 
   function openSlideOutMenu(open){
     $('.slideout-menu').animate({
-      left: open ? 0 : -$('.slideout-menu').width()
+      left: open ? 0 : -$('.slideout-menu').outerWidth()
     }, 250);
     $('.slideout-menu').toggleClass("open");
     $('.slideout-menu-icon').toggleClass("fi-list fi-x").animate();
