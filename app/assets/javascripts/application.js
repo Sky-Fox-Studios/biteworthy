@@ -26,6 +26,10 @@
 //= require ratings
 //= require restaurant_menu_groups
 
+var mql_small  = window.matchMedia("only screen and (max-width: 40em)");
+var mql_medium = window.matchMedia("only screen and (min-width: 40.063em) and (max-width: 64em)");
+var mql_large  = window.matchMedia("only screen and (min-width: 64.063em)");
+
 $(function(){ $(document).foundation(); });
 $(function(){
   // Foundation.global.namespace = ''

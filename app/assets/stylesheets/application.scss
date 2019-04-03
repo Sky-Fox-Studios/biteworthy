@@ -5,12 +5,11 @@
  *= require_tree .
  *= require_self
 
-
-
  */
 @import "foundation";
 @import "_var_and_mix/_variables";
 @import "_var_and_mix/media_query_mixins";
+@import "_var_and_mix/general_mixins";
 
 *{
   // color: white;
@@ -156,7 +155,7 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
   .card-content {
     background: white;
     border-radius: .25em;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 1), 0 5px 10px 0 rgba(0, 0, 0, .5);
+    @include card-shadow;
   }
 }
 select {
