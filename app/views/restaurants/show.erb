@@ -61,4 +61,26 @@
   function updateFilterCount() {
     $('#filter-count').text( $grid.data('isotope').filteredItems.length + ' items' );
   }
+  <%# mql_small.addListener(e => { mqlChange(e, 2) }); %>
+  <%# mql_medium.addListener(e => { mqlChange(e, 3) }); %>
+  <%# mql_large.addListener(e => { mqlChange(e, 4) }); %>
+  <%# function mqlChange(e, i){ %>
+  <%#   if(e.matches){ %>
+  <%#     cardsPerRow = i; %>
+  <%#     updateCardHeight(); %>
+  <%#   } %>
+  <%# } %>
+  <%# function updateCardHeight(){ %>
+  <%#   let filteredCards = $grid.data('isotope').filteredItems; %>
+  <%#   let cardGroups = []; %>
+  <%#   filteredCards.forEach(c => $(c.element).height('auto')); %>
+  <%#   while(filteredCards.length > 0) cardGroups.push(filteredCards.splice(0, cardsPerRow)); %>
+  <%#   cardGroups.forEach(function(cards) { %>
+  <%#     let height = Math.max(...cards.map(c => c.element.offsetHeight)); %>
+  <%#     cards.forEach(function(card) { %>
+  <%#       $(card.element).height(height); %>
+  <%#     }); %>
+  <%#   }); %>
+  <%#   $grid.isotope(); %>
+  <%# } %>
 </script>
