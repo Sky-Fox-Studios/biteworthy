@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
 
+
 gem "browser"
 gem "progress_bar"
 gem "sunspot_rails", "2.2.4"
 gem "sunspot_solr", "2.2.7"
+gem 'ajax-datatables-rails'
+gem 'autoprefixer-rails'
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'coffee-rails', '~> 4.2.1'               # Use CoffeeScript for .js.coffee assets and views
 gem 'compass-rails'                          # you need this or you get an err
@@ -13,22 +16,23 @@ gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
 gem 'foundation-rails', '6.4.3.0'
-gem 'autoprefixer-rails'
-
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'
 gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-datatables-rails', '~> 3.3.0'
-gem 'ajax-datatables-rails'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
+gem 'mini_racer'
 gem 'mysql2', '~> 0.4.10'
+gem 'omniauth-facebook', '~> 5.0'
+gem 'omniauth-github', '~> 1.3'
+gem 'omniauth-google-oauth2', '~> 0.6.1'
+gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '4.2.11'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rake', '12.0.0'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'simple_form'
 gem 'sprockets'
-gem 'mini_racer'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 #
 # File uploading
