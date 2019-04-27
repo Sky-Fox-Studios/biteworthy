@@ -54,13 +54,43 @@ class User < ActiveRecord::Base
     recoverable
   end
 
-  def self.create_from_provider_data(provider_data)
-    binding.pry
+  def self.create_from_facebook_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
       user.email = provider_data.info.email
+      user.user_name = provider_data.info.name
+      if provider_data.info.name.include?(" ")
+        user.first_name = provider_data.info.name.split(" ").first
+        user.last_name  = provider_data.info.name.split(" ").last
+      end
+      #TODO add photo from provider_data.info.image
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation!
     end
   end
 
+  def self.create_from_github_data(provider_data)
+    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
+      user.email = provider_data.info.email
+      user.user_name = provider_data.info.nickname
+      if provider_data.info.name.include?(" ")
+        user.first_name = provider_data.info.name.split(" ").first
+        user.last_name  = provider_data.info.name.split(" ").last
+      end
+      #TODO add photo from provider_data.info.image
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
+  end
+
+  def self.create_from_google_data(provider_data)
+    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
+      user.email = provider_data.info.email
+      user.user_name = provider_data.info.name
+      user.first_name = provider_data.info.first_name
+      user.last_name  = provider_data.info.last_name
+      #TODO add photo from provider_data.info.image
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
+  end
 end

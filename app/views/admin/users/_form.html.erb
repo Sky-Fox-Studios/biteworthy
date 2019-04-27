@@ -11,27 +11,30 @@
           </ul>
         </div>
       <% end %>
-      <div class="small-6 columns">
+      <div class="small-12 medium-6 columns">
         <%= f.input :user_name %>
       </div>
-      <div class="small-6 columns">
+      <div class="small-12 medium-6 columns">
         <%= f.input :email %>
       </div>
       <% if current_user.is_admin %>
-        <div class="small-12 medium-6 columns">
-          <%= f.input :banned %>
+        <div class="small-12 medium-6 large-3 columns">
+          <% if !@user.approved %>
+            <%= f.input :approved %>
+          <% end %>
           <%= f.input :is_editor %>
           <%= f.input :is_admin %>
         </div>
-        <div class="small-12 medium-6 columns">
+        <div class="small-12 medium-6 large-3 columns">
+          Do Good or be:
+          <%= f.input :banned %>...
+        </div>
+        <div class="small-12 medium-6 large-3 columns">
           <%= f.input :level, collection: User.levels.to_a.collect{|c| [c[0].titleize, c[0]]} %>
         </div>
-        <div class="small-12 medium-6 columns">
+        <div class="small-12 medium-6 large-3 columns">
           <%= f.input :strikes, placeholder: "0..3" %>
         </div>
-      <% end %>
-      <% if !@user.approved %>
-        <%= f.input :approved %>
       <% end %>
       <div class="small-12 columns universal-flex-container">
         <%= f.submit "Save", class: "universal-flex-button flex-button-natural" %>
