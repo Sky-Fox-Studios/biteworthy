@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise  :database_authenticatable, :registerable,
+        :recoverable, :rememberable, :trackable, :validatable,
+        :confirmable, :lockable, :timeoutable,
+        :omniauthable, omniauth_providers: [:facebook, :github, :google_oauth2]
 
   has_and_belongs_to_many :restaurant_users
   has_many :photos, as: :photo
@@ -49,6 +52,15 @@ class User < ActiveRecord::Base
       recoverable.send_reset_password_instructions
     end
     recoverable
+  end
+
+  def self.create_from_provider_data(provider_data)
+    binding.pry
+    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
+      user.email = provider_data.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.skip_confirmation!
+    end
   end
 
 end
