@@ -1,4 +1,4 @@
-# [ Biteworthy ]( http://biteworthydurango.com )
+# [ Biteworthy ]( http://biteworthy.restaurant )
 Define your prefrences, review your choices, discover new options.
 
 ## Becoming Open Source

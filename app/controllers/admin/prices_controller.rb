@@ -26,7 +26,6 @@ class Admin::PricesController < AdminController
   end
 
   def update
-    binding.pry
     if @price.update(price_params)
       if @price.priced_type == "Item"
         redirect_to edit_admin_restaurant_item_path(@priced.restaurant, @priced), notice: "Price/Size updated"

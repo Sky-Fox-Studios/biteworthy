@@ -1,4 +1,6 @@
 @import 'settings';
+@import "_var_and_mix/general_mixins";
+
 .restaurant-home-container{
   padding: 0;
   padding: 10px;
@@ -25,7 +27,7 @@
   .restaurant-head-image {
     img {
       border-radius: .25em;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 1), 0 5px 10px 0 rgba(0, 0, 0, .5);
+      @include card-shadow;
     }
   }
   .restaurant-name{

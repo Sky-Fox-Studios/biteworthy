@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
+  get 'privacy-policy', to: 'pages#privacy_policy'
+  get 'terms-of-service', to: 'pages#terms_of_service'
   resources :reports, only: [:new, :create]
   resources :restaurants, :ingredients, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
@@ -98,7 +100,7 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
   get 'me', to: 'users#show', as: 'me'
   get 'choose_tags', to: 'users#choose_tags', as: 'choose_tags'
 

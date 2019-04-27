@@ -2,6 +2,7 @@
   <div class="small-6 medium-6 columns">
     <h1><%= current_user.user_name %></h1>
     <p><%= current_user.email %></p>
+    <p>Sign in method: <%= current_user.provider %></p>
   </div>
   <div class="small-6 medium-3 columns">
     <h4>

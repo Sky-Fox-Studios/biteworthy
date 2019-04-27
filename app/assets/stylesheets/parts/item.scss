@@ -1,9 +1,10 @@
+@import "../_var_and_mix/general_mixins";
 @import '../_var_and_mix/_variables';
 .item-container {
   background: white;
   padding: 5px;
   border-radius: .25em;
-  box-shadow: 0 1px 2px 0 black, 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  @include card-shadow;
 
   .item-name {
     text-align: center;
@@ -78,7 +79,7 @@
     background: white;
     margin: 5px;
     border-radius: .25em;
-    box-shadow: 0 1px 2px 0 black, 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    @include card-shadow;
     .columns{
       padding: 3px;
     }
