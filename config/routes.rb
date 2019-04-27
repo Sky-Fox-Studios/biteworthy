@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
   get 'privacy-policy', to: 'pages#privacy_policy'
-  get 'terms', to: 'pages#terms_of_service'
+  get 'terms-of-service', to: 'pages#terms_of_service'
   resources :reports, only: [:new, :create]
   resources :restaurants, :ingredients, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
