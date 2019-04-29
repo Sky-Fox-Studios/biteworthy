@@ -22,6 +22,6 @@ class RestaurantsController < ApplicationController
       if !@restaurant.active?
         redirect_to root_path, notice: "Looks like you can't go there, we apologize for the inconvenience."
       end
-      @items = Item.where(restaurant: @restaurant).joins(:reviews).includes(:menu_groups, :tags).order('reviews.rating DESC').uniq
+      @items = Item.where(restaurant: @restaurant).includes(:menu_groups, :tags, :reviews).order('reviews.rating DESC').uniq
     end
 end
