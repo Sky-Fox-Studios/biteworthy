@@ -62,9 +62,11 @@ class User < ActiveRecord::Base
         user.first_name = provider_data.info.name.split(" ").first
         user.last_name  = provider_data.info.name.split(" ").last
       end
-      #TODO add photo from provider_data.info.image
       user.password = Devise.friendly_token[0, 20]
+      user.approved = true
+      user.level = :nibbler
       user.skip_confirmation!
+      #TODO add photo from provider_data.info.image
     end
   end
 
@@ -76,9 +78,11 @@ class User < ActiveRecord::Base
         user.first_name = provider_data.info.name.split(" ").first
         user.last_name  = provider_data.info.name.split(" ").last
       end
-      #TODO add photo from provider_data.info.image
       user.password = Devise.friendly_token[0, 20]
+      user.approved = true
+      user.level = :nibbler
       user.skip_confirmation!
+      #TODO add photo from provider_data.info.image
     end
   end
 
@@ -88,9 +92,11 @@ class User < ActiveRecord::Base
       user.user_name = provider_data.info.name
       user.first_name = provider_data.info.first_name
       user.last_name  = provider_data.info.last_name
-      #TODO add photo from provider_data.info.image
       user.password = Devise.friendly_token[0, 20]
+      user.approved = true
+      user.level = :nibbler
       user.skip_confirmation!
+      #TODO add photo from provider_data.info.image
     end
   end
 end
