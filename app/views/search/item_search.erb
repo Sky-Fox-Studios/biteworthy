@@ -9,7 +9,7 @@
         <%= link_to @search.name, polymorphic_path(@search) unless @restaurant.present? %>
         <% if search_type == "tag" %>
           <div class="tag-float-right">
-            <%= render partial: "tags/block", locals: {tag: @search, size: :medium} %>
+            <%= render partial: "tags/block", locals: {tag: @search, size: :medium, hide_text: true} %>
           </div>
         <% end %>
       </b>

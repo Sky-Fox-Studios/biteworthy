@@ -12,8 +12,8 @@
     <%= link_to "New", new_review_path, class: "universal-flex-button flex-button-natural" %>
   </div>
   <div class="small-12 columns">
-    <div class="row grid cards-container">
-      <% if @reviews.present? %>
+    <% if @reviews.present? %>
+      <div class="row grid cards-container">
         <% @reviews.each do |review| %>
           <% if @review_class != review.rating %>
             <hr>
@@ -28,10 +28,10 @@
             <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
           </div>
         <% end %>
-      <% else %>
-        <h5>Oh noos! You have no <%= "#{@review_type} " %>reviews.</h5>
-        <h6><%= current_user ? "Start reviewing!" : "Login and value" %></h6>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <h5>Oh noos! You have no <%= "#{@review_type} " %>reviews.</h5>
+      <h6><%= current_user ? "Start reviewing!" : "Login and value" %></h6>
+    <% end %>
   </div>
 </div>

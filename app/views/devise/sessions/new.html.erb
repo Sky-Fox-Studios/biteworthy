@@ -1,33 +1,12 @@
 <div class="small-12 columns">
-  <h2 class="center">Insert Credentials</h2>
+  <h2 class="center">Credentials</h2>
 </div>
 
 <div class="small-12 columns">
-      <div class="actions universal-flex-container">
-        <% if devise_mapping.omniauthable? %>
-          <% resource_class.omniauth_providers.each do |provider| %>
-            <%= link_to "#{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: "btn-bw-green universal-flex-button flex-button-third" %><br />
-          <% end %>
-        <% end %>
-      </div>
-
+  <%= render "devise/shared/login_links" %>
+  <%# <%= render "devise/shared/links" %1> %>
   <hr>
-
-  <div class="small-12 columns" style="padding: 10px 0 20px 0;">
-    <%= render "devise/shared/links" %>
-  </div>
 </div>
 
-<hr>
 
-<div class="columns small-12">
-  <h2>BiteWorthy members:</h2>
-</div>
-<div class="small-12 columns agree-text">
-  Agree to not hold BiteWorthy accountable to for any information that might be WRONG, mis-labeled, incomplete or out of date.
-  <br><br>
-  Always talk to your server if you have dietary restrictions or allergies.
-  <br><br>
-  Thank you and happy eating.
-  <br><br>
-</div>
+<%= render "devise/shared/bw_members_are" %>

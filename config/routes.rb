@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
+  get 'levels', to: 'pages#levels'
   get 'privacy-policy', to: 'pages#privacy_policy'
   get 'terms-of-service', to: 'pages#terms_of_service'
   resources :reports, only: [:new, :create]
