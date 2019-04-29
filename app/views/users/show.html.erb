@@ -9,7 +9,7 @@
     <%= "Editor" if current_user.is_editor? %>
     <%= "Admin" if current_user.is_admin? %>
     </h4>
-    <p>Level: <%= current_user.level %></p>
+    <p><%= link_to "Level:", levels_path %> <%= current_user.level %></p>
     <p>Strikes: <%= current_user.strikes.to_i %></p>
   </div>
   <div class="small-12 medium-3 columns">

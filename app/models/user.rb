@@ -28,6 +28,26 @@ class User < ActiveRecord::Base
                trash:    -5
   }
 
+  def self.good_level_info
+    [
+      ["Nibbler", "We are start here"],
+      ["Taster", "Moving up and becoming worthy"],
+      ["Eater", "Beginning to contribute"],
+      ["Gobbler", "Activly maintaining"],
+      ["Nommer", "Top tier member"]
+    ]
+  end
+
+  def self.bad_level_info
+    [
+      ["Crust", "Actions are poor"],
+      ["Stale", "When those actions lead to staleness"],
+      ["Leftovers", "Neglect of responsibilities"],
+      ["Slop", "Activly creating worthless content"],
+      ["Trash", "Without value"]
+    ]
+  end
+
   def active_for_authentication?
     super && approved?
   end
