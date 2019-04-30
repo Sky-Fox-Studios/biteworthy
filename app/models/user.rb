@@ -82,10 +82,7 @@ class User < ActiveRecord::Base
         user.first_name = provider_data.info.name.split(" ").first
         user.last_name  = provider_data.info.name.split(" ").last
       end
-      user.password = Devise.friendly_token[0, 20]
-      user.approved = true
-      user.level = :nibbler
-      user.skip_confirmation!
+      user_basics(user, provider_data.provider)
       #TODO add photo from provider_data.info.image
     end
   end
@@ -98,10 +95,7 @@ class User < ActiveRecord::Base
         user.first_name = provider_data.info.name.split(" ").first
         user.last_name  = provider_data.info.name.split(" ").last
       end
-      user.password = Devise.friendly_token[0, 20]
-      user.approved = true
-      user.level = :nibbler
-      user.skip_confirmation!
+      user_basics(user, provider_data.provider)
       #TODO add photo from provider_data.info.image
     end
   end
@@ -112,11 +106,16 @@ class User < ActiveRecord::Base
       user.user_name = provider_data.info.name
       user.first_name = provider_data.info.first_name
       user.last_name  = provider_data.info.last_name
-      user.password = Devise.friendly_token[0, 20]
-      user.approved = true
-      user.level = :nibbler
-      user.skip_confirmation!
+      user_basics(user, provider_data.provider)
       #TODO add photo from provider_data.info.image
     end
+  end
+
+  def user_basics(user, provider)
+    user.password = Devise.friendly_token[0, 20]
+    user.approved = true
+    user.level = :nibbler
+    user.skip_confirmation!
+    cookies['login_provider'] = provider
   end
 end

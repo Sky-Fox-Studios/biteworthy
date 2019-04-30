@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :player_reviews, :player_points
+  before_action :player_reviews, :player_points, :login_provider
   before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
   before_action :page_history, only: [:create, :update]
 
@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   def player_reviews
     if current_user.present?
+      #TODO add caching
       @all_reviews  = current_user.reviews
       @bad_reviews  = @all_reviews.where('rating < 0')
       @good_reviews = @all_reviews.where('rating > 0')
@@ -19,16 +20,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def page_history
-    session[:return_to] ||= request.referer
-  end
-
-  def per_page_count
-    25
+  def login_provider
+    cookies['login_provider'] = "github"
+    @login_provider = cookies['login_provider']
   end
 
   def player_points
     if current_user.present?
+      #TODO add caching
       @items_created       = Item.items_created(current_user)
       @photos_taken        = Photo.photos_taken(current_user)
       @foods_created       = Food.foods_created(current_user)
@@ -122,5 +121,13 @@ class ApplicationController < ActionController::Base
 
   def set_tags
    @tags ||= Tag.order_variety_then_name
+  end
+
+  def page_history
+    session[:return_to] ||= request.referer
+  end
+
+  def per_page_count
+    25
   end
 end
