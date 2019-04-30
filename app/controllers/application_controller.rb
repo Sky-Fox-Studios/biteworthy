@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def login_provider
-    cookies['login_provider'] = "github"
     @login_provider = cookies['login_provider']
   end
 
