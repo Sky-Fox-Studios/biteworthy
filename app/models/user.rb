@@ -111,11 +111,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def user_basics(user, provider)
+  def self.user_basics(user, provider)
     user.password = Devise.friendly_token[0, 20]
     user.approved = true
     user.level = :nibbler
     user.skip_confirmation!
-    cookies['login_provider'] = provider
   end
 end
