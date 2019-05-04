@@ -92,6 +92,7 @@
   text-align: center;
   width: 100%;
   // left: 50%;
+  padding: 2px;
   p {
     margin: 0px;
     color: black;
@@ -109,6 +110,9 @@ th{
 }
 .white-text{
   color: white !important;
+  a {
+    color: white !important;
+  }
 }
 .small-center {
   @media #{$break-small} {
