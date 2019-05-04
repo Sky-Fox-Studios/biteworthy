@@ -21,28 +21,28 @@ class User < ActiveRecord::Base
                eater:     2,
                taster:    1,
                nibbler:   0,
-               crust:    -1,
-               stale:    -2,
-               leftover: -3,
+               leftover: -1,
+               crust:    -2,
+               stale:    -3,
                slop:     -4,
                trash:    -5
   }
 
   def self.good_level_info
     [
-      ["Nibbler", "We are start here"],
+      ["Nibbler", "We all start here"],
       ["Taster", "Moving up and becoming worthy"],
       ["Eater", "Beginning to contribute"],
-      ["Gobbler", "Activly maintaining"],
+      ["Gobbler", "Activily maintaining"],
       ["Nommer", "Top tier member"]
     ]
   end
 
   def self.bad_level_info
     [
+      ["Leftovers", "Neglect of responsibilities"],
       ["Crust", "Actions are poor"],
       ["Stale", "When those actions lead to staleness"],
-      ["Leftovers", "Neglect of responsibilities"],
       ["Slop", "Activly creating worthless content"],
       ["Trash", "Without value"]
     ]

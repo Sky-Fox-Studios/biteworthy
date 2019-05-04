@@ -8,8 +8,11 @@
       <%= select_tag "review_type", options_for_select(Review.review_types, @review_type), onChange: 'this.form.submit();' %>
     <% end %>
   </div>
-  <div class="small-12 medium-4 columns universal-flex-container">
-    <%= link_to "New", new_review_path, class: "universal-flex-button flex-button-natural" %>
+  <div class="small-4 medium-3 large-2 columns">
+    <span>&nbsp;</span>
+    <div class=" universal-flex-container">
+      <%= link_to "New", new_review_path, class: "universal-flex-button flex-button-natural" %>
+    </div>
   </div>
   <div class="small-12 columns">
     <% if @reviews.present? %>
