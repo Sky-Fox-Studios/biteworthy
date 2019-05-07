@@ -3,9 +3,10 @@
     <h4>Tags:</h4>
   </legend>
   <div class="small-12 medium-4 columns" id="tags_list">
-    <%= render partial: "admin/foods/tags/list", locals: {food: @food } %> </div>
+    <%= render partial: "admin/foods/tags/list", locals: {food: object} %>
+  </div>
   <div class="small-12 medium-8 columns">
-    <%= render partial: "admin/foods/tags/select", locals: {restaurant: @restaurant, food: @food, tags: @tags} %>
-    <%= render partial: "admin/foods/tags/form",   locals: {restaurant: @restaurant, food: @food} %>
+    <%= render partial: "admin/tags/inner/select", locals: {restaurant: restaurant, object: object, tags: tags} %>
+    <%= render partial: "admin/foods/tags/form",   locals: {restaurant: restaurant, food: object} %>
   </div>
 </fieldset>

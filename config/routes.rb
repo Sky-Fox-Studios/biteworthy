@@ -59,13 +59,15 @@ Rails.application.routes.draw do
 
       end
       resources :foods do
-        post 'add_new_tag',            to: 'foods_ajax#add_new_tag',            as: "add_new_tag"
-        post 'add_tag',                to: 'foods_ajax#add_tag',                as: "add_tag"
+        post 'add_new_tag',            to: 'foods_ajax#add_new_tag',       as: "add_new_tag"
+        post 'add_tag',                to: 'foods_ajax#add_tag',           as: "add_tag"
         post 'add_ingredient',         to: 'foods#add_ingredient',         as: "add_ingredient"
         post 'add_ingredient_by_name', to: 'foods#add_ingredient_by_name', as: "add_ingredient_by_name"
         post 'remove_ingredient',      to: 'foods#remove_ingredient',      as: "remove_ingredient"
         post 'remove_photo',           to: 'foods#remove_photo',           as: "remove_photo"
-        post 'remove_tag',             to: 'foods_ajax#remove_tag',             as: "remove_tag"
+        post 'remove_tag',             to: 'foods_ajax#remove_tag',        as: "remove_tag"
+        post 'remove_tags',            to: 'foods_ajax#remove_tags',       as: "remove_tags"
+        post 'tag_up',                 to: 'foods_ajax#tag_up',            as: "tag_up"
       end
       resources :extras do
         #price

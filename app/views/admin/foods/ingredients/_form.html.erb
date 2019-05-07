@@ -1,17 +1,19 @@
 <%= simple_form_for(food.ingredients.new, url: admin_restaurant_food_add_ingredient_by_name_path(restaurant, food), method: :post) do |f| %>
-  <%= f.hidden_field :restaurant_id, value: food.restaurant.id %>
-  <%= hidden_field_tag 'food_id', food.id %>
-  <div class="row">
-    <div class="small-12 medium-6 columns">
-      <%= f.input :variety, placeholder: "Honeycrisp"%>
-    </div>
-    <div class="small-12 medium-6 columns">
-      <%= f.input :name, placeholder: "Apple" %>
-    </div>
-    <div class="small-3 columns">
-      <div style="padding-top:25px;" class="universal-button-container">
-        <%= f.submit class: "universal-flex-button flex-button-natural", value: 'Create' %>
+  <fieldset class='inner'>
+    <legend>Create</legend>
+    <%= f.hidden_field :restaurant_id, value: food.restaurant.id %>
+    <%= hidden_field_tag 'food_id', food.id %>
+    <div class="row  universal-flex-container">
+      <div class="small-12 medium-5 large-5 columns">
+        <%= f.input :variety, placeholder: "Honeycrisp"%>
+      </div>
+      <div class="small-12 medium-5 large-5 columns">
+        <%= f.input :name, placeholder: "Apple" %>
+      </div>
+      <div class="small-12 medium-2 large-2 columns">
+        <label>&nbsp;</label>
+        <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "item-add-new-extra", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
       </div>
     </div>
-  </div>
+  </fieldset>
 <% end %>

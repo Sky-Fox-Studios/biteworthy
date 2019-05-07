@@ -2,6 +2,7 @@ class Admin::FoodsAjaxController < Admin::FoodsController
 
   before_action :set_food, only: [
     :add_new_tag, :add_tag, :remove_tag,
+    :remove_tags, :tag_up,
     :add_new_food, :add_food, :remove_food
   ]
   def add_new_tag
@@ -23,6 +24,20 @@ class Admin::FoodsAjaxController < Admin::FoodsController
     tag = Tag.find(params[:tag_id])
     @food.tags.delete(tag)
     render partial: "admin/foods/tags/list", locals: {food: @food }
+  end
+
+  def remove_tags
+    @food.tags.clear
+    render partial: "admin/tags/inner/list", locals: {restaurant: @food.restaurant, object: @food }
+  end
+
+  def tag_up
+    @food.ingredients.each do |ingredient|
+      ingredient.tags.each do |tag|
+        @food.tags << tag unless @food.tags.include? tag
+      end
+    end
+    render partial: "admin/tags/inner/list", locals: {restaurant: @food.restaurant, object: @food }
   end
 
   def add_new_food
