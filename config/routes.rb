@@ -103,7 +103,8 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth', sessions: 'sessions' }
+
   get 'me', to: 'users#show', as: 'me'
   get 'choose_tags', to: 'users#choose_tags', as: 'choose_tags'
 
