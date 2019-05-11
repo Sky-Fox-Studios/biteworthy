@@ -1,4 +1,4 @@
-<div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>">
+<div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>" <%= "data-rating='#{item.review.rating}'" if current_user.present? && item.review.present? %>>
   <div class="row card-content">
     <div class="small-7 medium-12 columns">
       <h3 class="card-title"><%= link_to item.name, restaurant_item_path(restaurant, item) %></h3>
