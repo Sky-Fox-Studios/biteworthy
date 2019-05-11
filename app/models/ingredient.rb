@@ -29,4 +29,8 @@ class Ingredient < ActiveRecord::Base
   def set_normalized_name
     self.normalized_name = self.name.parameterize.singularize
   end
+
+  def get_review(user)
+    reviews.where(user: user).first
+  end
 end

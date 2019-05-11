@@ -1,4 +1,5 @@
 <% if current_user %>
+  <% review ||= item.get_review(current_user) %>
   <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">
     <%= render partial: "/modules/rating_reviews", locals: { reviewable: item, review: review } %>
   </div>

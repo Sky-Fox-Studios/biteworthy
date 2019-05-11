@@ -42,4 +42,8 @@ class Food < ActiveRecord::Base
   def trim_name
     self.name = self.name.strip.downcase unless self.name.nil?
   end
+
+  def get_review(user)
+    reviews.where(user: user).first
+  end
 end

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="small-12 columns">
     Rating:
-    <%= render partial: "/modules/rating_reviews", locals: { reviewable: @reviewable } %>
+    <%= render partial: "/modules/rating_reviews", locals: { reviewable: @reviewable, review: @reviewable.get_review(current_user) } %>
   </div>
   <div class="small-12 columns">
     <%= render partial: "/#{@review.review_type.downcase.pluralize}/show", locals: {item: @reviewable} %>

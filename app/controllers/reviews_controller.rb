@@ -77,7 +77,7 @@ class ReviewsController < ApplicationController
     user_review = Review.find_or_create_by(review_id: params[:review_id], review_type: params[:review_type], user_id: current_user.id)
     user_review.update(rating: params[:rating].to_i)
     find_reviewable
-    render partial: "modules/rating_reviews", locals: { reviewable: @reviewable}
+    render partial: "modules/rating_reviews", locals: { reviewable: @reviewable, review: user_review }
   end
 
   def edit

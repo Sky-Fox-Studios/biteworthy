@@ -41,6 +41,4 @@ class Item < ActiveRecord::Base
   def get_review(user)
     reviews.where(user: user).first
   end
-
-
 end
