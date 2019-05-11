@@ -27,7 +27,7 @@
               </h2>
             </div>
           <% end %>
-          <div class="review-card small-12 medium-6 large-4 columns">
+          <div class="review-card small-12 medium-6 large-4 columns card">
             <%= render partial: "show", locals: {review: review, reviewed: (review.review_type.constantize).find(review.review_id)} %>
           </div>
         <% end %>

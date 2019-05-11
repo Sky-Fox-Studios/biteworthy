@@ -1,9 +1,12 @@
-<div class="row" id="rating-reviews-<%=review.id%>" >
+<div class="row card-content" id="rating-reviews-<%=review.id%>" >
   <div class="small-4 medium-6 large-4 columns image-wrapper">
     <% if defined? reviewed.photos %>
-      <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %> <% elsif reviewed.class.to_s == "Tag" %>
+      <div class="center card-image">
+        <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %>
+      </div>
+      <% elsif reviewed.class.to_s == "Tag" %>
       <div class="tag-flex-container">
-        <%= render partial: "tags/block", locals: {tag: reviewed, size: :medium} %>
+        <%= render partial: "tags/block", locals: {tag: reviewed, size: :large, hide_text: true} %>
       </div>
     <% end %>
     <p align="none">
