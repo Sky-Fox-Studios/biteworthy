@@ -10,6 +10,7 @@
 @import "_var_and_mix/_variables";
 @import "_var_and_mix/media_query_mixins";
 @import "_var_and_mix/general_mixins";
+@import "layouts/_footer";
 
 *{
   // color: white;
@@ -84,23 +85,6 @@
   margin: -4px;
 }
 
-.footer {
-  background-color: #2F2E2E;
-  opacity: .9;
-  bottom: 0px;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-  // left: 50%;
-  padding: 2px;
-  p {
-    margin: 0px;
-    color: black;
-  }
-  i{
-    color: black;
-  }
-}
 th{
   color: black;
 }
