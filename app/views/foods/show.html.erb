@@ -1,13 +1,10 @@
-<% if current_user %>
-  <% review = @all_reviews.select{|r| r.review_id == @food.id && r.review_type == @food.class.to_s}.first %>
-<% end %>
 <%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %>
 <div class="row">
   <div class="small-12 medium-6 large-3 columns">
     <div class="center">
       <%= PhotoDecorator.decorate(@food.photos).display %>
     </div>
-    <%= render partial: 'review_vote', locals: {food: @food, review: review} %>
+    <%= render partial: 'review_vote', locals: {food: @food} %>
   </div>
   <div class="small-12 medium-6 large-9 columns food-item-name">
     <div class="row">

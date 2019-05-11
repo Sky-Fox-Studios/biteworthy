@@ -106,6 +106,10 @@ th{
 .center {
   text-align: center;
 }
+.flex-center {
+  display: flex;
+  justify-content: space-around;
+}
 .nowrap {
   white-space: nowrap;
 }
