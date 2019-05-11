@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   get 'privacy-policy', to: 'pages#privacy_policy'
   get 'terms-of-service', to: 'pages#terms_of_service'
   resources :reports, only: [:new, :create]
-  resources :restaurants, :ingredients, only: [:index, :show] do
+  resources :ingredients, only: [:index, :show]
+  resources :restaurants, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
-    resources :items, only: [:index, :show] do
+    resources :items, only: [:show] do
        resources :prices, only: [:index, :show]
      end
    end
