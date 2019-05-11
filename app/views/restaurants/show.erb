@@ -1,11 +1,7 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
 <div class="restaurant-filter universal-flex-container">
-  <div class="row">
-    <div class="small-12 columns">
-      Tag Filter: <span id="filter-count"></span>
-      <%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
-    </div>
-  </div>
+  <span id="filter-count"></span>
+  <%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
 
 </div>
 <div class="restaurant-show">
