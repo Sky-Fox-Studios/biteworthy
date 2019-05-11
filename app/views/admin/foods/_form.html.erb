@@ -11,7 +11,7 @@
   </div>
   <hr>
   <% if !@food.new_record? %>
-    <%= render partial: "admin/foods/tags/info_and_forms" %>
+    <%= render partial: "admin/foods/tags/info_and_forms", locals: {restaurant: @restaurant, object: @food, tags: @tags} %>
     <%= render partial: "admin/foods/ingredients/info_and_forms" %>
   <% end %>
 </div>

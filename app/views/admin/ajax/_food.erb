@@ -13,4 +13,91 @@
       });
     });
   }
+
+  ////NEW////
+
+  //Buttons
+  function foodTagUp(){
+    $('#food-tag-up').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_food_tag_up_path(restaurant, food) %>',
+      }).done(function(response) {
+        $("#tags_list").html(response);
+      });
+    });
+  }
+  function foodRemoveTags(){
+    $('#food-remove-tags').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_food_remove_tags_path(restaurant, food) %>',
+      }).done(function(response) {
+        $("#tags_list").html(response);
+        foodRemoveTag();
+      });
+    });
+  }
+
+  //Forms
+  function foodAddTag(){
+    $('#food-add-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_food_add_tag_path(restaurant, food) %>',
+        data: {
+          tag_id: $("#tag_id").val()
+        }
+      }).done(function(response) {
+        $("#tags_list").html(response);
+        foodRemoveTag();
+      });
+    });
+  }
+  function foodAddNewTag(){
+    $('#food-add-new-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_food_add_new_tag_path(restaurant, food) %>',
+        data: {
+          "tag": {
+            name: $("#tag_name").val(),
+            description: $("#tag_description").val()
+          }
+        }
+      }).done(function(response) {
+        $("#tag_name").val("");
+        $("#tag_description").val("");
+        $("#tags_list").html(response);
+        foodRemoveTag();
+      });
+    });
+  }
+  function foodRemoveTag(){
+    $('.food-remove-tag').click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_restaurant_food_remove_tag_path(restaurant, food) %>',
+        data: {
+          tag_id: $(this).data("tag-id")
+        }
+      }).done(function(response) {
+        $("#tags_list").html(response);
+        foodRemoveTag();
+      });
+    });
+  }
+
+  $(function() {
+    foodTagUp();
+    foodAddTag();
+    foodAddNewTag();
+    foodRemoveTag();
+    foodRemoveTags();
+  });
 </script>

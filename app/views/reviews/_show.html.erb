@@ -2,7 +2,6 @@
   <div class="small-4 medium-6 large-4 columns image-wrapper">
     <% if defined? reviewed.photos %>
       <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %> <% elsif reviewed.class.to_s == "Tag" %>
-
       <div class="tag-flex-container">
         <%= render partial: "tags/block", locals: {tag: reviewed, size: :medium} %>
       </div>
@@ -12,8 +11,18 @@
     </p>
   </div>
   <div class="small-8 medium-6 large-8 columns">
-    <h3>
+    <h4>
       <%= link_to reviewed.name.humanize, edit_review_path(review) %>
-    </h3>
+    </h4>
+    <% if review.title.present? %>
+      <h5>
+        <%= review.title %>
+      </h5>
+    <% end %>
+    <% if review.title.present? %>
+      <p>
+      <%= review.description %>
+      </p>
+    <% end %>
   </div>
 </div>

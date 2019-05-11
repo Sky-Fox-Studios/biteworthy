@@ -1,4 +1,3 @@
-<% review = @all_reviews.select{|r| r.review_id == reviewable.id && r.review_type == reviewable.class.to_s}.first %>
 <div id="universal-fill" class="universal-flex-container">
   <% if review.present? %>
     <%

@@ -86,7 +86,7 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_price
-    @item.prices << Price.find_or_create_by(value: params[:price_value], size: params[:new_size])
+    Price.create(priced_id: @item.id, priced_type: @item.class.to_s, value: params[:price][:value], size: params[:price][:size])
     redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
   end
 

@@ -1,2 +1,0 @@
-<label class="select required control-label" for="food_menu_group_id"><abbr title="required">*</abbr> Menu Groups for <%= restaurant.name %></label>
-   <%= collection_select(:food_menu_group, menu_groups, :id, :title) %>

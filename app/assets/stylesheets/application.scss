@@ -10,6 +10,7 @@
 @import "_var_and_mix/_variables";
 @import "_var_and_mix/media_query_mixins";
 @import "_var_and_mix/general_mixins";
+@import "layouts/_footer";
 
 *{
   // color: white;
@@ -84,22 +85,6 @@
   margin: -4px;
 }
 
-.footer {
-  background-color: #2F2E2E;
-  opacity: .9;
-  bottom: 0px;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-  // left: 50%;
-  p {
-    margin: 0px;
-    color: black;
-  }
-  i{
-    color: black;
-  }
-}
 th{
   color: black;
 }
@@ -109,6 +94,9 @@ th{
 }
 .white-text{
   color: white !important;
+  a {
+    color: white !important;
+  }
 }
 .small-center {
   @media #{$break-small} {
@@ -146,18 +134,6 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
   column-count: $ct;
 }
 
-.card {
-  padding: 5px;
-  box-sizing:border-box;
-  margin-bottom: 0rem !important;
-  border: 0px solid #e6e6e6 !important;
-  background: none;
-  .card-content {
-    background: white;
-    border-radius: .25em;
-    @include card-shadow;
-  }
-}
 select {
   display: block;
 }

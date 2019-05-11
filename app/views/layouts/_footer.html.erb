@@ -3,11 +3,11 @@
     <div class="small-2 columns">
       <p class="white-text"><%= link_to "About", about_path %></p>
     </div>
-    <div class="small-8 columns">
+    <div class="small-7 columns">
       <p class="white-text"><%= Rails.env.capitalize %> (<%= ENV["version"] %>)</p>
     </div>
-    <div class="small-2 columns">
-      <p class="right white-text"><%= link_to "<i class='fa fa-lightbulb'></i>".html_safe, new_report_path %></p>
+    <div class="small-3 columns">
+      <p class="right white-text"><%= link_to "<i class='fa fa-lightbulb'></i>&nbsp;Feedback".html_safe, new_report_path %></p>
     </div>
   </div>
 </div>

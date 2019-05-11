@@ -8,3 +8,5 @@
     "#{link_to(ingredient.name, edit_admin_ingredient_path(ingredient))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_ingredient_path(@restaurant, @food, ingredient_id: ingredient.id), method: :post}"
   end
 end.to_sentence.html_safe %>
+<br>
+<br>

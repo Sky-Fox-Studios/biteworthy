@@ -5,7 +5,7 @@
       <% simple_name = provider.to_s.split('_').first %>
       <%= link_to "<i class='fab fa-#{simple_name}'></i><br>#{start_text} #{simple_name.titleize}".html_safe,
           omniauth_authorize_path(resource_name, provider),
-          class: "btn-bw-green universal-flex-button flex-button-third #{"remembered-provider" if @login_provider == provider.to_s}" %><br />
+          class: "btn-bw-green universal-flex-button flex-button-third #{"remembered-provider" if @login_provider == simple_name}" %><br />
     <% end %>
   <% end %>
 </div>

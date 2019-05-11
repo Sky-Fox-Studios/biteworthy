@@ -1,13 +1,6 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
-<div class="restaurant-filter universal-flex-container">
-  <div class="row">
-    <div class="small-12 columns">
-      Tag Filter: <span id="filter-count"></span>
-      <%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
-    </div>
-  </div>
+<%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
 
-</div>
 <div class="restaurant-show">
   <div class="grid cards-container">
     <% @items.each do |item| %>
@@ -21,12 +14,22 @@
   var $grid;
   $(function(){
     $grid = $('.grid').imagesLoaded(function(){
-
       $grid.isotope({
         itemSelector: '.card',
-        layoutMode: 'fitRows'
+        layoutMode: 'fitRows',
+        getSortData: {
+          name: '.card-title a',
+          rating: '[data-item-review-rating] parseInt', // value of attribute
+        },
+        sortAscending: {
+          name: true,
+          rating: false,
+        }
       });
-    })
+    });
+    setTimeout(function(){
+      $grid.isotope({ sortBy: 'rating' });
+    }, 500);
 
     $('.filter-button-group').on( 'click', 'button', function() {
       var filterValue = $(this).attr('data-filter');
@@ -59,7 +62,12 @@
   });
 
   function updateFilterCount() {
-    $('#filter-count').text( $grid.data('isotope').filteredItems.length + ' items' );
+    let count = $grid.data('isotope').filteredItems.length;
+    let things_found = " items";
+    if(count == 1 ){
+      things_found = " item";
+    }
+    $('#filter-count').text( $grid.data('isotope').filteredItems.length + things_found  );
   }
   <%# mql_small.addListener(e => { mqlChange(e, 2) }); %>
   <%# mql_medium.addListener(e => { mqlChange(e, 3) }); %>
