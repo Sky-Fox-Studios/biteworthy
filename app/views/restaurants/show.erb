@@ -19,7 +19,7 @@
         layoutMode: 'fitRows',
         getSortData: {
           name: '.card-title a',
-          rating: '[data-rating] parseInt', // value of attribute
+          rating: '[data-item-review-rating] parseInt', // value of attribute
         },
         sortAscending: {
           name: true,
@@ -27,7 +27,9 @@
         }
       });
     });
-    $grid.isotope({ sortBy: 'rating' });
+    setTimeout(function(){
+      $grid.isotope({ sortBy: 'rating' });
+    }, 500);
 
     $('.filter-button-group').on( 'click', 'button', function() {
       var filterValue = $(this).attr('data-filter');
