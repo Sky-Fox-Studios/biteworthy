@@ -1,4 +1,8 @@
-<div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>" <%= "data-rating='#{item.review.rating}'" if current_user.present? && item.review.present? %>>
+<% if current_user %>
+  <% review = @all_reviews.select{|r| r.review_id == item.id && r.review_type == item.class.to_s}.first %>
+<% end %>
+
+<div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>" data-rating="<%= review.present? ? Review.ratings[review.rating] : 0 %>">
   <div class="row card-content">
     <div class="small-7 medium-12 columns">
       <h3 class="card-title"><%= link_to item.name, restaurant_item_path(restaurant, item) %></h3>
@@ -21,7 +25,7 @@
         <%= link_to PhotoDecorator.decorate(item.photos).display(size: :one_by_one), restaurant_item_path(restaurant, item) %>
       </div>
       <div class="show-for-medium">
-        <%= render partial: 'items/review_vote', locals: {item: item} %>
+        <%= render partial: 'items/review_vote', locals: {item: item, review: review} %>
         <p class="black-text"><%= item.description.html_safe %></p>
 
         <% if item.prices.present? %>

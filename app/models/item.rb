@@ -37,4 +37,10 @@ class Item < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
+
+  def get_review(user)
+    reviews.where(user: user).first
+  end
+
+
 end

@@ -21,12 +21,20 @@
   var $grid;
   $(function(){
     $grid = $('.grid').imagesLoaded(function(){
-
       $grid.isotope({
         itemSelector: '.card',
-        layoutMode: 'fitRows'
+        layoutMode: 'fitRows',
+        getSortData: {
+          name: '.card-title a',
+          rating: '[data-rating] parseInt', // value of attribute
+        },
+        sortAscending: {
+          name: true,
+          rating: false,
+        }
       });
-    })
+    });
+    $grid.isotope({ sortBy: 'rating' });
 
     $('.filter-button-group').on( 'click', 'button', function() {
       var filterValue = $(this).attr('data-filter');

@@ -1,3 +1,6 @@
+<% if current_user %>
+  <% review = @all_reviews.select{|r| r.review_id == @item.id && r.review_type == @item.class.to_s}.first %>
+<% end %>
 <%# <%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %1> %>
 <div class="item-container">
   <div class="row">
@@ -7,7 +10,7 @@
         <%= @item.name %>
       </h3>
       <%= render partial: 'image', locals: {item: @item} %>
-      <%= render partial: 'review_vote', locals: {item: @item} %>
+      <%= render partial: 'review_vote', locals: { item: @item, review: review } %>
       <%= render partial: 'price', locals: {prices: @item.prices} %>
     </div>
     <div class="small-12 medium-6 large-8 columns">
