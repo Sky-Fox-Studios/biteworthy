@@ -38,3 +38,12 @@ p {
   height: 32px;
   width: 32px;
 }
+.restaurant-show-tag {
+  padding: 4px;
+
+  &.active {
+    padding: 3px;
+    border: 1px solid black;
+    border-radius: 50%;
+  }
+}

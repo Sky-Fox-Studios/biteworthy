@@ -4,24 +4,23 @@ class RestaurantsController < ApplicationController
   respond_to :html
 
   def index
-    # not used
-    @restaurants = Restaurant.active
+    redirect_to root_path
   end
 
   def show
   end
 
   private
-    def set_restaurant_know_how
-      @restaurant = Restaurant.find(params[:id])
-      # @menus      = Menu.includes(:menu_groups)
-      #   .includes(menu_groups: [items: [:reviews, :prices, :photos]])
-      #   .where(restaurant_id: @restaurant.id)
-      #   .order("menu_groups.menu_order")
-      #   .order("reviews.rating DESC")
-      if !@restaurant.active?
-        redirect_to root_path, notice: "Looks like you can't go there, we apologize for the inconvenience."
-      end
-      @items = Item.where(restaurant: @restaurant).includes(:menu_groups, :tags, :reviews).order('reviews.rating DESC').uniq.to_a
+  def set_restaurant_know_how
+    @restaurant = Restaurant.find(params[:id])
+    # @menus      = Menu.includes(:menu_groups)
+    #   .includes(menu_groups: [items: [:reviews, :prices, :photos]])
+    #   .where(restaurant_id: @restaurant.id)
+    #   .order("menu_groups.menu_order")
+    #   .order("reviews.rating DESC")
+    if !@restaurant.active?
+      redirect_to root_path, notice: "Looks like you can't go there, we apologize for the inconvenience."
     end
+    @items = Item.where(restaurant: @restaurant).includes(:menu_groups, :tags, :reviews).order('reviews.rating DESC').uniq.to_a
+  end
 end

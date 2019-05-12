@@ -14,7 +14,9 @@
         </div>
         <div class="small-12 columns hide-for-medium">
           <% item.tags.each do |tag| %>
-            <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize, class: "tag-size-tiny").html_safe %>
+            <span class="restaurant-show-tag", data-filter=".<%= tag.name %>">
+              <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize, class: "tag-size-tiny").html_safe %>
+            </span>
           <% end %>
         </div>
       </div>
@@ -34,9 +36,10 @@
           <p class="black-text"><%= item.description.html_safe %></p>
         </div>
         <div class="small-12 columns show-for-medium">
-
           <% item.tags.each do |tag| %>
-            <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize, class: "tag-size-tiny").html_safe %>
+            <span class="restaurant-show-tag", data-filter=".<%= tag.name %>">
+              <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize, class: "tag-size-tiny").html_safe %>
+            </span>
           <% end %>
         </div>
       </div>

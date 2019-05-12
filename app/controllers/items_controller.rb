@@ -3,14 +3,6 @@ class ItemsController < ApplicationController
 
   respond_to :html
 
-  def index
-    if current_user
-      @items = Item.where(items: :rating < -1)
-    else
-      @items = Item.all
-    end
-  end
-
   def show
     if current_user
       @review = Review.where(user_id: current_user.id, review_type: "Item", review_id: @item.id).first
@@ -27,5 +19,5 @@ class ItemsController < ApplicationController
     @restaurant = Restaurant
       .includes(:addresses, :photos)
       .find(@item.restaurant_id)
-    end
+  end
 end

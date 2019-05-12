@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def set_user
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    binding.pry
     liked_foods    = @item_reviews.where('rating > 0').map{|item| item.review.foods}.flatten.uniq
     meh_foods      = @item_reviews.where('rating = 0').map{|item| item.review.foods}.flatten.uniq
     disliked_foods = @item_reviews.where('rating < 0').map{|item| item.review.foods}.flatten.uniq

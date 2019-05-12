@@ -6,7 +6,9 @@
    <div class="small-9 columns">
 
       <div class="small-3 columns">
+        <% if @item.photos.present? %>
         <%= PhotoDecorator.decorate(@item.photos).display %>
+      <% end %>
          <p align="center">
            <% if !@item.price_high.nil? %>
            <%= number_to_currency(@item.price_low) %> - <%=  number_to_currency(@item.price_high) %>
