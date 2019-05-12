@@ -4,15 +4,13 @@
       <%= @items.count %>
       <%= link_to @restaurant.name, restaurant_path(@restaurant) if @restaurant %>
       <%= "item".pluralize(@items.count) %> with <%= search_type %>:
-      <b>
-        <%= link_to(@search.name, polymorphic_path([@restaurant, @search])) if @restaurant.present? %>
-        <%= link_to @search.name, polymorphic_path(@search) unless @restaurant.present? %>
-        <% if search_type == "tag" %>
-          <div class="tag-float-right">
-            <%= render partial: "tags/block", locals: {tag: @search, size: :medium, hide_text: true} %>
-          </div>
-        <% end %>
-      </b>
+      <%= link_to(@search.name, polymorphic_path([@restaurant, @search])) if @restaurant.present? && @search.class != Tag %>
+      <%= link_to @search.name, polymorphic_path(@search) if @search.class == Tag%>
+      <% if search_type == "tag" %>
+        <div class="tag-float-right">
+          <%= render partial: "tags/block", locals: {tag: @search, size: :medium, hide_text: true} %>
+        </div>
+      <% end %>
     </h2>
   </div>
 </div>

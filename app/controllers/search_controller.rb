@@ -32,8 +32,14 @@ class SearchController < ApplicationController
   end
 
   def tag_search
-    @search  = Tag.find(params[:tag_id])
-    @items = Item.joins(:tags).where('tags.id IN (?)', params[:tag_id])
+    if params[:restaurant_id].present?
+      @restaurant  = Restaurant.find(params[:restaurant_id])
+    end
+    @search      = Tag.find(params[:tag_id])
+    @items       = Item.joins(:tags).where('tags.id IN (?)', params[:tag_id])
+    if @restaurant.present?
+      @items       = @items.where(restaurant: @restaurant)
+    end
     render "search/item_search", locals: {search_type: "tag"}
   end
 

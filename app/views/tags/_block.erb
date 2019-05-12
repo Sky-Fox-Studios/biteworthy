@@ -1,4 +1,5 @@
-<%= link_to tag_search_path(tag_id: tag), class: 'tag-block' do %>
+<% path = @restaurant.present? ? tag_search_path(tag_id: tag, restaurant_id: @restaurant) : tag_search_path(tag_id: tag) %>
+<%= link_to path, class: 'tag-block' do %>
   <% hide_text  ||= false %>
   <% admin_edit ||= false %>
   <% size ||= :small %>

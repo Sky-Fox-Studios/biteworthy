@@ -5,15 +5,16 @@
     <p><b>Descrpition:</b> <%= @tag.description %></p>
     <p><b>Variety:</b> <%= @tag.variety %></p>
     <p>
-      <b>Icon:</b>
-      <% if @tag.icon.present? %>
-        <div class="tag-flex-container">
-          <%= render partial: "tags/block", locals: {tag: @tag, size: :medium} %>
-        </div>
-      <% else %>
-        Missing
-      <% end %>
+    <b>Icon:</b>
+    <% if @tag.icon.present? %>
+      <div class="tag-flex-container">
+        <%= render partial: "tags/block", locals: {tag: @tag, size: :medium} %>
+      </div>
+    <% else %>
+      Missing
+    <% end %>
     </p>
+    <p>Interested in expanding the information here? <br>Login and become a member, then send an email to <a href="mailto:info@biteworthy.restaurant">info@biteworthy.restaurant </a>.
     <hr>
     <% if current_user && current_user.is_admin? %>
       <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_tag_path(@tag) %>
