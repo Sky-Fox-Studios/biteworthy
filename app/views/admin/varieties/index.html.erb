@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing <%= link_to @ingredient.name, ingredient_path(@ingredient) %> Varieties</h1>
+<h1>
+  Listing <%= link_to @ingredient.name, edit_admin_ingredient_path(@ingredient) %> Varieties
+  <%= link_to "<i class='fa fa-eye'></i>".html_safe, ingredient_path(@ingredient) %>
+</h1>
 
 <table>
   <thead>
