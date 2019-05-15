@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
    belongs_to :user
    belongs_to :review, polymorphic: true
+   # https://makandracards.com/makandra/28347-eager-loading-polymorphic-associations
 #    attr_accessible :user, :favoritable
    # http://snippets.aktagon.com/snippets/588-how-to-implement-reviews-in-rails-with-polymorphic-associations
    validates :rating, :user, :review, presence: true

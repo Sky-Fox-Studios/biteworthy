@@ -3,7 +3,7 @@
     <h2>
       <%= link_to "Menus", admin_restaurant_menus_path(@restaurant) %>
     </h2>
-    <%= link_to '+', new_admin_restaurant_menu_path(@restaurant), class: "universal-flex-button flex-button-add" %>
+    <%= link_to "<i class='fa fa-plus'></i>".html_safe, new_admin_restaurant_menu_path(@restaurant), class: "universal-flex-button flex-button-add" %>
   </div>
 
   <% @menus.each do |menu| %>
@@ -18,7 +18,7 @@
     <h2>
       <%= link_to "Menu Groups", admin_restaurant_menu_groups_path(@restaurant) %>
     </h2>
-    <%= link_to '+', new_admin_restaurant_menu_group_path(@restaurant), class: "universal-flex-button flex-button-add" %>
+    <%= link_to "<i class='fa fa-plus'></i>".html_safe, new_admin_restaurant_menu_group_path(@restaurant), class: "universal-flex-button flex-button-add" %>
   </div>
   <% @menu_groups.each do |menu_group| %>
     <div class="admin-item">

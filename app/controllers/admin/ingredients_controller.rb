@@ -7,7 +7,7 @@ class Admin::IngredientsController < AdminController
     # respond_with(@ingredients)
     respond_to do |format|
       format.html
-      format.json { render json: IngredientDatatable.new(view_context) }
+      format.json { render json: IngredientDatatable.new(params, view_context: view_context) }
     end
   end
 

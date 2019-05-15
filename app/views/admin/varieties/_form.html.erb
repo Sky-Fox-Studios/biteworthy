@@ -5,7 +5,7 @@
     <%= f.input :name %>
     <% if current_user && current_user.level == "nom" %>
       <%= f.input :ingredient_id %>
-    <% elsif @vaiety.ingredient.present? %>
+    <% elsif @variety.ingredient.present? %>
       <span><%= @variety.ingredient.name %></span>
     <% end %>
     <%= f.input :ingredient_first %>
