@@ -3,7 +3,7 @@
     <h2>
       <%= link_to name.capitalize.pluralize, polymorphic_path([:admin, @restaurant, name.pluralize.to_sym]) %>
     </h2>
-    <%= link_to '+', new_polymorphic_path([:admin, @restaurant, name.to_sym]), class: "universal-flex-button flex-button-add" %>
+    <%= link_to "<i class='fa fa-plus'></i>".html_safe, new_polymorphic_path([:admin, @restaurant, name.to_sym]), class: "universal-flex-button flex-button-add" %>
   </div>
   <% values.each do |value| %>
     <div class="admin-item">

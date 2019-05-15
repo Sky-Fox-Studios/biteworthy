@@ -1,8 +1,8 @@
 <div id="universal-fill" class="universal-flex-container">
   <% if review.present? %>
     <%
-        review = review.decorate
-      rating= Review.ratings[review.rating]
+      review = review.decorate
+      rating = Review.ratings[review.rating]
       max = rating + 1
       min = rating - 1
       max_icon = review.up_down(max)

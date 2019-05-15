@@ -1,16 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>
-  Listing <%= link_to @ingredient.name, edit_admin_ingredient_path(@ingredient) %> Varieties
-  <%= link_to "<i class='fa fa-eye'></i>".html_safe, ingredient_path(@ingredient) %>
-</h1>
+<h1>Listing Ingredient Varieties</h1>
 
 <table>
   <thead>
     <tr>
       <th></th>
       <th>Name</th>
-      <th>Ingredient First?</th>
+      <th>Ingredient</th>
+      <th>Ingredient first?</th>
       <th></th>
     </tr>
   </thead>
@@ -21,6 +19,7 @@
         <tr>
           <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, admin_ingredient_variety_path(variety.ingredient, variety) %></td>
           <td><%= variety.name %></td>
+          <td><%= link_to variety.ingredient.name, ingredient_path(variety.ingredient) %></td>
           <td>
             <%= variety.ingredient_first ? "Yes" : "Nope"  %>
           </td>

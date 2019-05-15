@@ -6,3 +6,6 @@
     <%= render partial: 'name_desc', locals: {ingredient: @ingredient} %>
   </div>
 </div>
+<% if current_user && current_user.is_admin? %>
+  <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_path(@ingredient) %>
+<% end %>

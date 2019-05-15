@@ -12,7 +12,7 @@ class RestaurantsController < ApplicationController
 
   private
   def set_restaurant_know_how
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.where(id: params[:id]).includes(:tags, :addresses).first
     # @menus      = Menu.includes(:menu_groups)
     #   .includes(menu_groups: [items: [:reviews, :prices, :photos]])
     #   .where(restaurant_id: @restaurant.id)
@@ -21,6 +21,6 @@ class RestaurantsController < ApplicationController
     if !@restaurant.active?
       redirect_to root_path, notice: "Looks like you can't go there, we apologize for the inconvenience."
     end
-    @items = Item.where(restaurant: @restaurant).includes(:menu_groups, :tags, :reviews).order('reviews.rating DESC').uniq.to_a
+    @items = Item.where(restaurant: @restaurant).includes(:menu_groups, :tags, :reviews, :photos).uniq.to_a
   end
 end

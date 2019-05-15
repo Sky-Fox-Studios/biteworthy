@@ -1,0 +1,15 @@
+global: &global
+  enable_all:              "true"  # Master switch
+  enable_cache:            "true"
+  enable_cache_history:    "true"
+
+development:
+  <<: *global
+  enable_cache:            "true"
+
+staging:
+  <<: *global
+
+production:
+  <<: *global
+

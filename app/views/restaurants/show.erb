@@ -1,5 +1,5 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
-<%= render partial: "tags/filter", locals: {tags: @restaurant.items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
+<%= render partial: "tags/filter", locals: {tags: @items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
 
 <div class="restaurant-show">
   <div class="grid cards-container">

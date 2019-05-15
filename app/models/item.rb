@@ -1,4 +1,7 @@
 class Item < ActiveRecord::Base
+  # include CacheInvalidator
+  # after_create :invalidate_cache
+  # after_update :invalidate_cache
   belongs_to :restaurant
   belongs_to :user
 

@@ -3,16 +3,16 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def set_user
-    @tag_reviews = Review.tag_reviews(current_user).order_desc
+    @tag_reviews  = Review.tag_reviews(current_user).order_desc
     @item_reviews = Review.item_reviews(current_user).order_desc
     @restaurant_reviews = Review.restaurant_reviews(current_user).order_desc
   end
 
   def show
-    binding.pry
-    liked_foods    = @item_reviews.where('rating > 0').map{|item| item.review.foods}.flatten.uniq
-    meh_foods      = @item_reviews.where('rating = 0').map{|item| item.review.foods}.flatten.uniq
-    disliked_foods = @item_reviews.where('rating < 0').map{|item| item.review.foods}.flatten.uniq
+    #TODO allow eager loading of foods
+    liked_foods    = @item_reviews.where('rating > 0').map{|item| item.review.foods.includes(:restaurant)}.flatten.uniq
+    meh_foods      = @item_reviews.where('rating = 0').map{|item| item.review.foods.includes(:restaurant)}.flatten.uniq
+    disliked_foods = @item_reviews.where('rating < 0').map{|item| item.review.foods.includes(:restaurant)}.flatten.uniq
 
     @huh_foods      = (liked_foods & meh_foods & disliked_foods).sort_by(&:name)
     @meh_foods      = (liked_foods & disliked_foods).sort_by(&:name)
