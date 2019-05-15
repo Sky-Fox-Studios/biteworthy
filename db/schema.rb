@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190427044052) do
+ActiveRecord::Schema.define(version: 20190515033038) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20190427044052) do
     t.decimal "latitude",                  precision: 10, scale: 6
     t.decimal "longitude",                 precision: 10, scale: 6
     t.string  "place_id",      limit: 255
+  end
+
+  create_table "cache_histories", primary_key: "name", force: :cascade do |t|
+    t.integer  "recache_count", limit: 4, default: 0
+    t.integer  "write_count",   limit: 4, default: 0
+    t.datetime "expires_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "extras", force: :cascade do |t|
