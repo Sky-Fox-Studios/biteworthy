@@ -1,5 +1,7 @@
-<h1>Editing <%=link_to @restaurant.name, admin_restaurant_path(@restaurant) %> Extra:</h1>
+<div class="row">
+  <h1>Editing <%=link_to @restaurant.name, admin_restaurant_path(@restaurant) %> Extra:</h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "All extras", admin_restaurant_extras_path(@restaurant), class: "universal-flex-button flex-button-natural")]} %>
+  <%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "All extras", admin_restaurant_extras_path(@restaurant), class: "universal-flex-button flex-button-natural")]} %>
+</div>
