@@ -115,6 +115,5 @@ Rails.application.routes.draw do
   get '/create_user_rating',            to: 'reviews#create_user_rating',                as: "create_user_rating"
   get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        as: "restaurant_item_filter"
   root 'layouts#home'
-  # get  'admin_root',                    to: 'admin#home', as: "admin_root"
 
 end

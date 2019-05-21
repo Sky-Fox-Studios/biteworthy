@@ -1,43 +1,39 @@
 <div class="row">
-	<div class="small-12 columns">
-		<h1>Manage <%= @restaurant.name %> Extras</h1>
-	</div>
-</div>
-<div class="small-12 medium-6 large-4 columns">
-  <%= link_to 'New Extra...', new_admin_restaurant_extra_path(@restaurant), class: "button tiny radius success" %>
-</div>
+  <div class="small-9 columns">
+    <h1>Manage <%= @restaurant.name %> Extras</h1>
+  </div>
+  <div class="small-3 columns">
+    <%= link_to 'New Extra', new_admin_restaurant_extra_path(@restaurant), class: "button radius success" %>
+  </div>
 
-<div class="row pad">
-	<div class="small-12 columns">
-		<table class="small-12">
-		  <thead>
-		    <tr>
-		      <th></th>
-		      <th>Restaurant</th>
-		      <th>Extra</th>
-		      <th>Description</th>
-		      <th>Type</th>
- 		      <th></th>
-		      <th></th>
-		    </tr>
-		  </thead>
+  <div class="small-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Extra</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-		  <tbody>
-		    <% @extras.each do |extra| %>
-	      	<tr>
-						<td><%= link_to raw('<i class="fa fa-eye"></i>'), restaurant_extra_path(@restaurant, extra) %></td>
-						<td><%= @restaurant.name %></td>
-						<td><%= extra.name %></td>
-						<td><%= extra.description %></td>
-						<td><%= extra.extra_type %></td>
-						<td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_extra_path(@restaurant, extra)} %></td>
-		        <td><%= link_to raw('<i class="fa fa-trash"></i>'), admin_restaurant_extra_path(@restaurant, extra), method: :delete, data: { confirm: 'Are you sure you want to remove this extra?' } %></td>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>
+      <tbody>
+        <% @extras.each do |extra| %>
+          <tr>
+            <td><%= link_to raw('<i class="fa fa-eye"></i>'), restaurant_extra_path(@restaurant, extra) %></td>
+            <td><%= extra.name %></td>
+            <td><%= extra.description %></td>
+            <td><%= extra.extra_type %></td>
+            <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_extra_path(@restaurant, extra)} %></td>
+            <td><%= link_to raw('<i class="fa fa-trash"></i>'), admin_restaurant_extra_path(@restaurant, extra), method: :delete, data: { confirm: 'Are you sure you want to remove this extra?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-		<%= paginate @extras %>
-	</div>
+    <%= paginate @extras %>
+  </div>
+  <%= render partial: "admin/restaurants/footer" %>
 </div>
-<%= render partial: "admin/restaurants/footer" %>
