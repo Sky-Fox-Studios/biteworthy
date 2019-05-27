@@ -21,9 +21,7 @@
         </div>
       <% end %>
       <div class="small-12 medium-6 large-4 columns">
-        <% @extra.photos.each do |photo| %>
-          <%= PhotoDecorator.decorate(photo).display %>
-        <% end %>
+        <%= show_image(@extra) %>
       </div>
     </div>
   </div>

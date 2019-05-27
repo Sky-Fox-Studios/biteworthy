@@ -46,12 +46,10 @@ class Admin::ItemsController < AdminController
 
   def create
     @item = Item.new(item_params)
-    if params[:image]
-      params[:image].each do |image|
-        @item.photos.new(user_id: current_user.id, photo_type: "Item", image: image).save
-      end
-    end
     if @item.save
+      if params[:image]
+        save_images(@item, params[:image])
+      end
       redirect_to admin_restaurant_items_path(@item.restaurant), notice: "Item: #{@item.name} created"
     else
       render :new
@@ -61,9 +59,7 @@ class Admin::ItemsController < AdminController
   def update
     if @item.update(item_params)
       if params[:image]
-        params[:image].each do |image|
-          @item.photos.new(user_id: current_user.id, photo_type: "Item", image: image).save
-        end
+        save_images(@item, params[:image])
       end
       flash[:notice] = "Item updated"
       redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
@@ -108,19 +104,19 @@ class Admin::ItemsController < AdminController
   def remove_menu_group
     menu_group = MenuGroup.find(params[:menu_group_id])
     @item.menu_groups.delete(menu_group)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item), notice: "Menu Group removed"
   end
 
   def remove_extra
     extra = Extra.find(params[:extra_id])
     @item.extras.delete(extra)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item), notice: "Extra removed"
   end
 
   def remove_photo
     photo = Photo.find(params[:photo_id])
     @item.photos.delete(photo)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item)
+    redirect_to edit_admin_restaurant_item_path(@restaurant, @item), notice: "Photo removed"
   end
 
   private
