@@ -1,5 +1,7 @@
-<h1>Listing BiteWorthy Items</h1>
 <div class="row">
+  <div class="small-12 columns">
+    <h1>Listing BiteWorthy Items</h1>
+  </div>
   <%= form_tag 'items', method: :get, class: "universal-flex-container-add" do %>
     <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
     <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
@@ -9,45 +11,43 @@
       <%= link_to 'New Item', new_admin_restaurant_item_path(params[:filter_restaurant_id]), class: "universal-flex-button flex-button-natural" if params[:filter_restaurant_id] %>
     </div>
   <% end %>
-</div>
-<div class="row">
-  <%# <div class="small-12 columns"> %>
-  <%#   <%= paginate @items %1> %>
-  <%# </div> %>
-</div>
-<table>
-  <thead>
-    <tr>
-      <th colspan="1"></th>
-      <th>Restaurant</th>
-      <th>Menu Group</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="2"></th>
-  </tr>
-  </thead>
+  <div class="small-12 columns">
+    <%= paginate @items %>
+  </div>
+  <div class="small-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="1"></th>
+          <th>Restaurant</th>
+          <th>Menu Group</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %></td>
-        <td><%= item.restaurant.name %></td>
-        <td><%= item.menu_groups.map(&:name).to_sentence %></td>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %></td>
-        <% if current_user.is_admin? %>
-          <td><%= render partial: "partials/forms/delete", locals: {path: admin_restaurant_item_path(item.restaurant, item)} %></td>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %></td>
+            <td><%= item.restaurant.name %></td>
+            <td><%= item.menu_groups.map(&:name).to_sentence %></td>
+            <td><%= item.name %></td>
+            <td><%= item.description %></td>
+            <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_item_path(item.restaurant, item)} %></td>
+            <% if current_user.is_admin? %>
+              <td><%= render partial: "partials/forms/delete", locals: {path: admin_restaurant_item_path(item.restaurant, item)} %></td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="row">
-  <%# <div class="small-12 columns"> %>
-  <%#   <%= paginate @items %1> %>
-  <%# </div> %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= paginate @items %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<br>
 

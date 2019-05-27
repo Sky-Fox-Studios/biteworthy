@@ -1,10 +1,12 @@
 <% if flash[:notice] || flash[:alert] %>
-  <div class="small-12 columns">
-    <% if flash[:alert] %>
-      <div data-alert class="alert-box radius"><%= flash[:alert] %></div>
-    <% end %>
-    <% if flash[:notice] %>
-      <div data-alert class="alert-box warning radius"><%= flash[:notice] %></div>
-    <% end %>
+  <div class="row">
+    <div class="small-12 columns">
+      <% if flash[:alert] %>
+        <div data-alert class="alert-box radius"><%= flash[:alert] %></div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div data-alert class="alert-box warning radius"><%= flash[:notice] %></div>
+      <% end %>
+    </div>
   </div>
 <% end %>
