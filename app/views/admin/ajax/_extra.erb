@@ -118,9 +118,10 @@
         type: 'post',
         url: '<%= admin_restaurant_extra_add_foods_path(restaurant, extra) %>',
         data: {
-          food_ids: $("#extra_food_ids").val()
+          food_ids: $("#food_ids").val()
         }
       }).done(function(response) {
+        console.log("response: ", response);
         $("#foods_list").html(response);
         extraRemoveFood();
       });

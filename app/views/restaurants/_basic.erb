@@ -2,11 +2,7 @@
   <div class="row">
     <div class="small-12 columns">
       <div class="radius bordered shadow card" style="padding: 0">
-        <% if restaurant.main_image_url %>
-          <%= link_to(image_tag(restaurant.main_image_url, class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
-        <% else %>
-          <%= link_to(image_tag("logo_pic.png", class:"restaurant-home-image-small"), restaurant_path(restaurant)) %>
-        <% end %>
+        <%= link_to(show_image(restaurant, size: :sixteen_by_nine), restaurant_path(restaurant)) %>
         <div class="card-divider">
           <%= link_to restaurant.name, restaurant_path(restaurant) %>
         </div>

@@ -11,9 +11,9 @@
       <%= link_to 'New Item', new_admin_restaurant_item_path(params[:filter_restaurant_id]), class: "universal-flex-button flex-button-natural" if params[:filter_restaurant_id] %>
     </div>
   <% end %>
-  <div class="small-12 columns">
-    <%= paginate @items %>
-  </div>
+  <%# <div class="small-12 columns"> %>
+  <%#   <%= paginate @items %1> %>
+  <%# </div> %>
   <div class="small-12 columns">
     <table>
       <thead>
@@ -43,11 +43,9 @@
         <% end %>
       </tbody>
     </table>
-    <div class="row">
-      <div class="small-12 columns">
-        <%= paginate @items %>
-      </div>
-    </div>
   </div>
+  <%# <div class="small-12 columns"> %>
+    <%#   <%= paginate @items %1> %>
+  <%# </div> %>
 </div>
 

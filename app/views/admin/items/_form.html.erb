@@ -1,25 +1,27 @@
 <% unless @item.new_record? %>
   <%= render partial: "admin/ajax/item", locals: {restaurant: @restaurant, item: @item} %>
 <% end %>
-<div class="row">
+<div class="small-12 columns">
   <%= simple_form_for([:admin, @restaurant, @item]) do |f| %>
-    <%= hidden_field_tag 'item[restaurant_id]', @restaurant.id %>
-    <%= hidden_field_tag 'item[user_id]', current_user.id %>
-    <div class="small-12 columns">
-      <%= render partial: "admin/items/menu_groups/info_and_forms", locals: {f: f} %>
-    </div>
-    <div class="small-12 medium-4 columns">
-      <%= f.input :name %>
-    </div>
-    <div class="small-12 medium-8 columns">
-      <%= f.input :description, as: :text  %>
-    </div>
-    <div class="small-12 medium-8 columns">
-      <%= render partial: "admin/photos/upload", locals: {form: f, object: @item} %>
-    </div>
-    <br>
-    <div class="small-12 columns universal-flex-container">
-      <%= f.submit class: "universal-flex-button flex-button-natural" %>
+    <div class="row">
+      <%= hidden_field_tag 'item[restaurant_id]', @restaurant.id %>
+      <%= hidden_field_tag 'item[user_id]', current_user.id %>
+      <div class="small-12 columns">
+        <%= render partial: "admin/items/menu_groups/info_and_forms", locals: {f: f} %>
+      </div>
+      <div class="small-12 medium-4 columns">
+        <%= f.input :name %>
+      </div>
+      <div class="small-12 medium-8 columns">
+        <%= f.input :description, as: :text  %>
+      </div>
+      <div class="small-12 medium-8 columns">
+        <%= render partial: "admin/photos/upload", locals: {form: f, object: @item} %>
+      </div>
+      <br>
+      <div class="small-12 columns universal-flex-container">
+        <%= f.submit class: "universal-flex-button flex-button-natural" %>
+      </div>
     </div>
   <% end %>
 </div>
@@ -29,4 +31,3 @@
   <%= render partial: "admin/items/extras/info_and_forms" %>
   <%= render partial: "admin/prices/inner/info_and_forms", locals: {restaurant: @restaurant, object: @item} %>
 <% end %>
-

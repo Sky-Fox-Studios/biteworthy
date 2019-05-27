@@ -1,6 +1,6 @@
 class Admin::ExtrasAjaxController < Admin::ExtrasController
   before_action :just_set_extra, only: [
-    :add_tag, :add_food,
+    :add_tag, :add_food, :add_foods,
     :add_new_food, :add_new_tag,
     :remove_tag, :remove_tags, :remove_food,
     :tag_up]
@@ -41,13 +41,23 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
   end
 
   def add_new_food
-    food = Food.find_or_initialize_by(name: food_params[:name], restaurant: @extra.restaurant)
-    food.update(food_params)
+    food = Food.find_or_initialize_by(name: params[:food][:name], restaurant: @extra.restaurant)
+    food.update(description: params[:food][:description])
     @extra.foods << food unless @extra.foods.include? food
     render partial: "admin/foods/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
   def add_food
+    foods = Food.where(id: params[:food_ids])
+    if foods.present?
+      foods.each do |food|
+        @extra.foods << food unless @extra.foods.include? food
+      end
+    end
+    render partial: "admin/foods/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
+  end
+
+  def add_foods
     foods = Food.where(id: params[:food_ids])
     if foods.present?
       foods.each do |food|

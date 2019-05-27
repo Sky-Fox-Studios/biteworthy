@@ -3,7 +3,7 @@
     <h2><%= link_to item.restaurant.name, restaurant_path(item.restaurant) %></h2>
   </div>
   <div class="small-4 medium-6 large-4 columns">
-    <%= PhotoDecorator.decorate(item.photos).display %>
+    <%= show_image(item) %>
   </div>
   <div class="small-8 medium-6 large-8 columns">
     <h3>

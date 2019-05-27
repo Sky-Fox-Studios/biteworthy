@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     end
     get 'ingredient-varieties', to: 'varieties#all'
     resources :restaurants do
+      post 'remove_photo',      to: 'restaurants#remove_photo',      as: "remove_photo"
       resources :menus
       resources :menu_groups do
         post 'remove_item', to: 'foods#remove_item', as: "remove_item"
