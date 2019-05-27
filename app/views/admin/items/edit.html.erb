@@ -1,6 +1,10 @@
-<h1>
-  <%= link_to @restaurant.name, admin_restaurant_path(@restaurant)%> <%= @item.name %>
-  <%= link_to "<i class='fa fa-eye'></i>".html_safe, restaurant_item_path(@restaurant, @item) %>
-</h1>
-<%= render 'form' %>
-<%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "All items", admin_restaurant_items_path(@restaurant), class: "universal-flex-button flex-button-natural ")] } %>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>
+      <%= link_to @restaurant.name, admin_restaurant_path(@restaurant)%> <%= @item.name %>
+      <%= link_to "<i class='fa fa-eye'></i>".html_safe, restaurant_item_path(@restaurant, @item) %>
+    </h1>
+  </div>
+  <%= render 'form' %>
+  <%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "All items", admin_restaurant_items_path(@restaurant), class: "universal-flex-button flex-button-natural ")] } %>
+</div>

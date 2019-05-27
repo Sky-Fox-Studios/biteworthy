@@ -1,16 +1,18 @@
-<h1>Listing BiteWorthy Items TO ADD TAGS</h1>
 <div class="row">
-  <%= form_tag 'add_tags', method: :get, class: "universal-flex-container-add" do %>
-    <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
-    <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
-    <div class="small-12 medium-6 large-6 columns ">
-      <%= button_to 'Save', "#", class: "universal-flex-button flex-button-natural save-all-item-tags" %>
-      <span class="update-status"><br></span>
-    </div>
-  <% end %>
-  <% Tag.varieties.keys.each do |tag_variety| %>
-    <% if @tags.send(tag_variety).present? %>
-      <div class="small-12 columns">
+  <div class="small-12 columns">
+    <h1>Listing BiteWorthy Items TO ADD TAGS</h1>
+    <%= form_tag 'add_tags', method: :get, class: "universal-flex-container-add" do %>
+      <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
+      <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
+      <div class="small-12 medium-6 large-6 columns ">
+        <%= button_to 'Save', "#", class: "universal-flex-button flex-button-natural save-all-item-tags" %>
+        <span class="update-status"><br></span>
+      </div>
+    <% end %>
+  </div>
+  <div class="small-12 columns">
+    <% Tag.varieties.keys.each do |tag_variety| %>
+      <% if @tags.send(tag_variety).present? %>
         <fieldset>
           <legend>
             <h4><%= tag_variety.capitalize %></h4>
@@ -27,95 +29,94 @@
             <% end %>
           </ul>
         </fieldset>
-      </div>
+      <% end %>
     <% end %>
+  </div>
+  <% if @items.present? %>
+    <div class="small-12 columns">
+      <%= paginate @items %>
+    </div>
+    <div class="small-12 columns">
+      <table>
+        <thead>
+          <tr>
+            <th>Menu Group</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td>
+                <%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %>
+                <%= item.menu_groups.map(&:name).to_sentence %>
+              </td>
+              <td>
+                <label>
+                  <%= check_box_tag("item_ids[]", item.id, false, id: "item-#{item.id}", class: "item_ids")  %>
+                  <%= item.name %>
+                </label>
+              </td>
+              <td><%= item.description.truncate(111) if item.description %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td>All Checked?
+            </td>
+            <td class="universal-flex-container-add">
+              <%= button_to 'Save', admin_add_tags_path, class: "universal-flex-button flex-button-natural save-all-item-tags" %>
+            </td>
+            <td>
+              <div class="update-status">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="small-12 columns">
+          <%= paginate @items %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-<br>
-<% if @items.present? %>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= paginate @items %>
-    </div>
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Menu Group</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
+<script>
+  $(".save-all-item-tags").on("click", function(event){
+    event.preventDefault();
+    tags  = $(".tag_ids:checkbox:checked").map(function(){
+      return this.value;
+    }).get().join();
+    items = $(".item_ids:checkbox:checked").map(function(){
+      return this.value;
+    }).get().join();
+    if(tags != "" && items != ""){
 
-    <tbody>
-      <% @items.each do |item| %>
-        <tr>
-          <td>
-            <%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %>
-            <%= item.menu_groups.map(&:name).to_sentence %>
-          </td>
-          <td>
-            <label>
-              <%= check_box_tag("item_ids[]", item.id, false, id: "item-#{item.id}", class: "item_ids")  %>
-              <%= item.name %>
-            </label>
-          </td>
-          <td><%= item.description.truncate(111) if item.description %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td>All Checked?
-        </td>
-        <td class="universal-flex-container-add">
-          <%= button_to 'Save', admin_add_tags_path, class: "universal-flex-button flex-button-natural save-all-item-tags" %>
-        </td>
-        <td>
-          <div class="update-status">
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= paginate @items %>
-    </div>
-  </div>
-  <script>
-    $(".save-all-item-tags").on("click", function(event){
-      event.preventDefault();
-      tags  = $(".tag_ids:checkbox:checked").map(function(){
-        return this.value;
-      }).get().join();
-      items = $(".item_ids:checkbox:checked").map(function(){
-        return this.value;
-      }).get().join();
-      if(tags != "" && items != ""){
-
-        $.ajax({
-          type: 'post',
-          url: '<%= admin_ajax_add_tags_path %>',
-          data: {
-            tag_ids: tags,
-            item_ids: items
-          }
-        }).done(function(response) {
-          $(".update-status").html(response);
-          $(".tag_ids:checkbox:checked").map(function(){
-            $(this).prop('checked', false);
-          });
-          $(".item_ids:checkbox:checked").map(function(){
-            $(this).prop('checked', false);
-          });
-          $(".save-all-item-tags").val("Saved!")
-          setTimeout(function(){
-            $(".save-all-item-tags").val("Save");
-          }, 5000);
-
+      $.ajax({
+        type: 'post',
+        url: '<%= admin_ajax_add_tags_path %>',
+        data: {
+          tag_ids: tags,
+          item_ids: items
+        }
+      }).done(function(response) {
+        $(".update-status").html(response);
+        $(".tag_ids:checkbox:checked").map(function(){
+          $(this).prop('checked', false);
         });
-      }else{
-        $(".update-status").html("You must choose at least 1 tag and 1 item");
-      }
-    });
-  </script>
-<% end %>
+        $(".item_ids:checkbox:checked").map(function(){
+          $(this).prop('checked', false);
+        });
+        $(".save-all-item-tags").val("Saved!")
+        setTimeout(function(){
+          $(".save-all-item-tags").val("Save");
+        }, 5000);
+
+      });
+    }else{
+      $(".update-status").html("You must choose at least 1 tag and 1 item");
+    }
+  });
+</script>
