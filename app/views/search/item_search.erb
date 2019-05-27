@@ -14,11 +14,11 @@
     </h2>
   </div>
 </div>
-  <div class="grid cards-container">
-    <% @items.each do |item| %>
-      <%= render partial: "items/card", locals: {restaurant: item.restaurant, item: item} %>
-    <% end %>
-  </div>
+<div class="row grid cards-container">
+  <% @items.each do |item| %>
+    <%= render partial: "items/card", locals: {restaurant: item.restaurant, item: item} %>
+  <% end %>
+</div>
 <script>
 
   var filters = [];

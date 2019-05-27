@@ -1,8 +1,8 @@
-<div class="row" style="padding: 0;">
+<div class="row">
   <div class="small-12 show-for-medium columns">
     <% if @restaurant && false %>
       <div class="home-logo">
-        <%= link_to image_tag(@restaurant.main_image_url), restaurant_path(@restaurant) %>
+        <%= link_to(show_image(@restaurant, size: :sixteen_by_nine), restaurant_path(@restaurant)) %>
       </div>
     <% else %>
       <div class="home-logo">
@@ -75,7 +75,7 @@
   <div class="small-12 show-for-small-only">
     <% if @restaurant && false  %>
       <div class="home-logo">
-        <%= link_to image_tag(@restaurant.main_image_url), restaurant_path(@restaurant) %>
+        <%= link_to image_tag(@restaurant.photos.sample), restaurant_path(@restaurant) %>
       </div>
     <% else %>
     <div class="home-logo">

@@ -117,7 +117,7 @@
         type: 'post',
         url: '<%= admin_restaurant_item_add_foods_path(restaurant, item) %>',
         data: {
-          food_ids: $("#item_food_ids").val()
+          food_ids: $("#food_ids").val()
         }
       }).done(function(response) {
         $("#foods_list").html(response);

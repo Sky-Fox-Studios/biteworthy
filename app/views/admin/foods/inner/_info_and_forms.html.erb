@@ -1,14 +1,16 @@
-<fieldset>
-  <legend>
-    <h3>Foods:</h3>
-  </legend>
-  <div class="small-12 medium-4 columns">
-    <div id="foods_list">
-      <%= render partial: "admin/foods/inner/list", locals: {restaurant: restaurant, object: object} %>
+<div class="small-12 columns">
+  <fieldset>
+    <legend>
+      <h3>Foods:</h3>
+    </legend>
+    <div class="small-12 medium-4 columns">
+      <div id="foods_list">
+        <%= render partial: "admin/foods/inner/list", locals: {restaurant: restaurant, object: object} %>
+      </div>
     </div>
-  </div>
-  <div class="small-12 medium-8 columns">
-    <%= render partial: "admin/foods/inner/select", locals: {object: object, foods: foods} %>
-    <%= render partial: "admin/foods/inner/form",   locals: {restaurant: restaurant, object: object} %>
-  </div><hr>
-</fieldset>
+    <div class="small-12 medium-8 columns">
+      <%= render partial: "admin/foods/inner/select", locals: {object: object, foods: foods} %>
+      <%= render partial: "admin/foods/inner/form",   locals: {restaurant: restaurant, object: object} %>
+    </div>
+  </fieldset>
+</div>

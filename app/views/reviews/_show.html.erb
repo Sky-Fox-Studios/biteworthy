@@ -2,7 +2,7 @@
   <div class="small-4 medium-6 large-4 columns image-wrapper">
     <% if defined? reviewed.photos %>
       <div class="center card-image">
-        <%= link_to PhotoDecorator.decorate(reviewed.photos.sample).display, edit_review_path(review) %>
+        <%= link_to show_image(reviewed), edit_review_path(review) %>
       </div>
       <% elsif reviewed.class.to_s == "Tag" %>
       <div class="tag-flex-container">

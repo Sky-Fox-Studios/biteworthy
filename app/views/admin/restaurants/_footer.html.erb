@@ -1,9 +1,7 @@
-<div class="row">
-  <div class="small-12 columns universal-flex-container">
-    <%= link_to @restaurant.name, admin_restaurant_path(@restaurant), class: "universal-flex-button flex-button-natural" %>
-    <% buttons ||= [] %>
-    <% buttons.each do |button| %>
-      <%= button.html_safe %>
-    <% end %>
-  </div>
+<div class="small-12 columns universal-flex-container">
+  <%= link_to @restaurant.name, admin_restaurant_path(@restaurant), class: "universal-flex-button flex-button-natural" %>
+  <% buttons ||= [] %>
+  <% buttons.each do |button| %>
+    <%= button.html_safe %>
+  <% end %>
 </div>

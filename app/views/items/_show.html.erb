@@ -3,7 +3,7 @@
     <%= link_to item.name, restaurant_item_path(item.restaurant, item) %>
   </h3>
   <div class="image-wrapper center">
-    <%= link_to PhotoDecorator.decorate(item.photos).display, restaurant_item_path(item.restaurant, item) %>
+    <%= link_to show_image(item), restaurant_item_path(item.restaurant, item) %>
   </div>
   <% if current_user %>
     <div id="rating-reviews-item-<%=item.id%>" class="review-rating-wrapper">

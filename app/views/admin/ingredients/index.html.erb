@@ -3,9 +3,6 @@
     <h1>Manage Ingredients</h1>
     <%= link_to '<i class="fas fa-plus"></i>'.html_safe, new_admin_ingredient_path, class: "universal-flex-button flex-button-natural vertical-center" %>
   </div>
-</div>
-
-<div class="row">
   <div class="small-12 columns">
     <%= render partial: 'partials/ingredients/datatable' %>
   </div>

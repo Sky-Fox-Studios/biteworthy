@@ -1,11 +1,11 @@
-<div class="small-12 columns">
-  <h1><%= @restaurant.name %>: <%= @food.name %></h1>
-</div>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= @restaurant.name %>: <%= @food.name %></h1>
+  </div>
 
-<div class="small-12 columns">
   <%= render 'form' %>
-</div>
 
-<div class="small-12 columns">
-  <%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "#{@restaurant.name} Foods", admin_restaurant_foods_path(@restaurant), class: "universal-flex-button flex-button-natural")] } %>
+  <div class="small-12 columns">
+    <%= render partial: "admin/restaurants/footer", locals: {buttons: [(link_to "#{@restaurant.name} Foods", admin_restaurant_foods_path(@restaurant), class: "universal-flex-button flex-button-natural")] } %>
+  </div>
 </div>

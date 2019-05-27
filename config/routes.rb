@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     end
     get 'ingredient-varieties', to: 'varieties#all'
     resources :restaurants do
+      post 'remove_photo',      to: 'restaurants#remove_photo',      as: "remove_photo"
       resources :menus
       resources :menu_groups do
         post 'remove_item', to: 'foods#remove_item', as: "remove_item"
@@ -115,6 +116,5 @@ Rails.application.routes.draw do
   get '/create_user_rating',            to: 'reviews#create_user_rating',                as: "create_user_rating"
   get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        as: "restaurant_item_filter"
   root 'layouts#home'
-  # get  'admin_root',                    to: 'admin#home', as: "admin_root"
 
 end

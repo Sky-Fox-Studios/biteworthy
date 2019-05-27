@@ -1,5 +1,5 @@
 class Admin::RestaurantsController < AdminController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :remove_photo]
 
   respond_to :html
 
@@ -27,6 +27,9 @@ class Admin::RestaurantsController < AdminController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
+      if params[:image]
+        save_images(@restaurant, params[:image])
+      end
       redirect_to admin_restaurants_path
     else
       redirect_to edit_admin_restaurants_path, alert: @restaurant.errors.full_messages
@@ -35,6 +38,9 @@ class Admin::RestaurantsController < AdminController
 
   def update
     if @restaurant.update(restaurant_params)
+      if params[:image]
+        save_images(@restaurant, params[:image])
+      end
       redirect_to edit_admin_restaurant_path(@restaurant), notice: "Updated"
     else
       redirect_to edit_admin_restaurant_path(@restaurant), alert: @restaurant.errors.full_messages
@@ -47,10 +53,20 @@ class Admin::RestaurantsController < AdminController
     redirect_to admin_restaurants_path
   end
 
+  def remove_photo
+    photo = Photo.find(params[:photo_id])
+    @restaurant.photos.delete(photo)
+    redirect_to edit_admin_restaurant_path(@restaurant), notice: "Photo removed"
+  end
+
   private
-    def set_restaurant
+  def set_restaurant
+    if params[:id]
       @restaurant = Restaurant.find(params[:id])
+    elsif params[:restaurant_id]
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
+  end
 
     def create_address
 

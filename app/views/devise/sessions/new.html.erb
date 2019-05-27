@@ -1,12 +1,14 @@
-<div class="small-12 columns">
-  <h2 class="center">Credentials</h2>
+<div class="row">
+  <div class="small-12 columns">
+    <h2 class="center">Credentials</h2>
+  </div>
+
+  <div class="small-12 columns">
+    <%= render "devise/shared/login_links" %>
+    <%# <%= render "devise/shared/links" %1> %>
+    <hr>
+  </div>
+
+
+  <%= render "devise/shared/bw_members_are" %>
 </div>
-
-<div class="small-12 columns">
-  <%= render "devise/shared/login_links" %>
-  <%# <%= render "devise/shared/links" %1> %>
-  <hr>
-</div>
-
-
-<%= render "devise/shared/bw_members_are" %>

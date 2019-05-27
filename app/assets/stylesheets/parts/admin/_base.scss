@@ -1,11 +1,9 @@
 @import "_var_and_mix/general_mixins";
-.admin-home{
-  .home-grid {
-    .block {
-      background: white;
-      border-radius: .25em;
-      @include card-shadow;
-      padding: 6px;
-    }
+
+.danger {
+  color: white;
+  background: darkred;
+  label {
+    color: white;
   }
 }
