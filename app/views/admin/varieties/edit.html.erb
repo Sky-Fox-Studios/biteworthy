@@ -1,6 +1,12 @@
-<h1>Editing Variety</h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1><i><%= @variety.ingredient.name.humanize %></i> variety</h1>
+  </div>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Show', admin_ingredient_variety_path(@variety.ingredient, @variety) %> |
-<%= link_to 'All Varities', admin_ingredient_varieties_path(@variety.ingredient) %>
+  <div class="small-12 columns">
+    <%= link_to 'Show', admin_ingredient_variety_path(@variety.ingredient, @variety) %> |
+    <%= link_to 'All Varities', admin_ingredient_varieties_path(@variety.ingredient) %>
+  </div>
+</div>

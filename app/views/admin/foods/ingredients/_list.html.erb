@@ -3,7 +3,8 @@
 <%= @food.ingredients.map do |ingredient|
   variety = ingredient_varieties.select{|iv| iv.ingredient_id == ingredient.id}.first
   if variety.present?
-    "#{link_to("#{variety.name} #{ingredient.name}", edit_admin_ingredient_path(ingredient))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_ingredient_path(@restaurant, @food, ingredient_id: ingredient.id), method: :post}"
+    link_text = variety.ingredient_first ? "#{ingredient.name} #{variety.name}" : "#{variety.name} #{ingredient.name}"
+    "#{link_to(link_text, edit_admin_ingredient_path(ingredient))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_ingredient_path(@restaurant, @food, ingredient_id: ingredient.id), method: :post}"
   else
     "#{link_to(ingredient.name, edit_admin_ingredient_path(ingredient))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_ingredient_path(@restaurant, @food, ingredient_id: ingredient.id), method: :post}"
   end

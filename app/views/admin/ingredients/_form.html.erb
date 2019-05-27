@@ -25,7 +25,7 @@
           <% @varieties.each do |variety| %>
             <li>
               <%= @ingredient.name if variety.ingredient_first %>
-              <%= link_to variety.name, admin_ingredient_variety_path(@ingredient, variety) %>
+              <%= link_to variety.name, edit_admin_ingredient_variety_path(@ingredient, variety) %>
               <%= @ingredient.name unless variety.ingredient_first %>
             </li>
           <% end %>
