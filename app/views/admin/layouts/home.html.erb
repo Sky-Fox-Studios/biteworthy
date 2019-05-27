@@ -5,7 +5,7 @@
         <div class="small-12 columns">
           <div class="radius bordered shadow card" style="padding: 0">
             <%= link_to admin_restaurant_path(restaurant) do  %>
-              <%= show_image(restaurant, size: :sixteen_by_nine) %>
+              <%= show_image(restaurant, size: :sixteen_by_nine, image_class: "restaurant-home-image-small") %>
             <% end %>
             <div class="card-divider">
               <h5><%= link_to restaurant.name, admin_restaurant_path(restaurant) %></h5>
