@@ -1,11 +1,16 @@
 <div class="row">
   <div class="small-3 medium-3 large-3 columns">
-    <%= render partial: 'image', locals: {ingredient: @ingredient} %>
+    <div class="center">
+      <%= show_image(@ingredient) %>
+    </div>
+    <%= render partial: 'review_vote', locals: {ingredient: @ingredient} %>
   </div>
   <div class="small-9 medium-9 large-9 columns">
-    <%= render partial: 'name_desc', locals: {ingredient: @ingredient} %>
+    <%= @ingredient.name %>
   </div>
+  <% if current_user && current_user.is_admin? %>
+    <div class="small-12 columns">
+      <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_path(@ingredient) %>
+    </div>
+  <% end %>
 </div>
-<% if current_user && current_user.is_admin? %>
-  <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_path(@ingredient) %>
-<% end %>

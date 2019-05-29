@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
+  root 'layouts#home'
 
-  get 'about', to: 'pages#about'
-  get 'levels', to: 'pages#levels'
-  get 'privacy-policy', to: 'pages#privacy_policy'
+  # Users
+  get 'me',          to: 'users#show',        as: 'me'
+  get 'choose_tags', to: 'users#choose_tags', as: 'choose_tags'
+
+  # Main Pages
+  get 'about',            to: 'pages#about'
+  get 'levels',           to: 'pages#levels'
+  get 'privacy-policy',   to: 'pages#privacy_policy'
   get 'terms-of-service', to: 'pages#terms_of_service'
+
+  get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"
+  get '/create_user_rating',            to: 'reviews#create_user_rating',                as: "create_user_rating"
+  get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        as: "restaurant_item_filter"
+
+  # Basic routes
   resources :reports, only: [:new, :create]
   resources :ingredients, only: [:index, :show]
   resources :restaurants, only: [:index, :show] do
@@ -23,6 +35,8 @@ Rails.application.routes.draw do
 
   resources :reviews, :tags
   get 'reviews/lookup', to: 'reviews#lookup', as: "lookup"
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth', sessions: 'sessions' }
 
   namespace :admin do
     root 'layouts#home'
@@ -104,17 +118,5 @@ Rails.application.routes.draw do
       # Is this a wise route?
     end
   end
-
-
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth', sessions: 'sessions' }
-
-  get 'me', to: 'users#show', as: 'me'
-  get 'choose_tags', to: 'users#choose_tags', as: 'choose_tags'
-
-
-  get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"
-  get '/create_user_rating',            to: 'reviews#create_user_rating',                as: "create_user_rating"
-  get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        as: "restaurant_item_filter"
-  root 'layouts#home'
 
 end

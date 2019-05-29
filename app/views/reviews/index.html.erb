@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="review-index">
   <div class="small-12 columns">
     <h1>Your BiteWorthy Reviews</h1>
   </div>
@@ -21,7 +21,7 @@
           <% if @review_class != review.rating %>
             <hr>
             <% @review_class = review.rating %>
-            <div class="small-12 columns">
+            <div class="small-12 columns title">
               <h2>
                 <%= @review_class.humanize %>
               </h2>

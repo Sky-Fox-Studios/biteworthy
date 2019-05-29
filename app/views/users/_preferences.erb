@@ -1,43 +1,36 @@
-<div class="small-12  columns">
+<div class="small-12  columns" id="user-show">
   <h2>Preferences</h2>
-  <h5>Based on your reviews; these are your food prefrences:</h5>
-    <table>
-      <thead>
-        <td>Likes</td>
-        <td>OK</td>
-        <td>Dis-likes</td>
-        <td>Undecided</td>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <% @liked_foods.each do |food| %>
-              <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
-            <% end %>
-          </td>
-          <td>
-            <% @meh_foods.each do |food| %>
-              <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
-            <% end %>
-          </td>
-          <td>
-            <% @disliked_foods.each do |food| %>
-              <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
-            <% end %>
-          </td>
-          <td>
-            <% @huh_foods.each do |food| %>
-              <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
+  <h5>Based on your <%= link_to "Item reviews", "/reviews?review_type=Item" %> these are your food prefrences:</h5>
+  <table>
+    <thead>
+      <td>Enjoy</td>
+      <td>OK</td>
+      <td>Disliked</td>
+      <td>Undecided</td>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <% @liked_foods.each do |food| %>
+            <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
+          <% end %>
+        </td>
+        <td>
+          <% @ok_foods.each do |food| %>
+            <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
+          <% end %>
+        </td>
+        <td>
+          <% @disliked_foods.each do |food| %>
+            <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
+          <% end %>
+        </td>
+        <td>
+          <% @undecided_foods.each do |food| %>
+            <%= link_to food.name, restaurant_food_path(food.restaurant, food) %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<hr>
-<style>
- td  a {
-    text-decoration: underline;
-  }
-</style>
