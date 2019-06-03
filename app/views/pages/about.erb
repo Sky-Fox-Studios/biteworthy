@@ -1,23 +1,24 @@
-
-<div class="small-12 columns">
-  <h3>What is BiteWorthy about?</h3>
-  <ul>
-    <li>Understanding restaurant menus</li>
-    <li>Knowing what is in each dish</li>
-    <li>Personalizing your profile to refine the menu to your tastes</li>
-    <li>Allowing contributions from everyone with restaurant verification</li>
-    <li><%= link_to "Get nerdy", "https://github.com/shadoath/bwd" %></li>
-  </ul>
-  <h3>Other useful info</h3>
-  <ul>
-    <li><%= link_to "Terms of Service", terms_of_service_path %></li>
-    <li><%= link_to "Privacy Policy", privacy_policy_path %></li>
-  </ul>
-</div>
-<div class="small-12 columns">
-  <div class="actions wb-flex">
-    <% if !current_user %>
-      <%= link_to "Create an Account".html_safe, new_user_registration_path, class: "btn-bw-green", style: "margin:.5rem;" %>
-    <% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <h3>What is BiteWorthy about?</h3>
+    <ul>
+      <li>Understanding restaurant menus</li>
+      <li>Knowing what is in each dish</li>
+      <li>Personalizing your profile to refine the menu to your tastes</li>
+      <li>Allowing contributions from everyone with restaurant verification</li>
+      <li><%= link_to "Get nerdy", "https://github.com/shadoath/bwd" %></li>
+    </ul>
+    <h3>Other useful info</h3>
+    <ul>
+      <li><%= link_to "Terms of Service", terms_of_service_path %></li>
+      <li><%= link_to "Privacy Policy", privacy_policy_path %></li>
+    </ul>
+  </div>
+  <div class="small-12 columns">
+    <div class="actions wb-flex">
+      <% if !current_user %>
+        <%= link_to "Create an Account".html_safe, new_user_registration_path, class: "btn-bw-green", style: "margin:.5rem;" %>
+      <% end %>
+    </div>
   </div>
 </div>
