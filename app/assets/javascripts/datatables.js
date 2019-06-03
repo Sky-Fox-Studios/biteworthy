@@ -70,6 +70,7 @@ $(document).ready(function () {
       {"data": "name"},
       {"data": "normalized_name"},
       {"data": "tags", "sortable": false},
+      {"data": "varieties", "sortable": false},
       {"data": "actions", "sortable": false, "className": "nowrap"}
     ]
   });

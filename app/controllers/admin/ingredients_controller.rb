@@ -3,7 +3,7 @@ class Admin::IngredientsController < AdminController
   respond_to :html
 
   def index
-    @ingredients = Ingredient.all.includes(:tags)
+    @ingredients = Ingredient.all.includes(:tags, :varieties)
     # respond_with(@ingredients)
     respond_to do |format|
       format.html
@@ -76,7 +76,7 @@ class Admin::IngredientsController < AdminController
     elsif params[:ingredient_id]
       @ingredient = Ingredient.find(params[:ingredient_id])
     end
-    @tags      = Tag.all
+    @tags      = Tag.where(variety: 'ingredient')
     @varieties = Variety.where(ingredient: @ingredient)
   end
 
