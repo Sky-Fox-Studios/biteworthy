@@ -117,4 +117,13 @@ class User < ActiveRecord::Base
     user.level = :nibbler
     user.skip_confirmation!
   end
+
+  # Devise settings
+  def timeout_in
+    if self.admin?
+      2.weeks
+    else
+      3.days
+    end
+  end
 end
