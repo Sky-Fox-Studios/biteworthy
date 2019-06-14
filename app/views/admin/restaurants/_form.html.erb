@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <% unless @restaurant.addresses.empty? %>
+  <% if @restaurant.addresses.present? %>
     <div class="small-12 columns">
       <h3><%= "Location".pluralize(@restaurant.addresses.count) %></h3>
     </div>
@@ -66,10 +66,7 @@
       </div>
     <% end %>
   <% end %>
-  <h3>New Location:</h3>
-  <%= f.simple_fields_for :addresses, @restaurant.addresses.build do |addresses_form| %>
-    <%= render partial: 'admin/addresses/address_fields', locals: { a: addresses_form } %>
-  <% end %>
+  <h5><%= link_to "New Location", new_admin_restaurant_address_path(@restaurant) %></h5>
 
   <div class="small-12 columns universal-flex-container">
     <%= f.button :submit, "Save", class: "universal-flex-button flex-button-natural" %>

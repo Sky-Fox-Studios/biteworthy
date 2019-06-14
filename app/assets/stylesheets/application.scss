@@ -151,7 +151,13 @@ li{
     color: black;
 }
 .alert-box {
+  padding: .5rem;
   margin-top: .5rem;
+  background-color: orange;
+  &.warning {
+    background-color: orangered;
+  }
+
 }
 
 .agree-text{

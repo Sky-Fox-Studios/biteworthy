@@ -20,6 +20,7 @@ class Admin::ItemsController < AdminController
   end
 
   def index
+    binding.pry
     @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
     respond_to do |format|
       format.html
@@ -50,7 +51,7 @@ class Admin::ItemsController < AdminController
       if params[:image]
         save_images(@item, params[:image])
       end
-      redirect_to admin_restaurant_items_path(@item.restaurant), notice: "Item: #{@item.name} created"
+      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
     else
       render :new
     end
@@ -87,18 +88,26 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_extra
-    @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    notice = if params[:extra_name].present?
+      @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
+      "#{params[:extra_type]} added"
+    else
+      "No name provided for #{params[:extra_type]}"
+    end
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: notice
   end
 
   def add_extra
-    if !params[:extra_choice_id].empty?
+    notice = ""
+    if params[:extra_choice_id].present?
       extra = Extra.find(params[:extra_choice_id])
-    elsif !params[:extra_addition_id].empty?
+    elsif params[:extra_addition_id].present?
       extra ||= Extra.find(params[:extra_addition_id])
+    else
+      notice = "No choice or addition selected"
     end
-    @item.extras << extra unless @item.extras.include? extra
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    @item.extras << extra if extra.present? && !@item.extras.include?(extra)
+    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: notice
   end
 
   def remove_menu_group

@@ -1,14 +1,12 @@
-<%= simple_form_for([:admin, @restaurant, @priced, @price]) do |f| %>
-  <div class="row universal-flex-container">
+<%= simple_form_for([:admin, @restaurant, @priced, @price], class: "row") do |f| %>
      <div class="small-12 medium-6 large-4 columns">
         <%= f.input :value, placeholder: "11.00" %>
      </div>
      <div class="small-12 medium-6 large-4 columns">
         <%= f.input :size, placeholder: "small/medium/large" %>
      </div>
-     <div class="small-12 large-4 columns">
+     <div class="small-12 large-4 columns universal-flex-container">
        <label class="show-for-large">&nbsp;</label>
        <%= f.submit class: "universal-flex-button flex-button-natural" %>
      </div>
-  </div>
 <% end %>

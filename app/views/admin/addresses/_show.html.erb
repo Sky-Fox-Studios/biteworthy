@@ -1,21 +1,10 @@
 <div class="row">
-  <div class="small-12 medium-4 columns">
+  <div class="small-12 columns">
     <%= link_to address.phone_number, "tel://+#{address.phone_number}" %>
   </div>
-  <div class="small-12 medium-4 columns">
-    <%= address.street %>
-  </div>
-
-  <div class="small-6 medium-4 columns">
-    <%= address.city %>
-  </div>
-
-  <div class="small-2 columns">
-    <%= address.state %>
-  </div>
-
-  <div class="small-4 medium-2 columns">
-    <%= address.zip %>
+  <div class="small-12 columns">
+    <%= address.street %>, <%= address.city %> <br>
+    <%= address.state %> <%= address.zip %>
   </div>
 
   <% if address.latitude.present? && address.longitude.present?%>
@@ -29,7 +18,7 @@
     </div>
   <% end %>
   <div class="small-12 columns">
-    <%= render partial: 'admin/addresses/map', locals: { address: address } %>
+    <%# <%= render partial: 'admin/addresses/map', locals: { address: address } %1> %>
   </div>
 
   <div class="small-12 columns">
