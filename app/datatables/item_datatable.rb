@@ -29,6 +29,5 @@ class ItemDatatable < ApplicationDatatable
 
   def get_raw_records
     Item.where(restaurant_id: params[:restaurant_id])
-
   end
 end
