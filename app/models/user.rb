@@ -120,7 +120,7 @@ class User < ActiveRecord::Base
 
   # Devise settings
   def timeout_in
-    if self.admin?
+    if self.is_admin?
       2.weeks
     else
       3.days

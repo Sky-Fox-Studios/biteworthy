@@ -50,7 +50,7 @@ class Admin::ItemsController < AdminController
       if params[:image]
         save_images(@item, params[:image])
       end
-      redirect_to admin_restaurant_items_path(@item.restaurant), notice: "Item: #{@item.name} created"
+      redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
     else
       render :new
     end
