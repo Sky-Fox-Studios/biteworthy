@@ -16,8 +16,12 @@
       </div>
     <% end %>
     <hr>
-    <div class="wb-flex flex-between">
       <h3>Unhappy?</h3>
+      <p>Use the <%= link_to "feedback link", new_report_path %> to let us know how to improve.</p>
+      </br>
+      <p>Or say goodbye</p>
+      </br>
+    <div class="wb-flex flex-between">
       <%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?  This will delete your reviews and prefrences." }, method: :delete, class: "alert btn-bw-red" %>
     </div>
   </div>
