@@ -14,7 +14,8 @@ class Food < ActiveRecord::Base
   has_many :ingredients, through: :foods_ingredients
   has_many :foods_ingredients
 
-  has_many :varieties
+  has_many :varieties, through: :foods_varieties
+  has_many :foods_varieties
 
   before_validation :trim_name
 

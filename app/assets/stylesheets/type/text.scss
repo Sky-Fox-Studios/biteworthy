@@ -1,4 +1,7 @@
 @import '../_var_and_mix/_variables';
+i{
+  color: black;
+}
 a{
   color: $bw_blue;
 }
@@ -12,9 +15,6 @@ a:hover {
 a:visited{
   // background-color: transparent;
   color: $bw_blue;
-}
-i{
-  color: black;
 }
 .button{
   font-size: 1rem;
