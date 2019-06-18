@@ -7,10 +7,15 @@
     </h3>
     <%= render partial: 'image', locals: {item: @item} %>
     <%= render partial: 'review_vote', locals: { item: @item } %>
-    <%= render partial: 'price', locals: {prices: @item.prices} %>
+    <div class="show-for-medium">
+      <%= render partial: 'price', locals: {prices: @item.prices} %>
+    </div>
   </div>
   <div class="small-12 medium-6 large-8 columns">
     <%= render partial: 'name_desc_foods_extras', locals: {item: @item} %>
+    <div class="show-for-small-only">
+      <%= render partial: 'price', locals: {prices: @item.prices} %>
+    </div>
   </div>
   <br>
   <%= render partial: 'item_footer', locals: { item: @item } %>
