@@ -1,21 +1,16 @@
-<div class="row">
+<div class="row levels">
   <div class="small-12 columns">
     <h3>BiteWorthy members have the ability to become</h3>
   </div>
-  <div class="small-12 medium-6 columns">
-    <p>More:</p>
-    <ul>
-      <% @good_levels.each do |level| %>
-        <li><b><%= level[0].capitalize %></b> | <%= level[1] %></li>
-      <% end %>
-    </ul>
+  <div class="small-12 medium-5 columns">
+    <h5>more</h5>
+    <%= render partial: "partials/levels/table", locals: { levels: @good_levels } %>
   </div>
-  <div class="small-12 medium-6 columns">
-    <p>or less:</p>
-    <ul>
-      <% @bad_levels.each do |level| %>
-        <li><b><%= level[0].capitalize %></b> | <%= level[1] %></li>
-      <% end %>
-    </ul>
+  <div class="small-12 medium-2 columns">
+    <h5 class="center">OR</h5>
+  </div>
+  <div class="small-12 medium-5 columns">
+    <h5>less</h5>
+    <%= render partial: "partials/levels/table", locals: { levels: @bad_levels } %>
   </div>
 </div>

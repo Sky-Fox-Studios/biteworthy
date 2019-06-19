@@ -1,0 +1,15 @@
+<table>
+  <% levels.each do |level| %>
+    <tr>
+      <td class="level__name">
+        <b><%= level[1].capitalize %></b>
+      </td>
+      <td class="level__description">
+        <%= level[2] %>
+      </td>
+      <td class="level__rank">
+        <b><%= level[0] %></b>
+      </td>
+    </tr>
+  <% end %>
+</table>
