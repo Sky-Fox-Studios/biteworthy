@@ -1,34 +1,40 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Ingredient Varieties</h1>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Listing Ingredient Varieties</h1>
+  </div>
+  <% binding.pry %>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Ingredient</th>
-      <th>Ingredient first?</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if @varieties.present? %>
-      <% @varieties.each do |variety| %>
+  <div class="small-12 columns">
+    <table>
+      <thead>
         <tr>
-          <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, admin_ingredient_variety_path(variety.ingredient, variety) %></td>
-          <td><%= variety.name %></td>
-          <td><%= link_to variety.ingredient.name, ingredient_path(variety.ingredient) %></td>
-          <td>
-            <%= variety.ingredient_first ? "Yes" : "Nope"  %>
-          </td>
-          <td>
-            <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_variety_path(variety.ingredient, variety) %>
-            <%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_ingredient_variety_path(variety.ingredient, variety), method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
+          <th></th>
+          <th>Name</th>
+          <th>Ingredient</th>
+          <th>Ingredient first?</th>
+          <th></th>
         </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+
+      <tbody>
+        <% if @varieties.present? %>
+          <% @varieties.each do |variety| %>
+            <tr>
+              <td><%= link_to "<i class='fa fa-eye'></i>".html_safe, admin_ingredient_variety_path(variety.ingredient, variety) %></td>
+              <td><%= variety.name %></td>
+              <td><%= link_to variety.ingredient.name, ingredient_path(variety.ingredient) %></td>
+              <td>
+                <%= variety.ingredient_first ? "Yes" : "Nope"  %>
+              </td>
+              <td>
+                <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_ingredient_variety_path(variety.ingredient, variety) %>
+                <%= link_to "<i class='fa fa-trash'></i>".html_safe, admin_ingredient_variety_path(variety.ingredient, variety), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

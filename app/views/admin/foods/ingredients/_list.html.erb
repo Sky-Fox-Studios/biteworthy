@@ -1,13 +1,18 @@
 <% #TODO find better way to match these up %>
-<% ingredient_varieties = @food.varieties %>
-<%= @food.ingredients.map do |ingredient|
-  variety = ingredient_varieties.select{|iv| iv.ingredient_id == ingredient.id}.first
-  if variety.present?
-    link_text = variety.ingredient_first ? "#{ingredient.name} #{variety.name}" : "#{variety.name} #{ingredient.name}"
-    "#{link_to(link_text, edit_admin_ingredient_path(ingredient))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_ingredient_path(@restaurant, @food, ingredient_id: ingredient.id), method: :post}"
-  else
-    "#{link_to(ingredient.name, edit_admin_ingredient_path(ingredient))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_ingredient_path(@restaurant, @food, ingredient_id: ingredient.id), method: :post}"
+<% varieties_and_ingredients = [] %>
+<% ingredients_in_varieties = @food.varieties.map(&:ingredient_id) %>
+<% @food.varieties.map do |variety| %>
+  <% variety_link    = link_to "<i>#{variety.name}</i>".html_safe, edit_admin_ingredient_variety_path(variety.ingredient, variety) %>
+  <% ingredient_link = link_to variety.ingredient.name, edit_admin_ingredient_path(variety.ingredient) %>
+  <% link_text = variety.ingredient_first ? "#{ingredient_link} #{variety_link}" : "#{variety_link} #{ingredient_link}" %>
+  <% varieties_and_ingredients << "#{link_text} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_variety_path(@restaurant, @food, variety_id: variety.id), method: :post}".html_safe %>
+<% end %>
+
+<% @food.ingredients.map do |ingredient|
+  if !ingredients_in_varieties.include? ingredient.id
+    varieties_and_ingredients << "#{link_to(ingredient.name, edit_admin_ingredient_path(ingredient))} #{link_to Icon.sup_x.html_safe, admin_restaurant_food_remove_ingredient_path(@restaurant, @food, ingredient_id: ingredient.id), method: :post}"
   end
-end.to_sentence.html_safe %>
+end %>
+<%= varieties_and_ingredients.to_sentence.html_safe %>
 <br>
 <br>
