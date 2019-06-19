@@ -19,17 +19,8 @@
         <td>Type</td>
         <td style="text-align:right">Points</td>
       </thead>
-      <% ego_points = [
-        [20, "Items", @items_created],
-        [15, "Photos", @photos_taken],
-        [10, "Foods", @foods_created],
-        [5, "Tags", @tags_created],
-        [2, "Ingredients", @ingredients_created],
-        [1, "Reviews", @reviews_created],
-        [" * count + 42", "Total", @points]
-      ] %>
       <tbody>
-        <% ego_points.each do |worth_name_count| %>
+        <% @ego_points.each do |worth_name_count| %>
           <tr>
             <td title="Worth <%= worth_name_count[0] %>"><%= worth_name_count[1] %>:</td>
             <td align="right"><%= worth_name_count[2] %></td>
