@@ -1,9 +1,9 @@
 class Admin::FoodsController < AdminController
-  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_ingredient]
+  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name]
   before_action :set_food, only: [
     :show, :edit, :update, :destroy,
     :add_ingredient, :add_ingredient_by_name,
-    :remove_ingredient, :remove_photo
+    :remove_ingredient, :remove_variety, :remove_photo
   ]
   before_action :set_foods, only: [:all, :index]
   respond_to :html
@@ -98,10 +98,11 @@ class Admin::FoodsController < AdminController
 
   def add_ingredient_by_name
     if params[:ingredient].present?
-      ingredient = Ingredient.find_or_create_by(name: params[:ingredient][:name].singularize.downcase)
+      ingredient = Ingredient.find_or_create_by(name: params[:ingredient][:name].singularize.downcase.strip)
       ingredient.update(user: current_user)
       if params[:ingredient][:variety].present?
-        Variety.find_or_create_by(food: @food, ingredient: ingredient, name: params[:ingredient][:variety].singularize.downcase)
+        variety = Variety.find_or_create_by(ingredient: ingredient, name: params[:ingredient][:variety].singularize.downcase.strip)
+        @food.varieties << variety unless @food.varieties.include? variety
       end
       @food.ingredients << ingredient unless @food.ingredients.include? ingredient
     end
@@ -127,7 +128,13 @@ class Admin::FoodsController < AdminController
   def remove_ingredient
     ingredient = Ingredient.find(params[:ingredient_id])
     @food.ingredients.delete(ingredient)
-    redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
+    redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
+  end
+
+  def remove_variety
+    variety = Variety.find(params[:variety_id])
+    @food.varieties.delete(variety)
+    redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food), notice: "#{variety.display_name} removed from #{@food.name}"
   end
 
   def remove_photo

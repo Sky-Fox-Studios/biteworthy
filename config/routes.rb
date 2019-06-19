@@ -81,6 +81,7 @@ Rails.application.routes.draw do
         post 'add_ingredient',         to: 'foods#add_ingredient',         as: "add_ingredient"
         post 'add_ingredient_by_name', to: 'foods#add_ingredient_by_name', as: "add_ingredient_by_name"
         post 'remove_ingredient',      to: 'foods#remove_ingredient',      as: "remove_ingredient"
+        post 'remove_variety',         to: 'foods#remove_variety',         as: "remove_variety"
         post 'remove_photo',           to: 'foods#remove_photo',           as: "remove_photo"
         post 'remove_tag',             to: 'foods_ajax#remove_tag',        as: "remove_tag"
         post 'remove_tags',            to: 'foods_ajax#remove_tags',       as: "remove_tags"
