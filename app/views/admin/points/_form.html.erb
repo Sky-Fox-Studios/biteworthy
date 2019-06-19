@@ -1,0 +1,15 @@
+<%= simple_form_for(@point) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :object_id %>
+    <%= f.input :object_class %>
+    <%= f.input :change_type %>
+    <%= f.input :worth %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :restaurant_users
   has_many :photos, as: :photo
   has_many :reviews
+  has_many :points
 
   scope :restaurant_reviews, -> { where(review_type: "Restaurant") }
 

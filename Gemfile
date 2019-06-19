@@ -4,8 +4,6 @@ source 'https://rubygems.org'
 
 gem "browser"
 gem "progress_bar"
-gem "sunspot_rails", "2.2.4"
-gem "sunspot_solr", "2.2.7"
 gem 'ajax-datatables-rails'
 gem 'autoprefixer-rails'
 gem 'cancan'                                 # Groups and roles for Devise

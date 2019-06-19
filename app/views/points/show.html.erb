@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @point.user_id %>
+</p>
+
+<p>
+  <strong>Object:</strong>
+  <%= @point.object_id %>
+</p>
+
+<p>
+  <strong>Object class:</strong>
+  <%= @point.object_class %>
+</p>
+
+<p>
+  <strong>Change type:</strong>
+  <%= @point.change_type %>
+</p>
+
+<p>
+  <strong>Worth:</strong>
+  <%= @point.worth %>
+</p>
+
+<%= link_to 'Edit', edit_point_path(@point) %> |
+<%= link_to 'Back', points_path %>

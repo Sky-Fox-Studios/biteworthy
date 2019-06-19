@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   # Basic routes
   resources :reports, only: [:new, :create]
-  resources :ingredients, only: [:index, :show]
+  resources :ingredients, :points, only: [:index, :show]
   resources :restaurants, only: [:index, :show] do
     resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
     resources :items, only: [:show] do
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'layouts#home'
-    resources :users, :tags
+    resources :users, :tags, :points
     resources :ingredients do
       post 'add_tag', to: 'ingredients#add_tag', as: 'add_tag'
       post 'remove_tag', to: 'ingredients#remove_tag', as: 'remove_tag'
