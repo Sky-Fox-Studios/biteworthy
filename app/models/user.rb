@@ -30,11 +30,11 @@ class User < ActiveRecord::Base
 
   def self.good_level_info
     [
-      [0, "Nibbler", "We all start here"],
-      [1, "Taster", "Moving up and becoming worthy"],
-      [2, "Eater", "Beginning to contribute"],
+      [4, "Nommer", "Top tier member"],
       [3, "Gobbler", "Activily maintaining"],
-      [4, "Nommer", "Top tier member"]
+      [2, "Eater", "Beginning to contribute"],
+      [1, "Taster", "Moving up and becoming worthy"],
+      [0, "Nibbler", "We all start here"],
     ]
   end
 
