@@ -44,4 +44,15 @@ class Item < ActiveRecord::Base
   def get_review(user)
     reviews.where(user: user).first
   end
+
+  def self.worth(change_type)
+    case(change_type)
+    when "create"
+      30
+    when "update"
+      3
+    when "delete"
+      -15
+    end
+  end
 end

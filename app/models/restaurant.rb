@@ -28,4 +28,15 @@ class Restaurant < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
+
+  def self.worth(change_type)
+    case(change_type)
+    when "create"
+      100
+    when "update"
+      10
+    when "delete"
+      -50
+    end
+  end
 end

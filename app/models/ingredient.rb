@@ -33,4 +33,15 @@ class Ingredient < ActiveRecord::Base
   def get_review(user)
     reviews.where(user: user).first
   end
+
+   def self.worth(change_type)
+     case(change_type)
+     when "create"
+       5
+     when "update"
+       1
+     when "delete"
+       -5
+     end
+   end
 end

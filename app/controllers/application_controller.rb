@@ -72,6 +72,7 @@ class ApplicationController < ActionController::Base
         @ingredients_created * 2  +
         @reviews_created
       @ego_points = [
+        # [100, "Restaurants", @restaurants_created],
         [20, "Items", @items_created],
         [15, "Photos", @photos_taken],
         [10, "Foods", @foods_created],

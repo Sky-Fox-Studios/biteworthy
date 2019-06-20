@@ -52,4 +52,15 @@ class Tag < ActiveRecord::Base
    def normalize_tag_name
      self.name = self.name.parameterize
    end
+
+   def self.worth(change_type)
+     case(change_type)
+     when "create"
+       5
+     when "update"
+       1
+     when "delete"
+       -5
+     end
+   end
 end
