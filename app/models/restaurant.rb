@@ -15,15 +15,15 @@ class Restaurant < ActiveRecord::Base
 
   scope :active, -> {where(active: true)}
 
-  searchable do
-    text    :name
-    text    :slogan
-    text    :about
-    boolean :active
-    text    :tags do
-      tags.map { |tag| tag.name }
-    end
-  end
+  # searchable do
+  #   text    :name
+  #   text    :slogan
+  #   text    :about
+  #   boolean :active
+  #   text    :tags do
+  #     tags.map { |tag| tag.name }
+  #   end
+  # end
 
   def to_param
     "#{id}-#{name.parameterize}"

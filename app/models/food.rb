@@ -27,14 +27,14 @@ class Food < ActiveRecord::Base
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
   scope :foods_created, ->(user) { where(user: user).count }
 
-  searchable do
-    text    :name,         boost: 11
-    text    :description
-    string  :food_group
-    text    :tags do
-      tags.map { |tag| tag.name }
-    end
-  end
+  # searchable do
+  #   text    :name,         boost: 11
+  #   text    :description
+  #   string  :food_group
+  #   text    :tags do
+  #     tags.map { |tag| tag.name }
+  #   end
+  # end
 
   def to_param
     "#{id}-#{name.parameterize}"

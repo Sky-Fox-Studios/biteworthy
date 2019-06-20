@@ -33,16 +33,17 @@ class Tag < ActiveRecord::Base
   scope :order_variety_then_name, ->{ Tag.order(variety: :asc, name: :asc)}
   scope :order_name, ->{ Tag.order(name: :asc)}
 
-  searchable do
-    text    :name
-    text    :description
-    string  :variety
+  # searchable do
+  #   text    :name
+  #   text    :description
+  #   string  :variety
+  # end
+
+  def self.save_tags(tags)
+    tags.split(',').map{ |tag_name|
+      find_or_create_by(name: tag_name.parameterize)
+    }.flatten.uniq
   end
-   def self.save_tags(tags)
-      tags.split(',').map{ |tag_name|
-         find_or_create_by(name: tag_name.parameterize)
-      }.flatten.uniq
-   end
 
    def to_param
      "#{id}-#{name}"
