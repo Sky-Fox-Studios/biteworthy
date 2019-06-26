@@ -1,4 +1,5 @@
 class Tag < ActiveRecord::Base
+  include TrackPoints
   belongs_to :user
   has_and_belongs_to_many :restaurants
   has_and_belongs_to_many :menu_groups
@@ -7,6 +8,10 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :items
   has_and_belongs_to_many :extras
   has_many :reviews, as: :review
+
+  after_create -> { save_points('create') }
+  after_update -> { save_points('update') }
+  after_destroy -> { save_points('destroy') }
 
   has_attached_file :icon,
     source_file_options: { all: "-auto-orient"},
@@ -55,13 +60,13 @@ class Tag < ActiveRecord::Base
    end
 
    def self.worth(change_type)
-     case(change_type)
-     when "create"
-       5
-     when "update"
-       1
-     when "delete"
-       -5
-     end
-   end
+    case(change_type)
+    when "create"
+      5
+    when "update"
+      1
+    when "destroy"
+      -5
+    end
+  end
 end

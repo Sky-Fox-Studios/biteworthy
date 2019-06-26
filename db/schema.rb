@@ -185,13 +185,14 @@ ActiveRecord::Schema.define(version: 20190619041152) do
   end
 
   create_table "points", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.integer  "object_id",    limit: 4
-    t.string   "object_class", limit: 255
-    t.integer  "change_type",  limit: 4
-    t.integer  "worth",        limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",        limit: 4
+    t.integer  "object_id",      limit: 4
+    t.string   "object_class",   limit: 255
+    t.integer  "change_type",    limit: 4
+    t.integer  "worth",          limit: 4
+    t.text     "object_changes", limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "prices", force: :cascade do |t|

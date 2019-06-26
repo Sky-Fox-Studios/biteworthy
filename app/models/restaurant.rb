@@ -13,6 +13,10 @@ class Restaurant < ActiveRecord::Base
 
   validates :name, presence: true
 
+  after_create -> { save_points('create') }
+  after_update -> { save_points('update') }
+  after_destroy -> { save_points('destroy') }
+
   scope :active, -> {where(active: true)}
 
   # searchable do
@@ -35,7 +39,7 @@ class Restaurant < ActiveRecord::Base
       100
     when "update"
       10
-    when "delete"
+    when "destroy"
       -50
     end
   end

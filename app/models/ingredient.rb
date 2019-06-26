@@ -20,6 +20,10 @@ class Ingredient < ActiveRecord::Base
   has_many :reviews, as: :review
   attr_accessor :variety
 
+  after_create -> { save_points('create') }
+  after_update -> { save_points('update') }
+  after_destroy -> { save_points('destroy') }
+
   scope :ingredients_created, ->(user) { where(user: user).count }
 
   def to_param
@@ -40,7 +44,7 @@ class Ingredient < ActiveRecord::Base
        5
      when "update"
        1
-     when "delete"
+     when "destroy"
        -5
      end
    end

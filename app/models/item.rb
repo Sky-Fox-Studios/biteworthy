@@ -29,6 +29,10 @@ class Item < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
 
+  after_create -> { save_points('create') }
+  after_update -> { save_points('update') }
+  after_destroy -> { save_points('destroy') }
+
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
   scope :items_created, ->(user) { where(user: user).count }
 
@@ -51,7 +55,7 @@ class Item < ActiveRecord::Base
       30
     when "update"
       3
-    when "delete"
+    when "destroy"
       -15
     end
   end
