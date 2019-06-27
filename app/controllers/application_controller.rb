@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   include SentientController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  helper_method :only_nom
   protect_from_forgery with: :exception
   before_action :player_reviews, :player_points, :login_provider
   before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
@@ -14,11 +13,15 @@ class ApplicationController < ActionController::Base
 
   def player_reviews
     if current_user.present?
-      #TODO add caching
-      @all_reviews  = current_user.reviews
-      @bad_reviews  = @all_reviews.where('rating < 0')
-      @good_reviews = @all_reviews.where('rating > 0')
-      @neg_reviews  = @all_reviews.where('rating = 0')
+     @player_reviews = Rails.cache.fetch("reviews-user_#{current_user.id}",
+                                         expires_in: 1.hours,
+                                         race_condition_ttl: 10,
+                                         force: @force_recache) do
+        Review.where(user: current_user).to_a
+      end
+      @bad_reviews  = @player_reviews.select{|r| Review.ratings[r.rating] < 0}
+      # @neg_reviews  = @player_reviews.select{|r| Review.ratings[r.rating] = 0}
+      @good_reviews = @player_reviews.select{|r| Review.ratings[r.rating] > 0}
     end
   end
 
@@ -28,12 +31,19 @@ class ApplicationController < ActionController::Base
 
   def player_points
     if current_user
-     @total_user_points = Rails.cache.fetch("total_user_points-#{current_user.id}",
+     user_points = Rails.cache.fetch("points-user_#{current_user.id}_sum",
                                          expires_in: 1.hours,
                                          race_condition_ttl: 10,
                                          force: @force_recache) do
         Point.where(user: current_user).sum(:worth)
       end
+     review_sum = Rails.cache.fetch("reviews-user_#{current_user.id}_sum",
+                                         expires_in: 1.hours,
+                                         race_condition_ttl: 10,
+                                         force: @force_recache) do
+        Review.where(user: current_user).sum(:rating)
+      end
+      @total_user_points = user_points + review_sum
     end
   end
 
@@ -109,10 +119,6 @@ class ApplicationController < ActionController::Base
         @items = Item.where(restaurant: @restaurant).page(page).per(per_page_count)
       end
     end
-  end
-
-  def only_nom
-    current_user && current_user.nom?
   end
 
   def set_tags

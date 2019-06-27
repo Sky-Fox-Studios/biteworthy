@@ -15,9 +15,9 @@ namespace :one_time do
         Point.create(user_id: me.id,
                      object_id: c.id,
                      object_class: c.class.to_s,
-                     change_type: 'create_object',
+                     change_type: Point.change_types['create_object'],
                      worth: c.worth('create_object'),
-                     object_changes: {custom: "Create task"}.to_json)
+                     object_changes: {custom: "Migration task"}.to_json)
       end
     end
     # TODO write migration to remove user_id from these tables

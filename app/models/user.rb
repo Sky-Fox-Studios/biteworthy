@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :points
 
+  after_create -> { give_first_points('create_object') }
+
   scope :restaurant_reviews, -> { where(review_type: "Restaurant") }
 
   enum level: {nom: 11,
@@ -48,6 +50,15 @@ class User < ActiveRecord::Base
       [-4, "Slop", "Creating abysmal content"],
       [-5, "Trash", "Without value"]
     ]
+  end
+
+  def give_first_points(change_type)
+    Point.create(user_id: self.id,
+                 object_id: self.id,
+                 object_class: self.class.to_s,
+                 change_type: Point.change_types[change_type],
+                 worth: 42,
+                 object_changes: {custom: "New BiteWorthy member"}.to_json)
   end
 
   def active_for_authentication?
