@@ -28,7 +28,12 @@ class ApplicationController < ActionController::Base
 
   def player_points
     if current_user
-      @total_user_points = Point.where(user: current_user).sum(:worth)
+     @total_user_points = Rails.cache.fetch("total_user_points-#{current_user.id}",
+                                         expires_in: 1.hours,
+                                         race_condition_ttl: 10,
+                                         force: @force_recache) do
+        Point.where(user: current_user).sum(:worth)
+      end
     end
   end
 

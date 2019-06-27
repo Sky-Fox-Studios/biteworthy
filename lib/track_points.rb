@@ -18,7 +18,7 @@ module TrackPoints
     Point.create(user_id: User.current.id,
                  object_id: self.id,
                  object_class: self.class.to_s,
-                 change_type: change_type,
+                 change_type: Point.change_types[change_type],
                  worth: worth(change_type),
                  object_changes: self.changes.except(:created_at, :updated_at).to_json)
 

@@ -1,9 +1,12 @@
 class Point < ActiveRecord::Base
-  belongs_to :user
+  include CacheInvalidator
+  after_create :invalidate_cache
 
-  enum change_types: [:create_object, :update_object, :destroy_object]
+  belongs_to :user
   #TODO polymorphic associations
   belongs_to :object, polymorphic: true
+
+  enum change_types: [:create_object, :update_object, :destroy_object]
 
   def display_change_type
     case change_type
