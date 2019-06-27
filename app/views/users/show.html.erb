@@ -14,7 +14,7 @@
   </div>
   <div class="small-12 medium-3 columns">
     <h5>BiteWorthy Stats</h5>
-    <p>You have earned <%= @total_user_points %> points</p>
+    <p>You have earned <%= link_to "#{@total_user_points} points", my_points_path %> </p>
   </div>
 
   <%= render partial: "users/preferences" %>

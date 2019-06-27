@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Users
   get 'me',          to: 'users#show',        as: 'me'
+  get 'my_points',   to: 'users#my_points',      as: 'my_points'
   get 'choose_tags', to: 'users#choose_tags', as: 'choose_tags'
 
   # Main Pages

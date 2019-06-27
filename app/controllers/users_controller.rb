@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :user_reviews, only: :my_points
 
   def set_user
     @tag_reviews        = Review.tag_reviews(current_user).order_desc
@@ -29,5 +30,14 @@ class UsersController < ApplicationController
     @tags = [ingredient_tags, choice_tags, nature_tags]
     @ratings = Review.ratings
     @reviews = Review.tag_reviews(current_user.id)
+  end
+
+  def my_points
+     @user_points = Rails.cache.fetch("points-user_#{current_user.id}",
+                                         expires_in: 1.hours,
+                                         race_condition_ttl: 10,
+                                         force: @force_recache) do
+        Point.where(user: current_user).to_a
+      end
   end
 end
