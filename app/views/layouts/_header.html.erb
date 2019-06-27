@@ -55,7 +55,7 @@
             </li>
           <% end %>
           <li class="admin-nav-primary-item nav-right">
-            <%= link_to "<span class='player-points'>[#{@user_points}]</span> #{current_user.user_name}".html_safe, me_path %>
+            <%= link_to "<span class='player-points'>[#{@total_user_points}]</span> #{current_user.user_name}".html_safe, me_path %>
             <ul class="admin-nav-secondary-list">
               <%= link_to edit_user_registration_path do %>
                 <li class="admin-nav-secondary-item">Edit</li>

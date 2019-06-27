@@ -27,62 +27,8 @@ class ApplicationController < ActionController::Base
   end
 
   def player_points
-    if current_user.present?
-      #TODO add caching
-      @items_created = Rails.cache.fetch("items-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Item.items_created(current_user)
-      end
-      @photos_taken = Rails.cache.fetch("photos-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Photo.photos_taken(current_user)
-      end
-      @foods_created = Rails.cache.fetch("foods-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Food.foods_created(current_user)
-      end
-      @tags_created = Rails.cache.fetch("tags-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Tag.tags_created(current_user)
-      end
-      @reviews_created = Rails.cache.fetch("tags-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Review.reviews_created(current_user)
-      end
-      @ingredients_created = Rails.cache.fetch("tags-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Ingredient.ingredients_created(current_user)
-      end
-
-      @user_points = 42 + # You are a user on BiteWorthy that is worth 42 points
-        @items_created       * 20 +
-        @photos_taken        * 15 +
-        @foods_created       * 10 +
-        @tags_created        * 5  +
-        @ingredients_created * 2  +
-        @reviews_created
-      @ego_points = [
-        # [100, "Restaurants", @restaurants_created],
-        [20, "Items", @items_created],
-        [15, "Photos", @photos_taken],
-        [10, "Foods", @foods_created],
-        [5, "Tags", @tags_created],
-        [2, "Ingredients", @ingredients_created],
-        [1, "Reviews", @reviews_created],
-        [" * count + 42", "Total", @user_points]
-      ]
+    if current_user
+      @total_user_points = Point.where(user: current_user).sum(:worth)
     end
   end
 

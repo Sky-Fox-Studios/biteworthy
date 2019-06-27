@@ -30,23 +30,23 @@ module TrackPoints
 
   def worth(change_type)
     base_value = case self.class.to_s
-      when "Restaurant",
+      when "Restaurant"
         50
-      when "Address",
+      when "Address"
         20
-      when "Menu",
+      when "Menu"
         15
-      when "Item",
+      when "Item"
         15
-      when "Price",
+      when "Price"
         10
-      when "Food",
+      when "Food"
         10
-      when "Extra",
+      when "Extra"
         5
-      when "Tag",
+      when "Tag"
         5
-      when "Ingredient",
+      when "Ingredient"
         5
       when "Variety"
         5
@@ -54,11 +54,11 @@ module TrackPoints
         1
       end
     case change_type
-    when "create"
+    when "create_object"
       base_value * 2
-    when "update"
+    when "update_object"
       (base_value / 5.0).ceil
-    when "destroy"
+    when "destroy_object"
       base_value * -1
     else
       base_value

@@ -49,15 +49,4 @@ class Food < ActiveRecord::Base
   def get_review(user)
     reviews.where(user: user).first
   end
-
-  def self.worth(change_type)
-    case(change_type)
-    when "create"
-      15
-    when "update"
-      2
-    when "destroy"
-      -5
-    end
-  end
 end
