@@ -2,6 +2,10 @@ class AdminController < ApplicationController
   before_filter :authenticate_user!
   helper_method :save_points
 
+  def only_nom
+    redirect_to root_path if !current_user.nom?
+  end
+
   def home
   end
 

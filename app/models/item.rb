@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  include TrackPoints
   # include CacheInvalidator
   # after_create :invalidate_cache
   # after_update :invalidate_cache
@@ -29,10 +30,6 @@ class Item < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
 
-  after_create -> { save_points('create') }
-  after_update -> { save_points('update') }
-  after_destroy -> { save_points('destroy') }
-
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
   scope :items_created, ->(user) { where(user: user).count }
 
@@ -47,16 +44,5 @@ class Item < ActiveRecord::Base
 
   def get_review(user)
     reviews.where(user: user).first
-  end
-
-  def self.worth(change_type)
-    case(change_type)
-    when "create"
-      30
-    when "update"
-      3
-    when "destroy"
-      -15
-    end
   end
 end

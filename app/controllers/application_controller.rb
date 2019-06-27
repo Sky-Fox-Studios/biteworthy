@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include SentientController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  helper_method :only_nom
   protect_from_forgery with: :exception
   before_action :player_reviews, :player_points, :login_provider
   before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
@@ -65,7 +66,7 @@ class ApplicationController < ActionController::Base
         Ingredient.ingredients_created(current_user)
       end
 
-      @points = 42 + # You are a user on BiteWorthy that is worth 42 points
+      @user_points = 42 + # You are a user on BiteWorthy that is worth 42 points
         @items_created       * 20 +
         @photos_taken        * 15 +
         @foods_created       * 10 +
@@ -80,7 +81,7 @@ class ApplicationController < ActionController::Base
         [5, "Tags", @tags_created],
         [2, "Ingredients", @ingredients_created],
         [1, "Reviews", @reviews_created],
-        [" * count + 42", "Total", @points]
+        [" * count + 42", "Total", @user_points]
       ]
     end
   end
@@ -157,6 +158,10 @@ class ApplicationController < ActionController::Base
         @items = Item.where(restaurant: @restaurant).page(page).per(per_page_count)
       end
     end
+  end
+
+  def only_nom
+    current_user && current_user.nom?
   end
 
   def set_tags

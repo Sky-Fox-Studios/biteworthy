@@ -1,35 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
 
-<h1>Listing Points</h1>
+  <div class="small-12 columns">
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Object</th>
-      <th>Object class</th>
-      <th>Change type</th>
-      <th>Worth</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <h1>Listing Points</h1>
+  </div>
+  <div class="small-12 columns">
 
-  <tbody>
-    <% @points.each do |point| %>
-      <tr>
-        <td><%= point.user_id %></td>
-        <td><%= point.object_id %></td>
-        <td><%= point.object_class %></td>
-        <td><%= point.change_type %></td>
-        <td><%= point.worth %></td>
-        <td><%= link_to 'Show', point %></td>
-        <td><%= link_to 'Edit', edit_point_path(point) %></td>
-        <td><%= link_to 'Destroy', point, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Object</th>
+          <th>Change type</th>
+          <th>Worth</th>
+          <th>Changes</th>
+          <th>Date</th>
+        </tr>
+      </thead>
 
-<br>
-
-<%= link_to 'New Point', new_point_path %>
+      <tbody>
+        <% @points.each do |point| %>
+          <tr>
+            <td><%= point.user.user_name %></td>
+            <td>
+              <%= link_to "#{point.object_class}(#{point.object_id})", admin_point_path(point) %>
+            </td>
+            <td><%= point.display_change_type %></td>
+            <td><%= point.worth %></td>
+            <td><%= point.object_changes %></td>
+            <td><%= point.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

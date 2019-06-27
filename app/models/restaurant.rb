@@ -1,4 +1,5 @@
 class Restaurant < ActiveRecord::Base
+  include TrackPoints
   has_many :users, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :menu_groups, dependent: :destroy
@@ -12,10 +13,6 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :addresses
 
   validates :name, presence: true
-
-  after_create -> { save_points('create') }
-  after_update -> { save_points('update') }
-  after_destroy -> { save_points('destroy') }
 
   scope :active, -> {where(active: true)}
 
@@ -31,16 +28,5 @@ class Restaurant < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.parameterize}"
-  end
-
-  def self.worth(change_type)
-    case(change_type)
-    when "create"
-      100
-    when "update"
-      10
-    when "destroy"
-      -50
-    end
   end
 end

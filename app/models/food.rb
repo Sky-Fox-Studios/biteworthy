@@ -1,4 +1,5 @@
 class Food < ActiveRecord::Base
+  include TrackPoints
   belongs_to :restaurant
   belongs_to :user
 
@@ -24,10 +25,6 @@ class Food < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :restaurant_id
 
   enum food_group: [:dairy, :oils_fats, :meat_poultry, :fish_seafood, :vegtables, :fruits, :breads_cereals_grains, :spices, :desserts_sweets, :water]
-
-  after_create -> { save_points('create') }
-  after_update -> { save_points('update') }
-  after_destroy -> { save_points('destroy') }
 
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
   scope :foods_created, ->(user) { where(user: user).count }

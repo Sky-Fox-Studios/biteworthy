@@ -1,4 +1,5 @@
 class Ingredient < ActiveRecord::Base
+  include TrackPoints
   before_validation :set_normalized_name
   belongs_to :user
 
@@ -20,10 +21,6 @@ class Ingredient < ActiveRecord::Base
   has_many :reviews, as: :review
   attr_accessor :variety
 
-  after_create -> { save_points('create') }
-  after_update -> { save_points('update') }
-  after_destroy -> { save_points('destroy') }
-
   scope :ingredients_created, ->(user) { where(user: user).count }
 
   def to_param
@@ -37,15 +34,4 @@ class Ingredient < ActiveRecord::Base
   def get_review(user)
     reviews.where(user: user).first
   end
-
-   def self.worth(change_type)
-     case(change_type)
-     when "create"
-       5
-     when "update"
-       1
-     when "destroy"
-       -5
-     end
-   end
 end

@@ -9,10 +9,6 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :extras
   has_many :reviews, as: :review
 
-  after_create -> { save_points('create') }
-  after_update -> { save_points('update') }
-  after_destroy -> { save_points('destroy') }
-
   has_attached_file :icon,
     source_file_options: { all: "-auto-orient"},
     styles: {
@@ -58,15 +54,4 @@ class Tag < ActiveRecord::Base
    def normalize_tag_name
      self.name = self.name.parameterize
    end
-
-   def self.worth(change_type)
-    case(change_type)
-    when "create"
-      5
-    when "update"
-      1
-    when "destroy"
-      -5
-    end
-  end
 end

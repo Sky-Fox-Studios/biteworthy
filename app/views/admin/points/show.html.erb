@@ -1,29 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-12 columns">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @point.user_id %>
-</p>
+    <p>
+    <strong>User:</strong>
+    <%= @point.user.user_name %>
+    </p>
 
-<p>
-  <strong>Object:</strong>
-  <%= @point.object_id %>
-</p>
+    <p>
+    <strong>Object:</strong>
+    <%= @point.object_class %>(<%= @point.object_id %>)
+    </p>
 
-<p>
-  <strong>Object class:</strong>
-  <%= @point.object_class %>
-</p>
+    <p>
+    <strong>Change type:</strong>
+    <%= @point.display_change_type %>
+    </p>
 
-<p>
-  <strong>Change type:</strong>
-  <%= @point.change_type %>
-</p>
+    <p>
+    <strong>Worth:</strong>
+    <%= @point.worth %>
+    </p>
 
-<p>
-  <strong>Worth:</strong>
-  <%= @point.worth %>
-</p>
-
-<%= link_to 'Edit', edit_point_path(@point) %> |
-<%= link_to 'Back', points_path %>
+    <%= link_to 'Back', admin_points_path %>
+  </div>
+</div>
