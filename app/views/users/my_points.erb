@@ -6,8 +6,8 @@
   <div class="small-12 medium-4 large-5 columns">
   <br>
     <h5><%= link_to "Reviews", reviews_path %></h5>
-    <p>Positive reviews are adding: <%= @good_reviews.map{| r| Review.ratings[r.rating]}.sum %> points</p>
-    <p>Negative reviews are subtracting: <%= @bad_reviews.map{| r| Review.ratings[r.rating]}.sum %> points</p>
+    <p>Positive reviews are adding: <%= @good_reviews_sum %> points</p>
+    <p>Negative reviews are subtracting: <%= @bad_reviews_sum %> points</p>
   </div>
   <div class="small-12 medium-4 large-2 columns">
   <br>
@@ -17,6 +17,7 @@
   <div class="small-12 medium-4 large-5 columns">
   <br>
     <h5><%= link_to "UGC", "https://en.wikipedia.org/wiki/User-generated_content" %></h5>
+    <p>You have generated <%= @user_points_sum %> BiteWorthy points.</p>
     <p>Join the BiteWorthy Team and start contributing content to local restaurants.</p>
     <p><a href="#" class="email" data-user="info" data-domain="biteworthy.restaurant" onclick="this.href='mailto:'+this.getAttribute('data-user')+'&#64;'+this.getAttribute('data-domain');this.click()"></a></p>
   </div>

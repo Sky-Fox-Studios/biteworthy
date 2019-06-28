@@ -33,11 +33,11 @@ class UsersController < ApplicationController
   end
 
   def my_points
-     @user_points = Rails.cache.fetch("points-user_#{current_user.id}",
-                                         expires_in: 1.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Point.where(user: current_user).to_a
-      end
+    @user_points = Rails.cache.fetch("points-user_#{current_user.id}",
+                                     expires_in: 1.hours,
+                                     race_condition_ttl: 10,
+                                     force: @force_recache) do
+      Point.where(user: current_user).to_a
+    end
   end
 end

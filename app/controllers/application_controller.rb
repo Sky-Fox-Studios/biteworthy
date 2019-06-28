@@ -19,9 +19,11 @@ class ApplicationController < ActionController::Base
                                          force: @force_recache) do
         Review.where(user: current_user).to_a
       end
-      @bad_reviews  = @user_reviews.select{|r| Review.ratings[r.rating] < 0}
+      @bad_reviews     = @user_reviews.select{|r| Review.ratings[r.rating] < 0}
+      @bad_reviews_sum = @bad_reviews.map{| r| Review.ratings[r.rating]}.sum
       # @neg_reviews  = @user_reviews.select{|r| Review.ratings[r.rating] = 0}
-      @good_reviews = @user_reviews.select{|r| Review.ratings[r.rating] > 0}
+      @good_reviews     = @user_reviews.select{|r| Review.ratings[r.rating] > 0}
+      @good_reviews_sum = @good_reviews.map{| r| Review.ratings[r.rating]}.sum
     end
   end
 
@@ -31,19 +33,19 @@ class ApplicationController < ActionController::Base
 
   def player_points
     if current_user
-     user_points = Rails.cache.fetch("points-user_#{current_user.id}_sum",
-                                         expires_in: 1.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
+      @user_points_sum = Rails.cache.fetch("points-user_#{current_user.id}_sum",
+                                           expires_in: 1.hours,
+                                           race_condition_ttl: 10,
+                                           force: @force_recache) do
         Point.where(user: current_user).sum(:worth)
       end
-     review_sum = Rails.cache.fetch("reviews-user_#{current_user.id}_sum",
-                                         expires_in: 1.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
+      @review_sum = Rails.cache.fetch("reviews-user_#{current_user.id}_sum",
+                                      expires_in: 1.hours,
+                                      race_condition_ttl: 10,
+                                      force: @force_recache) do
         Review.where(user: current_user).sum(:rating)
       end
-      @total_user_points = user_points + review_sum
+      @total_user_points = @user_points_sum + @review_sum
     end
   end
 
