@@ -1,5 +1,5 @@
 <% if current_user %>
-  <% review = @all_reviews.select{|r| r.review_id == item.id && r.review_type == item.class.to_s}.first %>
+  <% review = @user_reviews.select{|r| r.review_id == item.id && r.review_type == item.class.to_s}.first %>
 <% end %>
 
 <div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>" data-item-review-rating="<%= review.present? ? Review.ratings[review.rating] : 0 %>">
