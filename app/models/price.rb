@@ -1,4 +1,5 @@
 class Price < ActiveRecord::Base
+  include TrackPoints
   belongs_to :priced, polymorphic: true
 
   validates :value, presence: true

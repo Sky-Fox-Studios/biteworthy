@@ -14,20 +14,7 @@
   </div>
   <div class="small-12 medium-3 columns">
     <h5>BiteWorthy Stats</h5>
-    <table>
-      <thead>
-        <td>Type</td>
-        <td style="text-align:right">Points</td>
-      </thead>
-      <tbody>
-        <% @ego_points.each do |worth_name_count| %>
-          <tr>
-            <td title="Worth <%= worth_name_count[0] %>"><%= worth_name_count[1] %>:</td>
-            <td align="right"><%= worth_name_count[2] %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <p>You have earned <%= link_to "#{@total_user_points} points", my_points_path %> </p>
   </div>
 
   <%= render partial: "users/preferences" %>

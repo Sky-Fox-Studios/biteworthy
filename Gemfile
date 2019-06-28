@@ -4,8 +4,6 @@ source 'https://rubygems.org'
 
 gem "browser"
 gem "progress_bar"
-gem "sunspot_rails", "2.2.4"
-gem "sunspot_solr", "2.2.7"
 gem 'ajax-datatables-rails'
 gem 'autoprefixer-rails'
 gem 'cancan'                                 # Groups and roles for Devise
@@ -31,6 +29,7 @@ gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '4.2.11'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rake', '12.0.0'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
+gem 'sentient_user', '0.3.3'                 # Current_user in models
 gem 'simple_form'
 gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets

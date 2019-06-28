@@ -13,6 +13,9 @@
         <li class="nav-secondary"><%= link_to "Foods",       admin_foods_path %></li>
         <li class="nav-secondary"><%= link_to "Tags",        admin_tags_path %></li>
         <li class="nav-secondary"><%= link_to "*Ingredients*", admin_ingredients_path %></li>
+        <% if current_user.nom? %>
+          <li class="nav-secondary"><%= link_to "Points", admin_points_path %></li>
+        <% end %>
       <% end %>
       <li class="nav-primary"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
     <% else %>

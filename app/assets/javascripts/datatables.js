@@ -55,6 +55,27 @@ $(document).ready(function () {
     ]
   });
 
+  $('#admin-points-table').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": $('#admin-points-table').data('source'),
+      "type": "GET",
+      "complete": function() {
+        console.log("dataTable loaded.");
+      }
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "name"},
+      {"data": "object_class"},
+      {"data": "object_id"},
+      {"data": "worth"},
+      {"data": "object_changes"},
+      {"data": "created_at"},
+      {"data": "actions", "sortable": false, "className": "nowrap"}
+    ]
+  });
   $('#admin-ingredients-table').dataTable({
     "processing": true,
     "serverSide": true,

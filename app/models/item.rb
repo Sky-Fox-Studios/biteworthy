@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  include TrackPoints
   # include CacheInvalidator
   # after_create :invalidate_cache
   # after_update :invalidate_cache
@@ -32,10 +33,10 @@ class Item < ActiveRecord::Base
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
   scope :items_created, ->(user) { where(user: user).count }
 
-  searchable do
-    text    :name
-    text    :description
-  end
+  # searchable do
+  #   text    :name
+  #   text    :description
+  # end
 
   def to_param
     "#{id}-#{name.parameterize}"

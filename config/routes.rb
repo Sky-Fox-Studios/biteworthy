@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Users
   get 'me',          to: 'users#show',        as: 'me'
+  get 'my_points',   to: 'users#my_points',      as: 'my_points'
   get 'choose_tags', to: 'users#choose_tags', as: 'choose_tags'
 
   # Main Pages
@@ -40,7 +41,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'layouts#home'
-    resources :users, :tags
+    resources :users, :tags, :points
+    resources :points, only: [:index, :show]
     resources :ingredients do
       post 'add_tag', to: 'ingredients#add_tag', as: 'add_tag'
       post 'remove_tag', to: 'ingredients#remove_tag', as: 'remove_tag'

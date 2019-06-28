@@ -6,7 +6,11 @@ module CacheInvalidator
 
     def set_cache_keys
       case self.class.to_s
-      when 'Article'
+      when 'Point'
+        add_cache_keys(["points-user_#{self.user_id}_sum"])
+      when 'Review'
+        add_cache_keys(["reviews-user_#{self.user_id}_sum"])
+
       end
     end
 
@@ -14,10 +18,6 @@ module CacheInvalidator
       set_cache_keys
       clear_cache(@cache_keys)
       log_invalidate(@cache_keys)
-    end
-
-    def article_show_action
-      add_cache_keys([""])
     end
 
 
