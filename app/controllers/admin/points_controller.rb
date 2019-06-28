@@ -5,7 +5,10 @@ class Admin::PointsController < AdminController
   # GET /points
   # GET /points.json
   def index
-    @points = Point.joins(:user).all
+    respond_to do |format|
+      format.html
+      format.json { render json: PointDatatable.new(params, view_context: view_context) }
+    end
   end
 
   # GET /points/1
