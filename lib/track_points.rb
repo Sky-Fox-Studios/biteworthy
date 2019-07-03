@@ -25,30 +25,24 @@ module TrackPoints
   end
 
   def save_for
-    ["Restaurant", "Address", "Menu", "Item", "Price", "Extra", "Food", "Tag", "Ingredient", "Variety"] # Review
+    ["Restaurant", "Item", "Food", "Ingredient", "Address", "Menu", "MenuGroup", "Price", "Tag", "Extra", "Variety", "Hour", "Photo"]
   end
 
   def worth(change_type)
     base_value = case self.class.to_s
       when "Restaurant"
-        50
-      when "Address"
-        20
-      when "Menu"
-        15
+        100
       when "Item"
-        15
-      when "Price"
-        10
+        30
       when "Food"
-        10
-      when "Extra"
-        5
-      when "Tag"
-        5
+        25
       when "Ingredient"
-        5
-      when "Variety"
+        20
+      when "Address", "Menu", "MenuGroup",  "Price"
+        15
+      when "Tag", "Photo"
+        10
+      when "Extra", "Variety", "Hour"
         5
       else
         1
