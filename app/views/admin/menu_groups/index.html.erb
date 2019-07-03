@@ -1,30 +1,34 @@
-<h1>Listing <%=@restaurant.name%> Menu Groups</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Menu</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Listing <%=@restaurant.name%> Menu Groups</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Menu</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @menu_groups.each do |menu_group| %>
-      <tr>
-        <td><%= menu_group.menus.map(&:name).to_sentence %></td>
-        <td><%= menu_group.name %></td>
-        <td><%= menu_group.description %></td>
-        <td><%= link_to 'Edit', edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %></td>
-        <td><%= link_to 'Destroy', admin_restaurant_menu_group_path(@restaurant, menu_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @menu_groups.each do |menu_group| %>
+          <tr>
+            <td><%= menu_group.menus.map(&:name).to_sentence %></td>
+            <td><%= menu_group.name %></td>
+            <td><%= menu_group.description %></td>
+            <td><%= link_to 'Edit', edit_admin_restaurant_menu_group_path(@restaurant, menu_group) %></td>
+            <td><%= link_to 'Destroy', admin_restaurant_menu_group_path(@restaurant, menu_group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<br>
-<%= render partial: "admin/restaurants/footer", locals: {
-  buttons: [
-    (link_to 'Menus', admin_restaurant_menus_path(@restaurant), class: "button tiny radius"),
-    (link_to 'New Menu group', new_admin_restaurant_menu_group_path(@restaurant), class: "button tiny radius success")
-  ]} %>
+    <br>
+    <%= render partial: "admin/restaurants/footer", locals: {
+      buttons: [
+        (link_to 'Menus', admin_restaurant_menus_path(@restaurant), class: "button tiny radius"),
+        (link_to 'New Menu group', new_admin_restaurant_menu_group_path(@restaurant), class: "button tiny radius success")
+      ]} %>
+  </div>
+</div>

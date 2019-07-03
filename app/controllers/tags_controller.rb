@@ -2,7 +2,7 @@ class TagsController < ApplicationController
  before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
  def index
-   @tags = Tag.joins(:reviews).order(name: :asc)
+   @tags = Tag.joins(:items).order(name: :asc).uniq
  end
 
  def new

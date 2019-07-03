@@ -12,6 +12,7 @@ module Bwd
     config.time_zone = "Mountain Time (US & Canada)"
     config.active_record.default_timezone = :local
 
+    config.autoload_paths += %W(#{config.root}/lib)
     config.before_configuration do
       ::Services = OpenStruct.new(YAML.load_file("#{Rails.root}/config/services.yml")[Rails.env])
     end

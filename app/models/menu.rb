@@ -1,4 +1,5 @@
 class Menu < ActiveRecord::Base
+  include TrackPoints
    belongs_to :restaurant
   #  has_and_belongs_to_many :items, dependent: :destroy
 
@@ -15,5 +16,4 @@ class Menu < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
-
 end

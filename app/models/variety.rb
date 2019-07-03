@@ -1,4 +1,5 @@
 class Variety < ActiveRecord::Base
+  include TrackPoints
   before_validation :set_normalized_name
   belongs_to :ingredient
   has_many :foods, through: :foods_varieties

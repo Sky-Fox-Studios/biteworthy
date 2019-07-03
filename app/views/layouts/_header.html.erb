@@ -6,7 +6,7 @@
       </div>
     <% else %>
       <div class="home-logo">
-        <%= link_to image_tag("bite-worthy-durango"), root_path %>
+        <%= link_to image_tag("BiteWorthy.png"), root_path %>
       </div>
     <% end %>
     <div class="bw-top-bar">
@@ -46,11 +46,16 @@
               <%= link_to admin_ingredients_path do %>
                 <li class="admin-nav-secondary-item">Ingredients*</li>
               <% end %>
+              <% if current_user.nom? %>
+                <%= link_to admin_points_path do %>
+                  <li class="admin-nav-secondary-item">Points</li>
+                <% end %>
+              <% end %>
               </ul>
             </li>
           <% end %>
           <li class="admin-nav-primary-item nav-right">
-            <%= link_to "<span class='player-points'>[#{@points}]</span> #{current_user.user_name}".html_safe, me_path %>
+            <%= link_to "<span class='player-points'>[#{@total_user_points}]</span> #{current_user.user_name}".html_safe, me_path %>
             <ul class="admin-nav-secondary-list">
               <%= link_to edit_user_registration_path do %>
                 <li class="admin-nav-secondary-item">Edit</li>
@@ -79,7 +84,7 @@
       </div>
     <% else %>
     <div class="home-logo">
-      <%= link_to image_tag("bite-worthy-durango"), root_path %>
+      <%= link_to image_tag("BiteWorthy.png"), root_path %>
     </div>
   <% end %>
     <a href="#" class="slideout-menu-toggle left-header-btn">

@@ -1,4 +1,5 @@
 class Extra < ActiveRecord::Base
+  include TrackPoints
   belongs_to :restaurant
 
   enum extra_type: [:addition, :choice]

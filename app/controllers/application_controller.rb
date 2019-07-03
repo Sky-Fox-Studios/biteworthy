@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
+  include SentientController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :player_reviews, :player_points, :login_provider
+  before_action :player_points, :login_provider, :user_reviews
   before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
   before_action :page_history, only: [:create, :update]
 
@@ -10,13 +11,19 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
-  def player_reviews
+  def user_reviews
     if current_user.present?
-      #TODO add caching
-      @all_reviews  = current_user.reviews
-      @bad_reviews  = @all_reviews.where('rating < 0')
-      @good_reviews = @all_reviews.where('rating > 0')
-      @neg_reviews  = @all_reviews.where('rating = 0')
+     @user_reviews = Rails.cache.fetch("reviews-user_#{current_user.id}",
+                                         expires_in: 1.hours,
+                                         race_condition_ttl: 10,
+                                         force: @force_recache) do
+        Review.where(user: current_user).to_a
+      end
+      @bad_reviews     = @user_reviews.select{|r| Review.ratings[r.rating] < 0}
+      @bad_reviews_sum = @bad_reviews.map{| r| Review.ratings[r.rating]}.sum
+      # @neg_reviews  = @user_reviews.select{|r| Review.ratings[r.rating] = 0}
+      @good_reviews     = @user_reviews.select{|r| Review.ratings[r.rating] > 0}
+      @good_reviews_sum = @good_reviews.map{| r| Review.ratings[r.rating]}.sum
     end
   end
 
@@ -25,61 +32,20 @@ class ApplicationController < ActionController::Base
   end
 
   def player_points
-    if current_user.present?
-      #TODO add caching
-      @items_created = Rails.cache.fetch("items-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Item.items_created(current_user)
+    if current_user
+      @user_points_sum = Rails.cache.fetch("points-user_#{current_user.id}_sum",
+                                           expires_in: 1.hours,
+                                           race_condition_ttl: 10,
+                                           force: @force_recache) do
+        Point.where(user: current_user).sum(:worth)
       end
-      @photos_taken = Rails.cache.fetch("photos-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Photo.photos_taken(current_user)
+      @review_sum = Rails.cache.fetch("reviews-user_#{current_user.id}_sum",
+                                      expires_in: 1.hours,
+                                      race_condition_ttl: 10,
+                                      force: @force_recache) do
+        Review.where(user: current_user).sum(:rating)
       end
-      @foods_created = Rails.cache.fetch("foods-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Food.foods_created(current_user)
-      end
-      @tags_created = Rails.cache.fetch("tags-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Tag.tags_created(current_user)
-      end
-      @reviews_created = Rails.cache.fetch("tags-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Review.reviews_created(current_user)
-      end
-      @ingredients_created = Rails.cache.fetch("tags-user-#{current_user.id}",
-                                         expires_in: 12.hours,
-                                         race_condition_ttl: 10,
-                                         force: @force_recache) do
-        Ingredient.ingredients_created(current_user)
-      end
-
-      @points = 42 + # You are a user on BiteWorthy that is worth 42 points
-        @items_created       * 20 +
-        @photos_taken        * 15 +
-        @foods_created       * 10 +
-        @tags_created        * 5  +
-        @ingredients_created * 2  +
-        @reviews_created
-      @ego_points = [
-        [20, "Items", @items_created],
-        [15, "Photos", @photos_taken],
-        [10, "Foods", @foods_created],
-        [5, "Tags", @tags_created],
-        [2, "Ingredients", @ingredients_created],
-        [1, "Reviews", @reviews_created],
-        [" * count + 42", "Total", @points]
-      ]
+      @total_user_points = @user_points_sum + @review_sum
     end
   end
 

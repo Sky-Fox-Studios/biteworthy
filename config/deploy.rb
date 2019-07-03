@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.10.2'
 
-set :application, 'bwd'
-set :repo_url, 'git@github.com:shadoath/bwd.git'
+set :application, 'biteworthy'
+set :repo_url, 'git@github.com:shadoath/biteworthy.git'
 set :rake, 'bundle exec rake'
 set :bundle_flags, "--deployment" # --quiet
 set :scm, :git
@@ -49,65 +49,7 @@ namespace :figaro do
   end
 end
 
-namespace :solr do
-  desc "start solr"
-  task :start do
-    on roles(:app) do
-      within release_path do
-        puts "Starting solr"
-        begin
-          # execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:start"
-        rescue Exception => error
-          puts "**Start solr error (could be already running)**"
-          puts error
-        end
-      end
-    end
-  end
-
-  desc "reindex solr"
-  task :reindex do
-    on roles(:solr) do
-      within release_path do
-        puts "Reindex solr"
-        # execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:reindex"
-      end
-    end
-  end
-
-  desc "stop solr"
-  task :stop do
-    on roles(:app) do
-      within current_path do
-        puts "Stopping solr"
-        begin
-          # execute :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:solr:stop"
-        rescue Exception => error
-          puts "**Stop solr error (could have not been running)**"
-          puts error
-        end
-      end
-    end
-  end
-
-  desc "Symlink in-progress deployment to a shared Solr index"
-  task :symlink do
-    on roles(:app) do
-      puts "Solr Symlink"
-      execute "rm -rf #{release_path}/solr/#{fetch(:rails_env)}/data/"
-      execute "ln -s #{shared_path}/solr/data #{release_path}/solr/#{fetch(:rails_env)}/"
-      execute "ln -s #{shared_path}/solr/pids #{release_path}/solr/"
-
-      puts "Sitemap Symlink"
-      execute "ln -s #{shared_path}/sitemaps #{release_path}/public/"
-    end
-  end
-end
 
 before "bundler:install",      "figaro:setup"
 before "bundler:install",      "figaro:symlink"
-# before "deploy:finished",      "solr:stop"
-# after  "deploy:finished",      "solr:symlink"
-# after  "deploy:finished",      "solr:start"
 after  "deploy:finishing",     "deploy:restart_nginx"
-# after  "deploy:finishing",     "deploy:restart_nginx"

@@ -11,21 +11,6 @@
 
 <div class="row">
   <div class="small-12 columns">
-    Sort by:
-  </div>
-  <div class="small-12 columns button-group sort-by-button-group tag-flex-container">
-    <div class='tag-block'>
-      <button data-sort-by=".original-order">original order</button>
-    </div>
-    <div class='tag-block'>
-      <button data-sort-by=".name">name</button>
-    </div>
-    <div class='tag-block'>
-      <button data-sort-by=".category">category</button>
-    </div>
-  </div>
-
-  <div class="small-12 columns">
     <div class="grid">
       <% @tags.map do |tag| %>
         <div class="tag-card columns small-3 medium-2 large-1" data-category="<%= tag.variety %>">
@@ -33,11 +18,9 @@
         </div>
       <% end %>
     </div>
-
   </div>
 </div>
 <script>
-
   var $grid;
   $(function(){
     $grid = $('.grid').imagesLoaded(function(){
