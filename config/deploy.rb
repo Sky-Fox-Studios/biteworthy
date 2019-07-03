@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.10.2'
 
-set :application, 'bwd'
-set :repo_url, 'git@github.com:shadoath/bwd.git'
+set :application, 'biteworthy'
+set :repo_url, 'git@github.com:shadoath/biteworthy.git'
 set :rake, 'bundle exec rake'
 set :bundle_flags, "--deployment" # --quiet
 set :scm, :git
