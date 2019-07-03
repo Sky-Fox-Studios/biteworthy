@@ -8,8 +8,12 @@ Rails.application.load_tasks
 namespace :one_time do
   task change_to_points: :environment do
 
+    User.all.each do |user|
+      Point.create(user_id: user.id, object_id: user.id, object_class: "User", change_type: Point.change_types["create_object"], worth: 42, object_changes: {custom: "New BiteWorthy member"}.to_json)
+    end
+
     me = User.first
-    user_classes = [Restaurant, Food, Ingredient, Item, Tag]
+    user_classes = [Restaurant, Item, Food, Ingredient, Tag]
     user_classes.each do |uc|
       uc.all.each do |c|
         Point.create(user_id: me.id,
