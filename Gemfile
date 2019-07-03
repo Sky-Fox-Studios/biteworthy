@@ -22,9 +22,10 @@ gem 'jquery-rails'                           # Use jquery as the JavaScript libr
 gem 'kaminari'                               # Model pagination
 gem 'mini_racer'
 gem 'mysql2', '~> 0.4.10'
-gem 'omniauth-facebook', '~> 5.0'
-gem 'omniauth-github', '~> 1.3'
-gem 'omniauth-google-oauth2', '~> 0.6.1'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '4.2.11'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rake', '12.0.0'
