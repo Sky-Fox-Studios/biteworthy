@@ -81,7 +81,11 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    session[:return_to] = request.referer
+    if @review.user == current_user
+      session[:return_to] = request.referer
+    else
+      redirect_to root_path, notice: "Not your review"
+    end
   end
 
   def create
@@ -91,8 +95,12 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review.update(review_params)
-    redirect_to reviews_path
+    if @review.user == current_user
+      @review.update(review_params)
+      redirect_to reviews_path
+    else
+      redirect_to root_path, notice: "Not your review"
+    end
   end
 
   def destroy
