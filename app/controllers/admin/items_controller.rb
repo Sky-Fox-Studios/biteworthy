@@ -20,7 +20,6 @@ class Admin::ItemsController < AdminController
   end
 
   def index
-    binding.pry
     @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
     respond_to do |format|
       format.html

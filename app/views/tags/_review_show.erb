@@ -4,7 +4,7 @@
   </div>
   <div class="small-12 medium-6 large-8 columns">
     <h3>
-      <%= item.name %>
+      <%= link_to item.name, tag_path(item)%>
     </h3>
     <p class="desc">
       <%= item.description %>
