@@ -4,7 +4,7 @@
       <div class="center card-image">
         <%= link_to show_image(reviewed), edit_review_path(review) %>
       </div>
-      <% elsif reviewed.class.to_s == "Tag" %>
+    <% elsif reviewed.class.to_s == "Tag" %>
       <div class="tag-flex-container">
         <%= render partial: "tags/block", locals: {tag: reviewed, size: :large, hide_text: true} %>
       </div>

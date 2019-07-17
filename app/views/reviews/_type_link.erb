@@ -1,6 +1,6 @@
 <%= case review.review_type
     when "Item", "Food"
-      link_to Restaurant.find(reviewed.restaurant_id).name, restaurant_path(reviewed.restaurant_id)
+      "#{link_to Restaurant.find(reviewed.restaurant_id).name, restaurant_path(reviewed.restaurant_id)} #{review.review_type}".html_safe
     when "Ingredient"
       link_to review.review_type, ingredient_path(reviewed)
     when "Tag"
