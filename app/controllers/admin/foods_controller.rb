@@ -26,9 +26,9 @@ class Admin::FoodsController < AdminController
   end
 
   def get_menu_groups_by_restaurant
-     restaurant = Restaurant.find(params[:restaurant_id])
-     menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
-     render partial: 'admin/modules/menu_groups_select', locals: {menu_groups: menu_groups, restaurant: restaurant}
+    restaurant = Restaurant.find(params[:restaurant_id])
+    menu_groups = MenuGroup.where(restaurant_id: params[:restaurant_id])
+    render partial: 'admin/modules/menu_groups_select', locals: {menu_groups: menu_groups, restaurant: restaurant}
   end
 
   def new
@@ -48,6 +48,9 @@ class Admin::FoodsController < AdminController
   def create
     @food = Food.new(food_params)
     if @food.save
+      if params[:image]
+        save_images(@food, params[:image])
+      end
       redirect_to admin_foods_path
     else
       redirect_to :back
@@ -57,17 +60,17 @@ class Admin::FoodsController < AdminController
   def update
     if @food.update(food_params)
       if params[:image]
-        @food.photos.new(user_id: current_user.id, photo_type: "Food", image: params[:image]).save
+        save_images(@food, params[:image])
       end
-       redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
+      redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
     else
-       redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
+      redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
     end
   end
 
   def destroy
     @food.destroy
-     redirect_to admin_foods_path
+    redirect_to admin_foods_path
   end
 
   def add_new_food
@@ -144,23 +147,23 @@ class Admin::FoodsController < AdminController
   end
 
   private
-    def set_food
-      if params[:id]
-        @food = Food.find(params[:id])
-      elsif params[:food_id]
-        @food = Food.find(params[:food_id])
-      end
+  def set_food
+    if params[:id]
+      @food = Food.find(params[:id])
+    elsif params[:food_id]
+      @food = Food.find(params[:food_id])
     end
+  end
 
-    def set_foods
-      if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
-        @foods = Food.where(restaurant_id: params[:filter_restaurant_id]).page(page).per(per_page_count)
-      else
-        @foods = Food.page(page).per(per_page_count)
-      end
+  def set_foods
+    if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
+      @foods = Food.where(restaurant_id: params[:filter_restaurant_id]).page(page).per(per_page_count)
+    else
+      @foods = Food.page(page).per(per_page_count)
     end
+  end
 
-    def food_params
-       params.require(:food).permit(:restaurant_id, :name, :description, :food_group, :user_id)
-    end
+  def food_params
+    params.require(:food).permit(:restaurant_id, :name, :description, :food_group, :user_id)
+  end
 end
