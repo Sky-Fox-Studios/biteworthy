@@ -72,7 +72,7 @@ Rails.application.routes.draw do
         post 'remove_tag',        to: 'items_ajax#remove_tag',   as: "remove_tag"
         post 'remove_tags',       to: 'items_ajax#remove_tags',  as: "remove_tags"
         post 'remove_food',       to: 'items_ajax#remove_food',  as: "remove_food"
-        post 'remove_extra',      to: 'items#remove_extra',      as: "remove_extra"
+        delete 'remove_extra',      to: 'items#remove_extra',      as: "remove_extra"
         post 'remove_photo',      to: 'items#remove_photo',      as: "remove_photo"
         post 'tag_up',            to: 'items_ajax#tag_up',       as: "tag_up"
 

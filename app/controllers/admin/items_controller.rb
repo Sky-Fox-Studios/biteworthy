@@ -136,8 +136,13 @@ class Admin::ItemsController < AdminController
 
   def remove_extra
     extra = Extra.find(params[:extra_id])
+    @extra = params[:extra_id]
     @item.extras.delete(extra)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item), notice: "Extra removed"
+    respond_to do |format|
+      format.html { redirect_to edit_admin_restaurant_item_path(@restaurant, @item), notice: "Extra removed" }
+      format.js { }
+    end
+
   end
 
   def remove_photo

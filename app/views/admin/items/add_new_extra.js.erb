@@ -4,4 +4,7 @@
   setTimeout('$("#extras_notice").html("");', 5000);
 <% else %>
   $("#extras_list").html("<%= j render partial: "admin/items/extras/list", locals: { item: @item } %>");
+  $("#item\\[extra_name\\]").val("")
+  $("#item\\[extra_description\\]").val("")
+
 <% end %>
