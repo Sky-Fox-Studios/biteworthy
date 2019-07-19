@@ -1,8 +1,7 @@
 <% unless @extra.new_record? %>
   <%= render partial: "admin/ajax/extra", locals: {restaurant: @restaurant, extra: @extra} %>
 <% end %>
-<div class="row">
-  <%= simple_form_for([:admin, @restaurant, @extra], html: {multipart: true}) do |f| %>
+  <%= simple_form_for([:admin, @restaurant, @extra], html: {multipart: true}, class: "row") do |f| %>
     <%= hidden_field_tag 'extra[restaurant_id]', @restaurant.id %>
     <div class="small-12 medium-6 large-4 columns">
       <%= f.input :name %>
@@ -20,7 +19,6 @@
       <%= f.submit class: "universal-flex-button flex-button-natural" %>
     </div>
   <% end %>
-</div>
 <% unless @extra.new_record? %>
   <%= render partial: "admin/foods/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra, foods: @foods} %>
   <%= render partial: "admin/tags/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra, tags: @tags} %>
