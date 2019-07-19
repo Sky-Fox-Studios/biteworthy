@@ -75,8 +75,8 @@ Rails.application.routes.draw do
         delete 'remove_extra',      to: 'items#remove_extra',      as: "remove_extra"
         post 'remove_photo',      to: 'items#remove_photo',      as: "remove_photo"
         post 'tag_up',            to: 'items_ajax#tag_up',       as: "tag_up"
-
       end
+
       resources :foods do
         post 'add_new_tag',            to: 'foods_ajax#add_new_tag',       as: "add_new_tag"
         post 'add_tag',                to: 'foods_ajax#add_tag',           as: "add_tag"

@@ -90,25 +90,27 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_extra
-    @notice = if params[:extra_name].present?
+    if params[:extra_name].present?
       extra = Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
-      if @item.extras.include? extra
-        "#{@item.name} already has #{params[:extra_type]} of  #{params[:extra_name]}"
-      else
-        @item.extras << extra
-        nil # No notice
+      if extra && extra.valid?
+        if @item.extras.include? extra
+          @notice = "#{@item.name} already has #{params[:extra_type]} of  #{params[:extra_name]}"
+        else
+          @item.extras << extra
+        end
+      elsif extra
+        @notice = extra.errors.full_messages.to_sentence
       end
     else
-      "No name provided for #{params[:extra_type]}"
+      @notice = "No name provided for #{params[:extra_type]}"
     end
     respond_to do |format|
       format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: @notice }
-      format.js { }
+      format.js { render "admin/items/extras/new" }
     end
   end
 
   def add_extra
-    @notice = ""
     if params[:extra_choice_id].present?
       extra = Extra.find(params[:extra_choice_id])
     elsif params[:extra_addition_id].present?
@@ -117,14 +119,17 @@ class Admin::ItemsController < AdminController
       @notice = "No choice or addition selected"
     end
 
-    if extra.present? && !@item.extras.include?(extra)
-      @item.extras << extra
-    else
-      @notice = "#{@item.name} already has #{extra.extra_type} of #{extra.name}"
+    if extra.present?
+      if !@item.extras.include?(extra)
+        @item.extras << extra
+      else
+        @notice = "#{@item.name} already has #{extra.extra_type} of #{extra.name}"
+      end
     end
+
     respond_to do |format|
       format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: @notice }
-      format.js { }
+      format.js { render "admin/items/extras/add" }
     end
   end
 
