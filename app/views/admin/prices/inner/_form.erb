@@ -1,4 +1,4 @@
-<%= simple_form_for(object.prices.new, url: send("admin_restaurant_#{object.class.to_s.downcase}_add_new_price_path", restaurant, object), method: :post) do |f| %>
+<%= simple_form_for(object.prices.new, url: send("admin_restaurant_#{object.class.to_s.downcase}_add_new_price_path", restaurant, object), method: :post, remote: true, data_type: "script") do |f| %>
   <%= f.hidden_field :priced_id %>
   <%= f.hidden_field :priced_type %>
   <fieldset class='inner'>
