@@ -85,7 +85,7 @@ class Admin::ItemsController < AdminController
     Price.create(priced_id: @item.id, priced_type: @item.class.to_s, value: params[:price][:value], size: params[:price][:size])
     respond_to do |format|
       format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: 'Tag was successfully created.' }
-      format.js { }
+      format.js { render "admin/prices/add_new" }
     end
   end
 

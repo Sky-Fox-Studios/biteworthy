@@ -48,8 +48,17 @@ class Admin::PricesController < AdminController
   end
 
   def add_new_price
-    Price.find_or_create_by(price_params)
-    redirect_to edit_polymorphic_path([:admin, @priced.restaurant, @priced])
+    price = Price.find_or_create_by(price_params)
+    if price.errors.present?
+      @notice = price.errors.full_messages.to_sentence
+    end
+    @object = @priced
+    respond_to do |format|
+       format.html { redirect_to edit_polymorphic_path([:admin, @priced.restaurant, @priced]) }
+       format.json { head :no_content }
+       format.js   { render "admin/prices/add_new" }
+     end
+
   end
 
   private

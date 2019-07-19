@@ -1,4 +1,4 @@
-<%= simple_form_for(object.prices.new, url: send("admin_restaurant_#{object.class.to_s.downcase}_add_new_price_path", restaurant, object), method: :post, remote: true, data_type: "script") do |f| %>
+<%= simple_form_for(object.prices.new, url: admin_restaurant_add_new_price_path(restaurant), method: :post, remote: true, data_type: "script") do |f| %>
   <%= f.hidden_field :priced_id %>
   <%= f.hidden_field :priced_type %>
   <fieldset class='inner'>
@@ -15,5 +15,6 @@
         <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "#{object.class.to_s.downcase}-add-new-price", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
       </div>
     </div>
+    <div id="price-notice"></div>
   </fieldset>
 <% end %>

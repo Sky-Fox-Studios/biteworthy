@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       resources :varieties
     end
     get 'ingredient-varieties', to: 'varieties#all'
+
     resources :restaurants do
       post 'remove_photo',      to: 'restaurants#remove_photo',      as: "remove_photo"
       resources :menus
@@ -62,7 +63,6 @@ Rails.application.routes.draw do
         post 'add_new',           to: 'items#add_new',           as: "add_new"
         post 'add_new_tag',       to: 'items_ajax#add_new_tag',  as: "add_new_tag"
         post 'add_new_food',      to: 'items_ajax#add_new_food', as: "add_new_food"
-        post 'add_new_price',     to: 'items#add_new_price',     as: "add_new_price"
         post 'add_new_extra',     to: 'items#add_new_extra',     as: "add_new_extra"
         post 'add_tag',           to: 'items_ajax#add_tag',      as: "add_tag"
         post 'add_foods',         to: 'items_ajax#add_foods',    as: "add_foods"
@@ -92,7 +92,6 @@ Rails.application.routes.draw do
       resources :extras do
         #price
         resources :prices
-        post 'add_new_price', to: 'prices#add_new_price', as: "add_new_price"
         #food
         post 'add_new_food',  to: 'extras_ajax#add_new_food',  as: "add_new_food"
         post 'add_foods',     to: 'extras_ajax#add_foods',     as: "add_foods"
@@ -106,7 +105,9 @@ Rails.application.routes.draw do
         post 'remove_tags',   to: 'extras_ajax#remove_tags',  as: "remove_tags"
         post 'tag_up',        to: 'extras_ajax#tag_up',       as: "tag_up"
       end
+      post 'add_new_price', to: 'prices#add_new_price', as: "add_new_price"
     end
+
     resources :reports
     get 'menus',       to: 'menus#all',       as: "menus"
     get 'menu_groups', to: 'menu_groups#all', as: "menu_groups"
