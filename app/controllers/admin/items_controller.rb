@@ -90,13 +90,21 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_extra
-    notice = if params[:extra_name].present?
-      @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
-      "#{params[:extra_type]} added"
+    @notice = if params[:extra_name].present?
+      extra = Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
+      if @item.extras.include? extra
+        "#{@item.name} already has #{params[:extra_type]} of  #{params[:extra_name]}"
+      else
+        @item.extras << extra
+        nil # No notice
+      end
     else
       "No name provided for #{params[:extra_type]}"
     end
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: notice
+    respond_to do |format|
+      format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: @notice }
+      format.js { }
+    end
   end
 
   def add_extra
