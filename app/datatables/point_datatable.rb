@@ -18,6 +18,11 @@ class PointDatatable < ApplicationDatatable
 
   def data
     records.map do |record|
+      actions = ""
+      if record.change_type == 1  # Update
+        actions = link_to("Revert", admin_revert_point_path(record))
+      end
+
       {
         name:           record.user.user_name,
         object_class:   record.object_class,
@@ -26,7 +31,7 @@ class PointDatatable < ApplicationDatatable
         worth:          record.worth,
         object_changes: record.object_changes,
         created_at:     record.created_at.strftime("%Y-%m-%d %H:%M"),
-        actions:        "TODO"
+        actions:        actions
       }
     end
   end

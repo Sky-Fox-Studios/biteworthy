@@ -42,7 +42,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'layouts#home'
     resources :users, :tags, :points
-    resources :points, only: [:index, :show]
     resources :ingredients do
       post 'add_tag', to: 'ingredients#add_tag', as: 'add_tag'
       post 'remove_tag', to: 'ingredients#remove_tag', as: 'remove_tag'
@@ -113,6 +112,7 @@ Rails.application.routes.draw do
     get 'menu_groups', to: 'menu_groups#all', as: "menu_groups"
     get 'items',       to: 'items#all',       as: "items"
     get 'foods',       to: 'foods#all',       as: "foods"
+    get 'revert_point/:id', to: 'points#revert_point', as: "revert_point"
 
     scope "items" do
       get 'add_tags',  to: 'items#add_tags',       as: "add_tags"
