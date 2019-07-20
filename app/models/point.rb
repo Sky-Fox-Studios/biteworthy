@@ -6,7 +6,7 @@ class Point < ActiveRecord::Base
   #TODO polymorphic associations
   belongs_to :object, polymorphic: true
 
-  enum change_types: [:create_object, :update_object, :destroy_object]
+  enum change_types: [:create_object, :update_object, :join_object, :destroy_object]
 
   def display_change_type
     case change_type
@@ -15,6 +15,8 @@ class Point < ActiveRecord::Base
     when 1
       "Update"
     when 2
+      "Join"
+    when 3
       "Destroy"
     else
       "42"

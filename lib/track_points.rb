@@ -52,6 +52,8 @@ module TrackPoints
       base_value * 2
     when "update_object"
       (base_value / 5.0).ceil
+    when "join_object"
+      (base_value / 10.0).ceil
     when "destroy_object"
       base_value * -1
     else

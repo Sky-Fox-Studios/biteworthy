@@ -70,6 +70,7 @@ $(document).ready(function () {
       {"data": "name"},
       {"data": "object_class"},
       {"data": "object_id"},
+      {"data": "change_type"},
       {"data": "worth"},
       {"data": "object_changes"},
       {"data": "created_at"},
