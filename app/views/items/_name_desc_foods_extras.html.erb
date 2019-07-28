@@ -2,7 +2,6 @@
   <div class="small-12 columns">
     <h5 class="item-description"><%= item.description %></h5>
   </div>
-  <br>
   <%= render partial: "items/list", locals: {list_name: "foods", list: item.foods} %>
   <%# <%= render partial: "items/list", locals: {list_name: "ingredients", list: item.ingredients} %1> %>
   <%= render partial: "items/list", locals: {list_name: "choices", list: @item_extras_choice} %>

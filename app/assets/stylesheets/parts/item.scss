@@ -1,13 +1,20 @@
 @import "../_var_and_mix/general_mixins";
 @import '../_var_and_mix/_variables';
+@import "../_var_and_mix/media_query_mixins";
+@import "../_foundation/_settings";
 .item-container {
   background: white;
   padding: 5px;
   border-radius: .25em;
   @include card-shadow;
 
+  .restaurant-name {
+    display: inline;
+    font-size: 2.2rem;
+  }
   .item-name {
-    text-align: center;
+    font-size: 2.1rem;
+    display: inline;
     @media screen and (max-width: 39.9375em) {
       font-size: 1.5em;
     }
@@ -30,9 +37,11 @@
   .food-list-title{
     color: black;
   }
-  p.desc {
-
+  .item-description {
     color: black;
+      @include breakpoint(medium){
+      margin-top: .75rem;
+    }
   }
   .search-items-show{
     margin: .5rem;
