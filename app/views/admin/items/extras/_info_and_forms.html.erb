@@ -4,7 +4,9 @@
       <h4>Extras</h4>
     </legend>
     <div class="small-12 medium-4 columns">
-      <%= render partial: "admin/items/extras/list", locals: {item: @item } %>
+      <div id="extras_list">
+        <%= render partial: "admin/items/extras/list", locals: {item: @item } %>
+      </div>
     </div>
     <div class="small-12 medium-8 columns">
       <%= render partial: "admin/items/extras/select", locals: {restaurant: @restaurant, item: @item, extras: @extras} %>

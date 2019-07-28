@@ -1,4 +1,4 @@
-<%= simple_form_for(item.extras.new, url: admin_restaurant_item_add_extra_path(restaurant, item), method: :post) do |f| %>
+<%= simple_form_for(item.extras.new, url: admin_restaurant_item_add_extra_path(restaurant, item), method: :post, remote: true) do |f| %>
   <fieldset class='inner'>
     <legend>Add</legend>
     <div class="row universal-flex-container no-bottom-margin">
@@ -12,5 +12,6 @@
         <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
       </div>
     </div>
+    <div id="extra-add-notice"></div>
   </fieldset>
 <% end %>

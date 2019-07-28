@@ -1,5 +1,7 @@
 <div class="row">
-  <h1>Editing <%=link_to @restaurant.name, admin_restaurant_path(@restaurant) %> Extra:</h1>
+  <div class="small-12 columns">
+    <h1>Editing <%=link_to @restaurant.name, admin_restaurant_path(@restaurant) %> Extra:</h1>
+  </div>
 
   <%= render 'form' %>
 

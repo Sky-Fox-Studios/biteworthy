@@ -1,0 +1,9 @@
+//Update the Price list
+<% if @notice.present? %>
+  $("#price-notice").html("<%= @notice %>")
+  setTimeout('$("#price-notice").html("");', 5000);
+<% else %>
+  $("#price_list").html("<%= j render partial: "admin/prices/inner/list.html.erb", locals: { restaurant: @object.restaurant, object: @object } %>");
+  $("#price_value").val("")
+  $("#price_size").val("")
+<% end %>

@@ -18,7 +18,9 @@
   <br>
     <h5><%= link_to "UGC", "https://en.wikipedia.org/wiki/User-generated_content" %></h5>
     <p>You have generated <%= @user_points_sum %> BiteWorthy points.</p>
-    <p>Join the BiteWorthy Team and start contributing content to local restaurants.</p>
+    <% if @user_points_sum <= 42 %>
+      <p>Join the BiteWorthy Team and start contributing content to local restaurants.</p>
+    <% end %>
     <p><a href="#" class="email" data-user="info" data-domain="biteworthy.restaurant" onclick="this.href='mailto:'+this.getAttribute('data-user')+'&#64;'+this.getAttribute('data-domain');this.click()"></a></p>
   </div>
 </div>

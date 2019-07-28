@@ -1,5 +1,5 @@
 class Admin::FoodsController < AdminController
-  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name]
+  before_action :set_restaurant, only: [:all, :index, :show, :edit, :update, :destroy, :add_ingredient, :add_ingredient_by_name, :remove_photo]
   before_action :set_food, only: [
     :show, :edit, :update, :destroy,
     :add_ingredient, :add_ingredient_by_name,

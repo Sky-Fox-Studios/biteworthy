@@ -83,30 +83,54 @@ class Admin::ItemsController < AdminController
 
   def add_new_price
     Price.create(priced_id: @item.id, priced_type: @item.class.to_s, value: params[:price][:value], size: params[:price][:size])
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item)
+    respond_to do |format|
+      format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: 'Tag was successfully created.' }
+      format.js { render "admin/prices/add_new" }
+    end
   end
 
   def add_new_extra
-    notice = if params[:extra_name].present?
-      @item.extras << Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
-      "#{params[:extra_type]} added"
+    if params[:extra_name].present?
+      extra = Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
+      if extra && extra.valid?
+        if @item.extras.include? extra
+          @notice = "#{@item.name} already has #{params[:extra_type]} of  #{params[:extra_name]}"
+        else
+          @item.extras << extra
+        end
+      elsif extra
+        @notice = extra.errors.full_messages.to_sentence
+      end
     else
-      "No name provided for #{params[:extra_type]}"
+      @notice = "No name provided for #{params[:extra_type]}"
     end
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: notice
+    respond_to do |format|
+      format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: @notice }
+      format.js { render "admin/items/extras/new" }
+    end
   end
 
   def add_extra
-    notice = ""
     if params[:extra_choice_id].present?
       extra = Extra.find(params[:extra_choice_id])
     elsif params[:extra_addition_id].present?
       extra ||= Extra.find(params[:extra_addition_id])
     else
-      notice = "No choice or addition selected"
+      @notice = "No choice or addition selected"
     end
-    @item.extras << extra if extra.present? && !@item.extras.include?(extra)
-    redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: notice
+
+    if extra.present?
+      if !@item.extras.include?(extra)
+        @item.extras << extra
+      else
+        @notice = "#{@item.name} already has #{extra.extra_type} of #{extra.name}"
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: @notice }
+      format.js { render "admin/items/extras/add" }
+    end
   end
 
   def remove_menu_group
@@ -117,8 +141,13 @@ class Admin::ItemsController < AdminController
 
   def remove_extra
     extra = Extra.find(params[:extra_id])
+    @extra = params[:extra_id]
     @item.extras.delete(extra)
-    redirect_to edit_admin_restaurant_item_path(@restaurant, @item), notice: "Extra removed"
+    respond_to do |format|
+      format.html { redirect_to edit_admin_restaurant_item_path(@restaurant, @item), notice: "Extra removed" }
+      format.js { }
+    end
+
   end
 
   def remove_photo

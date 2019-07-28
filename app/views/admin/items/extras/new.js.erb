@@ -1,0 +1,9 @@
+//Update the Extras list
+<% if @notice.present? %>
+  $("#extra-new-notice").html("<%= @notice %>");
+  setTimeout('$("#extra-new-notice").html("");', 5000);
+<% else %>
+  $("#extras_list").html("<%= j render partial: "admin/items/extras/list", locals: { item: @item } %>");
+  $("#item\\[extra_name\\]").val("")
+  $("#item\\[extra_description\\]").val("")
+<% end %>

@@ -14,8 +14,10 @@ class Admin::ItemsAjaxController < Admin::ItemsController
 
   def add_tag
     unless (params[:tag_id].empty?)
-      tag = Tag.find(params[:tag_id])
-      @item.tags << tag unless @item.tags.include? tag
+      tags = Tag.find(params[:tag_id])
+      tags.each do |tag|
+        @item.tags << tag unless @item.tags.include? tag
+      end
     end
     render partial: "admin/tags/inner/list", locals: {restaurant: @item.restaurant, object: @item }
   end
