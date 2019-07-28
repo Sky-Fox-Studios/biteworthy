@@ -16,6 +16,7 @@ class Admin::PointsController < AdminController
   def show
   end
 
+  # TODO skill point change/tracking
   def revert_point
     if current_user.is_admin? && current_user.nom?
       object_class = eval(@point.object_class)
