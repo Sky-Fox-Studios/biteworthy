@@ -1,4 +1,5 @@
 class ItemsMenuGroups < ActiveRecord::Base
+  include TrackPoints
 
   belongs_to :menu_group
   belongs_to :item

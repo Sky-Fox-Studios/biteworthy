@@ -1,4 +1,5 @@
 class FoodsVariety < ActiveRecord::Base
+  include TrackPoints
 
   belongs_to :food
   belongs_to :variety

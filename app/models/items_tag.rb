@@ -1,4 +1,5 @@
 class ItemsTag < ActiveRecord::Base
+  include TrackPoints
 
   belongs_to :tag
   belongs_to :item
