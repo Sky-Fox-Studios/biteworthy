@@ -65,7 +65,7 @@ class Admin::IngredientsController < AdminController
 
   def remove_tag
     tag = Tag.find(params[:tag_id])
-    @ingredient.tags.delete(tag)
+    @ingredient.tags.destroy(tag)
     redirect_to edit_admin_ingredient_path(@ingredient)
   end
 

@@ -1,4 +1,5 @@
 class ItemsIngredient < ActiveRecord::Base
+  include TrackPoints
 
   belongs_to :item
   belongs_to :ingredient

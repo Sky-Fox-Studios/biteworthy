@@ -1,10 +1,12 @@
 <%# <%= render partial: '/restaurants/restaurant_header', locals: {restaurant: @restaurant} %1> %>
 <div class="row item-container">
   <div class="small-12 medium-6 large-4 columns">
-    <h3 class="item-name">
+    <h1 class="restaurant-name">
       <%= link_to @restaurant.name, restaurant_path(@restaurant) %>
+    </h1>
+    <h2 class="item-name">
       <%= @item.name %>
-    </h3>
+    </h2>
     <%= render partial: 'image', locals: {item: @item} %>
     <%= render partial: 'review_vote', locals: { item: @item } %>
     <div class="show-for-medium">

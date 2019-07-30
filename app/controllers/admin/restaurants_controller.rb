@@ -55,7 +55,7 @@ class Admin::RestaurantsController < AdminController
 
   def remove_photo
     photo = Photo.find(params[:photo_id])
-    @restaurant.photos.delete(photo)
+    @restaurant.photos.destroy(photo)
     redirect_to edit_admin_restaurant_path(@restaurant), notice: "Photo removed"
   end
 

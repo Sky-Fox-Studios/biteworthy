@@ -1,4 +1,5 @@
 class ExtrasFood < ActiveRecord::Base
+  include TrackPoints
 
   belongs_to :extra
   belongs_to :food

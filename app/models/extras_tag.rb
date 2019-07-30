@@ -1,4 +1,5 @@
 class ExtrasTag < ActiveRecord::Base
+  include TrackPoints
 
   belongs_to :extra
   belongs_to :tag
