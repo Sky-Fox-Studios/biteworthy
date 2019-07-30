@@ -52,7 +52,7 @@ class Admin::ExtrasController < AdminController
 
   def remove_photo
     photo = Photo.find(params[:photo_id])
-    @extra.photos.delete(photo)
+    @extra.photos.destroy(photo)
     redirect_to edit_admin_restaurant_extra_path(@restaurant, @extra)
   end
 

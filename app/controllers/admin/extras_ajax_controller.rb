@@ -22,7 +22,7 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
 
   def remove_tag
     tag = Tag.find(params[:tag_id])
-    @extra.tags.delete(tag)
+    @extra.tags.destroy(tag)
     render partial: "admin/tags/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 
@@ -69,7 +69,7 @@ class Admin::ExtrasAjaxController < Admin::ExtrasController
 
   def remove_food
     food = Food.find(params[:food_id])
-    @extra.foods.delete(food)
+    @extra.foods.destroy(food)
     render partial: "admin/foods/inner/list", locals: {restaurant: @extra.restaurant, object: @extra }
   end
 

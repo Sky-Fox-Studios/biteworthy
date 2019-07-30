@@ -130,19 +130,19 @@ class Admin::FoodsController < AdminController
 
   def remove_ingredient
     ingredient = Ingredient.find(params[:ingredient_id])
-    @food.ingredients.delete(ingredient)
+    @food.ingredients.destroy(ingredient)
     redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food)
   end
 
   def remove_variety
     variety = Variety.find(params[:variety_id])
-    @food.varieties.delete(variety)
+    @food.varieties.destroy(variety)
     redirect_to edit_admin_restaurant_food_path(@food.restaurant, @food), notice: "#{variety.display_name} removed from #{@food.name}"
   end
 
   def remove_photo
     photo = Photo.find(params[:photo_id])
-    @food.photos.delete(photo)
+    @food.photos.destroy(photo)
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
   end
 
