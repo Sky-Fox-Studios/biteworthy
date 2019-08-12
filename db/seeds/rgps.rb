@@ -157,7 +157,7 @@ module Rgps
 
 
   rgps_items = rgps_wrap_items + rgps_salad_items
-  rgps_side = Extra.find_or_create_by(name: "Regular OR Barbecue Chips OR coleslaw", description: "Regular OR Barbecue Chips OR coleslaw", restaurant: rgps, extra_type: "choice")
+  rgps_side = Extra.find_or_create_by(name: "Regular OR Barbecue Chips OR coleslaw", description: "Regular OR Barbecue Chips OR coleslaw", restaurant: rgps, addon_type: "choice")
   rgps_side.foods.create(name: "coleslaw")
   rgps_side.foods.create(name: "Regular Potato chips", description: "Lays regular potato chips")
   rgps_side.foods.create(name: "BBQ Potato chips", description: "Lays BBQ potato chips")
@@ -177,7 +177,7 @@ module Rgps
     end
     if extras_array
       extras_array.split(', ').each do |extra_name|
-        extra = Extra.where(name: extra_name.downcase, restaurant: rgps, extra_type: Extra.choice).first_or_create
+        extra = Extra.where(name: extra_name.downcase, restaurant: rgps, addon_type: Extra.choice).first_or_create
         item.extras << extra if extra
       end
     end

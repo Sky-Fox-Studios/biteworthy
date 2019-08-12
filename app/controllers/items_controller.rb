@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
     @item = Item
       .includes(:reviews, :prices, :photos, :foods, :ingredients)
       .find(params[:id])
-    @item_extras_choice   = @item.extras.where(extra_type: Extra.extra_types[:choice])
-    @item_extras_addition = @item.extras.where(extra_type: Extra.extra_types[:addition])
+    @item_extras_choice   = @item.extras.where(addon_type: Extra.addon_types[:choice])
+    @item_extras_addition = @item.extras.where(addon_type: Extra.addon_types[:addition])
     @restaurant = Restaurant
       .includes(:addresses, :photos)
       .find(@item.restaurant_id)

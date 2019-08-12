@@ -91,10 +91,10 @@ class Admin::ItemsController < AdminController
 
   def add_new_extra
     if params[:extra_name].present?
-      extra = Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
+      extra = Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], addon_type: params[:addon_type], restaurant: @item.restaurant)
       if extra && extra.valid?
         if @item.extras.include? extra
-          @notice = "#{@item.name} already has #{params[:extra_type]} of  #{params[:extra_name]}"
+          @notice = "#{@item.name} already has #{params[:addon_type]} of  #{params[:extra_name]}"
         else
           @item.extras << extra
         end
@@ -102,7 +102,7 @@ class Admin::ItemsController < AdminController
         @notice = extra.errors.full_messages.to_sentence
       end
     else
-      @notice = "No name provided for #{params[:extra_type]}"
+      @notice = "No name provided for #{params[:addon_type]}"
     end
     respond_to do |format|
       format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: @notice }
@@ -123,7 +123,7 @@ class Admin::ItemsController < AdminController
       if !@item.extras.include?(extra)
         @item.extras << extra
       else
-        @notice = "#{@item.name} already has #{extra.extra_type} of #{extra.name}"
+        @notice = "#{@item.name} already has #{extra.addon_type} of #{extra.name}"
       end
     end
 
