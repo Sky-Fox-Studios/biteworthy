@@ -1,12 +1,12 @@
 <%= simple_form_for(item.extras.new, url: admin_restaurant_item_add_extra_path(restaurant, item), method: :post, remote: true) do |f| %>
   <fieldset class='inner'>
-    <legend>Add</legend>
+    <legend>Addons</legend>
     <div class="row universal-flex-container no-bottom-margin">
       <div class="small-5 columns">
-        <%= select_tag('extra_choice_id', options_for_select(extras.choice.map {|c| [ c.name, c.id ]}), prompt: "Choice:") %>
+        <%= select_tag('extra_addition_id', options_for_select(Extra.where(restaurant: @restaurant, addon_type: 0).map{ |a| [ a.extrable.name, a.id ]}), prompt: "Addition:") %>
       </div>
       <div class="small-5 columns">
-        <%= select_tag('extra_addition_id', options_for_select(extras.addition.map {|a| [ a.name, a.id ]}), prompt: "Addition:") %>
+        <%= select_tag('extra_choice_id', options_for_select(Extra.where(restaurant: @restaurant, addon_type: 1).map{ |c| [ c.extrable.name, c.id ]}), prompt: "Choice:") %>
       </div>
       <div class="small-2 columns">
         <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>

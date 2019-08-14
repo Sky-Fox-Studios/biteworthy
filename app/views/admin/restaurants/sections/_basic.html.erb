@@ -7,7 +7,11 @@
   </div>
   <% values.each do |value| %>
     <div class="admin-item">
-      <%= link_to value.name, edit_polymorphic_path([:admin, @restaurant, value]) %>
+      <% if name == "extra" %>
+        <%= link_to value.extrable.name, edit_polymorphic_path([:admin, @restaurant, value.extrable]) %>
+      <% else %>
+        <%= link_to value.name, edit_polymorphic_path([:admin, @restaurant, value]) %>
+      <% end %>
     </div>
   <% end %>
 </div>
