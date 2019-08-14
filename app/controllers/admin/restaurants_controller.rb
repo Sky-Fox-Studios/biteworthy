@@ -13,7 +13,7 @@ class Admin::RestaurantsController < AdminController
     @menu_groups = MenuGroup.where(restaurant: @restaurant).order(:name)
     @items       = Item.where(restaurant: @restaurant).order(:name)
     @foods       = Food.where(restaurant: @restaurant).order(:name)
-    @extras      = Extra.where(restaurant: @restaurant).order(:name)
+    @extras      = Extra.where(restaurant: @restaurant)
   end
 
   def new

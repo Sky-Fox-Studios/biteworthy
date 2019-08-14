@@ -2,7 +2,7 @@
 <ul class="choice-list">
   <% @item.extras.choice.map do |extra| %>
     <li id="item-<%= @item.id %>-extra-<%= extra.id %>">
-  <%= link_to(extra.name, edit_admin_restaurant_extra_path(item.restaurant, extra)) %>
+      <%= link_to extra.extrable.name, edit_polymorphic_path([:admin, extra.restaurant, extra.extrable]) %>
       <%= link_to Icon.sup_x.html_safe, admin_restaurant_item_remove_extra_path(item.restaurant, item, extra_id: extra.id), method: :delete, remote: true %>
     </li>
   <% end %>
@@ -11,7 +11,7 @@
 <ul class="addtion-list">
   <% @item.extras.addition.map do |extra| %>
     <li id="item-<%= @item.id %>-extra-<%= extra.id %>">
-      <%= link_to(extra.name, edit_admin_restaurant_extra_path(item.restaurant, extra)) %>
+      <%= link_to extra.extrable.name, edit_polymorphic_path([:admin, extra.restaurant, extra.extrable]) %>
       <%= link_to Icon.sup_x.html_safe, admin_restaurant_item_remove_extra_path(item.restaurant, item, extra_id: extra.id), method: :delete, remote: true %>
     </li>
   <% end %>
