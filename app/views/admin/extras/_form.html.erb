@@ -4,11 +4,18 @@
 <%= simple_form_for([:admin, @restaurant, @extra], html: {multipart: true}, class: "row") do |f| %>
   <%= hidden_field_tag 'extra[restaurant_id]', @restaurant.id %>
   <% if current_user.nom? %>
-    <div class="small-12 medium-6 columns">
-      <%= f.input :extrable_id %>
-    </div>
-    <div class="small-12 medium-6  columns">
-      <%= f.input :extrable_type %>
+    <div class="small-12 columns">
+      <fieldset>
+        <legend>
+          Admin
+        </legend>
+        <div class="small-12 medium-6 columns">
+          <%= f.input :extrable_id, readonly: true %>
+        </div>
+        <div class="small-12 medium-6  columns">
+          <%= f.input :extrable_type, readonly: true %>
+        </div>
+      </fieldset>
     </div>
   <% end %>
   <% if @extra.new_record? %>
@@ -21,20 +28,20 @@
       <%= f.select(:extrable_food, Food.where(restaurant: @restaurant).all.order(:name).map{|x| [x.name, "Food:#{x.id}"]}, prompt: "Choose only one") %>
     </div>
   <% else %>
-    <div class="small-12 large-10 medium-6 columns">
+    <div class="small-12 medium-9 columns">
       <h3>
         <%= link_to @extra.extrable.name, edit_polymorphic_path([:admin, @extra.restaurant, @extra.extrable]) %>
       </h3>
     </div>
   <% end %>
-  <div class="small-12 large-2 columns">
+  <div class="small-12 large-3 columns">
     <%= f.input :addon_type, as: :select, collection: Extra.addon_types.keys.to_a, include_blank: false %>
   </div>
-  <div class="small-12 medium-8 columns">
-    <%= render partial: "admin/photos/upload", locals: {form: f, object: @extra} %>
-  </div>
-  <div class="small-12 columns universal-flex-container">
-    <%= f.submit class: "universal-flex-button flex-button-natural" %>
+  <%# <div class="small-12 medium-8 columns"> %>
+  <%#   <%= render partial: "admin/photos/upload", locals: {form: f, object: @extra} %1> %>
+  <%# </div> %>
+  <div class="small-12  columns universal-flex-container">
+    <%= f.submit class: "universal-flex-button flex-button-natural flex-button-end" %>
   </div>
 <% end %>
 <% unless @extra.new_record? %>
