@@ -8,7 +8,6 @@ class Extra < ActiveRecord::Base
 
   has_many :photos, as: :photo
 
-
   has_many :prices, as: :priced
 
   has_many :tags, through: :extras_tags
