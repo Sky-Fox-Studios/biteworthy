@@ -5,7 +5,7 @@ class Admin::ExtrasController < AdminController
   respond_to :html
 
   def index
-    @extras = Extra.where(restaurant: @restaurant).page(params[:page]).per(per_page_count)
+    @extras = Extra.where(restaurant: @restaurant).order(:addon_type).page(params[:page]).per(per_page_count)
     @restaurants = Restaurant.all
     respond_with(@extras)
   end

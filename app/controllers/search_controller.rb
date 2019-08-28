@@ -24,6 +24,13 @@ class SearchController < ApplicationController
     render "search/item_search", locals: {search_type: "choice"}
   end
 
+  def addition_search
+    @search = Extra.find(params[:addition_id])
+    @restaurant = @search.restaurant
+    @items  = Item.joins(:extras).where(extras: {addon_type: Extra.addon_types[:addition]}).where("extras.id IN (?)", params[:addition_id])
+    render "search/item_search", locals: {search_type: "addition"}
+  end
+
   def food_search
     @search  = Food.find(params[:food_id])
     @restaurant = @search.restaurant
