@@ -45,7 +45,6 @@
   </div>
 <% end %>
 <% unless @extra.new_record? %>
-  <%# <%= render partial: "admin/tags/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra, tags: @tags} %1> %>
   <% if @extra.addon_type == "addition" %>
     <%= render partial: "admin/prices/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra} %>
   <% else %>

@@ -6,12 +6,7 @@ class Extra < ActiveRecord::Base
 
   enum addon_type: [:addition, :choice]
 
-  has_many :photos, as: :photo
-
   has_many :prices, as: :priced
-
-  has_many :tags, through: :extras_tags
-  has_many :extras_tags
 
   validates :restaurant_id, :extrable_id, :extrable_type, :addon_type, presence: true
 
