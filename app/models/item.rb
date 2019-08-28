@@ -15,7 +15,9 @@ class Item < ActiveRecord::Base
   has_many :foods, through: :items_foods
   has_many :items_foods
 
-  has_many :extras, as: :extrable
+  has_many :extras, through: :items_extras
+  has_many :items_extras
+
   has_many :ingredients, through: :items_ingredients
   has_many :items_ingredients
 

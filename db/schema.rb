@@ -108,6 +108,11 @@ ActiveRecord::Schema.define(version: 20190812030201) do
     t.datetime "updated_at"
   end
 
+  create_table "items_extras", force: :cascade do |t|
+    t.integer "item_id",  limit: 4
+    t.integer "extra_id", limit: 4
+  end
+
   create_table "items_foods", force: :cascade do |t|
     t.integer "item_id", limit: 4
     t.integer "food_id", limit: 4
