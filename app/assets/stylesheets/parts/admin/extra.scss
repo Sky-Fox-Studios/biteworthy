@@ -1,0 +1,12 @@
+@import '../../_var_and_mix/_variables';
+
+.choice-list, .addition-list {
+  li {
+    list-style-type: none;
+
+    svg {
+      color: $accent_color;
+    }
+  }
+
+}

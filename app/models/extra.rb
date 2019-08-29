@@ -1,26 +1,19 @@
 class Extra < ActiveRecord::Base
   include TrackPoints
+  attr_accessor :extrable_item, :extrable_food
   belongs_to :restaurant
+  belongs_to :extrable, polymorphic: true
 
-  enum extra_type: [:addition, :choice]
-
-  has_many :items, through: :items_extras
-  has_many :items_extras
-  has_many :photos, as: :photo
+  enum addon_type: [:addition, :choice]
 
   has_many :prices, as: :priced
 
-  has_many :foods, through: :extras_foods
-  has_many :extras_foods
+  validates :restaurant_id, :extrable_id, :extrable_type, :addon_type, presence: true
 
-  has_many :tags, through: :extras_tags
-  has_many :extras_tags
-
-  validates :restaurant_id, :name, :extra_type, presence: true
-
-  validates_uniqueness_of :name, scope: [:restaurant_id, :extra_type, :name]
+  # TODO think more here
+  validates_uniqueness_of :extrable_id, :extrable_type, :addon_type, scope: [:restaurant_id, :extrable_id, :extrable_type, :addon_type]
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    "#{id}-#{extrable.name.parameterize}"
   end
 end

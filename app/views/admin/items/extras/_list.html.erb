@@ -2,17 +2,23 @@
 <ul class="choice-list">
   <% @item.extras.choice.map do |extra| %>
     <li id="item-<%= @item.id %>-extra-<%= extra.id %>">
-  <%= link_to(extra.name, edit_admin_restaurant_extra_path(item.restaurant, extra)) %>
+      <%= link_to "<i class='fas fa-eye'></i>".html_safe, edit_polymorphic_path([:admin, extra.restaurant, extra.extrable]) %>
+      <%= link_to extra.extrable.name, edit_polymorphic_path([:admin, extra.restaurant, extra]) %>
       <%= link_to Icon.sup_x.html_safe, admin_restaurant_item_remove_extra_path(item.restaurant, item, extra_id: extra.id), method: :delete, remote: true %>
     </li>
   <% end %>
 </ul>
 <h5>Additions:</h5>
-<ul class="addtion-list">
+<ul class="addition-list">
   <% @item.extras.addition.map do |extra| %>
     <li id="item-<%= @item.id %>-extra-<%= extra.id %>">
-      <%= link_to(extra.name, edit_admin_restaurant_extra_path(item.restaurant, extra)) %>
+      <%= link_to "<i class='fas fa-eye'></i>".html_safe, edit_polymorphic_path([:admin, extra.restaurant, extra.extrable]) %>
+      <%= link_to extra.extrable.name, edit_polymorphic_path([:admin, extra.restaurant, extra]) %>
       <%= link_to Icon.sup_x.html_safe, admin_restaurant_item_remove_extra_path(item.restaurant, item, extra_id: extra.id), method: :delete, remote: true %>
+      <br>
+      <% if extra.prices %>
+        <%= extra.prices.map{ |p| "$#{p.value} #{p.size}"}.to_sentence %>
+      <% end %>
     </li>
   <% end %>
 </ul>

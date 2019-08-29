@@ -2,20 +2,25 @@
   <div class="small-12 medium-6 columns">
     <p>
       <strong class="food-list-title"><%= list_name.upcase %>:</strong>
-      <%= list.map do |list_item|
+      <% items = list.map do |list_item|
         if list_name == "foods"
           link_to(list_item.name, food_search_path(food_id: list_item))
         elsif list_name == "ingredients"
           link_to(list_item.name, ingredient_search_path(ingredient_id: list_item))
         elsif list_name == "choices"
-          link_to(list_item.name, choice_search_path(choice_id: list_item))
+          link_to(list_item.extrable.name, choice_search_path(choice_id: list_item))
         elsif list_name == "additions"
-          link_to(list_item.name, choice_search_path(choice_id: list_item)) +
-          " $#{list_item.prices.first.value if list_item.prices.present?}"
+          link_to(list_item.extrable.name, addition_search_path(addition_id: list_item)) +
+          "#{"$" + list_item.prices.first.value if list_item.prices.present?}"
         else
           link_to(list_item.name, polymorphic_path([@restaurant, list_item]))
         end
-      end.to_sentence.html_safe %>
+      end %>
+      <% if list_name == "choices" %>
+        <%= items.to_sentence(last_word_connector: " or ", two_words_connector: " or ").html_safe %>
+      <% else %>
+        <%= items.to_sentence.html_safe %>
+      <% end %>
     </p>
   </div>
 <% end %>

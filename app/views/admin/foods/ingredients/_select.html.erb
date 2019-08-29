@@ -5,7 +5,7 @@
       <%= select_tag('ingredient_id', options_for_select(ingredients.map {|f| [ f.name, f.id ]}), prompt: "Add ingredient:") %>
     </div>
     <div class="small-2 columns">
-      <div class="universal-button-container">
+      <div class="universal-flex-container">
         <%= button_tag "<i class='fa fa-plus'></i>".html_safe, class: "universal-flex-button flex-button-natural" %>
       </div>
       <%# <%= button_ingredient "<i class='fa fa-plus'></i>".html_safe, class: "tiny" %1> %>

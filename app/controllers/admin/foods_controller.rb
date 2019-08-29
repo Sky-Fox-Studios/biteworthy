@@ -102,12 +102,16 @@ class Admin::FoodsController < AdminController
   def add_ingredient_by_name
     if params[:ingredient].present?
       ingredient = Ingredient.find_or_create_by(name: params[:ingredient][:name].singularize.downcase.strip)
-      ingredient.update(user: current_user)
-      if params[:ingredient][:variety].present?
-        variety = Variety.find_or_create_by(ingredient: ingredient, name: params[:ingredient][:variety].singularize.downcase.strip)
-        @food.varieties << variety unless @food.varieties.include? variety
+      if ingredient.valid?
+        ingredient.update(user: current_user)
+        if params[:ingredient][:variety].present?
+          variety = Variety.find_or_create_by(ingredient: ingredient, name: params[:ingredient][:variety].singularize.downcase.strip)
+          @food.varieties << variety unless @food.varieties.include? variety
+        end
+        @food.ingredients << ingredient unless @food.ingredients.include? ingredient
+      else
+        flash[:notice] = "Not a valid ingredient: #{ingredient.errors.full_messages}."
       end
-      @food.ingredients << ingredient unless @food.ingredients.include? ingredient
     end
     redirect_to edit_admin_restaurant_food_path(@restaurant, @food)
   end

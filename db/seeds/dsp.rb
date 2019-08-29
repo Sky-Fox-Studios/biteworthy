@@ -16,7 +16,7 @@ module Dsp
     topping_extras << Food.find_or_create_by(name: topping, restaurant: dsp)
   end
 
-  toppings_extra = Extra.find_or_create_by(name: "Toppings", restaurant: dsp, extra_type: Extra.addition)
+  toppings_extra = Extra.find_or_create_by(name: "Toppings", restaurant: dsp, addon_type: Extra.addition)
   toppings_extra.foods = topping_extras
 
   puts "Dsp seeded"

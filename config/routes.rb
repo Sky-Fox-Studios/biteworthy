@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'food_search', to: 'search#food_search'
   get 'tag_search', to: 'search#tag_search'
   get 'choice_search', to: 'search#choice_search'
+  get 'addition_search', to: 'search#addition_search'
   post 'search/advanced', to: 'search#advanced'
 
   resources :reviews, :tags

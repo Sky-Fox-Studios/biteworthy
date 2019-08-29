@@ -24,6 +24,7 @@ class Admin::MenuGroupsController < AdminController
   end
 
   def edit
+    @items = Item.joins(:menu_groups).where("items_menu_groups.menu_group_id in (?)", @menu_group).where(restaurant: @menu_group.restaurant)
   end
 
   def create
