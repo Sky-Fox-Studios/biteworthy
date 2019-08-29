@@ -1,26 +1,53 @@
 <% unless @extra.new_record? %>
   <%= render partial: "admin/ajax/extra", locals: {restaurant: @restaurant, extra: @extra} %>
 <% end %>
-  <%= simple_form_for([:admin, @restaurant, @extra], html: {multipart: true}, class: "row") do |f| %>
-    <%= hidden_field_tag 'extra[restaurant_id]', @restaurant.id %>
-    <div class="small-12 medium-6 large-4 columns">
-      <%= f.input :name %>
-    </div>
-    <div class="small-12 medium-6 large-6 columns">
-      <%= f.input :description, as: :text %>
-    </div>
-    <div class="small-12 large-2 columns">
-      <%= f.input :extra_type, as: :select, collection: Extra.extra_types.keys.to_a, include_blank: false %>
-    </div>
-    <div class="small-12 medium-8 columns">
-      <%= render partial: "admin/photos/upload", locals: {form: f, object: @extra} %>
-    </div>
-    <div class="small-12 columns universal-flex-container">
-      <%= f.submit class: "universal-flex-button flex-button-natural" %>
+<%= simple_form_for([:admin, @restaurant, @extra], html: {multipart: true}, class: "row") do |f| %>
+  <%= hidden_field_tag 'extra[restaurant_id]', @restaurant.id %>
+  <% if current_user.nom? %>
+    <div class="small-12 columns">
+      <fieldset>
+        <legend>
+          Admin
+        </legend>
+        <div class="small-12 medium-6 columns">
+          <%= f.input :extrable_id, readonly: true %>
+        </div>
+        <div class="small-12 medium-6  columns">
+          <%= f.input :extrable_type, readonly: true %>
+        </div>
+      </fieldset>
     </div>
   <% end %>
+  <% if @extra.new_record? %>
+    <div class="small-12 medium-6 large-5 columns">
+      <label>Items</label>
+      <%= f.select(:extrable_item, Item.where(restaurant: @restaurant).all.order(:name).map{|x| [x.name, "Item:#{x.id}"]}, prompt: "Choose wisely") %>
+    </div>
+    <div class="small-12 medium-6 large-5 columns">
+      <label>Foods</label>
+      <%= f.select(:extrable_food, Food.where(restaurant: @restaurant).all.order(:name).map{|x| [x.name, "Food:#{x.id}"]}, prompt: "Choose only one") %>
+    </div>
+  <% else %>
+    <div class="small-12 columns">
+      <h3>
+        <%= link_to @extra.extrable.name, edit_polymorphic_path([:admin, @extra.restaurant, @extra.extrable]) %>
+      </h3>
+    </div>
+  <% end %>
+  <div class="small-12 medium-4 columns">
+    <%= f.input :addon_type, as: :select, collection: Extra.addon_types.keys.to_a, include_blank: false %>
+  </div>
+  <div class="small-12 medium-8 columns">
+    <%= show_image(@extra.extrable, size: :thumb) %>
+  </div>
+  <div class="small-12 columns universal-flex-container">
+    <%= f.submit class: "universal-flex-button flex-button-natural" %>
+  </div>
+<% end %>
 <% unless @extra.new_record? %>
-  <%= render partial: "admin/foods/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra, foods: @foods} %>
-  <%= render partial: "admin/tags/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra, tags: @tags} %>
-  <%= render partial: "admin/prices/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra} %>
+  <% if @extra.addon_type == "addition" %>
+    <%= render partial: "admin/prices/inner/info_and_forms", locals: {restaurant: @restaurant, object: @extra} %>
+  <% else %>
+    <p>Prices will show for 'Additions'.</p>
+  <% end %>
 <% end %>

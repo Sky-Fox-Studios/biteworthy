@@ -5,7 +5,7 @@ class Admin::ExtrasController < AdminController
   respond_to :html
 
   def index
-    @extras = Extra.where(restaurant: @restaurant).order(:name).page(params[:page]).per(per_page_count)
+    @extras = Extra.where(restaurant: @restaurant).order(:addon_type).page(params[:page]).per(per_page_count)
     @restaurants = Restaurant.all
     respond_with(@extras)
   end
@@ -23,9 +23,10 @@ class Admin::ExtrasController < AdminController
   end
 
   def create
+    set_extrable
     @extra = Extra.new(extra_params)
     if @extra.save
-      redirect_to admin_restaurant_extras_path(@restaurant), notice: "Extra: #{@extra.name} created"
+      redirect_to admin_restaurant_extras_path(@restaurant), notice: "Extra: created"
     else
       render :new
     end
@@ -69,13 +70,23 @@ class Admin::ExtrasController < AdminController
     just_set_extra
     if @extra
       @restaurant = @extra.restaurant
-      @foods = Food.where(restaurant: @restaurant).order(:name)
-      @extra_foods = Food.joins(:extras).where(restaurant: @restaurant).order(:name)
+      @foods = Food.where(restaurant: @restaurant)
+      @extra_foods = Food.joins(:extras).where(restaurant: @restaurant)
       @tags        = Tag.order_variety_then_name
     end
   end
 
+  def set_extrable
+    keys = params[:extra].keys.select{|x| x.match(/extrable_*/) && x != "extrable_id"}
+    keys.each do |key|
+      if params[:extra][key].present?
+        params[:extra][:extrable_id] = params[:extra][key].split(":").last
+        params[:extra][:extrable_type] = params[:extra][key].split(":").first
+      end
+    end
+  end
+
   def extra_params
-    params.require(:extra).permit(:restaurant_id, :name, :description, :extra_type)
+    params.require(:extra).permit(:restaurant_id, :extrable_id, :extrable_type, :addon_type)
   end
 end

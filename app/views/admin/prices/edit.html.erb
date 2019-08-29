@@ -2,7 +2,11 @@
   <div class="small-12 columns">
     <h1>Price for:</h1>
 
-    <h3><%= "#{@priced.restaurant.name} #{@priced.name}" %></h3>
+    <% if @priced.class.to_s == "Extra" %>
+      <h3><%= "#{@priced.restaurant.name} #{@priced.extrable.name}" %></h3>
+    <% else %>
+      <h3><%= "#{@priced.restaurant.name} #{@priced.name}" %></h3>
+    <% end %>
   </div>
 
   <%= render 'form' %>

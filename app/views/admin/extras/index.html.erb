@@ -11,8 +11,8 @@
       <thead>
         <tr>
           <th></th>
-          <th>Extra</th>
-          <th>Description</th>
+          <th>Name</th>
+          <th>Belongs to</th>
           <th>Type</th>
           <th></th>
           <th></th>
@@ -23,9 +23,9 @@
         <% @extras.each do |extra| %>
           <tr>
             <td><%= link_to raw('<i class="fa fa-eye"></i>'), restaurant_extra_path(@restaurant, extra) %></td>
-            <td><%= extra.name %></td>
-            <td><%= extra.description %></td>
-            <td><%= extra.extra_type %></td>
+            <td><%= link_to extra.extrable.name, edit_polymorphic_path([:admin, extra.restaurant, extra.extrable]) %></td>
+            <td><%= extra.extrable_type %></td>
+            <td><%= extra.addon_type %></td>
             <td><%= render partial: "partials/forms/edit", locals: {path: edit_admin_restaurant_extra_path(@restaurant, extra)} %></td>
             <td><%= link_to raw('<i class="fa fa-trash"></i>'), admin_restaurant_extra_path(@restaurant, extra), method: :delete, data: { confirm: 'Are you sure you want to remove this extra?' } %></td>
           </tr>

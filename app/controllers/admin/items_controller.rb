@@ -90,19 +90,28 @@ class Admin::ItemsController < AdminController
   end
 
   def add_new_extra
-    if params[:extra_name].present?
-      extra = Extra.find_or_create_by(name: params[:extra_name], description: params[:extra_description], extra_type: params[:extra_type], restaurant: @item.restaurant)
+    # From admin_extras_controller
+    keys = params[:extra].keys.select{|x| x.match(/extrable_*/) && x != "extrable_id"}
+    keys.each do |key|
+      if params[:extra][key].present?
+        params[:extra][:extrable_id] = params[:extra][key].split(":").last
+        params[:extra][:extrable_type] = params[:extra][key].split(":").first
+      end
+    end
+
+    if params[:extra][:extrable_id].present? && params[:extra][:extrable_type].present?
+      extra = Extra.find_or_create_by(extrable_id: params[:extra][:extrable_id], extrable_type: params[:extra][:extrable_type], addon_type: Extra.addon_types[params[:addon_type]], restaurant: @item.restaurant)
       if extra && extra.valid?
-        if @item.extras.include? extra
-          @notice = "#{@item.name} already has #{params[:extra_type]} of  #{params[:extra_name]}"
-        else
+        if @item.extras.select{ |e| e.extrable_id == extra.extrable_id && e.addon_type == extra.addon_type}.empty?
           @item.extras << extra
+        else
+          @notice = "#{@item.name} already has #{params[:addon_type]} of #{extra.extrable.name}"
         end
       elsif extra
         @notice = extra.errors.full_messages.to_sentence
       end
     else
-      @notice = "No name provided for #{params[:extra_type]}"
+      @notice = "No name provided for #{params[:addon_type]}"
     end
     respond_to do |format|
       format.html { redirect_to edit_admin_restaurant_item_path(@item.restaurant, @item), notice: @notice }
@@ -120,10 +129,10 @@ class Admin::ItemsController < AdminController
     end
 
     if extra.present?
-      if !@item.extras.include?(extra)
+      if @item.extras.select{ |e| e.extrable_id == extra.extrable_id && e.addon_type == extra.addon_type}.empty?
         @item.extras << extra
       else
-        @notice = "#{@item.name} already has #{extra.extra_type} of #{extra.name}"
+        @notice = "#{@item.name} already has #{extra.addon_type} of #{extra.extrable.name}"
       end
     end
 

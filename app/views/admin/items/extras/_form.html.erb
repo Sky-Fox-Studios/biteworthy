@@ -1,16 +1,18 @@
-<%= simple_form_for(item, url: admin_restaurant_item_add_new_extra_path(restaurant, item), method: :post, remote: true) do |f| %>
+<%= simple_form_for(Extra.new, url: admin_restaurant_item_add_new_extra_path(restaurant, item), method: :post, remote: true) do |f| %>
   <fieldset class='inner'>
-    <legend>Create</legend>
+    <legend>Create from</legend>
     <div class="row universal-flex-container no-bottom-margin">
       <div class="small-5 columns">
-        <input type="text" id="item[extra_name]" name="extra_name" placeholder="Name" />
+        <label>Items</label>
+        <%= f.select(:extrable_item, Item.where(restaurant: @restaurant).all.order(:name).map{|x| [x.name, "Item:#{x.id}"]}, prompt: "Choose wisely") %>
       </div>
       <div class="small-7 columns">
-        <input type="text" id="item[extra_description]" name="extra_description" placeholder="Description" />
+        <label>Foods</label>
+        <%= f.select(:extrable_food, Food.where(restaurant: @restaurant).all.order(:name).map{|x| [x.name, "Food:#{x.id}"]}, prompt: "Choose only one") %>
       </div>
-      <% Extra.extra_types.each do |extra_type| %>
+      <% Extra.addon_types.each do |addon_type| %>
         <div class="small-5 columns">
-          <%= "<input type='radio' name='extra_type' id='extra_type_#{extra_type.first}' value=#{extra_type.first} #{'checked' if extra_type.first == 'addition'}> #{extra_type.first} <br>".html_safe %>
+          <%= "<input type='radio' name='addon_type' id='addon_type_#{addon_type.first}' value=#{addon_type.first} #{'checked' if addon_type.first == 'addition'}> #{addon_type.first} <br>".html_safe %>
         </div>
       <% end %>
       <div class="small-2 columns">
