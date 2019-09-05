@@ -2,12 +2,12 @@
   <div class="small-12 columns">
     <h1>Listing BiteWorthy Items</h1>
   </div>
-  <%= form_tag 'items', method: :get, class: "universal-flex-container-add" do %>
+  <%= form_tag '/admin/items', method: :get, class: "universal-flex-container-add" do %>
     <%= render partial: 'admin/modules/restaurant/filter', locals: {restaurants: @restaurants} %>
     <%= render partial: 'admin/modules/menu_group/filter', locals: {menu_groups: @menu_groups} %>
     <div class="small-12 medium-4 large-4 columns">
       <br>
-      <%= link_to 'Add Tags', admin_add_tags_path(restaurant_id: params[:filter_restaurant_id], menu_group_id: params[:menu_group_id]), class: "universal-flex-button flex-button-natural" %>
+      <%= link_to 'Add Tags to multiple Items', admin_add_tags_path(restaurant_id: params[:filter_restaurant_id], menu_group_id: params[:menu_group_id]), class: "universal-flex-button flex-button-natural" %>
       <%= link_to 'New Item', new_admin_restaurant_item_path(params[:filter_restaurant_id]), class: "universal-flex-button flex-button-natural" if params[:filter_restaurant_id] %>
     </div>
   <% end %>

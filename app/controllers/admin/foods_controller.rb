@@ -10,11 +10,13 @@ class Admin::FoodsController < AdminController
 
 
   def all
-    @restaurants = Restaurant.all.order(:name)
+    unless @foods
+      @foods = Food.page(params[:page]).per(per_page_count)
+    end
   end
 
   def index
-    @foods = Food.where(restaurant: @restaurant)
+    @foods = Food.where(restaurant: @restaurant).page(params[:page]).per(per_page_count)
     respond_to do |format|
       format.html
       format.json { render json: FoodDatatable.new(params, view_context: view_context) }

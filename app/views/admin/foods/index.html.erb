@@ -1,10 +1,13 @@
-<h1>Listing <%= @restaurant.name %> Foods</h1>
 <div class="row">
-  <div class="small-12 medium-6 large-4 columns">
+  <div class="small-12 medium-8 columns">
+    <h1>Listing <%= @restaurant.name %> Foods</h1>
+  </div>
+  <div class="small-12 medium-4 columns">
     <%= link_to 'New Food', new_admin_restaurant_food_path(@restaurant), class: "button radius success" %>
   </div>
+
   <div class="small-12 columns">
-    <%= render partial: 'partials/items/datatable' %>
+    <%= render partial: 'partials/foods/datatable' %>
   </div>
 </div>
 <%= render partial: "admin/restaurants/footer" %>

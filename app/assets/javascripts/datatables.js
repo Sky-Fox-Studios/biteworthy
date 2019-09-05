@@ -2,6 +2,7 @@ $(document).ready(function () {
   $('#admin-items-table').dataTable({
     "processing": true,
     "serverSide": true,
+    "pageLength": 25,
     "ajax": {
       "url": $('#admin-items-table').data('source'),
       "type": "GET",
@@ -20,6 +21,7 @@ $(document).ready(function () {
   $('#admin-foods-table').dataTable({
     "processing": true,
     "serverSide": true,
+    "pageLength": 25,
     "ajax": {
       "url": $('#admin-foods-table').data('source'),
       "type": "GET",
@@ -38,6 +40,7 @@ $(document).ready(function () {
   $('#admin-tags-table').dataTable({
     "processing": true,
     "serverSide": true,
+    "pageLength": 25,
     "ajax": {
       "url": $('#admin-tags-table').data('source'),
       "type": "GET",
@@ -58,6 +61,7 @@ $(document).ready(function () {
   $('#admin-points-table').dataTable({
     "processing": true,
     "serverSide": true,
+    "pageLength": 25,
     "ajax": {
       "url": $('#admin-points-table').data('source'),
       "type": "GET",
@@ -80,6 +84,7 @@ $(document).ready(function () {
   $('#admin-ingredients-table').dataTable({
     "processing": true,
     "serverSide": true,
+    "pageLength": 25,
     "ajax": {
       "url": $('#admin-ingredients-table').data('source'),
       "type": "GET",
@@ -100,6 +105,7 @@ $(document).ready(function () {
   $('#admin-users-table').dataTable({
     "processing": true,
     "serverSide": true,
+    "pageLength": 25,
     "ajax": {
       "url": $('#admin-users-table').data('source'),
       "type": "GET",

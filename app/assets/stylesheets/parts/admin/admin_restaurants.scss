@@ -1,3 +1,4 @@
+@import "_var_and_mix/_variables";
 .admin-restaurant-show{
   display: flex;
   flex-wrap: wrap;
@@ -24,4 +25,8 @@
       }
     }
   }
+}
+
+.simple-card {
+  padding: $global-margin * 0.5;
 }
