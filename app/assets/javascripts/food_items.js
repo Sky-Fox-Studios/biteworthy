@@ -14,7 +14,7 @@ $.food_form = {
   reloadMenuSelect: function(restaurant_id) {
     if(restaurant_id != ""){
       $.ajax({
-        url: "/get_menu_groups_by_restaurant",
+        url: "/admin/get_menu_groups_by_restaurant",
         cache: false,
         dataType: "html",
         type: "GET",

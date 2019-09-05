@@ -22,7 +22,11 @@
               <li class="tag-<%= tag_variety %>">
                 <label>
                   <%= check_box_tag("tag_ids[]", tag.id, false, id: "tag-#{tag.id}", class: "tag_ids")  %>
-                  <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe if tag.icon.present? %>
+                  <% if tag.icon.present? %>
+                    <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe if tag.icon.present? %>
+                  <% else %>
+                    <%= image_tag "empty.png", size: "32x32", class: "icon-size-small" %>
+                  <% end %>
                   <%= tag.name %>
                 </label>
               </li>
@@ -34,15 +38,13 @@
   </div>
   <% if @items.present? %>
     <div class="small-12 columns">
-      <%= paginate @items %>
-    </div>
-    <div class="small-12 columns">
       <table>
         <thead>
           <tr>
             <th>Menu Group</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Current Tags</th>
           </tr>
         </thead>
 
@@ -50,36 +52,31 @@
           <% @items.each do |item| %>
             <tr>
               <td>
-                <%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %>
                 <%= item.menu_groups.map(&:name).to_sentence %>
               </td>
               <td>
                 <label>
                   <%= check_box_tag("item_ids[]", item.id, false, id: "item-#{item.id}", class: "item_ids")  %>
-                  <%= item.name %>
+                  <%= link_to item.name, restaurant_item_path(item.restaurant, item) %>
                 </label>
               </td>
               <td><%= item.description.truncate(111) if item.description %></td>
+              <td><%= item.tags.map(&:name).to_sentence if item.tags %></td>
             </tr>
           <% end %>
           <tr>
-            <td>All Checked?
-            </td>
-            <td class="universal-flex-container-add">
-              <%= button_to 'Save', admin_add_tags_path, class: "universal-flex-button flex-button-natural save-all-item-tags" %>
-            </td>
+            <td></td>
+            <td></td>
             <td>
               <div class="update-status">
               </div>
             </td>
+            <td class="universal-flex-container-add">
+              <%= button_to 'Save Tags to Items', admin_add_tags_path, class: "universal-flex-button flex-button-natural save-all-item-tags" %>
+            </td>
           </tr>
         </tbody>
       </table>
-      <div class="row">
-        <div class="small-12 columns">
-          <%= paginate @items %>
-        </div>
-      </div>
     </div>
   <% end %>
 </div>

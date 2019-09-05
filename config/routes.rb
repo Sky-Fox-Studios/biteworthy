@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get 'privacy-policy',   to: 'pages#privacy_policy'
   get 'terms-of-service', to: 'pages#terms_of_service'
 
-  get '/get_menu_groups_by_restaurant', to: 'admin/foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"
   get '/create_user_rating',            to: 'reviews#create_user_rating',                as: "create_user_rating"
   get '/restaurant_item_filter',        to: 'admin/items#restaurant_item_filter',        as: "restaurant_item_filter"
 
@@ -106,6 +105,7 @@ Rails.application.routes.draw do
         post 'tag_up',        to: 'extras_ajax#tag_up',       as: "tag_up"
       end
       post 'add_new_price', to: 'prices#add_new_price', as: "add_new_price"
+      get 'get_menu_groups_by_restaurant', to: 'foods#get_menu_groups_by_restaurant', as: "get_menu_groups_by_restaurant"
     end
 
     resources :reports
