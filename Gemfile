@@ -22,6 +22,7 @@ gem 'jquery-rails'                           # Use jquery as the JavaScript libr
 gem 'kaminari'                               # Model pagination
 gem 'mini_racer'
 gem 'mysql2', '~> 0.4.10'
+gem "nokogiri", ">= 1.10.4"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
