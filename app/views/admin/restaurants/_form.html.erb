@@ -51,7 +51,6 @@
       <%= render partial: "admin/photos/upload", locals: {form: f, object: @restaurant, size: :sixteen_by_nine} %>
     </label>
   </div>
-  </div>
 
   <% if !@restaurant.new_record? %>
     <% if @restaurant.addresses.present? %>

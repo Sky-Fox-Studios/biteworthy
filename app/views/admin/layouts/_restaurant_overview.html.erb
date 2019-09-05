@@ -1,0 +1,14 @@
+<div class="small-12 columns">
+  <h3><%= title %>:</h3>
+</div>
+<% restaurants.each do |restaurant| %>
+  <div class="small-12 medium-4 columns">
+
+    <div class="radius bordered shadow simple-card card <%= restaurant.active? ? "active" : "inactive" %>">
+      <h5>
+        <%= link_to restaurant.name, admin_restaurant_path(restaurant) %>
+      </h5>
+      <p><%= link_to "#{Item.where(restaurant: restaurant).count} Items", admin_restaurant_items_path(restaurant) %> and  <%= link_to "#{Food.where(restaurant: restaurant).count} Foods", admin_restaurant_foods_path(restaurant)  %>.</p>
+    </div>
+  </div>
+<% end %>

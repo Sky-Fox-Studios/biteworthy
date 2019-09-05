@@ -1,7 +1,4 @@
-<div class="small-12 columns">
-  <div class="row">
-    <% @restaurants.each do |restaurant| %>
-      <%= render partial: "restaurants/basic", locals: {restaurant: restaurant} %>
-    <% end %>
-  </div>
+<div class="row">
+  <%= render partial: "admin/layouts/restaurant_overview", locals: { title: "Active Restaurants", restaurants: @active_restaurants } %>
+  <%= render partial: "admin/layouts/restaurant_overview", locals: { title: "Inactive Restaurants", restaurants: @inactive_restaurants } %>
 </div>
