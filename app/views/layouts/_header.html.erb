@@ -5,7 +5,7 @@
         <%= link_to(show_image(@restaurant, size: :sixteen_by_nine), restaurant_path(@restaurant)) %>
       </div>
     <% else %>
-      <div class="home-logo">
+      <div class="<%= request.path == root_path ? "home-logo" : "sub-logo" %>">
         <%= link_to image_tag("BiteWorthy.png"), root_path %>
       </div>
     <% end %>
@@ -20,35 +20,35 @@
       <%# </div> %>
       <% if current_user %>
         <nav class="admin-nav">
-        <ul class="admin-nav-primary-list">
+        <ul class="admin-nav-primary-list fa-2x">
           <%= link_to reviews_path do %>
-            <li class="admin-nav-primary-item">My reviews</li>
+            <li class="admin-nav-primary-item"><i class="fad fa-comment-alt-edit"></i>My reviews</li>
           <% end %>
           <% if current_user.is_admin? %>
             <li class="admin-nav-primary-item">
-              <%= link_to "Admin", admin_root_path %>
+              <%= link_to '<i class="fad fa-hammer"></i>Admin'.html_safe, admin_root_path %>
               <ul class="admin-nav-secondary-list">
               <%= link_to admin_users_path do %>
-                <li class="admin-nav-secondary-item">Users</li>
+                <li class="admin-nav-secondary-item"><i class="fad fa-users"></i>Users</li>
               <% end %>
               <%= link_to admin_restaurants_path do %>
-                <li class="admin-nav-secondary-item">Restaurants</li>
+                <li class="admin-nav-secondary-item"><i class="fad fa-store-alt"></i>Restaurants</li>
               <% end %>
               <%= link_to admin_items_path do %>
-                <li class="admin-nav-secondary-item">Items</li>
+                <li class="admin-nav-secondary-item"><i class="fad fa-pizza"></i>Items</li>
               <% end %>
               <%= link_to admin_foods_path do %>
-                <li class="admin-nav-secondary-item">Foods</li>
+                <li class="admin-nav-secondary-item"><i class="fad fa-utensils"></i>Foods</li>
               <% end %>
               <%= link_to admin_tags_path do %>
-                <li class="admin-nav-secondary-item">Tags</li>
+                <li class="admin-nav-secondary-item"><i class="fad fa-tags"></i>Tags</li>
               <% end %>
               <%= link_to admin_ingredients_path do %>
-                <li class="admin-nav-secondary-item">Ingredients*</li>
+                <li class="admin-nav-secondary-item"><i class="fad fa-carrot"></i>Ingredients*</li>
               <% end %>
               <% if current_user.nom? %>
                 <%= link_to admin_points_path do %>
-                  <li class="admin-nav-secondary-item">Points</li>
+                  <li class="admin-nav-secondary-item"><i class="fad fa-history"></i>Points</li>
                 <% end %>
               <% end %>
               </ul>
