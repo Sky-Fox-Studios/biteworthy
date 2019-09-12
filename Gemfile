@@ -10,7 +10,7 @@ gem 'cancan'                                 # Groups and roles for Devise
 gem 'closure_tree'
 gem 'coffee-rails', '~> 4.2.1'               # Use CoffeeScript for .js.coffee assets and views
 gem 'compass-rails'                          # you need this or you get an err
-gem 'devise', '4.6.0'                                 # User authentication
+gem 'devise', '~> 4.7.1'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
