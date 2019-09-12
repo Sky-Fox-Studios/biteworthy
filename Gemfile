@@ -7,6 +7,7 @@ gem "progress_bar"
 gem 'ajax-datatables-rails'
 gem 'autoprefixer-rails'
 gem 'cancan'                                 # Groups and roles for Devise
+gem 'closure_tree'
 gem 'coffee-rails', '~> 4.2.1'               # Use CoffeeScript for .js.coffee assets and views
 gem 'compass-rails'                          # you need this or you get an err
 gem 'devise', '4.6.0'                                 # User authentication

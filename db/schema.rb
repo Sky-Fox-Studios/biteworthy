@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190812030201) do
+ActiveRecord::Schema.define(version: 20190912012912) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -265,6 +265,15 @@ ActiveRecord::Schema.define(version: 20190812030201) do
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
+  create_table "tag_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id",   limit: 4, null: false
+    t.integer "descendant_id", limit: 4, null: false
+    t.integer "generations",   limit: 4, null: false
+  end
+
+  add_index "tag_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "tag_anc_desc_idx", unique: true, using: :btree
+  add_index "tag_hierarchies", ["descendant_id"], name: "tag_desc_idx", using: :btree
+
   create_table "tag_histories", force: :cascade do |t|
     t.string   "tag_id",              limit: 255
     t.string   "name",                limit: 255
@@ -285,16 +294,7 @@ ActiveRecord::Schema.define(version: 20190812030201) do
     t.string   "icon_content_type", limit: 255
     t.integer  "icon_file_size",    limit: 4
     t.datetime "icon_updated_at"
-  end
-
-  create_table "tags_families", force: :cascade do |t|
-    t.integer  "parent_tag_id", limit: 4
-    t.integer  "child_tag_id",  limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tags_groups_relations", force: :cascade do |t|
+    t.integer  "parent_id",         limit: 4
   end
 
   create_table "user_roles", force: :cascade do |t|

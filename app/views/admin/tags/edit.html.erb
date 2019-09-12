@@ -3,4 +3,20 @@
     <h1>Editing Tag</h1>
   </div>
   <%= render 'form' %>
+  <% if @tag.persisted? %>
+    <div class="small-12 medium-6 columns">
+      <fieldset>
+        <legend>
+          <h4>Parents</h4>
+        </legend>
+      </fieldset>
+    </div>
+    <div class="small-12 medium-6 columns">
+      <fieldset>
+        <legend>
+          <h4>Children</h4>
+        </legend>
+      </fieldset>
+    </div>
+  <% end %>
 </div>

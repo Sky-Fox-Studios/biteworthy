@@ -21,7 +21,8 @@ module TrackPoints
   end
 
   def create_point(change_type, changes)
-    Point.create(user_id: User.current.id,
+    u_id = User.current ? User.current.id : 0
+    Point.create(user_id: u_id,
                  object_id: self.id,
                  object_class: self.class.to_s,
                  change_type: Point.change_types[change_type],
