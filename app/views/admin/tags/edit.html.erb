@@ -4,18 +4,22 @@
   </div>
   <%= render 'form' %>
   <% if @tag.persisted? %>
-    <div class="small-12 medium-6 columns">
+    <div class="small-12 medium-4 columns">
       <fieldset>
         <legend>
-          <h4>Parents</h4>
+          <h4>Parent</h4>
         </legend>
+        <%= link_to(@tag.parent.name, edit_admin_tag_path(@tag.parent)) if @tag.parent %>
       </fieldset>
     </div>
-    <div class="small-12 medium-6 columns">
+    <div class="small-12 medium-8 columns">
       <fieldset>
         <legend>
           <h4>Children</h4>
         </legend>
+        <% @tag.children.each do |tag| %>
+          <%= link_to tag.name, edit_admin_tag_path(tag) %>
+        <% end %>
       </fieldset>
     </div>
   <% end %>

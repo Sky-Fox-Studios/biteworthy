@@ -288,13 +288,13 @@ ActiveRecord::Schema.define(version: 20190912012912) do
     t.string   "description",       limit: 255
     t.integer  "variety",           limit: 4
     t.integer  "user_id",           limit: 4
+    t.integer  "parent_id",         limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "icon_file_name",    limit: 255
     t.string   "icon_content_type", limit: 255
     t.integer  "icon_file_size",    limit: 4
     t.datetime "icon_updated_at"
-    t.integer  "parent_id",         limit: 4
   end
 
   create_table "user_roles", force: :cascade do |t|
