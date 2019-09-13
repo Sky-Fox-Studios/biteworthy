@@ -1,0 +1,10 @@
+@import "../../_var_and_mix/general_mixins";
+#tag-edit fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.25em 0.25em 0.25em;
+
+  .tag-family-member {
+    @include tag_family_member();
+  }
+}

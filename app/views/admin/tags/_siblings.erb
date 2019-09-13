@@ -1,0 +1,15 @@
+<fieldset>
+  <legend>
+    <h4>Siblings</h4>
+  </legend>
+  <% if !tag.root? %>
+    <% tag.siblings.each do |sibling| %>
+      <div class="tag-family-member">
+        <%= link_to sibling.name, edit_admin_tag_path(sibling) %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if tag.siblings.empty? %>
+    None yet...
+  <% end %>
+</fieldset>

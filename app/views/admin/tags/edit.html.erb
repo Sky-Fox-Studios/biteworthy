@@ -1,26 +1,26 @@
-<div class="row">
+<div class="row" id="tag-edit">
   <div class="small-12 columns">
-    <h1>Editing Tag</h1>
+    <h1>
+      Editing
+      <% if @tag.icon.present? %>
+        <%= image_tag(@tag.icon.url)  %>
+        <% @tag.icon_file_name %>
+      <% end %>
+      tag
+    </h1>
   </div>
   <%= render 'form' %>
   <% if @tag.persisted? %>
-    <div class="small-12 medium-4 columns">
-      <fieldset>
-        <legend>
-          <h4>Parent</h4>
-        </legend>
-        <%= link_to(@tag.parent.name, edit_admin_tag_path(@tag.parent)) if @tag.parent %>
-      </fieldset>
+    <div class="small-12 columns">
     </div>
-    <div class="small-12 medium-8 columns">
-      <fieldset>
-        <legend>
-          <h4>Children</h4>
-        </legend>
-        <% @tag.children.each do |tag| %>
-          <%= link_to tag.name, edit_admin_tag_path(tag) %>
-        <% end %>
-      </fieldset>
+    <div class="small-12 medium-3 columns" id="parent-tag">
+      <%= render partial: "admin/tags/parent", locals: {tag: @tag} %>
+    </div>
+    <div class="small-12 medium-4 columns" id="sibling-tags">
+      <%= render partial: "admin/tags/siblings", locals: {tag: @tag} %>
+    </div>
+    <div class="small-12 medium-5 columns" id="children-tags">
+      <%= render partial: "admin/tags/children", locals: {tag: @tag} %>
     </div>
   <% end %>
 </div>

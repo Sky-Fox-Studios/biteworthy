@@ -14,10 +14,6 @@
     <%= f.input :icon, label: 'Upload an Icon' %>
   </div>
   <div class="small-12 medium-6 columns">
-    <% if @tag.icon.present? %>
-      <%= image_tag(@tag.icon.url)  %>
-      <%= @tag.icon_file_name %>
-    <% end %>
   </div>
   <div class="small-12 columns">
     <%# FOR TESTING %>
