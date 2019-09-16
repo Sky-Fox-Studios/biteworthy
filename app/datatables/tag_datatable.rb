@@ -19,7 +19,7 @@ class TagDatatable < ApplicationDatatable
       {
         name:        link_to(record.name, tag_path(record)),
         description: record.description,
-        parent:      record.parent ? record.parent.name : "",
+        parent:      record.parent ? link_to(record.parent.name, admin_tag_path(record.parent)) : "",
         variety:     record.variety,
         icon:        image_tag(record.icon.url(:tiny), tooltip: record.name.tr("-", " ").capitalize, title: record.name.tr("-", " ").capitalize).html_safe,
         actions:     link_to('<i class="far fa-edit"></i>'.html_safe, edit_admin_tag_path(record), class: "action-icon") +
