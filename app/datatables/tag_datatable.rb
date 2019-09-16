@@ -7,6 +7,7 @@ class TagDatatable < ApplicationDatatable
     @view_columns ||= {
       name:        { source: "Tag.name" },
       description: { source: "Tag.description" },
+      parent:      { source: "Tag.parent" },
       variety:     { source: "Tag.variety", searchable: false },
       icon:        { source: "Tag.icon_file_name", orderable: false },
       actions:     { source: "Tag.id", orderable: false, cond: :eq}
@@ -18,6 +19,7 @@ class TagDatatable < ApplicationDatatable
       {
         name:        link_to(record.name, tag_path(record)),
         description: record.description,
+        parent:      record.parent ? record.parent.name : "",
         variety:     record.variety,
         icon:        image_tag(record.icon.url(:tiny), tooltip: record.name.tr("-", " ").capitalize, title: record.name.tr("-", " ").capitalize).html_safe,
         actions:     link_to('<i class="far fa-edit"></i>'.html_safe, edit_admin_tag_path(record), class: "action-icon") +
