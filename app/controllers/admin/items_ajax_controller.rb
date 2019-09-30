@@ -45,14 +45,18 @@ class Admin::ItemsAjaxController < Admin::ItemsController
       end
     end
     @item.extras.each do |extra|
-      extra.tags.each do |tag|
+      extra.extrable.tags.each do |tag|
         @item.tags << tag unless @item.tags.include? tag
       end
     end
-    # TODO or not TODO
-    # @item.tags.each do |tag|
-    #   @item.tags << tag.parent unless @item.tags.include? tag.parent
-    # end
+    @item.tags.each do |tag|
+      if tag.parent
+        binding.pry
+        tag.ancestors.each do |ancestor|
+          @item.tags << ancestor unless @item.tags.include? ancestor
+        end
+      end
+    end
     render partial: "admin/tags/inner/list", locals: {restaurant: @item.restaurant, object: @item }
   end
 
