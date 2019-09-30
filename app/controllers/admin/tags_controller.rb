@@ -58,6 +58,21 @@ class Admin::TagsController < AdminController
     end
   end
 
+  def remove_parent
+    @child = Tag.find(params[:id])
+    notice  = if current_user.nom?
+      @child.update(parent_id: nil)
+      'Parent was successfully removed'
+    else
+      # TODO report attempted removal
+      'You are not authorized for that action'
+    end
+    respond_to do |format|
+      format.html { redirect_to edit_admin_tag_path(@child), notice: notice }
+      format.js { render "admin/tags/added_parent" }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

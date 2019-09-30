@@ -2,10 +2,10 @@
   <legend>
     <h4>Children</h4>
   </legend>
+  <%= render partial: "admin/tags/add_child", locals: {tag: tag} %>
   <% tag.children.each do |child| %>
     <div class="tag-family-member">
       <%= link_to child.name, edit_admin_tag_path(child) %>
     </div>
   <% end %>
-  <%= render partial: "admin/tags/add_child", locals: {tag: tag} %>
 </fieldset>
