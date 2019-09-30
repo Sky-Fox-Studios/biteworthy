@@ -51,7 +51,6 @@ class Admin::ItemsAjaxController < Admin::ItemsController
     end
     @item.tags.each do |tag|
       if tag.parent
-        binding.pry
         tag.ancestors.each do |ancestor|
           @item.tags << ancestor unless @item.tags.include? ancestor
         end
