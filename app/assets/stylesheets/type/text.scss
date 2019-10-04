@@ -29,6 +29,9 @@ textarea, option,
 input[type] {
   color: black;
 }
+textarea {
+  height: 99px;
+}
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
   color: $bw_blue;
 }
