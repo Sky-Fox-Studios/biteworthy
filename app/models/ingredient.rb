@@ -1,5 +1,6 @@
 class Ingredient < ActiveRecord::Base
   include TrackPoints
+  has_closure_tree
   before_validation :set_normalized_name
   belongs_to :user
 
