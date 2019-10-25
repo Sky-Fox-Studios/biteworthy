@@ -13,9 +13,9 @@
 
 <div class="row admin-restaurant-show">
   <%= render partial: "admin/restaurants/sections/menus" %>
-  <%= render partial: "admin/restaurants/sections/basic", locals: {name: "item", values: @items, } %>
-  <%= render partial: "admin/restaurants/sections/basic", locals: {name: "food", values: @foods, } %>
-  <%= render partial: "admin/restaurants/sections/basic", locals: {name: "extra", values: @extras, } %>
+  <%= render partial: "admin/restaurants/sections/basic", locals: { name: "item", values: @items } %>
+  <%= render partial: "admin/restaurants/sections/basic", locals: { name: "food", values: @foods } %>
+  <%= render partial: "admin/restaurants/sections/extras", locals: { choices: @choices, additions: @additions } %>
 </div>
 
 

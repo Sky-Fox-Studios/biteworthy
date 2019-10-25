@@ -1,0 +1,23 @@
+<div class="admin-show-section">
+  <div class="small-12 columns universal-flex-container-add">
+    <h2><%= link_to "Extras", polymorphic_path([:admin, @restaurant, :extras]) %></h2>
+    <%= link_to "<i class='fa fa-plus'></i>".html_safe, new_polymorphic_path([:admin, @restaurant, :extra]), class: "universal-flex-button flex-button-add" %>
+    <h4> (<%= choices.count + additions.count%>)</h4>
+  </div>
+  <div class="small-12 medium-6 columns universal-flex-container-add">
+    <h3>Choices:</h3>
+    <% choices.each do |value| %>
+      <div class="admin-item">
+        <%= link_to value.extrable.name, edit_polymorphic_path([:admin, @restaurant, value]) %>
+      </div>
+    <% end %>
+  </div>
+  <div class="small-12 medium-6 columns universal-flex-container-add">
+    <h3>Additions:</h3>
+    <% additions.each do |value| %>
+      <div class="admin-item">
+        <%= link_to value.extrable.name, edit_polymorphic_path([:admin, @restaurant, value]) %>
+      </div>
+    <% end %>
+  </div>
+</div>

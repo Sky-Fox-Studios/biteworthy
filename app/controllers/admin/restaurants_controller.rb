@@ -13,7 +13,8 @@ class Admin::RestaurantsController < AdminController
     @menu_groups = MenuGroup.where(restaurant: @restaurant).order(:name)
     @items       = Item.where(restaurant: @restaurant).order(:name)
     @foods       = Food.where(restaurant: @restaurant).order(:name)
-    @extras      = Extra.where(restaurant: @restaurant)
+    @additions   = Extra.where(restaurant: @restaurant, addon_type: 'addition')
+    @choices     = Extra.where(restaurant: @restaurant, addon_type: 'choice')
   end
 
   def new
