@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190912012912) do
+ActiveRecord::Schema.define(version: 20191004190407) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "restaurant_id", limit: 4
@@ -86,10 +86,20 @@ ActiveRecord::Schema.define(version: 20190912012912) do
     t.datetime "updated_at"
   end
 
+  create_table "ingredient_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id",   limit: 4, null: false
+    t.integer "descendant_id", limit: 4, null: false
+    t.integer "generations",   limit: 4, null: false
+  end
+
+  add_index "ingredient_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "ingredient_anc_desc_idx", unique: true, using: :btree
+  add_index "ingredient_hierarchies", ["descendant_id"], name: "ingredient_desc_idx", using: :btree
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.string   "normalized_name", limit: 255
     t.integer  "user_id",         limit: 4
+    t.integer  "parent_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

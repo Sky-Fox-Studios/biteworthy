@@ -1,6 +1,5 @@
 @charset 'utf-8';
 
-@import 'settings';
 @import 'foundation';
 
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
@@ -11,8 +10,8 @@
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
-//@include foundation-grid;
-//@include foundation-flex-grid;
+@include foundation-grid;
+@include foundation-flex-grid;
 @include foundation-flex-classes;
 @include foundation-typography;
 @include foundation-forms;
@@ -49,8 +48,29 @@
 @include foundation-top-bar;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
+@include foundation-prototype-classes;
 
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
 //
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
+.row {
+  max-width: 64.5rem !important;
+}
+form #error_explanation {
+  background-color: white;
+}
+.card-section {
+  background: white;
+}
+$bw_blue: #008CBA;
+fieldset {
+  border: 2px solid $bw_blue;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.25em;
+  border-radius: .5rem;
+  width: auto;
+}
+p {
+  margin-bottom: .5rem;
+}

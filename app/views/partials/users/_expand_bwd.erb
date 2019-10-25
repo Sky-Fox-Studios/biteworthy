@@ -1,0 +1,9 @@
+<div class="small-12 columns">
+  <hr>
+  <p>Interested in expanding the information here?</p>
+  <p><%= link_to "Login", user_session_path %> and become a member, start reviewing to earn points and unlock new features</p>
+  <p>Then send an email to <a href="mailto:info@biteworthy.restaurant">info@biteworthy.restaurant</a> requesting more responsibility.
+  <% if current_user && current_user.is_admin? %>
+    <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_tag_path(@tag) %>
+  <% end %>
+</div>

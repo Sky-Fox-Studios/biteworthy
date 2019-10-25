@@ -1,13 +1,15 @@
-<%= simple_form_for(@report) do |f| %>
+<%= simple_form_for(@report, html: {class: "row"}) do |f| %>
   <div class="small-12 columns">
     <%= f.error_notification %>
   </div>
 
   <div class="small-12 columns">
-    <%= f.input :name, label: "Title" %>
+    <%= f.input :name, label: "Title", placeholder: "How we will reference your feedback" %>
   </div>
   <div class="small-12 medium-4 columns">
-    <ul>
+    <p>Help us solve the problem:</p>
+    <br>
+    <ul class="feedback-questions">
       <li>What happened?</li>
       <li>What should have happend?</li>
       <li>Steps to recreate</li>
@@ -15,8 +17,6 @@
   </div>
   <div class="small-12 medium-8 columns">
     <%= f.input :description %>
-  </div>
-  <div class="small-12 columns">
   </div>
   <div class="small-12 medium-4 columns">
     <%= f.input :report_type, collection: Report.report_types.keys, label: "Variety", prompt: 'Feedback is mostly...' %>
