@@ -52,6 +52,7 @@ $(document).ready(function () {
     "columns": [
       {"data": "name"},
       {"data": "description"},
+      {"data": "parent"},
       {"data": "variety"},
       {"data": "icon", "sortable": false},
       {"data": "actions", "sortable": false, "className": "nowrap"}

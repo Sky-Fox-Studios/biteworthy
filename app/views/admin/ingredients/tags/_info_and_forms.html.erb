@@ -1,15 +1,14 @@
-<div class="small-12 medium-6 columns">
+<div class="small-12 columns">
   <fieldset>
     <legend>
       <h4>Tags:</h4>
     </legend>
     <div class="row padded">
-      <div class="small-12 medium-4 columns">
+      <div class="small-12 medium-8 columns">
         <%= render partial: "admin/ingredients/tags/list", locals: {ingredient: @ingredient } %>
       </div>
-      <div class="small-12 medium-8 columns">
+      <div class="small-12 medium-4 columns">
         <%= render partial: "admin/ingredients/tags/select", locals: {ingredient: @ingredient, tags: @tags} %>
-        <%= render partial: "admin/ingredients/tags/form",   locals: {ingredient: @ingredient} %>
       </div>
     </div>
   </fieldset>

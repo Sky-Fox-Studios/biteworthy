@@ -1,0 +1,27 @@
+<fieldset>
+  <legend>
+    <h4>Parent</h4>
+  </legend>
+  <% if tag.parent %>
+    <div class="tag-family-member">
+      <%= link_to(tag.parent.name, edit_admin_tag_path(tag.parent)) %>
+    </div>
+    <% if current_user.nom? %>
+      <div class="tag-family-remove">
+        <%= link_to Icon.sup_x.html_safe, admin_remove_tag_parent_path(tag), method: :post, remote: true %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= simple_form_for(tag, url: admin_add_parent_tag_path, method: :post, remote: true, data_type: "script") do |f| %>
+      <%= f.hidden_field :id %>
+      <div class="row universal-flex-container no-bottom-margin">
+        <div class="columns small-9">
+        <%= select_tag('tag[parent_id]', options_for_select(Tag.all.map{ |t| [ t.name, t.id ]}), prompt: "Tag:") %>
+        </div>
+        <div class="columns small-3">
+          <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "add-parent-tag", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</fieldset>

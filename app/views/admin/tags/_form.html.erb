@@ -1,31 +1,26 @@
 <%= simple_form_for([:admin, @tag]) do |f| %>
   <%= render partial: "modules/form_errors", locals: {current_model: @tag} %>
   <%= hidden_field_tag 'tag[user_id]', current_user.id %>
-    <div class="small-12 medium-4 columns">
-      <%= f.input :name %>
-    </div>
-    <div class="small-12 medium-4 columns">
-      <%= f.input :description %>
-    </div>
-    <div class="small-12 medium-4 columns">
-      <%= f.input :variety, collection: Tag.varieties.map{|variety| [variety.first, variety.first]}, selected: @tag.variety %>
-    </div>
-    <div class="small-12 medium-6 columns">
-      <%= f.input :icon, label: 'Upload an Icon' %>
-    </div>
-    <div class="small-12 medium-6 columns">
-      <% if @tag.icon.present? %>
-      <%= image_tag(@tag.icon.url)  %>
-      <%= @tag.icon_file_name %>
+  <div class="small-12 medium-4 columns">
+    <%= f.input :name %>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <%= f.input :description %>
+  </div>
+  <div class="small-12 medium-4 columns">
+    <%= f.input :variety, collection: Tag.varieties.map{|variety| [variety.first, variety.first]}, selected: @tag.variety %>
+  </div>
+  <div class="small-12 medium-6 columns">
+    <%= f.input :icon, label: 'Upload an Icon' %>
+  </div>
+  <div class="small-12 medium-6 columns">
+  </div>
+  <div class="small-12 columns">
+    <%# FOR TESTING %>
+    <% @tag.icon.options[:styles].keys.each do |style|  %>
+      <% image_tag(@tag.icon.url(style))  %>
+      <% style %>
     <% end %>
-    </div>
-    <div class="small-12 columns">
-      <%# FOR TESTING %>
-      <% @tag.icon.options[:styles].keys.each do |style|  %>
-        <% image_tag(@tag.icon.url(style))  %>
-        <% style %>
-      <% end %>
-    </div>
   </div>
   <br>
   <div class="universal-flex-container">

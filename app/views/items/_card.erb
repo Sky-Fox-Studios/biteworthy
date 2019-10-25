@@ -1,8 +1,11 @@
-<% if current_user %>
-  <% review = @user_reviews.select{|r| r.review_id == item.id && r.review_type == item.class.to_s}.first %>
-<% end %>
+<%
+  if current_user
+    review = @user_reviews.select{|r| r.review_id == item.id && r.review_type == item.class.to_s}.first
+  end
+  tag_names = item.tags.map{ |t| t.name }
+%>
 
-<div class="card columns small-12 medium-6 large-4 <%= item.tags.map(&:name).join(" ") %>" data-item-review-rating="<%= review.present? ? Review.ratings[review.rating] : 0 %>">
+<div class="card columns small-12 medium-6 large-4 <%= tag_names.join(" ") %>" data-item-review-rating="<%= review.present? ? Review.ratings[review.rating] : 0 %>">
   <div class="row card-content">
     <div class="small-7 medium-12 columns">
       <div class="row">

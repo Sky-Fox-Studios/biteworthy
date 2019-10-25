@@ -1,0 +1,3 @@
+<% if @parent.present? %>
+  $("#children-tags").html("<%= j render partial: "admin/tags/children", locals: {tag: @parent} %>");
+<% end %>

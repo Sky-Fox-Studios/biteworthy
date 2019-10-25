@@ -48,6 +48,9 @@ Rails.application.routes.draw do
       resources :varieties
     end
     get 'ingredient-varieties', to: 'varieties#all'
+    post 'add_parent_tag', to: 'tags#add_parent', as: 'add_parent_tag'
+    post 'add_child_tag', to: 'tags#add_child', as: 'add_child_tag'
+    post 'remove_tag_parent/:id', to: 'tags#remove_parent', as: 'remove_tag_parent'
 
     resources :restaurants do
       post 'remove_photo',      to: 'restaurants#remove_photo',      as: "remove_photo"
