@@ -1,10 +1,10 @@
 /*
  *= require_self
- *= require foundation/_settings
- *= require foundation/_overrides
  *= require dataTables/jquery.dataTables.foundation
 
  */
+@import "foundation/_settings";
+@import "foundation/_overrides";
 @import "_var_and_mix/*";
 @import "foundation";
 @import "layouts/*";
