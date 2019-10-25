@@ -1,19 +1,31 @@
 <div class="row">
   <div class="small-12 columns">
-    <h1>Tag</h1>
+    <h1>Biteworthy Tag</h1>
+  </div>
+  <div class="small-12 medium-6 columns">
     <p><b>Name:</b> <%= @tag.name.capitalize %></p>
     <p><b>Descrpition:</b> <%= @tag.description %></p>
     <p><b>Variety:</b> <%= @tag.variety %></p>
+    <p><b>Parent:</b> <%= link_to @tag.parent.name, tag_path(@tag.parent) %></p>
+  </div>
+  <div class="small-12 medium-6 columns">
     <p>
       <b>Icon:</b>
       <% if @tag.icon.present? %>
-        <div class="tag-flex-container">
-          <%= render partial: "tags/block", locals: {tag: @tag, size: :medium} %>
-        </div>
+        <%= render partial: "tags/block", locals: { tag: @tag, size: :medium, hide_text: true } %>
       <% else %>
         Missing
       <% end %>
     </p>
+    <% if @tag.parent %>
+    <p>
+    </p>
+  <% end %>
   </div>
-    <%= render partial: "partials/users/expand_bwd" %>
+  <div class="small-12 medium-6 columns">
+    <% if current_user && current_user.is_admin? %>
+      <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_tag_path(@tag) %>
+    <% end %>
+  </div>
+  <%= render partial: "partials/users/expand_bwd" %>
 </div>
