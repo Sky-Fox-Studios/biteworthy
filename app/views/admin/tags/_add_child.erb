@@ -1,0 +1,11 @@
+<%= simple_form_for(tag, url: admin_add_child_tag_path, method: :post, remote: true, data_type: "script") do |f| %>
+  <%= f.hidden_field :id %>
+  <div class="row universal-flex-container no-bottom-margin">
+    <div class="columns small-9">
+      <%= select_tag('tag[child_id]', options_for_select(Tag.where.not('id in (?)', [tag.id, tag.parent ? tag.parent.id : 0]).order_variety_then_name.map{ |t| [ t.name, t.id ]}), prompt: "Tag:") %>
+    </div>
+    <div class="columns small-3">
+      <%= button_tag "<i class='fa fa-plus'></i>".html_safe, id: "add-parent-tag", class: "universal-flex-button flex-button-natural vertical-center no-right-margin" %>
+    </div>
+  </div>
+<% end %>

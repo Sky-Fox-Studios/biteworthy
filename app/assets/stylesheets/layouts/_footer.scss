@@ -14,4 +14,9 @@
   i{
     color: black;
   }
+  a {
+    &:hover, &:active {
+      color: $bw_blue;
+    }
+  }
 }

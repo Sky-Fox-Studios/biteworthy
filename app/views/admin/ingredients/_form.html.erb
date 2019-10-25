@@ -1,5 +1,5 @@
 <div class="small-12 columns">
-  <%= simple_form_for([:admin, @ingredient], html: {class: "row"}) do |f| %>
+  <%= simple_form_for([:admin, @ingredient], html: {class: "row universal-flex-container"}) do |f| %>
     <%= hidden_field_tag 'ingredient[user_id]', current_user.id %>
     <div class="small-6 medium-3 large-4 columns">
       <%= f.input :name %>
@@ -7,7 +7,8 @@
     <div class="small-6 medium-3 large-4 columns">
       <%= f.input :normalized_name, readonly: true, label: "Normalized name (unique)" %>
     </div>
-    <div class="small-12 medium-6 large-4 columns universal-flex-container">
+    <div class="small-12 medium-6 large-4 columns">
+      <label>&nbsp;</label>
       <%= f.submit class: "universal-flex-button flex-button-natural" %>
     </div>
   <% end %>

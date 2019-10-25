@@ -5,7 +5,7 @@ global: &global
 
 development:
   <<: *global
-  enable_cache:            "true"
+  enable_cache:            "false"
 
 staging:
   <<: *global

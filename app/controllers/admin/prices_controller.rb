@@ -58,7 +58,6 @@ class Admin::PricesController < AdminController
        format.json { head :no_content }
        format.js   { render "admin/prices/add_new" }
      end
-
   end
 
   private
