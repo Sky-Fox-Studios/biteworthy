@@ -7,7 +7,9 @@ class Admin::MenuGroupsController < AdminController
   end
 
   def index
-    @menu_groups = MenuGroup.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
+    @menu_groups = MenuGroup.where(restaurant_id: @restaurant)
+      .includes(:menus)
+      .order('menus.name, menu_groups.name')
     respond_with(@menu_groups)
   end
 
@@ -24,7 +26,7 @@ class Admin::MenuGroupsController < AdminController
   end
 
   def edit
-    @items = Item.joins(:menu_groups).where("items_menu_groups.menu_group_id in (?)", @menu_group).where(restaurant: @menu_group.restaurant)
+    @items = Item.joins(:menu_groups).where("items_menu_groups.menu_group_id in (?)", @menu_group).where(restaurant: @menu_group.restaurant).order(:name)
   end
 
   def create

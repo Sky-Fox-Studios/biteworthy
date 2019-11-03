@@ -1,38 +1,36 @@
 <script type="text/javascript" src="/assets/jscolor.js"></script>
 
-  <%= simple_form_for([:admin, @restaurant, @menu]) do |f| %>
+<%= simple_form_for([:admin, @restaurant, @menu]) do |f| %>
   <!-- , url: admin_menu_path(@menu) -->
-    <% if @menu.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
-        <ul>
+  <% if @menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+      <ul>
         <% @menu.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= hidden_field_tag 'menu[restaurant_id]', @restaurant.id %>
-    <div class="small-12 columns">
-      <%= f.input :name %>
-    </div>
-    <div class="small-12 columns">
-      <%= f.input :description %>
-    </div>
-    <%= f.fields_for :hours do |menu_form| %>
-      <div class="small-12 medium-4 columns">
-        <%= menu_form.input :opens, as: :time, html5: true %>
-      </div>
-      <div class="small-12 medium-4 columns">
-        <%= menu_form.input :closes, as: :time, html5: true %>
-      </div>
-      <div class="small-12 medium-4 columns">
-        <%= menu_form.input :day, as: :select, collection: Hour.days.keys.to_a, include_blank: false %>
-      </div>
-    <% end %>
-    <div class="small-12 columns">
-      <%= f.submit class: "button small radius"  %>
+      </ul>
     </div>
   <% end %>
+  <%= hidden_field_tag 'menu[restaurant_id]', @restaurant.id %>
+  <div class="small-12 columns">
+    <%= f.input :name %>
   </div>
-  <%= render partial: "admin/restaurants/footer" %>
+  <div class="small-12 columns">
+    <%= f.input :description %>
+  </div>
+  <%= f.fields_for :hours do |menu_form| %>
+    <div class="small-12 medium-4 columns">
+      <%= menu_form.input :opens, as: :time, html5: true %>
+    </div>
+    <div class="small-12 medium-4 columns">
+      <%= menu_form.input :closes, as: :time, html5: true %>
+    </div>
+    <div class="small-12 medium-4 columns">
+      <%= menu_form.input :day, as: :select, collection: Hour.days.keys.to_a, include_blank: false %>
+    </div>
+  <% end %>
+  <div class="small-12 columns">
+    <%= f.submit class: "button small radius"  %>
+  </div>
+<% end %>

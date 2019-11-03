@@ -7,6 +7,7 @@
       <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Menu Groups</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -16,6 +17,7 @@
         <tr>
           <td><%= menu.name %></td>
           <td><%= menu.description %></td>
+          <td><%= menu.menu_groups.map{|mg| link_to mg.name, edit_admin_restaurant_menu_group_path(@restaurant, mg) }.to_sentence.html_safe %></td>
           <td><%= link_to 'Edit', edit_admin_restaurant_menu_path(@restaurant, menu) %></td>
           <td><%= link_to 'Destroy', admin_restaurant_menu_path(@restaurant, menu), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

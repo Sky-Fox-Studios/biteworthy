@@ -8,7 +8,8 @@ class Admin::MenusController < AdminController
   end
 
   def index
-    @menus = Menu.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
+    @menus = Menu.where(restaurant_id: @restaurant)
+      .includes(:menu_groups)
     respond_with(@menus)
   end
 
@@ -25,6 +26,7 @@ class Admin::MenusController < AdminController
   end
 
   def edit
+    @menu_groups = MenuGroup.joins(:menus).where('menus.id = ?', @menu).where(restaurant: @menu.restaurant).order(:name)
   end
 
   def create
