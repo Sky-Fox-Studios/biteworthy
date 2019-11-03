@@ -20,7 +20,7 @@
       <i style="color:gray;">*blank*</i>
       <% end %>
     </div>
-    <div class="small-2 medium-3 columns">
+    <div class="small-2 medium-3 columns button-group">
       <!-- TODO change text to fields and edit to save with JS -->
       <%= render partial: "partials/forms/edit", locals: {path: send("edit_admin_restaurant_#{object.class.to_s.downcase}_price_path", object.restaurant, object, price)} %>
       <%= link_to "<i class='fa fa-trash'></i>".html_safe, send("admin_restaurant_#{object.class.to_s.downcase}_price_path", restaurant, object, price), method: :delete, remote: true %>
