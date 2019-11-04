@@ -1,6 +1,6 @@
 <script type="text/javascript" src="/assets/jscolor.js"></script>
 
-<%= simple_form_for([:admin, @restaurant, @menu_group]) do |f| %>
+<%= simple_form_for([:admin, @restaurant, @menu_group], html: {class: "small-12 columns row"}) do |f| %>
   <% if @menu_group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@menu_group.errors.count, "error") %> prohibited this menu_group from being saved:</h2>
@@ -12,14 +12,14 @@
     </div>
   <% end %>
   <%= hidden_field_tag 'menu_group[restaurant_id]', @restaurant.id %>
-  <div class="small-8 medium-6 large-4 columns">
+  <div class="small-12 medium-4 large-4 columns">
     <%= f.association :menus, collection: @menus, label: "Belongs to menu(s)" %>
     <%= f.input :menu_order, input_html: {value: f.object.menu_order || '1'} %>
   </div>
-  <div class="small-8 medium-6 large-4 columns">
+  <div class="small-12 medium-8 large-8 columns">
     <%= f.input :name %>
   </div>
-  <div class="small-8 medium-6 large-4 columns">
+  <div class="small-12 medium-8 large-8 columns">
     <%= f.input :description %>
   </div>
   <div class="small-12 columns">
