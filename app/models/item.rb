@@ -29,6 +29,7 @@ class Item < ActiveRecord::Base
   validates :restaurant_id, :name, presence: true
 
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
+  enum status: { removed: -1, draft: 0, active: 1 }
 
   scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
   scope :items_created, ->(user) { where(user: user).count }
