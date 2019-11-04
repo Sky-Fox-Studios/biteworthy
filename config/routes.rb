@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :reports, only: [:new, :create]
   resources :ingredients, only: [:index, :show]
   resources :restaurants, only: [:index, :show] do
-    resources :menu_groups, :foods, :addresses, :extras, only: [:index, :show]
+    resources :foods, :addresses, :extras, only: [:index, :show]
     resources :items, only: [:show] do
        resources :prices, only: [:index, :show]
      end

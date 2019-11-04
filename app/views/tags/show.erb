@@ -6,7 +6,9 @@
     <p><b>Name:</b> <%= @tag.name.capitalize %></p>
     <p><b>Descrpition:</b> <%= @tag.description %></p>
     <p><b>Variety:</b> <%= @tag.variety %></p>
-    <p><b>Parent:</b> <%= link_to @tag.parent.name, tag_path(@tag.parent) %></p>
+    <% if @tag.parent.present? %>
+      <p><b>Parent:</b> <%= link_to @tag.parent.name, tag_path(@tag.parent) %></p>
+    <% end %>
   </div>
   <div class="small-12 medium-6 columns">
     <p>

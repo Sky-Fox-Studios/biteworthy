@@ -1,6 +1,6 @@
 <div class="row">
   <% size ||= :tiny %>
-  <% ratio = "32x32" %>
+  <% ratio ||= "32x32" %>
   <div class="tag-flex-container button-group filter-button-group">
     <div class='tag-block active' id="show-all-tags">
       <button data-filter="*">All Tags</button>
@@ -8,11 +8,7 @@
     <% tags.each do |tag| %>
       <div class='tag-block' data-filter=".<%= tag.name %>">
         <button>
-          <% if tag.icon.present? %>
-            <%= image_tag(tag.icon.url(size), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
-          <% else %>
-            <%= image_tag "empty.png", size: ratio, class: "icon-size-#{size.to_s}" %>
-          <% end %>
+          <%= render partial: "tags/icon", locals: { tag: tag, size: size, ratio: ratio } %>
           <%= tag.name %>
         </button>
       </div>

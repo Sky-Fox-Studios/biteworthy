@@ -30,7 +30,8 @@
   <% else %>
     <div class="small-12 columns">
       <h3>
-        <%= link_to @extra.extrable.name, edit_polymorphic_path([:admin, @extra.restaurant, @extra.extrable]) %>
+        Parent: <%= link_to @extra.extrable.name, edit_polymorphic_path([:admin, @extra.restaurant, @extra.extrable]) %>
+        (<%= @extra.extrable_type %>)
       </h3>
     </div>
   <% end %>

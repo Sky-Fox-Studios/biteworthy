@@ -1,3 +1,5 @@
+<% size  ||= :small %>
+<% ratio ||= "50x50" %>
 <% min = @ratings.values.first %>
 <% max = @ratings.values.last %>
 <% user_tag_reviews = @reviews.map(&:review_id) %>
@@ -16,11 +18,7 @@
               <span class="name"><%= tag.name %></span>
               </legend>
               <span class="icon" id="tag-icon-<%= tag.id %>">
-                <% if tag.icon.present? %>
-                  <%= image_tag(tag.icon.url(:small), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
-                <% else %>
-                  <%= image_tag "empty.png", size: "50x50", class: "icon-size-small" %>
-                <% end %>
+                <%= render partial: "tags/icon", locals: { tag: tag, size: size, ratio: ratio } %>
               </span>
               <input type="range" id="<%= tag.id %>" min="<%= min %>" max="<%= max %>" value="<%= @ratings[value] %>" class="slider" orient="vertical">
               </br>

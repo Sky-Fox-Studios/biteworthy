@@ -1,11 +1,10 @@
 <div class="row admin-restaurant-show">
   <div class="small-12 columns">
-    <h1>Editing <%= @restaurant.name %> Menu Group</h1>
-    <%= render 'form' %>
-    <br>
+    <h1>Editing <%= link_to @restaurant.name, admin_restaurant_path(@restaurant) %> menu group</h1>
   </div>
+  <%= render 'form' %>
   <div class="small-12 columns">
-    <h2>Items in this menu group</h2>
+    <h2><%= @items.count %> <%= "Item".pluralize(@items.count) %> in this menu group</h2>
   </div>
   <div class="small-12 columns admin-show-section">
     <% @items.each do |item| %>
@@ -15,3 +14,5 @@
     <% end %>
   </div>
 </div>
+<br>
+<%= render partial: "admin/restaurants/footer" %>

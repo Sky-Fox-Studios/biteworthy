@@ -11,6 +11,9 @@
       </div>
       <div class="small-12 medium-4 columns">
         <%= f.input :name %>
+        <%= f.input :status, collection: Item.statuses.keys.map{|key| [key.humanize, key]}, include_blank: false %>
+        <%= f.input :recommended %>
+
       </div>
       <div class="small-12 medium-8 columns">
         <%= f.input :description, as: :text  %>

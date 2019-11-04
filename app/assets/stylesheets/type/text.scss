@@ -29,7 +29,10 @@ input[type] {
   color: black;
 }
 textarea {
-  height: 99px;
+  height: 142px;
+  @media screen and (max-width: 39.9375em) {
+    height: 99px;
+  }
 }
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
   color: $bw_blue;

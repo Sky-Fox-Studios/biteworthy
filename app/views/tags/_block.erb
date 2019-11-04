@@ -14,11 +14,7 @@
   end
 %>
 
-  <% if tag.icon.present? %>
-    <%= image_tag(tag.icon.url(size), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe %>
-  <% else %>
-    <%= image_tag "empty.png", size: ratio, class: "icon-size-#{size.to_s}" %>
-  <% end %>
+  <%= render partial: "tags/icon", locals: { tag: tag, size: size, ratio: ratio } %>
 
   <% unless hide_text %>
     <p class="name"><%= tag.name.tr("-", " ").capitalize %></p>
