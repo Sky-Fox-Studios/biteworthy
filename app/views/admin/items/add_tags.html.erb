@@ -1,3 +1,5 @@
+<% size  ||= :tiny %>
+<% ratio ||= "32x32" %>
 <div class="row">
   <div class="small-12 columns">
     <h1>Listing BiteWorthy Items TO ADD TAGS</h1>
@@ -22,11 +24,7 @@
               <li class="tag-<%= tag_variety %>">
                 <label>
                   <%= check_box_tag("tag_ids[]", tag.id, false, id: "tag-#{tag.id}", class: "tag_ids")  %>
-                  <% if tag.icon.present? %>
-                    <%= image_tag(tag.icon.url(:tiny), tooltip: tag.name.tr("-", " ").capitalize, title: tag.name.tr("-", " ").capitalize).html_safe if tag.icon.present? %>
-                  <% else %>
-                    <%= image_tag "empty.png", size: "32x32", class: "icon-size-small" %>
-                  <% end %>
+                  <%= render partial: "tags/icon", locals: { tag: tag, size: size, ratio: ratio } %>
                   <%= tag.name %>
                 </label>
               </li>
