@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 
 gem "browser"
+gem 'bundler', '1.16.4', require: false
 gem "progress_bar"
 gem 'ajax-datatables-rails'
 gem 'autoprefixer-rails'
@@ -37,6 +38,12 @@ gem 'sentient_user', '0.3.3'                 # Current_user in models
 gem 'simple_form'
 gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
+#
+# Searching (must be loaded after pagination gems)
+gem 'elasticsearch-model', '< 7.0.0'
+gem 'elasticsearch-persistence', '< 7.0.0'
+gem 'elasticsearch-rails', '< 7.0.0'
+
 #
 # File uploading
 gem 'paperclip', "5.2.0"

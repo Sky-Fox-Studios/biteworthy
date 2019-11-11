@@ -1,5 +1,8 @@
+require 'elasticsearch/model'
 class Item < ActiveRecord::Base
   include TrackPoints
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   # include CacheInvalidator
   # after_create :invalidate_cache
   # after_update :invalidate_cache
@@ -18,8 +21,8 @@ class Item < ActiveRecord::Base
   has_many :extras, through: :items_extras
   has_many :items_extras
 
-  has_many :ingredients, through: :items_ingredients
-  has_many :items_ingredients
+  # has_many :ingredients, through: :items_ingredients
+  # has_many :items_ingredients
 
   has_many :tags, through: :items_tags
   has_many :items_tags
@@ -31,13 +34,29 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
   enum status: { removed: -1, draft: 0, active: 1 }
 
-  scope :active, -> {joins(:restaurant).where("restaurants.active = ?", true)}
+  scope :active, -> { where(status: Item.status[:active]) }
   scope :items_created, ->(user) { where(user: user).count }
 
-  # searchable do
-  #   text    :name
-  #   text    :description
-  # end
+  index_name "#{ENV['database_name']}-articles".downcase
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :id, type: :integer
+      indexes :restaurant_id, type: :integer
+      indexes :name, analyzer: :snowball
+      indexes :description, analyzer: :snowball
+      indexes :status
+      # indexes :tags do
+      #   indexes :name
+      #   indexes :descrption
+      # end
+      # indexes :foods do
+      #   indexes :name
+      # end
+      # indexes :tags do
+      #   indexes :name
+      # end
+    end
+  end
 
   def to_param
     "#{id}-#{name.parameterize}"
