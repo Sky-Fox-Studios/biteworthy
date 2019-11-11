@@ -3,9 +3,18 @@ class SearchController < ApplicationController
   def home
     # search = Sunspot.search(Post, Comment)
     @search = params[:query]
+    @tags  = Tag.all.order(:name)
+    @foods = Food.all.order(:name)
+    @restaurants = Restaurant.search do
+      with(:active, true)
+      fulltext params[:query] if params[:query] != ""
+      paginate(page: params[:page], per_page: Sunspot.config.pagination.default_per_page)
+    end
 
-    search = Item.search @search
-    @items = search.records
+    @items = Item.search do
+      fulltext params[:query] if params[:query] != ""
+      paginate(page: params[:page], per_page: Sunspot.config.pagination.default_per_page)
+    end
   end
 
   def choice_search

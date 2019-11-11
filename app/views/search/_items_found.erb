@@ -1,8 +1,29 @@
-<div class="small-12 columns">
-  <h2 align="center"><%= items.count %> items:</h2>
+<div class="restaurant-show">
+  <div class="row grid cards-container">
+    <% items.each do |item| %>
+      <%= render partial: "items/card", locals: {restaurant: item.restaurant, item: item} %>
+    <% end %>
+  </div>
 </div>
-<div class="search-items-show">
-  <% items.each do |item| %>
-    <%= render partial: "items/show", locals: {item: item} %>
-  <% end %>
-</div>
+<script>
+  var filters = [];
+  var $grid;
+  $(function(){
+    $grid = $('.grid').imagesLoaded(function(){
+      $grid.isotope({
+        itemSelector: '.card',
+        layoutMode: 'fitRows',
+        getSortData: {
+          name: '.card-title a',
+          rating: '[data-item-review-rating] parseInt', // value of attribute
+        },
+        sortAscending: {
+          name: true,
+          rating: false,
+        }
+      });
+    });
+
+
+  });
+</script>

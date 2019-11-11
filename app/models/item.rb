@@ -37,7 +37,7 @@ class Item < ActiveRecord::Base
   scope :active, -> { where(status: Item.status[:active]) }
   scope :items_created, ->(user) { where(user: user).count }
 
-  index_name "#{ENV['database_name']}-articles".downcase
+  index_name "#{ENV['database_name']}-items".downcase
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
       indexes :id, type: :integer
@@ -45,17 +45,25 @@ class Item < ActiveRecord::Base
       indexes :name, analyzer: :snowball
       indexes :description, analyzer: :snowball
       indexes :status
-      # indexes :tags do
-      #   indexes :name
-      #   indexes :descrption
-      # end
-      # indexes :foods do
-      #   indexes :name
-      # end
+      indexes :tags do
+        indexes :name
+      end
+      indexes :foods do
+        indexes :name
+      end
       # indexes :tags do
       #   indexes :name
       # end
     end
+  end
+
+  # http://localhost:9200/bwd_dev-items/_doc/#{article_id}?pretty=true
+  def as_indexed_json(options = {})
+    as_json(include: {
+      tags: { only: [:name] },
+      foods: { only: [:name] },
+      restaurant: { only: [:id, :status] },
+    })
   end
 
   def to_param
