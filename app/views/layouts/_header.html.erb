@@ -10,14 +10,6 @@
       </div>
     <% end %>
     <div class="bw-top-bar">
-      <%# <div class="search"> %>
-      <%#   <%= form_tag "/search", url: 'search', method: :get do |f| %1> %>
-      <%#     <div class="universal-flex-container"> %>
-      <%#       <input type="search" name="query" placeholder="Search for a restaurant, food, diet..." autofocus class="universal-flex-element search-bar"> %>
-      <%#       <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %1> %>
-      <%#     </div> %>
-      <%#   <% end %1> %>
-      <%# </div> %>
       <% if current_user %>
         <nav class="admin-nav">
         <ul class="admin-nav-primary-list fa-2x">
@@ -75,6 +67,14 @@
           <%= link_to "Login".html_safe, user_session_path, class: "btn-bw-green", style: "margin:.5rem;" %>
         </div>
       <% end %>
+      <div class="search">
+        <%= form_tag "/search", url: 'search', method: :get do |f| %>
+          <div class="universal-flex-container">
+            <input type="search" name="query" placeholder="Search for a restaurant, food, diet..." autofocus class="universal-flex-element search-bar">
+            <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="small-12 show-for-small-only">
