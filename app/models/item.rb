@@ -34,7 +34,8 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:restaurant_id, :description]
   enum status: { removed: -1, draft: 0, active: 1 }
 
-  scope :active, -> { where(status: Item.status[:active]) }
+  scope :active, -> { where(status: Item.statuses[:active]) }
+  scope :inactive, -> { where.not(status: Item.statuses[:active]) }
   scope :items_created, ->(user) { where(user: user).count }
 
   index_name "#{ENV['database_name']}-items".downcase

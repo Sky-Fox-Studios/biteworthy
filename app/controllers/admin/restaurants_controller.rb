@@ -9,12 +9,13 @@ class Admin::RestaurantsController < AdminController
   end
 
   def show
-    @menus = Menu.where(restaurant: @restaurant).order(:name)
-    @menu_groups = MenuGroup.where(restaurant: @restaurant).order(:name)
-    @items       = Item.where(restaurant: @restaurant).order(:name)
-    @foods       = Food.where(restaurant: @restaurant).order(:name)
-    @additions   = Extra.where(restaurant: @restaurant, addon_type: Extra.addon_types[:addition])
-    @choices     = Extra.where(restaurant: @restaurant, addon_type: Extra.addon_types[:choice])
+    @menus          = Menu.where(restaurant: @restaurant).order(:name)
+    @menu_groups    = MenuGroup.where(restaurant: @restaurant).order(:name)
+    @active_items   = Item.where(restaurant: @restaurant).active.order(:name)
+    @inactive_items = Item.where(restaurant: @restaurant).inactive.order(:name)
+    @foods          = Food.where(restaurant: @restaurant).order(:name)
+    @additions      = Extra.where(restaurant: @restaurant, addon_type: Extra.addon_types[:addition])
+    @choices        = Extra.where(restaurant: @restaurant, addon_type: Extra.addon_types[:choice])
   end
 
   def new

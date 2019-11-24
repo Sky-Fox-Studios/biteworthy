@@ -2,18 +2,24 @@
 .admin-restaurant-show{
   display: flex;
   flex-wrap: wrap;
-  .admin-show-section {
-    display: flex;
-    flex-wrap: wrap;
+
+  .admin-section {
     border-width: 0px;
     border-style: solid;
     border-bottom-width: 2px;
+  }
+  .admin-show-section {
+    display: flex;
+    flex-wrap: wrap;
 
     .admin-item{
       margin: 0.3rem;
       background-color: skyblue;
       border-radius: 4px;
       padding: 5px;
+      &.active {
+        border: black solid 1px;
+      }
       a{
         color: black;
       }
