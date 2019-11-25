@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   private
   def set_items
     @item = Item
-      .includes(:reviews, :prices, :photos, :foods, :ingredients)
+      .includes(:reviews, :prices, :photos, :foods)
       .find(params[:id])
     @item_extras_choice   = @item.extras.where(addon_type: Extra.addon_types[:choice])
     @item_extras_addition = @item.extras.where(addon_type: Extra.addon_types[:addition])
