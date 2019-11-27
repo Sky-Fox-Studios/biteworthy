@@ -1,12 +1,65 @@
 class SearchController < ApplicationController
   skip_before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
   def home
-    # search = Sunspot.search(Post, Comment)
     @search = params[:query]
-
-    search = Item.search @search
-    @items = search.records
+    @items = Item.search(customize_query).records
   end
+
+  def customize_query
+    @is_active    = { "status": 'active' }
+    query = basic(params[:query])
+    query
+  end
+
+  def basic(search)
+    if search.present?
+      {
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "multi_match": {
+                  "query": search,
+                  "operator": 'and',
+                  "type": 'cross_fields'
+                }
+              },
+            ],
+            "filter": [{
+              "bool": {
+                "must": [
+                  {
+                    "term": @is_active
+                  },
+                ]
+              }
+            }]
+          }
+        },
+        "track_scores": true
+      }
+    else
+      {
+        "query": {
+          "bool": {
+            "must": [],
+            "filter": [{
+              "bool": {
+                "must": [
+                  {
+                    "term": @is_active
+                  },
+                ]
+              }
+            }]
+          }
+        },
+        "track_scores": true
+      }
+    end
+  end
+
+
 
   def choice_search
     @search = Extra.find(params[:choice_id])
