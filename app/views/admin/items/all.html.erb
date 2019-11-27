@@ -12,6 +12,7 @@
     </div>
   <% end %>
   <div class="small-12 columns">
+    <%= paginate @items %>
     <table>
       <thead>
         <tr>
@@ -27,7 +28,10 @@
       <tbody>
         <% @items.each do |item| %>
           <tr>
-            <td><%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %></td>
+            <td class="center">
+              <%= render partial: "partials/forms/show", locals: {path: restaurant_item_path(item.restaurant, item)} %><br>
+              <%= item.status %>
+            </td>
             <td><%= item.restaurant.name %></td>
             <td><%= item.menu_groups.map(&:name).to_sentence %></td>
             <td><%= item.name %></td>
@@ -40,6 +44,7 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @items %>
   </div>
 </div>
 

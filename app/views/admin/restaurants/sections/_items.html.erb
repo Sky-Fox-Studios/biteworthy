@@ -1,0 +1,25 @@
+<div class="small-12 columns admin-section admin-show-section">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="universal-flex-container-add">
+        <h2>
+          <%= link_to name.capitalize.pluralize , polymorphic_path([:admin, @restaurant, name.pluralize.to_sym]) %>
+        </h2>
+        <%= link_to "<i class='fa fa-plus'></i>".html_safe, new_polymorphic_path([:admin, @restaurant, name.to_sym]), class: "universal-flex-button flex-button-add" %>
+        <h4> (<%= active_items.count %> <u>active</u> & <%= inactive_items.count %> inactive)</h4>
+      </div>
+    </div>
+    <div class="small-12 columns admin-show-section">
+      <% active_items.each do |item| %>
+        <div class="admin-item <%= item.status %>">
+          <%= link_to item.name, edit_polymorphic_path([:admin, @restaurant, item]) %>
+        </div>
+      <% end %>
+      <% inactive_items.each do |item| %>
+        <div class="admin-item">
+          <%= link_to item.name, edit_polymorphic_path([:admin, @restaurant, item]) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

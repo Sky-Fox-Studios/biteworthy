@@ -12,9 +12,11 @@
         <div class="small-12 columns">
           <h3 class="card-title"><%= link_to item.name, restaurant_item_path(restaurant, item) %></h3>
         </div>
-        <div class="small-12 columns hide-for-medium">
-          <p class="black-text"><%= item.description.truncate(80, separator: ", ").html_safe %></p>
-        </div>
+        <% if item.description.present? %>
+          <div class="small-12 columns hide-for-medium">
+            <p class="black-text"><%= item.description.truncate(80, separator: ", ").html_safe %></p>
+          </div>
+        <% end %>
         <div class="small-12 columns hide-for-medium">
           <% item.tags.each do |tag| %>
             <span class="restaurant-show-tag", data-filter=".<%= tag.name %>">
@@ -35,9 +37,11 @@
         <div class="small-12 columns show-for-medium">
           <%= render partial: 'items/review_vote', locals: { item: item, review: review } %>
         </div>
-        <div class="small-12 columns show-for-medium">
-          <p class="black-text"><%= item.description.html_safe %></p>
-        </div>
+        <% if item.description.present? %>
+          <div class="small-12 columns show-for-medium">
+            <p class="black-text"><%= item.description.html_safe %></p>
+          </div>
+        <% end %>
         <div class="small-12 columns show-for-medium">
           <% item.tags.each do |tag| %>
             <span class="restaurant-show-tag", data-filter=".<%= tag.name %>">

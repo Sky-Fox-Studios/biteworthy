@@ -1,4 +1,4 @@
-<div class="admin-show-section">
+<div class="admin-section admin-show-section">
   <div class="small-12 columns universal-flex-container-add">
     <h2><%= link_to "Extras", polymorphic_path([:admin, @restaurant, :extras]) %></h2>
     <%= link_to "<i class='fa fa-plus'></i>".html_safe, new_polymorphic_path([:admin, @restaurant, :extra]), class: "universal-flex-button flex-button-add" %>

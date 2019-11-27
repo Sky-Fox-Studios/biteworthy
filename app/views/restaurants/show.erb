@@ -1,11 +1,11 @@
 <%= render partial: 'restaurant_header', locals: {restaurant: @restaurant} %>
 <%= render partial: "tags/filter", locals: {tags: @items.map(&:tags).flatten.uniq.sort_by(&:name)} %>
 
-  <div class="restaurant-show">
-    <div class="row grid cards-container">
-      <% @items.each do |item| %>
-        <%= render partial: "items/card", locals: {restaurant: @restaurant, item: item} %>
-      <% end %>
+<div class="restaurant-show">
+  <div class="row grid cards-container">
+    <% @items.each do |item| %>
+      <%= render partial: "items/card", locals: {restaurant: @restaurant, item: item} %>
+    <% end %>
   </div>
 </div>
 <script>
