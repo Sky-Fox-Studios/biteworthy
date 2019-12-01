@@ -72,9 +72,9 @@ class Admin::IngredientsController < AdminController
   private
   def set_ingredient
     if params[:id]
-      @ingredient = Ingredient.find(params[:id])
+      @ingredient = Ingredient.find_by(name: params[:id])
     elsif params[:ingredient_id]
-      @ingredient = Ingredient.find(params[:ingredient_id])
+      @ingredient = Ingredient.find_by(name: params[:ingredient_id])
     end
     @tags      = Tag.where(variety: 'ingredient')
     @varieties = Variety.where(ingredient: @ingredient)

@@ -94,7 +94,7 @@ class SearchController < ApplicationController
   end
 
   def ingredient_search
-    @search = Ingredient.find(params[:ingredient_id])
+    @search = Ingredient.find_by(name: params[:ingredient_id])
     @items = Item.joins(:ingredients).where('ingredients.id IN (?)', params[:ingredient_id])
     render "search/item_search", locals: {search_type: "ingredient"}
   end

@@ -2,7 +2,7 @@ class Admin::VarietiesController < AdminController
   before_action :set_variety, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ingredient = Ingredient.find(params[:ingredient_id])
+    @ingredient = Ingredient.find_by(name: params[:ingredient_id])
     @varieties = Variety.where(ingredient: @ingredient).order('varieties.name')
   end
 

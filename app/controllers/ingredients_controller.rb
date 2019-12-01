@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
   def new
     @ingredient = Ingredient.new
     if params[:food_id]
-      @food = Food.find(params[:food_id])
+      @food = Food.find_by(name: params[:food_id])
       @restaurant = Restaurant.find(@food.restaurant)
     end
     respond_with(@ingredient)
@@ -52,10 +52,10 @@ class IngredientsController < ApplicationController
 
   private
   def set_ingredient
-    @ingredient = Ingredient.find(params[:id])
-    end
+    @ingredient = Ingredient.find_by(name: params[:id])
+  end
 
   def ingredient_params
     params.require(:ingredient).permit(:name)
-    end
+  end
 end

@@ -25,7 +25,7 @@ class Ingredient < ActiveRecord::Base
   scope :ingredients_created, ->(user) { where(user: user).count }
 
   def to_param
-    "#{id}-#{normalized_name}"
+    normalized_name
   end
 
   def set_normalized_name
