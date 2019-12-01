@@ -37,6 +37,7 @@ class Admin::ItemsController < AdminController
 
   def new
     @item = Item.new
+    @menu_group = MenuGroup.find(params[:menu_group_id]) if params[:menu_group_id]
     @menu_groups = MenuGroup.where(restaurant: @restaurant).order(:name)
     respond_with(@item)
   end
