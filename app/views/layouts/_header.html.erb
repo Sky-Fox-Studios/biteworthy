@@ -12,69 +12,71 @@
     <div class="bw-top-bar">
       <% if current_user %>
         <nav class="admin-nav">
-        <ul class="admin-nav-primary-list fa-2x">
-          <%= link_to reviews_path do %>
-            <li class="admin-nav-primary-item"><i class="fad fa-comment-alt-edit"></i>My reviews</li>
-          <% end %>
-          <% if current_user.is_admin? %>
-            <li class="admin-nav-primary-item">
-              <%= link_to '<i class="fad fa-hammer"></i>Admin'.html_safe, admin_root_path %>
-              <ul class="admin-nav-secondary-list">
-              <%= link_to admin_users_path do %>
-                <li class="admin-nav-secondary-item"><i class="fad fa-users"></i>Users</li>
-              <% end %>
-              <%= link_to admin_restaurants_path do %>
-                <li class="admin-nav-secondary-item"><i class="fad fa-store-alt"></i>Restaurants</li>
-              <% end %>
-              <%= link_to admin_items_path do %>
-                <li class="admin-nav-secondary-item"><i class="fad fa-pizza"></i>Items</li>
-              <% end %>
-              <%= link_to admin_foods_path do %>
-                <li class="admin-nav-secondary-item"><i class="fad fa-utensils"></i>Foods</li>
-              <% end %>
-              <%= link_to admin_tags_path do %>
-                <li class="admin-nav-secondary-item"><i class="fad fa-tags"></i>Tags</li>
-              <% end %>
-              <%= link_to admin_ingredients_path do %>
-                <li class="admin-nav-secondary-item"><i class="fad fa-carrot"></i>Ingredients*</li>
-              <% end %>
-              <% if current_user.nom? %>
-                <%= link_to admin_points_path do %>
-                  <li class="admin-nav-secondary-item"><i class="fad fa-history"></i>Points</li>
+          <ul class="admin-nav-primary-list fa-2x">
+            <%= link_to reviews_path do %>
+              <li class="admin-nav-primary-item my-reviews"><i class="fad fa-comment-alt-edit"></i>My reviews</li>
+            <% end %>
+            <% if current_user.is_admin? %>
+              <li class="admin-nav-primary-item">
+                <%= link_to '<i class="fad fa-hammer"></i>Admin'.html_safe, admin_root_path %>
+                <ul class="admin-nav-secondary-list">
+                <%= link_to admin_users_path do %>
+                  <li class="admin-nav-secondary-item"><i class="fad fa-users"></i>Users</li>
                 <% end %>
+                <%= link_to admin_restaurants_path do %>
+                  <li class="admin-nav-secondary-item"><i class="fad fa-store-alt"></i>Restaurants</li>
+                <% end %>
+                <%= link_to admin_items_path do %>
+                  <li class="admin-nav-secondary-item"><i class="fad fa-pizza"></i>Items</li>
+                <% end %>
+                <%= link_to admin_foods_path do %>
+                  <li class="admin-nav-secondary-item"><i class="fad fa-utensils"></i>Foods</li>
+                <% end %>
+                <%= link_to admin_tags_path do %>
+                  <li class="admin-nav-secondary-item"><i class="fad fa-tags"></i>Tags</li>
+                <% end %>
+                <%= link_to admin_ingredients_path do %>
+                  <li class="admin-nav-secondary-item"><i class="fad fa-carrot"></i>Ingredients*</li>
+                <% end %>
+                <% if current_user.nom? %>
+                  <%= link_to admin_points_path do %>
+                    <li class="admin-nav-secondary-item"><i class="fad fa-history"></i>Points</li>
+                  <% end %>
+                <% end %>
+                </ul>
+              </li>
+            <% end %>
+              <%= form_tag "/search", url: 'search', class: 'search-form universal-flex-container', method: :get do |f| %>
+                <input  type="search" name="query" placeholder="Search for BiteWorthy items" class="universal-flex-element search-bar">
+                <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %>
               <% end %>
+            <li class="admin-nav-primary-item">
+              <%= link_to "<span class='player-points'>[#{@total_user_points}]</span> #{current_user.user_name}".html_safe, me_path %>
+              <ul class="admin-nav-secondary-list">
+                <%= link_to edit_user_registration_path do %>
+                  <li class="admin-nav-secondary-item">Edit</li>
+                <% end %>
+                <%= link_to choose_tags_path do %>
+                  <li class="admin-nav-secondary-item">Tag Choices</li>
+                <% end %>
+                <%= link_to(destroy_user_session_path, method: :delete) do %>
+                  <li class="admin-nav-secondary-item log-out">Logout</li>
+                <% end %>
               </ul>
             </li>
+          </ul>
+        </nav>
+        <% else %>
+        <div class="wb-flex no-user">
+          <%= link_to "Login".html_safe, user_session_path, class: "login-button btn-bw-green", style: "margin:.5rem;" %>
+          <%= form_tag "/search", url: 'search', class: 'search-form', method: :get do |f| %>
+            <div class="universal-flex-container">
+              <input type="search" name="query" placeholder="Search for BiteWorthy items" class="universal-flex-element search-bar">
+              <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %>
+            </div>
           <% end %>
-          <li class="admin-nav-primary-item nav-right">
-            <%= link_to "<span class='player-points'>[#{@total_user_points}]</span> #{current_user.user_name}".html_safe, me_path %>
-            <ul class="admin-nav-secondary-list">
-              <%= link_to edit_user_registration_path do %>
-                <li class="admin-nav-secondary-item">Edit</li>
-              <% end %>
-              <%= link_to choose_tags_path do %>
-                <li class="admin-nav-secondary-item">Tag Choices</li>
-              <% end %>
-              <%= link_to(destroy_user_session_path, method: :delete) do %>
-                <li class="admin-nav-secondary-item log-out">Logout</li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <% else %>
-        <div class="wb-flex flex-end">
-          <%= link_to "Login".html_safe, user_session_path, class: "btn-bw-green", style: "margin:.5rem;" %>
         </div>
       <% end %>
-      <div class="search">
-        <%= form_tag "/search", url: 'search', method: :get do |f| %>
-          <div class="universal-flex-container">
-            <input type="search" name="query" placeholder="Search for BiteWorthy items" class="universal-flex-element search-bar">
-            <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %>
-          </div>
-        <% end %>
-      </div>
     </div>
   </div>
   <div class="small-12 show-for-small-only">

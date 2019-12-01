@@ -1,0 +1,8 @@
+<div class="search">
+  <%= form_tag "/search", url: 'search', method: :get do |f| %>
+    <div class="universal-flex-container">
+      <input type="search" name="query" placeholder="Search for BiteWorthy items" class="universal-flex-element search-bar">
+      <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button  search-go") %>
+    </div>
+  <% end %>
+</div>

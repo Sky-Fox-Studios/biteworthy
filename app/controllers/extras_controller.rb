@@ -4,7 +4,7 @@ class ExtrasController < ApplicationController
   respond_to :html
 
   def index
-    @extras = Extra.where(restaurant: @restaurant).order(:name).page(params[:page]).per(per_page_count)
+    @extras = Extra.where(restaurant: @restaurant).order(:name).page(@page).per(per_page_count)
     @restaurants = Restaurant.all
     respond_with(@extras)
   end

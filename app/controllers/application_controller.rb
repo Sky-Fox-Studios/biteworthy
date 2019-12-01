@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :player_points, :login_provider, :user_reviews
-  before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
+  before_action :player_points, :login_provider, :user_reviews, :set_page,
+    :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item, :set_tags
   before_action :page_history, only: [:create, :update]
 
   def after_sign_in_path_for(resource)
@@ -51,14 +51,14 @@ class ApplicationController < ActionController::Base
 
   def filter_index_by_restaurant(params, klass)
     if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
-      klass.constantize.where(restaurant_id: params[:filter_restaurant_id]).page(params[:page]).per(per_page_count)
+      klass.constantize.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(per_page_count)
     else
-      klass.constantize.page(params[:page]).per(per_page_count)
+      klass.constantize.page(@page).per(per_page_count)
     end
   end
 
-  def page
-    params[:page]
+  def set_page
+    @page = params[:page] && params[:page].to_i > 1 ? params[:page].to_i : 1
   end
 
   def set_restaurant
@@ -116,9 +116,9 @@ class ApplicationController < ActionController::Base
   def set_items
     if @restaurant
       if @menu_group
-        @items = @menu_group.items.page(page).per(per_page_count)
+        @items = @menu_group.items.page(@page).per(per_page_count)
       else
-        @items = Item.where(restaurant: @restaurant).page(page).per(per_page_count)
+        @items = Item.where(restaurant: @restaurant).page(@page).per(per_page_count)
       end
     end
   end

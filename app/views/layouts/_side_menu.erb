@@ -1,6 +1,7 @@
 <div class="slideout-menu hide-for-print">
   <ul>
     <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Search", search_path %></li>
     <% if current_user %>
       <li class="nav-primary"><%= link_to "Profile", me_path %></li>
       <li class="nav-secondary"><%= link_to "Edit", edit_user_registration_path(current_user) %></li>

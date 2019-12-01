@@ -11,12 +11,12 @@ class Admin::FoodsController < AdminController
 
   def all
     unless @foods
-      @foods = Food.page(params[:page]).per(per_page_count)
+      @foods = Food.page(@page).per(per_page_count)
     end
   end
 
   def index
-    @foods = Food.where(restaurant: @restaurant).page(params[:page]).per(per_page_count)
+    @foods = Food.where(restaurant: @restaurant).page(@page).per(per_page_count)
     respond_to do |format|
       format.html
       format.json { render json: FoodDatatable.new(params, view_context: view_context) }
@@ -163,9 +163,9 @@ class Admin::FoodsController < AdminController
 
   def set_foods
     if params.has_key?(:filter_restaurant_id) && !params[:filter_restaurant_id].empty?
-      @foods = Food.where(restaurant_id: params[:filter_restaurant_id]).page(page).per(per_page_count)
+      @foods = Food.where(restaurant_id: params[:filter_restaurant_id]).page(@page).per(per_page_count)
     else
-      @foods = Food.page(page).per(per_page_count)
+      @foods = Food.page(@page).per(per_page_count)
     end
   end
 

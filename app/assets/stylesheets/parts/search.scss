@@ -25,3 +25,29 @@ li form {
   padding: 5px;
   font-size: 1.2em;
 }
+.small-search {
+
+}
+.no-user {
+  display: flex;
+  .login-button {
+    flex-grow: 1;
+  }
+  .search-form {
+    flex-grow: 4;
+
+  }
+  .search-bar {
+    flex-grow: 4;
+    margin: .5rem;
+    height: 50px;
+  }
+  .search-go {
+    flex-grow: 1;
+    margin: .5rem;
+    height: 50px;
+  }
+  button {
+    padding: 0;
+  }
+}
