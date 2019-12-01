@@ -48,7 +48,7 @@ class Tag < ActiveRecord::Base
   end
 
    def to_param
-     "#{id}-#{name}"
+     name
    end
 
    private

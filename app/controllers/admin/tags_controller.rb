@@ -75,9 +75,12 @@ class Admin::TagsController < AdminController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_tag
-    @tag = Tag.find(params[:id])
+    @tag = if params[:id].to_i == 0
+             Tag.find_by(name: params[:id])
+           else
+             Tag.find_by(id: params[:id])
+           end
   end
 
   # Only allow a trusted parameter "white list" through.

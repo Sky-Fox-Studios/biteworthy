@@ -85,8 +85,8 @@ class SearchController < ApplicationController
     if params[:restaurant_id].present?
       @restaurant  = Restaurant.find(params[:restaurant_id])
     end
-    @search      = Tag.find(params[:tag_id])
-    @items       = Item.joins(:tags).where('tags.id IN (?)', params[:tag_id])
+    @search      = Tag.find_by(name: params[:tag_id])
+    @items       = Item.joins(:tags).where('tags.name IN (?)', params[:tag_id])
     if @restaurant.present?
       @items       = @items.where(restaurant: @restaurant)
     end
