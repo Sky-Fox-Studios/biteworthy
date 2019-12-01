@@ -3,8 +3,9 @@
     <h2>Editing <%= link_to @restaurant.name, admin_restaurant_path(@restaurant) %> menu group: <%= @menu_group.name %></h2>
   </div>
   <%= render 'form' %>
-  <div class="small-12 columns">
+  <div class="small-12 columns universal-flex-container-add">
     <h2><%= @items.count %> <%= "Item".pluralize(@items.count) %> in this menu group</h2>
+    <%= link_to "<i class='fa fa-plus'></i>Add Item".html_safe, new_polymorphic_path([:admin, @restaurant, :item], menu_group_id: @menu_group.id), class: "universal-flex-button flex-button-add" %>
   </div>
   <div class="small-12 columns admin-show-section">
     <% @items.each do |item| %>
