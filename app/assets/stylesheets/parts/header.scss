@@ -27,29 +27,45 @@
   background-color: #fff;
   margin-bottom: 10px;
   border-radius: .25rem;
+  .admin-nav ul{
+    display: flex;
 
-  .search {
-    form {
-      display: flex;
-    }
-    input {
-      display: flex;
-    }
-    .search-bar{
-      flex-grow: 4;
-          margin: .5rem;
-    }
-    .search-go{
+    a {
       flex-grow: 1;
-      margin: .5rem;
     }
-    button {
-      padding: 0;
+    form {
+      flex-grow: 18;
+      display: flex;
+      width: unset;
+      margin-bottom: 0;
+      input {
+        flex-grow: 5;
+      }
+      button {
+        flex-grow: 1;
+      }
+    }
+    li {
+      flex-grow: 1;
     }
   }
-
-  .top-bar-right{
+  .search-form {
+    .search-bar {
+      border-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-top-left-radius: .25rem;
+      border-bottom-left-radius: .25rem;
+      margin-bottom: 0;
+    }
+    .search-go {
+      border-radius: 0;
+      border-top-right-radius: .25rem;
+      border-bottom-right-radius: .25rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin-bottom: 0;
+    }
   }
-
 }
 

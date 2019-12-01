@@ -11,7 +11,7 @@ class Admin::ItemsController < AdminController
 
   def all
     unless @items
-      @items = Item.page(params[:page]).per(per_page_count)
+      @items = Item.page(@page).per(per_page_count)
     end
   end
 
@@ -20,7 +20,7 @@ class Admin::ItemsController < AdminController
   end
 
   def index
-    @items = Item.where(restaurant_id: @restaurant).page(params[:page]).per(per_page_count)
+    @items = Item.where(restaurant_id: @restaurant).page(@page).per(per_page_count)
     respond_to do |format|
       format.html
       format.json { render json: ItemDatatable.new(params, view_context: view_context) }

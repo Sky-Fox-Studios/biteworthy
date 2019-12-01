@@ -2,7 +2,8 @@ class SearchController < ApplicationController
   skip_before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
   def home
     @search = params[:query]
-    @items = Item.search(customize_query).records
+    @query = Item.search(customize_query).page(@page)
+    @items = @query.records
   end
 
   def customize_query
@@ -36,7 +37,7 @@ class SearchController < ApplicationController
             }]
           }
         },
-        "track_scores": true
+        "track_scores": true,
       }
     else
       {
@@ -58,8 +59,6 @@ class SearchController < ApplicationController
       }
     end
   end
-
-
 
   def choice_search
     @search = Extra.find(params[:choice_id])

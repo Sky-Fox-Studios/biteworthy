@@ -4,6 +4,13 @@
       <%= render partial: "items/card", locals: {restaurant: item.restaurant, item: item} %>
     <% end %>
   </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <hr>
+      <%= paginate items %>
+    </div>
+  </div>
+
 </div>
 <script>
   var filters = [];

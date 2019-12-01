@@ -1,7 +1,17 @@
 <div class="row">
+  <div class="small-12 show-for-small-only">
+    <div class="small-search">
+      <%= form_tag "/search", url: 'search', method: :get do |f| %>
+        <div class="universal-flex-container">
+          <input type="search" name="query" placeholder="Search for BiteWorthy items" class="universal-flex-element flex-button-natural search-bar">
+          <%= button_tag("<i class='fa fa-search'></i>".html_safe, class: "universal-flex-button flex-button-third search-go") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class="small-12 columns">
     <% if @search.present? %>
-      <h2>You are looking for items with: <b><%= @search %></b></h2>
+      <h2>Found <%= @items.total %> items with <%= @search %></h2>
     <% else %>
       <h2>No search provided.</h2>
     <% end %>
