@@ -1,6 +1,6 @@
 <div class="row">
   <div class="small-12 columns">
-    <h1><i><%= @variety.ingredient.name.humanize %></i> variety</h1>
+    <h1><i><%= link_to @variety.ingredient.name.humanize, edit_admin_ingredient_path(@variety.ingredient.name) %></i> variety</h1>
   </div>
 
   <%= render 'form' %>

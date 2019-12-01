@@ -5,20 +5,20 @@
     <div class="small-12 medium-6 large-4 columns">
       <%= f.input :name %>
     </div>
-      <% if current_user && current_user.level == "nom" %>
-    <div class="small-12 medium-6 large-4 columns danger">
-      <% if @variety.ingredient.present? %>
-        <label>Change ingredient_id:</label>
-      <% end %>
+    <% if current_user && current_user.level == "nom" %>
+      <div class="small-12 medium-6 large-4 columns danger">
+        <% if @variety.ingredient.present? %>
+          <label>Change ingredient_id:</label>
+        <% end %>
         <%= f.input :ingredient_id, label: false %>
-    </div>
-      <% end %>
+      </div>
+    <% end %>
     <div class="small-12 medium-6 large-4 columns">
       <%= f.input :ingredient_first %>
     </div>
 
     <div class="small-12 columns">
-      <%= f.button :submit %>
+      <%= f.submit class: "button small radius"  %>
     </div>
   <% end %>
 </div>

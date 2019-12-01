@@ -57,14 +57,14 @@ class Admin::IngredientsController < AdminController
 
   def add_tag
     if !params[:tag_id].empty?
-      tag = Tag.find(params[:tag_id])
+      tag = Tag.find_by(name: params[:tag_id])
       @ingredient.tags << tag unless @ingredient.tags.include? tag
     end
     redirect_to edit_admin_ingredient_path(@ingredient)
   end
 
   def remove_tag
-    tag = Tag.find(params[:tag_id])
+    tag = Tag.find_by(name: params[:tag_id])
     @ingredient.tags.destroy(tag)
     redirect_to edit_admin_ingredient_path(@ingredient)
   end
@@ -72,9 +72,9 @@ class Admin::IngredientsController < AdminController
   private
   def set_ingredient
     if params[:id]
-      @ingredient = Ingredient.find(params[:id])
+      @ingredient = Ingredient.find_by(name: params[:id])
     elsif params[:ingredient_id]
-      @ingredient = Ingredient.find(params[:ingredient_id])
+      @ingredient = Ingredient.find_by(name: params[:ingredient_id])
     end
     @tags      = Tag.where(variety: 'ingredient')
     @varieties = Variety.where(ingredient: @ingredient)
