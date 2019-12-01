@@ -1,6 +1,6 @@
 <div class="row admin-restaurant-show">
   <div class="small-12 columns">
-    <h1>Editing <%= link_to @restaurant.name, admin_restaurant_path(@restaurant) %> menu</h1>
+    <h2>Editing <%= link_to @restaurant.name, admin_restaurant_path(@restaurant) %> menu <%= @menu.name %></h2>
   </div>
   <%= render 'form' %>
   <div class="small-12 columns">
