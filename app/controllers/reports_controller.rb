@@ -12,10 +12,10 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
 
     respond_to do |format|
-      if @recaptcha_success && @report.save
+      if @recaptcha_success && @report.valid?
+        @report.save
         format.html { redirect_to root_path, notice: 'Report was successfully created.' }
       else
-        @report.valid?
         format.html { render :new }
       end
     end
