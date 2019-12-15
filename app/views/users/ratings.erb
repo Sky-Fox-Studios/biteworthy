@@ -1,0 +1,14 @@
+<div class="small-12  columns">
+  <h2>Ratings</h2>
+</div>
+<div class="small-12 columns">
+  <h3>Food match:</h3><br>
+  <%# <%= render partial: "users/review_list", locals: {reviews: item_reviews} %1> %>
+
+  <ul>
+    <% @food_ratings.sort_by{|k, v| v['percent']}.reverse.each do |food, value| %>
+      <li><%= value['percent'] %>% for <%= link_to food.name, restaurant_food_path(food.restaurant, food) %></li>
+    <% end %>
+  </ul>
+</div>
+

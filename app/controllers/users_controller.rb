@@ -40,4 +40,39 @@ class UsersController < ApplicationController
       Point.where(user: current_user).to_a
     end
   end
+
+  def ratings
+    rating_hash = {'possible_death' => 0, 'allergic' => 0, 'vile' => 0, 'disgust' => 0, 'terrible' => 0, 'dislike' => 0,
+                   "-" => 0,
+                   'like' => 0, 'enjoy' => 0, 'great' => 0, 'delicious' => 0, 'love' => 0, 'heavenly' => 0}
+    @item_reviews = Review.item_reviews(current_user).order_desc
+    @food_reviews = Review.food_reviews(current_user).order_desc
+    @food_ratings = {}
+    @item_reviews.each do |item_review|
+      item_review.review.foods.each do |food|
+        if @food_ratings[food].blank?
+          @food_ratings[food] = rating_hash.clone
+        end
+        if @food_reviews.map(&:review_id).include? food.id
+          @food_ratings[food][@food_reviews.where(review_id: food.id).first.rating] += 1
+        else
+          @food_ratings[food][item_review.rating] += 1
+        end
+      end
+    end
+    @food_ratings.keys.each do |food_key|
+      sum = 0
+      total = 0
+      bonus = 0
+      @food_ratings[food_key].keys.each do |rating_key|
+        if @food_ratings[food_key][rating_key] > 0
+          bonus += Review.ratings[rating_key]
+          sum += @food_ratings[food_key][rating_key] * Review.ratings[rating_key]
+          total += @food_ratings[food_key][rating_key]
+          @food_ratings[food_key]['avg'] = sum / total
+          @food_ratings[food_key]['percent'] = (sum / total) * 9 + 50 + bonus
+        end
+      end
+    end
+  end
 end
