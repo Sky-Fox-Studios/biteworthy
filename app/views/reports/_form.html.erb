@@ -25,7 +25,17 @@
     <%= f.input :page_url, label: "Where did it happen (url)" %>
   </div>
 
-  <div class="small-12 columns universal-flex-container">
-    <%= f.button :submit, class: "universal-flex-button flex-button-natural"%>
+  <div class="small-12 medium-4 columns">
+    <% if defined?(@recaptcha_success) && !@recaptcha_success %>
+      <div class="recaptcha-form <%= "field_with_errors" if defined?(@recaptcha_success) && !@recaptcha_success %>">
+        <%= recaptcha_tags unless Rails.env.test? %>
+        Invalid reCAPTCHA
+      </div>
+    <% else %>
+      <%= recaptcha_tags unless Rails.env.test? %>
+    <% end %>
+  </div>
+  <div class="small-12 medium-4 columns universal-flex-container">
+    <%= f.button :submit, "Submit feedback", class: "universal-flex-button flex-button-natural"%>
   </div>
 <% end %>
