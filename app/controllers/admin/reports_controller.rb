@@ -1,6 +1,7 @@
 class Admin::ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
+
   # GET /reports
   # GET /reports.json
   def index
@@ -35,7 +36,7 @@ class Admin::ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
+        format.html { redirect_to admin_reports_path, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit }
@@ -49,7 +50,7 @@ class Admin::ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
+      format.html { redirect_to admin_reports_url, notice: 'Report was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

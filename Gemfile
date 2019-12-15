@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 
 gem "browser"
-gem 'bundler', '1.16.4', require: false
+gem 'bundler', '1.17.3', require: false
 gem "progress_bar"
 gem 'ajax-datatables-rails'
 gem 'autoprefixer-rails'
@@ -33,6 +33,7 @@ gem "omniauth-rails_csrf_protection"
 gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '4.2.11'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rake', '12.0.0'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'sentient_user', '0.3.3'                 # Current_user in models
 gem 'simple_form'
