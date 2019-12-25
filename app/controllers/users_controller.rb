@@ -55,9 +55,8 @@ class UsersController < ApplicationController
         end
         if @food_reviews.map(&:review_id).include? food.id
           @food_ratings[food][@food_reviews.where(review_id: food.id).first.rating] += 1
-        else
-          @food_ratings[food][item_review.rating] += 1
         end
+          @food_ratings[food][item_review.rating] += 1
       end
     end
     @food_ratings.keys.each do |food_key|
