@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+gem 'pg'
 
 gem "browser"
 gem 'bundler', '1.17.3', require: false
