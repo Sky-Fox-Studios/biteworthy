@@ -38,7 +38,7 @@ class Item < ActiveRecord::Base
   scope :inactive, -> { where.not(status: Item.statuses[:active]) }
   scope :items_created, ->(user) { where(user: user).count }
 
-  index_name "#{ENV['database_name']}-items".downcase
+  index_name "#{ENV['DATABASE_NAME']}-items".downcase
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
       indexes :id, type: :integer

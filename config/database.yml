@@ -21,16 +21,16 @@ test:
 
 staging:
   adapter: mysql2
-  database: <%= ENV["database_name"] %>
-  username: <%= ENV["database_username"] %>
-  password: <%= ENV["database_password"] %>
+  database: <%= ENV["DATABASE_NAME"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   host: 127.0.0.1
   port: 3306
 
 production:
   adapter: mysql2
-  database: <%= ENV["database_name"] %>
-  username: <%= ENV["database_username"] %>
-  password: <%= ENV["database_password"] %>
+  database: <%= ENV["DATABASE_NAME"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   host: 127.0.0.1
   port: 3306
