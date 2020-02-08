@@ -410,6 +410,7 @@ DEPENDENCIES
   pg (~> 0.20.0)
   progress_bar
   pry
+  rack (~> 1.6.11)
   rails (= 4.2.11)
   rake (= 12.0.0)
   recaptcha
