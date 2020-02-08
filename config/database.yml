@@ -15,7 +15,7 @@ test:
   adapter: postgresql
   encoding: utf8
   database: bwd_test
-  #username: root
+  username: root
   password:
   host: 127.0.0.1
   port: 5432
