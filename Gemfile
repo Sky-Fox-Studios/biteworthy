@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'pg'
+gem 'pg', '~> 0.20.0'
 
 gem "browser"
 gem 'bundler', '1.17.3', require: false
@@ -24,7 +24,7 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
 gem 'mini_racer'
-gem 'mysql2', '~> 0.4.10'
+# gem 'mysql2', '~> 0.4.10'
 gem "nokogiri", ">= 1.10.4"
 gem 'omniauth'
 gem 'omniauth-facebook'
