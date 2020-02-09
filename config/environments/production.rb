@@ -1,4 +1,6 @@
-Rails.application.configure do
+Rails.sapplication.configure do
+
+  Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
 
   Paperclip.options[:command_path] = "/usr/bin/convert/"
   # Settings specified here will take precedence over those in config/application.rb.
