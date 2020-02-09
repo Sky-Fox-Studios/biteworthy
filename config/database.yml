@@ -31,8 +31,7 @@ staging:
 production:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV["DATABASE_NAME"] %>
-  username: <%= ENV["DATABASE_USERNAME"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
-  host: <%= ENV["DATABASE_URL"] %>
+  username: user
+  database: app-dev
+  host: localhost
   pool: 5
