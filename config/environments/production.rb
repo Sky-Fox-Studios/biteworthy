@@ -1,4 +1,4 @@
-Rails.sapplication.configure do
+Rails.application.configure do
 
   Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
 
