@@ -32,7 +32,7 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '4.2.11'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rake', '12.0.0'
+gem 'rake', '12.3.3'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'sentient_user', '0.3.3'                 # Current_user in models
