@@ -1,5 +1,6 @@
 Rails.application.configure do
 
+  Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
   # Settings specified here will take precedence over those in config/application.rb.
   Paperclip.options[:command_path] = "/usr/bin/convert/"
 
@@ -7,7 +8,7 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
 
-  unless ENV['enable_cache'] == "true"
+  unless ENV['ENABLE_CACHE'] == "true"
     config.cache_classes = false
     config.action_controller.perform_caching = false
     config.perform_caching = false

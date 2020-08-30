@@ -1,0 +1,7 @@
+LOAD DATABASE
+    FROM mysql://root:@localhost:3306/bwd_dev
+    INTO postgresql:///bwd_dev
+
+ALTER schema 'bwd_dev' rename to 'public'
+CAST
+    type bigint to bigint drop typemod;

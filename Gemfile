@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+ruby '2.5.7'
 
-
+gem 'pg', '~> 0.20.0'
 
 gem "browser"
 gem 'bundler', '1.17.3', require: false
@@ -15,6 +16,7 @@ gem 'devise', '~> 4.7.1'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
+gem 'rack', '~> 1.6.11'
 gem 'foundation-rails', '6.4.3.0'
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'
@@ -23,7 +25,7 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
 gem 'mini_racer'
-gem 'mysql2', '~> 0.4.10'
+# gem 'mysql2', '~> 0.4.10'
 gem "nokogiri", ">= 1.10.4"
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -32,7 +34,7 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '4.2.11'                         # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rake', '12.0.0'
+gem 'rake', '12.3.3'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
 gem 'sentient_user', '0.3.3'                 # Current_user in models
@@ -41,9 +43,9 @@ gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 #
 # Searching (must be loaded after pagination gems)
-gem 'elasticsearch-model', '< 7.0.0'
-gem 'elasticsearch-persistence', '< 7.0.0'
-gem 'elasticsearch-rails', '< 7.0.0'
+gem 'elasticsearch-model', '< 6.2.4'
+gem 'elasticsearch-persistence', '< 6.2.4'
+gem 'elasticsearch-rails', '< 6.2.4'
 
 #
 # File uploading
