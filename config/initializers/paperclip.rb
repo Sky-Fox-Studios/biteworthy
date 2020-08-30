@@ -5,8 +5,8 @@ Paperclip::Attachment.default_options.update(
   path: "/#{Rails.env}/photos/:attachment/:id_partition/:style/:filename",
   s3_credentials: {
     bucket: 'biteworthy',
-    access_key_id: ENV['aws_access_key_id'],
-    secret_access_key: ENV['aws_secret_access_key'],
-    s3_region: ENV['aws_region'],
+    access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+    s3_region: ENV['AWS_REGION'],
   }
 )

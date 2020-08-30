@@ -1,12 +1,12 @@
 <div cpass='small-12 columns'>
   <% if address.place_id.present?
-     @src = "https://www.google.com/maps/embed/v1/place?key=#{ENV['google_maps_key']}"+
+     @src = "https://www.google.com/maps/embed/v1/place?key=#{ENV['GOOGLE_MAPS_KEY']}"+
       "&q=place_id:#{address.place_id}&zoom=19&maptype=satellite"
   elsif address.latitude && address.longitude
-    @src = "https://www.google.com/maps/embed/v1/view?key=#{ENV['google_maps_key']}"+
+    @src = "https://www.google.com/maps/embed/v1/view?key=#{ENV['GOOGLE_MAPS_KEY']}"+
       "&center=#{address.latitude},#{address.longitude}&zoom=19&maptype=satellite"
   elsif @restaurant
-    @src = "https://www.google.com/maps/embed/v1/view?key=#{ENV['google_maps_key']}"+
+    @src = "https://www.google.com/maps/embed/v1/view?key=#{ENV['GOOGLE_MAPS_KEY']}"+
     "&q=#{@restaurant.name.gsub(' ', '+')},#{address.city}+#{address.state}'&zoom=17"
   end %>
   <iframe

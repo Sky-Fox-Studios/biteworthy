@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+ruby '2.5.7'
 
-
+gem 'pg', '~> 0.20.0'
 
 gem "browser"
 gem 'bundler', '1.17.3', require: false
@@ -15,6 +16,7 @@ gem 'devise', '~> 4.7.1'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
+gem 'rack', '~> 1.6.11'
 gem 'foundation-rails', '6.4.3.0'
 gem 'holidays'
 gem 'honeybadger', '~> 3.1'
@@ -23,7 +25,7 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
 gem 'kaminari'                               # Model pagination
 gem 'mini_racer'
-gem 'mysql2', '~> 0.4.10'
+# gem 'mysql2', '~> 0.4.10'
 gem "nokogiri", ">= 1.10.4"
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -41,9 +43,9 @@ gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 #
 # Searching (must be loaded after pagination gems)
-gem 'elasticsearch-model', '< 7.0.0'
-gem 'elasticsearch-persistence', '< 7.0.0'
-gem 'elasticsearch-rails', '< 7.0.0'
+gem 'elasticsearch-model', '< 6.2.4'
+gem 'elasticsearch-persistence', '< 6.2.4'
+gem 'elasticsearch-rails', '< 6.2.4'
 
 #
 # File uploading
