@@ -52,9 +52,6 @@ class Item < ActiveRecord::Base
       indexes :foods do
         indexes :name
       end
-      indexes :tags do
-        indexes :name
-      end
     end
   end
 

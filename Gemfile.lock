@@ -384,9 +384,9 @@ DEPENDENCIES
   debug_inspector
   devise (~> 4.7.1)
   draper
-  elasticsearch-model (< 7.0.0)
-  elasticsearch-persistence (< 7.0.0)
-  elasticsearch-rails (< 7.0.0)
+  elasticsearch-model (< 6.2.4)
+  elasticsearch-persistence (< 6.2.4)
+  elasticsearch-rails (< 6.2.4)
   factory_bot
   factory_bot_rails
   faker

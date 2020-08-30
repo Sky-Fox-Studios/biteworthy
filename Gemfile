@@ -43,9 +43,9 @@ gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
 #
 # Searching (must be loaded after pagination gems)
-gem 'elasticsearch-model', '< 7.0.0'
-gem 'elasticsearch-persistence', '< 7.0.0'
-gem 'elasticsearch-rails', '< 7.0.0'
+gem 'elasticsearch-model', '< 6.2.4'
+gem 'elasticsearch-persistence', '< 6.2.4'
+gem 'elasticsearch-rails', '< 6.2.4'
 
 #
 # File uploading
