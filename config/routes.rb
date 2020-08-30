@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   #Search
   get 'search', to: 'search#home'
+  get 'ratings', to: 'users#ratings'
   get 'ingredient_search', to: 'search#ingredient_search'
   get 'food_search', to: 'search#food_search'
   get 'tag_search', to: 'search#tag_search'

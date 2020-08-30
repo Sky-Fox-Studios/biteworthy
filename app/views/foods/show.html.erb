@@ -15,6 +15,9 @@
         <p align="none">
           <%= @food.description %>
         </p>
+        <p align="none">
+          <%= link_to("Show all items", food_search_path(food_id: @food)) %>
+        </p>
       </div>
       <div class="small-6 columns">
         <% if @food.tags.present? %>
