@@ -1,5 +1,6 @@
 require 'elasticsearch/model'
 class Item < ActiveRecord::Base
+  extend Pagy::Search
   include TrackPoints
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
