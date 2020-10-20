@@ -127,5 +127,9 @@ Rails.application.routes.draw do
       # Is this a wise route?
     end
   end
+  namespace :react do
+    get 'about',            to: 'react#about'
+
+  end
 
 end

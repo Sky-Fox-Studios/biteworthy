@@ -49,3 +49,6 @@ jQuery(window).scroll(function() {
     $(".footer").slideDown('slow');
   }
 });
+//= require react
+//= require react_ujs
+//= require components

@@ -1,4 +1,4 @@
-class Review < ActiveRecord::Base
+class Review < ApplicationRecord
   include CacheInvalidator
   after_create :invalidate_cache
   after_update :invalidate_cache

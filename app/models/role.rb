@@ -1,4 +1,4 @@
-class UsersRole < ActiveRecord::Base
+class UsersRole < ApplicationRecord
 
   enum role_types: [:owner, :dam, :employee]
 

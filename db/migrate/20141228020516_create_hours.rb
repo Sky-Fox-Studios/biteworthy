@@ -1,4 +1,4 @@
-class CreateHours < ActiveRecord::Migration
+class CreateHours < ActiveRecord::Migration[4.2]
   def change
     create_table :hours do |t|
       t.time :opens

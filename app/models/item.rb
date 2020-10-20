@@ -1,5 +1,5 @@
 require 'elasticsearch/model'
-class Item < ActiveRecord::Base
+class Item < ApplicationRecord
   extend Pagy::Search
   include TrackPoints
   include Elasticsearch::Model

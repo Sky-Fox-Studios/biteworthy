@@ -1,4 +1,4 @@
-class Report < ActiveRecord::Base
+class Report < ApplicationRecord
 
   validates :name, :description, :page_url, :report_type, presence: true
 

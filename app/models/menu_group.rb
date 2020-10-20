@@ -1,4 +1,4 @@
-class MenuGroup < ActiveRecord::Base
+class MenuGroup < ApplicationRecord
    belongs_to :restaurant
   #  has_and_belongs_to_many :items, dependent: :destroy
    has_and_belongs_to_many :tags

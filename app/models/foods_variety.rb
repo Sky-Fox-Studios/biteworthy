@@ -1,4 +1,4 @@
-class FoodsVariety < ActiveRecord::Base
+class FoodsVariety < ApplicationRecord
   include TrackPoints
 
   belongs_to :food

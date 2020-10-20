@@ -1,4 +1,4 @@
-class Extra < ActiveRecord::Base
+class Extra < ApplicationRecord
   include TrackPoints
   attr_accessor :extrable_item, :extrable_food
   belongs_to :restaurant

@@ -1,4 +1,4 @@
-class CreateTagHistories < ActiveRecord::Migration
+class CreateTagHistories < ActiveRecord::Migration[4.2]
   def change
     create_table :tag_histories do |t|
        t.string :tag_id

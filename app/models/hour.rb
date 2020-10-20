@@ -1,4 +1,4 @@
-class Hour < ActiveRecord::Base
+class Hour < ApplicationRecord
   #  has_and_belongs_to_many :items, dependent: :destroy
   enum day: [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday,
     :everyday, :weekdays, :weekends]

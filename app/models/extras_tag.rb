@@ -1,4 +1,4 @@
-class ExtrasTag < ActiveRecord::Base
+class ExtrasTag < ApplicationRecord
   include TrackPoints
 
   belongs_to :extra

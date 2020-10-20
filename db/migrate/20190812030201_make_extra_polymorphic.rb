@@ -1,4 +1,4 @@
-class MakeExtraPolymorphic < ActiveRecord::Migration
+class MakeExtraPolymorphic < ActiveRecord::Migration[4.2]
   def change
     drop_table :extras_foods do |ef|
       ef.integer :extra_id

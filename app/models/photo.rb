@@ -1,4 +1,4 @@
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
   belongs_to :user
   belongs_to :photo, polymorphic: true
   has_attached_file :image,
