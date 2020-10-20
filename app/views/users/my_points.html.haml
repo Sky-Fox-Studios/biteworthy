@@ -1,0 +1,27 @@
+#points.row
+  .small-12.columns
+    %h2 Your BiteWorthy Stats
+    %p All BiteWorthy Member are granted 42 points upon joining.
+    %p There are two ways to get points after that.
+
+  .small-12.medium-5.columns
+    %br
+    %h5= link_to "Reviews", reviews_path
+    %p Positive reviews are adding: #{@good_reviews_sum} points
+    %p Negative reviews are subtracting: #{@bad_reviews_sum.abs} points
+
+  .small-12.medium-2.columns
+    %br
+    %h5.center
+
+  .small-12.medium-5.columns
+    %br
+    %h5= link_to "UGC", "https://en.wikipedia.org/wiki/User-generated_content"
+    %p You have generated #{@user_points_sum} BiteWorthy points.
+    %p
+      %a{class: "email", data_user: "info", data_domain: "biteworthy.restaurant", href: "https://github.com/shadoath/biteworthy"} Contact BiteWorthy
+
+  .small-12
+    %br
+    %p #{"Join the BiteWorthy Team and start contributing content to local restaurants." if @user_points_sum >= 42}
+

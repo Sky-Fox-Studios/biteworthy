@@ -1,0 +1,27 @@
+#user-show.small-12.columns
+  %h2 Preferences
+  %h5 Based on your #{link_to "Item reviews", "/reviews?review_type=Item"} these are your food prefrences:
+  %table
+    %thead
+      %td Enjoy
+      %td OK
+      %td Disliked
+      %td Undecided
+
+    %tbody
+      %tr
+        %td
+          - @liked_foods.each do |food|
+            = link_to food.name, restaurant_food_path(food.restaurant, food)
+
+        %td
+          - @ok_foods.each do |food|
+            = link_to food.name, restaurant_food_path(food.restaurant, food)
+
+        %td
+          - @disliked_foods.each do |food|
+            = link_to food.name, restaurant_food_path(food.restaurant, food)
+
+        %td
+          - @undecided_foods.each do |food|
+            = link_to food.name, restaurant_food_path(food.restaurant, food)
