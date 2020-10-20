@@ -1,0 +1,18 @@
+.row
+  .small-6.medium-6.columns
+    %h1= current_user.user_name
+    %p= current_user.email
+    %p Sign in method: #{current_user.provider}
+  .small-6.medium-3.columns
+    %h4
+      = "Editor" if current_user.is_editor?
+      = "Admin" if current_user.is_admin?
+    %p
+      = link_to "Level:", levels_path
+      = current_user.level
+    %p Strikes: #{current_user.strikes.to_i}
+  .small-12.medium-3.columns
+    %h5 BiteWorthy Stats
+    %p You have earned #{link_to "#{@total_user_points} points", my_points_path}
+
+  = render partial: "users/preferences"

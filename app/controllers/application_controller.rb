@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include ActionView::Helpers::UrlHelper
   include SentientController
+  include Pagy::Backend
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -46,7 +47,7 @@ class ApplicationController < ActionController::Base
                                       force: @force_recache) do
         Review.where(user: current_user).sum(:rating)
       end
-      @total_user_points = @user_points_sum + @review_sum
+                                      @total_user_points = (@user_points_sum + @review_sum).to_i
     end
   end
 

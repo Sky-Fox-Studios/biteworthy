@@ -1,9 +1,15 @@
+include ActionView::Helpers::NumberHelper
 class SearchController < ApplicationController
   skip_before_action :set_restaurant, :set_restaurants, :set_menu, :set_menus, :set_menu_groups, :set_menu_group, :set_items, :set_item
   def home
     @search = params[:query]
-    @query = Item.search(customize_query).page(@page)
-    @items = @query.records
+    @pagy, @response = pagy_elasticsearch_rails(Item.pagy_search(customize_query).records, items: 10)
+    @items = @response.records.to_a
+    @found = if @pagy&.count > 0
+               "#{number_with_delimiter(@pagy.count, delimiter: ',')} #{'items'.pluralize(@pagy.count)} found with #{@search}."
+             else
+               'No results found.'
+             end
   end
 
   def customize_query
