@@ -1,4 +1,4 @@
-# [ BiteWorthy ]( http://biteworthy.herokuapp.com/ )
+# [ BiteWorthy ]( https://biteworthy.herokuapp.com/ )
 Define your prefrences, review your choices, discover new options.
 Become a member and help it grow. Expand menus, fill in ingredients, tag items.
 

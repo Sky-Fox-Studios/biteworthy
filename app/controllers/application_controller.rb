@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
                                       force: @force_recache) do
         Review.where(user: current_user).sum(:rating)
       end
-      @total_user_points = @user_points_sum + @review_sum
+                                      @total_user_points = (@user_points_sum + @review_sum).to_i
     end
   end
 
