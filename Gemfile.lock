@@ -75,6 +75,8 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.16)
+    bootsnap (1.4.8)
+      msgpack (~> 1.0)
     browser (5.1.0)
     builder (3.2.4)
     cancan (1.6.10)
@@ -93,7 +95,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    chunky_png (1.3.12)
     climate_control (0.2.0)
     closure_tree (7.2.0)
       activerecord (>= 4.2.10)
@@ -108,20 +109,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    compass (1.0.3)
-      chunky_png (~> 1.2)
-      compass-core (~> 1.0.2)
-      compass-import-once (~> 1.0.5)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9)
-      sass (>= 3.3.13, < 3.5)
-    compass-core (1.0.3)
-      multi_json (~> 1.0)
-      sass (>= 3.3.0, < 3.5)
-    compass-import-once (1.0.5)
-      sass (>= 3.2, < 3.5)
-    compass-rails (2.0.1)
-      compass (~> 1.0.0)
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
     crass (1.0.6)
@@ -215,6 +202,9 @@ GEM
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
     libv8 (8.4.255.0)
+    listen (3.2.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -235,6 +225,7 @@ GEM
     mini_racer (0.3.1)
       libv8 (~> 8.4.255)
     minitest (5.14.2)
+    msgpack (1.3.3)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -362,7 +353,7 @@ GEM
       sprockets-rails
       tilt
     semantic_range (2.3.0)
-    sentient_user (0.3.3)
+    sentient_user (0.4.0)
       railties (>= 3.1)
     simple_form (5.0.3)
       actionpack (>= 5.0)
@@ -412,6 +403,7 @@ DEPENDENCIES
   ajax-datatables-rails
   autoprefixer-rails
   aws-sdk (= 2.10.75)
+  bootsnap
   browser
   bundler (= 1.17.3)
   cancan
@@ -422,7 +414,6 @@ DEPENDENCIES
   capistrano-rvm
   closure_tree
   coffee-rails
-  compass-rails
   debug_inspector
   devise (~> 4.7.1)
   draper
@@ -441,6 +432,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   kaminari
+  listen
   meta_request
   mini_racer
   nokogiri (>= 1.10.4)
@@ -461,7 +453,7 @@ DEPENDENCIES
   recaptcha
   rspec-rails (>= 3.0.0.beta)
   sass-rails
-  sentient_user (= 0.3.3)
+  sentient_user (= 0.4.0)
   simple_form
   spring
   sprockets

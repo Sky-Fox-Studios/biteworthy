@@ -4,6 +4,7 @@ ruby '2.5.7'
 gem 'pg', '~> 0.20.0'
 
 gem 'browser'
+gem 'bootsnap'
 gem 'bundler', '1.17.3', require: false
 gem 'progress_bar'
 gem 'ajax-datatables-rails'
@@ -11,12 +12,14 @@ gem 'autoprefixer-rails'
 gem 'cancan'                                 # Groups and roles for Devise
 gem 'closure_tree'
 gem 'coffee-rails'
-gem 'compass-rails'                          # you need this or you get an err
+# gem 'compass-rails', '4.0.0'                          # you need this or you get an err
+# gem 'compass-rails', '~> 2.0.alpha.0'
 gem 'devise', '~> 4.7.1'                                 # User authentication
 gem 'draper'                                 # Moving View logic out
 gem 'faker'                                  # Creating fake seed data
 gem 'figaro'
 gem 'haml'
+gem 'listen'
 gem 'rack'#, '~> 1.6.11'
 gem 'foundation-rails', '6.4.3.0'
 gem 'holidays'
@@ -40,7 +43,7 @@ gem 'rails', '~> 5.0'
 gem 'rake', '12.3.3'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'sass-rails'#, '~> 5.0'                   # Use SCSS for stylesheets
-gem 'sentient_user', '0.3.3'                 # Current_user in models
+gem 'sentient_user', '0.4.0'                 # Current_user in models
 gem 'simple_form'
 gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets

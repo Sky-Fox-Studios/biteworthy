@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :find_reviewable, only: [:new, :create, :index]
   respond_to :html
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     if params[:review_type].present?
