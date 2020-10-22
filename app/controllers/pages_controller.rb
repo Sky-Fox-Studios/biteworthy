@@ -1,12 +1,12 @@
 class PagesController < ApplicationController
 
-
   def levels
     @good_levels = User.good_level_info
     @bad_levels = User.bad_level_info
   end
 
   def about
+    binding.pry
   end
 
   def privacy_policy

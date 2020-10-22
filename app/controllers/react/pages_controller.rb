@@ -1,5 +1,4 @@
-class PagesController < ApplicationController
-
+class React::PagesController < ApplicationController
 
   def levels
     @good_levels = User.good_level_info

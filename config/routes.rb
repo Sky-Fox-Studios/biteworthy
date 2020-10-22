@@ -128,7 +128,7 @@ Rails.application.routes.draw do
     end
   end
   namespace :react do
-    get 'about',            to: 'react#about'
+    get 'about',            to: 'pages#about'
 
   end
 
