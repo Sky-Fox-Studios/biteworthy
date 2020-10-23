@@ -463,6 +463,7 @@ DEPENDENCIES
   spring
   sprockets
   uglifier (>= 1.3.0)
+  webpacker
 
 RUBY VERSION
    ruby 2.5.7p206
