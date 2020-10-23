@@ -46,7 +46,6 @@ gem 'sentient_user', '0.4.0'                 # Current_user in models
 gem 'simple_form'
 gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
-gem 'webpacker'
 #
 # Searching (must be loaded after pagination gems)
 gem 'elasticsearch-model', '< 6.2.4'
