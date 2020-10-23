@@ -6,7 +6,6 @@ class PagesController < ApplicationController
   end
 
   def about
-    binding.pry
   end
 
   def privacy_policy
