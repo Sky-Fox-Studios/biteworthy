@@ -77,3 +77,5 @@ group :development, :test do
   gem 'pry'
 end
 
+
+gem 'mini_racer', platforms: :ruby
