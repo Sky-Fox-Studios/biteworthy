@@ -1,4 +1,4 @@
-class ExtrasFood < ActiveRecord::Base
+class ExtrasFood < ApplicationRecord
   include TrackPoints
 
   belongs_to :extra

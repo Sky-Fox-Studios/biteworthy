@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :authenticate_user!, :must_have_permission
+  before_action :authenticate_user!, :must_have_permission
 
   def must_have_permission
     redirect_to root_path if !current_user.is_admin?

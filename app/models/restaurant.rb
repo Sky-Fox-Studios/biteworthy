@@ -1,4 +1,4 @@
-class Restaurant < ActiveRecord::Base
+class Restaurant < ApplicationRecord
   include TrackPoints
   has_many :users, dependent: :destroy
   has_many :menus, dependent: :destroy

@@ -1,4 +1,4 @@
-class CreateItemsExtras < ActiveRecord::Migration
+class CreateItemsExtras < ActiveRecord::Migration[4.2]
   def change
     create_table :items_extras do |t|
       t.integer :item_id

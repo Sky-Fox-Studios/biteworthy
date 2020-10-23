@@ -1,4 +1,4 @@
-class AddUserToItemFoodIngredient < ActiveRecord::Migration
+class AddUserToItemFoodIngredient < ActiveRecord::Migration[4.2]
   def change
     add_column :items, :user_id, :integer, after: :description
     add_column :foods, :user_id, :integer, after: :description

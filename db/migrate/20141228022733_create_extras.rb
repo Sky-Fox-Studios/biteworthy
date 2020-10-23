@@ -1,4 +1,4 @@
-class CreateExtras < ActiveRecord::Migration
+class CreateExtras < ActiveRecord::Migration[4.2]
   def change
     create_table :extras do |t|
       t.integer :restaurant_id

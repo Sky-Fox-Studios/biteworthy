@@ -1,4 +1,4 @@
-class Price < ActiveRecord::Base
+class Price < ApplicationRecord
   include TrackPoints
   belongs_to :priced, polymorphic: true
 

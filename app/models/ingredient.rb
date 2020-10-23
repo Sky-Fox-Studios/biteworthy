@@ -1,4 +1,4 @@
-class Ingredient < ActiveRecord::Base
+class Ingredient < ApplicationRecord
   include TrackPoints
   has_closure_tree
   before_validation :set_normalized_name

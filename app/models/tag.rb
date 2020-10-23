@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
   include TrackPoints
   has_closure_tree
   belongs_to :user

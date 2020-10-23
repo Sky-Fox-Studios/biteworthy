@@ -1,3 +1,3 @@
-# class CacheHistory < ActiveRecord::Base
+# class CacheHistory < ApplicationRecord
 #   self.primary_key = "name"
 # end

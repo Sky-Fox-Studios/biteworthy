@@ -1,4 +1,4 @@
-class ItemsTag < ActiveRecord::Base
+class ItemsTag < ApplicationRecord
   include TrackPoints
 
   belongs_to :tag

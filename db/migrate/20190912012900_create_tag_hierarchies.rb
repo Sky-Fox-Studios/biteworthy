@@ -1,4 +1,4 @@
-class CreateTagHierarchies < ActiveRecord::Migration
+class CreateTagHierarchies < ActiveRecord::Migration[4.2]
   def change
     create_table :tag_hierarchies, id: false do |t|
       t.integer :ancestor_id, null: false

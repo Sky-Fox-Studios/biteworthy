@@ -1,4 +1,4 @@
-class CreateIngredientsTags < ActiveRecord::Migration
+class CreateIngredientsTags < ActiveRecord::Migration[4.2]
   def change
     create_table :ingredients_tags do |t|
        t.integer :ingredient_id

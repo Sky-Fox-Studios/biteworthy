@@ -1,4 +1,4 @@
-class Variety < ActiveRecord::Base
+class Variety < ApplicationRecord
   include TrackPoints
   before_validation :set_normalized_name
   belongs_to :ingredient

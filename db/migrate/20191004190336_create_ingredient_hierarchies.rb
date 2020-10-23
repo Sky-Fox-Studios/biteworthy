@@ -1,4 +1,4 @@
-class CreateIngredientHierarchies < ActiveRecord::Migration
+class CreateIngredientHierarchies < ActiveRecord::Migration[4.2]
   def change
     create_table :ingredient_hierarchies, id: false do |t|
       t.integer :ancestor_id, null: false

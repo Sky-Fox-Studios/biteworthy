@@ -1,4 +1,4 @@
-class CreatePoints < ActiveRecord::Migration
+class CreatePoints < ActiveRecord::Migration[4.2]
   def change
     create_table :points do |t|
       t.integer :user_id
