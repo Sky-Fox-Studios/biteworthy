@@ -37,8 +37,6 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'pagy', '~> 3.7'
-# gem 'react-rails'
-gem "react_on_rails", "~> 12.0"
 gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '~> 5.0'
 gem 'rake', '12.3.3'
@@ -76,6 +74,3 @@ group :development, :test do
   gem 'meta_request'                      # Chrome inspector to view Rails load times
   gem 'pry'
 end
-
-
-gem 'mini_racer', platforms: :ruby

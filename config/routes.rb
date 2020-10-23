@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
   root 'layouts#home'
 
   # Users
@@ -128,9 +127,4 @@ Rails.application.routes.draw do
       # Is this a wise route?
     end
   end
-  namespace :react do
-    get 'about',            to: 'pages#about'
-
-  end
-
 end
