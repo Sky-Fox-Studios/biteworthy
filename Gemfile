@@ -40,13 +40,14 @@ gem 'pagy', '~> 3.7'
 gem 'activerecord-session_store', '~> 1.1.3'
 gem 'rails', '~> 5.0'
 gem 'rake', '12.3.3'
+gem 'react_on_rails', '~>12.0.0'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'sass-rails'#, '~> 5.0'                   # Use SCSS for stylesheets
 gem 'sentient_user', '0.4.0'                 # Current_user in models
 gem 'simple_form'
 gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'                   # Use Uglifier as compressor for JavaScript assets
-gem 'webpacker'
+gem 'webpacker', '~> 5'
 #
 # Searching (must be loaded after pagination gems)
 gem 'elasticsearch-model', '< 6.2.4'
