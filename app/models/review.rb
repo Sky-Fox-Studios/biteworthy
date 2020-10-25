@@ -20,7 +20,7 @@ class Review < ApplicationRecord
   scope :order_desc,   -> { order("rating desc") }
 
   enum rating: {possible_death: -6, allergic: -5, vile: -4, disgust: -3, terrible: -2, dislike: -1,
-                "-".to_sym => 0,
+                "meh".to_sym => 0,
                 like: 1, enjoy: 2, great: 3, delicious: 4, love: 5, heavenly: 6}
 
   def get_rating

@@ -75,3 +75,5 @@ group :development, :test do
   gem 'meta_request'                      # Chrome inspector to view Rails load times
   gem 'pry'
 end
+
+gem 'mini_racer', platforms: :ruby
