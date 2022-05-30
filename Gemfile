@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.5.7'
+ruby '2.6.5'
 
 gem 'pg', '~> 0.20.0'
 
 gem 'browser'
 gem 'bootsnap'
-gem 'bundler', '1.17.3', require: false
+gem 'bundler', '2.2.33', require: false
 gem 'progress_bar'
 gem 'ajax-datatables-rails'
 gem 'autoprefixer-rails'
@@ -27,8 +27,8 @@ gem 'honeybadger', '~> 3.1'
 gem 'jbuilder',   '~> 2.0'                     # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'                           # Use jquery as the JavaScript library
-gem 'kaminari'                               # Model pagination
-gem 'mini_racer'
+gem 'kaminari'                               # Model paginationw
+# gem 'mini_racer'
 # gem 'mysql2', '~> 0.4.10'
 gem 'nokogiri', '>= 1.10.4'
 gem 'omniauth'
@@ -55,7 +55,7 @@ gem 'elasticsearch-rails', '< 6.2.4'
 
 #
 # File uploading
-gem 'paperclip', '5.2.0'
+gem 'paperclip', '~> 5.2'
 gem 'aws-sdk', '2.10.75'
 group :development do
   gem 'capistrano', require: false
