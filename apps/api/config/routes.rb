@@ -62,6 +62,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      # Service availability status (assistant configured, etc).
+      get :health, to: "health#show"
       resource :profile, only: [:show, :update] do
         # Phase 4.8 — "My filtered menus" history (recent restaurant
         # visits with the visible/hidden item counts at view time).

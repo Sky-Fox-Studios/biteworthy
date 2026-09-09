@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, type ReactElement } from 'react';
+import { useState, useEffect, type ReactElement } from 'react';
 import Link from 'next/link';
 import type { RestaurantSummary } from '../../lib/restaurants';
 import { RestaurantCards } from '../_RestaurantCards';
+import { fetchHealth } from '../../lib/health';
 
 /**
  * Name search over the SSR-delivered restaurant list, filtered locally.
@@ -26,6 +27,22 @@ export function RestaurantSearch({
   restaurants: RestaurantSummary[];
 }): ReactElement {
   const [query, setQuery] = useState('');
+  const [assistantConfigured, setAssistantConfigured] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    fetchHealth()
+      .then((health) => {
+        if (active) setAssistantConfigured(health.assistant_configured);
+      })
+      .catch(() => {
+        if (active) setAssistantConfigured(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const q = query.trim().toLowerCase();
   const matches = q
     ? restaurants.filter(
@@ -63,6 +80,10 @@ export function RestaurantSearch({
               >
                 Clear search
               </button>
+            </>
+          ) : assistantConfigured === false ? (
+            <>
+              No published menus yet. Check back soon — we&rsquo;re adding menus.
             </>
           ) : (
             <>

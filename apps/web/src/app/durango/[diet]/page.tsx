@@ -183,7 +183,7 @@ function EmptyState(): ReactElement {
   return (
     <section className="mx-auto max-w-3xl px-bw-6 pb-bw-16 text-center">
       <p className="text-bw-base text-zinc-600">
-        We&rsquo;re seeding the Durango launch with 30 independent restaurants now.
+        We&rsquo;re adding independent Durango restaurants now. Check back soon for more menus.
       </p>
       <a
         href="/onboarding"

@@ -157,6 +157,7 @@ export function toProfilePayload(
   disliked_tag_ids: string[];
   liked_ingredient_ids: string[];
   disliked_ingredient_ids: string[];
+  dietary_profile_slug?: string;
 } {
   const selected = presetCatalog.filter((p) => state.selectedPresetSlugs.includes(p.slug));
 
@@ -177,6 +178,7 @@ export function toProfilePayload(
     disliked_tag_ids:        state.dislikedTagIds,
     liked_ingredient_ids:    state.likedIngredientIds,
     disliked_ingredient_ids: state.dislikedIngredientIds,
+    dietary_profile_slug:    selected.length === 1 ? selected[0].slug : undefined,
   };
 }
 
