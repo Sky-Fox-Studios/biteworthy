@@ -178,7 +178,7 @@ export function toProfilePayload(
     disliked_tag_ids:        state.dislikedTagIds,
     liked_ingredient_ids:    state.likedIngredientIds,
     disliked_ingredient_ids: state.dislikedIngredientIds,
-    dietary_profile_slug:    selected.length === 1 ? selected[0].slug : undefined,
+    dietary_profile_slug:    selected.length === 1 ? selected[0]?.slug : undefined,
   };
 }
 

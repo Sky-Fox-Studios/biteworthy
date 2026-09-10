@@ -5,7 +5,7 @@ module Api
     # Checks whether the assistant (Anthropic API) is configured.
     # Used by empty states and CTAs to decide whether to promise photo scanning.
     class HealthController < BaseController
-      skip_before_action :authenticate!, only: [:show]
+      skip_before_action :authenticate_user!, only: [:show]
 
       def show
         render json: {

@@ -68,7 +68,7 @@ function ComingSoonBadge({ label }: { label: string }): ReactElement {
  * Shows coming-soon badges and waitlist form to signed-out users only.
  * Signed-in users see the web app as the product, not a future mobile app.
  */
-export function MarketingExtras(): ReactElement {
+export function MarketingExtras(): ReactElement | null {
   const [signedIn, setSignedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
