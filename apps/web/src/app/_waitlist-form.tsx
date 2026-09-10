@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent, type ReactElement } from 'react';
+import { useState, useEffect, type FormEvent, type ReactElement } from 'react';
 import { isValidEmail, submitWaitlist, WaitlistError } from '../lib/waitlist';
 
 /**
@@ -81,5 +81,43 @@ export default function WaitlistForm(): ReactElement {
         </p>
       )}
     </form>
+  );
+}
+
+/**
+ * Wrapper that hides the waitlist section for signed-in users.
+ * The web app is the product; signed-in users shouldn't see "when the apps drop."
+ */
+export function WaitlistSection(): ReactElement | null {
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/auth/session', { credentials: 'same-origin' })
+      .then((r) => (r.ok ? r.json() : { signedIn: false }))
+      .then((d: { signedIn?: boolean }) => {
+        if (active) setSignedIn(Boolean(d.signedIn));
+      })
+      .catch(() => {
+        if (active) setSignedIn(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Hide waitlist for signed-in users
+  if (signedIn === true) {
+    return null;
+  }
+
+  return (
+    <div className="mt-bw-8 rounded-bw-lg border border-zinc-200 bg-zinc-50 p-bw-4">
+      <p className="text-bw-sm font-bold text-zinc-900">Want a heads-up when the apps drop?</p>
+      <p className="mt-bw-1 text-bw-sm text-zinc-600">
+        One email, 48 hours before public release. Nothing else.
+      </p>
+      <WaitlistForm />
+    </div>
   );
 }

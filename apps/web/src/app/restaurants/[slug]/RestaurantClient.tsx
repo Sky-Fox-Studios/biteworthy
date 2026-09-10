@@ -222,9 +222,18 @@ export function RestaurantClient({
         </div>
       )}
       <p className="mt-bw-2 text-bw-base text-zinc-700">
-        Showing <span className="font-bold">{totalVisible}</span> item
-        {totalVisible === 1 ? '' : 's'} that match your filter
-        {totalHidden > 0 ? `, hiding ${totalHidden}.` : '.'}
+        {filter.source === 'none' && filter.strictness !== 'strict' ? (
+          <>
+            Showing <span className="font-bold">{totalVisible}</span> item
+            {totalVisible === 1 ? '' : 's'}. No filter applied.
+          </>
+        ) : (
+          <>
+            Showing <span className="font-bold">{totalVisible}</span> item
+            {totalVisible === 1 ? '' : 's'} that match your filter
+            {totalHidden > 0 ? `, hiding ${totalHidden}.` : '.'}
+          </>
+        )}
       </p>
 
       <div className="mt-bw-3 flex flex-wrap items-center gap-bw-2">

@@ -213,9 +213,18 @@ export default function RestaurantScreen() {
       <Text style={styles.eyebrow}>{restaurant.city.name}, {restaurant.city.region}</Text>
       <Text style={styles.headline}>{restaurant.name}</Text>
       <Text style={styles.summary}>
-        Showing <Text style={styles.bold}>{totalVisible}</Text> item
-        {totalVisible === 1 ? '' : 's'} that match your filter
-        {totalHidden > 0 ? `, hiding ${totalHidden}.` : '.'}
+        {filter.source === 'none' && filter.strictness !== 'strict' ? (
+          <>
+            Showing <Text style={styles.bold}>{totalVisible}</Text> item
+            {totalVisible === 1 ? '' : 's'}. No filter applied.
+          </>
+        ) : (
+          <>
+            Showing <Text style={styles.bold}>{totalVisible}</Text> item
+            {totalVisible === 1 ? '' : 's'} that match your filter
+            {totalHidden > 0 ? `, hiding ${totalHidden}.` : '.'}
+          </>
+        )}
       </Text>
       <FilterBadge filter={filter} />
       <StrictnessToggle

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ReactElement } from 'react';
 import Link from 'next/link';
 
 /**
@@ -47,5 +47,54 @@ export function HeroCta() {
     <Link href="/onboarding" data-testid="cta-web" className={CTA_CLASS}>
       Try the web app →
     </Link>
+  );
+}
+
+function ComingSoonBadge({ label }: { label: string }): ReactElement {
+  return (
+    <span
+      data-testid={`cta-soon-${label.toLowerCase().replace(/\s+/g, '-')}`}
+      className="inline-flex items-center gap-bw-2 rounded-bw-md border border-zinc-200 bg-zinc-50 px-bw-4 py-bw-3 text-bw-base font-semibold text-zinc-500"
+    >
+      {label}
+      <span className="rounded-bw-pill bg-zinc-200 px-bw-2 py-bw-0_5 text-bw-xs uppercase tracking-wider">
+        Coming soon
+      </span>
+    </span>
+  );
+}
+
+/**
+ * Shows coming-soon badges and waitlist form to signed-out users only.
+ * Signed-in users see the web app as the product, not a future mobile app.
+ */
+export function MarketingExtras(): ReactElement | null {
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/auth/session', { credentials: 'same-origin' })
+      .then((r) => (r.ok ? r.json() : { signedIn: false }))
+      .then((d: { signedIn?: boolean }) => {
+        if (active) setSignedIn(Boolean(d.signedIn));
+      })
+      .catch(() => {
+        if (active) setSignedIn(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Hide coming-soon badges and waitlist for signed-in users
+  if (signedIn === true) {
+    return null;
+  }
+
+  return (
+    <>
+      <ComingSoonBadge label="iOS app" />
+      <ComingSoonBadge label="Android app" />
+    </>
   );
 }

@@ -48,6 +48,11 @@ export interface SaveProfilePayload {
    * save once the user checks the allergen-disclaimer box.
    */
   acknowledge_disclaimer?: boolean;
+  /**
+   * When a single preset is selected, this links the profile to that
+   * preset so it displays correctly on the account page.
+   */
+  dietary_profile_slug?: string;
 }
 
 export interface SaveTastePayload {

@@ -219,6 +219,33 @@ describe('toProfilePayload', () => {
       ['ing-dairy', 'ing-egg', 'ing-meat'].sort(),
     );
   });
+
+  it('includes dietary_profile_slug when exactly one preset is selected', () => {
+    const draft: DraftProfile = {
+      ...initialDraft,
+      selectedPresetSlugs: ['vegan'],
+      manualIngredientIds: [],
+      strictness: 'balanced',
+    };
+    const payload = toProfilePayload(draft, catalog);
+    expect(payload.dietary_profile_slug).toBe('vegan');
+  });
+
+  it('omits dietary_profile_slug when multiple presets are selected', () => {
+    const draft: DraftProfile = {
+      ...initialDraft,
+      selectedPresetSlugs: ['vegan', 'tree-nut-allergy'],
+      manualIngredientIds: [],
+      strictness: 'balanced',
+    };
+    const payload = toProfilePayload(draft, catalog);
+    expect(payload.dietary_profile_slug).toBeUndefined();
+  });
+
+  it('omits dietary_profile_slug when no preset is selected', () => {
+    const payload = toProfilePayload(initialDraft, catalog);
+    expect(payload.dietary_profile_slug).toBeUndefined();
+  });
 });
 
 // Phase 8.5 — taste chips cycle neutral → liked → disliked → neutral

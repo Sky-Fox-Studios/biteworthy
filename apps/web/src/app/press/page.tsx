@@ -58,7 +58,7 @@ export default function PressPage(): ReactElement {
           &ldquo;never hide this dish&rdquo; to teach the filter your nuance.
         </p>
         <p className="mt-bw-3 text-bw-base text-zinc-800">
-          The launch beta seeds 30 independent Durango restaurants &mdash; not chains, not
+          The launch beta is adding independent Durango restaurants &mdash; not chains, not
           delivery aggregators. Reviews are by real diners with the same dietary needs as you;
           owners can claim their listings to fix mistakes; everyone can suggest fixes through a
           community moderation queue. Free, no ads, opt-in analytics. Built in Durango, Colorado,
